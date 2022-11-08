@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "uni-combox": "/uni_modules/uni-combox/components/uni-combox/uni-combox",
+    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
+    "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
+    "navbar": "/components/nav"
+  }
+}

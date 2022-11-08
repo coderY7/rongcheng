@@ -1,0 +1,12 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "u-scroll-list": "/node-modules/uview-ui/components/u-scroll-list/u-scroll-list",
+    "zb-table": "/uni_modules/zb-table/components/zb-table/zb-table",
+    "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination",
+    "select-switch": "/components/xuan-switch/xuan-switch",
+    "navbar": "/components/nav"
+  }
+}
