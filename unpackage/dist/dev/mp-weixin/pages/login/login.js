@@ -156,6 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -164,106 +165,54 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+{
+  data: function data() {
+    return {
+      bgColor: '#4f99ff', //动态背景
+      userid: '',
+      password: '',
+      iswx: '',
+      fdbh: '',
+      fdlist: [], //分店列表
+      isfdlist: false,
+      resdata: null };
 
+  },
+  components: {
+    navbar: navbar },
 
+  onLoad: function onLoad() {
+    console.log(wx.getMenuButtonBoundingClientRect());
+    this.iswx = uni.getStorageSync('iswx'); //判断微信绑定
+    this.userid = uni.getStorageSync('scandata').userid;
+  },
+  watch: {
+    userid: function userid(newValue, oldValue) {
+      if (newValue) {
+        if (newValue.length == '5') {
+          this.useryz();
+        } else {}
+      }
+    } },
 
+  methods: {
+    //自定义导航左面按钮
+    left: function left(data) {
+      console.log('点击左面按钮', data);
+    },
+    change: function change(e) {
+      console.log(e);
+      uni.setStorageSync("fdbh", e);
+    },
+    //用户验证
+    useryz: function useryz() {var _this = this;
+      var user = {
+        userid: this.userid };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var _api = __webpack_require__(/*! @/network/api.js */ 143); //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
-      userid: '', password: '', iswx: '', fdbh: '', fdlist: [], //分店列表
-      isfdlist: false, resdata: null };}, components: { navbar: navbar }, onLoad: function onLoad() {console.log(wx.getMenuButtonBoundingClientRect());this.iswx = uni.getStorageSync('iswx'); //判断微信绑定
-    this.userid = uni.getStorageSync('scandata').userid;}, watch: { userid: function userid(newValue, oldValue) {if (newValue) {if (newValue.length == '5') {this.useryz();} else {}}} }, methods: { //自定义导航左面按钮
-    left: function left(data) {console.log('点击左面按钮', data);}, change: function change(e) {console.log(e);uni.setStorageSync("fdbh", e);}, //用户验证
-    useryz: function useryz() {var _this = this;var user = { userid: this.userid };(0, _api.usercheckapp)(user).then(function (res) {if (res.error_code == 0) {if (res.fdlist) {_this.isfdlist = true;
+      (0, _api.usercheckapp)(user).then(function (res) {
+        if (res.error_code == 0) {
+          if (res.fdlist) {
+            _this.isfdlist = true;
           };
           uni.setStorageSync("companyid", res.companyid);
           _this.fdbh = res.fdlist[0].fdbh;
@@ -289,7 +238,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       });
     },
     //登录
-    bindLogin: function bindLogin() {
+    bindLogin: function bindLogin() {var _this2 = this;
       if (this.userid.length != 5) {
         uni.showToast({
           icon: 'none',
@@ -316,6 +265,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       (0, _api.rclogin)(logindata).then(function (res) {
         console.log(res);
         if (res.error_code == '0') {
+          uni.setStorageSync('userid', res.userinfo.erp_userid); //token
           uni.setStorageSync('access_token', res.access_token); //token
           uni.setStorageSync('refresh_token', res.refresh_token); //刷新
           uni.setStorageSync('dlmc', res.userinfo.erp_username); //名称
@@ -333,26 +283,26 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
                 js_code: res.code };
 
               console.log(getopeniddata);
-              uni.switchTab({
-                url: '/pages/home/home' });
+              //蓉城test
+              uni.navigateTo({
+                url: '/pages/trade/trade' });
 
-              // getopenid(getopeniddata).then((res) => {
-              // 	console.log('获取到openid', res)
-              // 	//存储openid
-              // 	uni.setStorageSync('openid', res.openid)
-              // 	uni.setStorageSync('session_key', res.session_key)
-              // 	uni.setStorageSync('userid', this.userid)
-              // 	this.openid = res.openid
+              (0, _api.getopenid)(getopeniddata).then(function (res) {
+                console.log('获取到openid', res);
+                //存储openid
+                uni.setStorageSync('openid', res.openid);
+                uni.setStorageSync('session_key', res.session_key);
+                uni.setStorageSync('userid', _this2.userid);
+                _this2.openid = res.openid;
+                //uni.switchTab({
+                //	url: '/pages/home/home'
+                //});
+                //蓉城test
+                uni.navigateTo({
+                  url: '/pages/trade/trade' });
 
-              // 	//uni.switchTab({
-              // 	//	url: '/pages/home/home'
-              // 	//});
-              // 	//蓉城test
-              // 	uni.navigateTo({
-              // 		url: '/pages/trade/trade'
-              // 	})
-              // 	this.basics()
-              // })
+                _this2.basics();
+              });
             } });
 
 
@@ -366,7 +316,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       });
     },
     //微信登录
-    wxLogin: function wxLogin() {var _this2 = this;
+    wxLogin: function wxLogin() {var _this3 = this;
       // 获取用户信息
       uni.login({
         provider: 'weixin',
@@ -384,7 +334,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
             //存储openid
             uni.setStorageSync('openid', res.openid);
             uni.setStorageSync('session_key', res.session_key);
-            _this2.openid = res.openid;
+            _this3.openid = res.openid;
 
             var data = {
               openid: uni.getStorageSync('openid') };
@@ -392,7 +342,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
             (0, _api.userfast)(data).then(function (res) {
               console.log(JSON.stringify(res));
               var resdata = JSON.parse(JSON.stringify(res));
-              _this2.resdata = resdata;
+              _this3.resdata = resdata;
               console.log(resdata['error_code'], resdata['userinfos']);
               if (resdata.error_code == '500') {
                 uni.showToast({
@@ -402,16 +352,16 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
               } else {
                 uni.setStorageSync('access_token', resdata.access_token.
                 access_token);
-                uni.setStorageSync('dlmc', _this2.resdata['userinfos'].dlmc);
-                uni.setStorageSync('companyid', _this2.resdata['userinfos'].
+                uni.setStorageSync('dlmc', _this3.resdata['userinfos'].dlmc);
+                uni.setStorageSync('companyid', _this3.resdata['userinfos'].
                 CompanyID);
-                uni.setStorageSync('userid', _this2.resdata['userinfos'].
+                uni.setStorageSync('userid', _this3.resdata['userinfos'].
                 USERID);
-                uni.setStorageSync('fdbh', _this2.resdata['userinfos'].
+                uni.setStorageSync('fdbh', _this3.resdata['userinfos'].
                 FDBHList);
-                uni.setStorageSync('groupid', _this2.resdata['userinfos'].
+                uni.setStorageSync('groupid', _this3.resdata['userinfos'].
                 GROUPID);
-                _this2.basics();
+                _this3.basics();
                 //uni.switchTab({
                 //	url: '/pages/home/home'
                 //}); 

@@ -59,7 +59,8 @@
 	import navbar from '../../components/nav.vue';
 	import {
 		rcsearchs,
-		rcinfos
+		rcinfos,
+    queryall
 	} from '../../network/api.js'
 	export default {
 		data() {
@@ -96,7 +97,7 @@
 		},
 		onShow() {
 			this.datachuli(this.testdata)
-
+this.isqueryall()
 		},
 
 		methods: {
@@ -179,6 +180,14 @@
 					userid: uni.getStorageSync('userid'),
 				};
 				rcsearchs(data).then((res) => {
+          console.log(res);
+          if(res.error_code=='500'){
+            uni.showToast({
+              title:res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
 					let candidates = []
 					let itemdata = []
 					res.data.forEach((item) => {
@@ -250,7 +259,14 @@
 					}
 				})
 
-			}
+			},
+      //小类编码
+      isqueryall(){
+        let data={"access_token":"C1EC-F868-FCCE-39A5-8470-4E39-1F36-50BB","CompanyID":"00040179552","level":"5","keys":"","ParentsID":"","fdbh":"000401"}
+        queryall(data).then((res)=>{
+          console.log('小类',res);
+        })
+      }
 		}
 	}
 </script>

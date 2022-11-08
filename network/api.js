@@ -160,3 +160,5 @@ export const rcusercheck=(params, config = {}) => http.post("mzsale/web/login/us
 export const rcsearchs=(params, config = {}) => http.post("mzsale/web/goods/search", params, config)
 export const rcinfos=(params, config = {}) => http.post("mzsale/web/goods/fast/info", params, config)
 export const rclogin=(params, config = {}) => http.post("mzsale/web/login", params, config)
+export const queryall=(params, config = {}) => http.post("mzsale/web/goodstype/queryall", params, config)
+

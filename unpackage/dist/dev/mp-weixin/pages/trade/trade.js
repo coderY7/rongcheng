@@ -224,6 +224,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
 
 
+
 {
   data: function data() {
     return {
@@ -259,7 +260,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
   onShow: function onShow() {
     this.datachuli(this.testdata);
-
+    this.isqueryall();
   },
 
   methods: {
@@ -342,6 +343,14 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         userid: uni.getStorageSync('userid') };
 
       (0, _api.rcsearchs)(data).then(function (res) {
+        console.log(res);
+        if (res.error_code == '500') {
+          uni.showToast({
+            title: res.message,
+            duration: 2000,
+            icon: 'none' });
+
+        }
         var candidates = [];
         var itemdata = [];
         res.data.forEach(function (item) {
@@ -413,6 +422,13 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         } });
 
 
+    },
+    //小类编码
+    isqueryall: function isqueryall() {
+      var data = { "access_token": "C1EC-F868-FCCE-39A5-8470-4E39-1F36-50BB", "CompanyID": "00040179552", "level": "5", "keys": "", "ParentsID": "", "fdbh": "000401" };
+      (0, _api.queryall)(data).then(function (res) {
+        console.log('小类', res);
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
