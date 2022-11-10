@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
   "usingComponents": {
     "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
     "navbar": "/components/nav"

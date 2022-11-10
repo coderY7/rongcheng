@@ -182,27 +182,26 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 //
 //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
-      Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {this.isreportForm();}, methods: { //获取报表
-    isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid') };
-      (0, _api.reportForm)(reportFormdata).then(function (res) {
+      Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {//this.isreportForm()
+    this.Alllist = [{ cxmc: '商品修改' }, { cxmc: '库存查询' }];}, methods: { //获取报表
+    isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid') };(0, _api.reportForm)(reportFormdata).then(function (res) {
         console.log('报表查询', res);
         _this.Alllist = res.data;
       });
     },
     enter: function enter(item) {
       console.log(item);
-      uni.setStorageSync('dqbb', item); //当前报表
-      var dataes = {
-        access_token: uni.getStorageSync('access_token'),
-        cxbh: item.cxbh };
-
-      (0, _api.condition)(dataes).then(function (res) {
-        console.log('查询条件', res);
-        var items = JSON.stringify(res);
+      if (item.cxmc == '商品修改') {
         uni.navigateTo({
-          url: "../../pagesA/condition/condition?cxdj=".concat(items) });
+          url: '../../pages/trade/trade' });
 
-      });
+      }
+      if (item.cxmc == '库存查询') {
+        uni.navigateTo({
+          url: '../../pagesA/condition/condition' });
+
+      }
+
     },
 
     //设置

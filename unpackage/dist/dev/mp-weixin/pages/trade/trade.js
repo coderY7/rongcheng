@@ -98,13 +98,16 @@ var components
 try {
   components = {
     uniCombox: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-combox/components/uni-combox/uni-combox */ "uni_modules/uni-combox/components/uni-combox/uni-combox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-combox/components/uni-combox/uni-combox.vue */ 370))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-combox/components/uni-combox/uni-combox */ "uni_modules/uni-combox/components/uni-combox/uni-combox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-combox/components/uni-combox/uni-combox.vue */ 376))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 377))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 383))
+    },
+    uSwitch: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 368))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 292))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 298))
     }
   }
 } catch (e) {
@@ -220,7 +223,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -228,10 +242,15 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 {
   data: function data() {
     return {
+      columndata: '',
+      column: '',
+      result: '',
       spbm: '', //商品编码
+      spmc: '',
       candidates: [],
       itemdata: '',
       zgys: '', //主供应商
+      spsmm: '',
       xzzgys: '',
       testdata: {
         小类编码: '',
@@ -247,23 +266,25 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         主供应商: '' } };
 
 
+
   },
-  watch: {
-    spbm: function spbm(newValue, oldValue) {
-      if (newValue == undefined) {
-        this.itemdata = false;
-      }
-    } },
+  watch: {},
+
 
   components: {
     navbar: navbar },
 
-  onShow: function onShow() {
+  onLoad: function onLoad() {
     this.datachuli(this.testdata);
-    this.isqueryall();
   },
-
+  onShow: function onShow() {
+    this.testdata[0].value = uni.getStorageSync('xzxlbm');
+  },
   methods: {
+    //库存状态
+    switchs: function switchs(e) {
+      console.log(e);
+    },
     //主供应商处理
     iszgys: function iszgys(data) {
       var test = [];
@@ -289,6 +310,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       var test = [];
       for (var _i = 0, _Object$entries = Object.entries(data); _i < _Object$entries.length; _i++) {var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),key = _Object$entries$_i[0],value = _Object$entries$_i[1];
         switch (key) {
+
           case '零售价格':
           case '会员价格':
           case '最近进价':
@@ -304,7 +326,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           case '库存状态':
             test.push({
               key: key,
-              value: value,
+              value: false,
               Boolean: true });
 
             break;
@@ -313,6 +335,13 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
               key: key,
               value: value,
               combox: true });
+
+            break;
+          case '小类编码':
+            test.push({
+              key: key,
+              value: value,
+              table: true });
 
             break;
           default:
@@ -327,107 +356,190 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       this.testdata = test;
     },
     change: function change(e) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                console.log(e);_context.next = 3;return (
-                  _this.issearch());case 3:case "end":return _context.stop();}}}, _callee);}))();
+                console.log(e.split('-')[0]);_context.next = 3;return (
+
+                  _this.issearch(e.split('-')[0]));case 3:case "end":return _context.stop();}}}, _callee);}))();
 
     },
     //商品查询
-    issearch: function issearch() {var _this2 = this;
+    issearch: function issearch(e) {var _this2 = this;
       var data = {
         access_token: uni.getStorageSync('access_token'), //token
         companyid: uni.getStorageSync('companyid'),
-        condition: this.spbm,
+        condition: e,
         fdbh: uni.getStorageSync('fdbh'),
         findtype: "01",
         goodstype: "SP",
         userid: uni.getStorageSync('userid') };
 
       (0, _api.rcsearchs)(data).then(function (res) {
-        console.log(res);
         if (res.error_code == '500') {
           uni.showToast({
             title: res.message,
             duration: 2000,
             icon: 'none' });
 
-        }
-        var candidates = [];
-        var itemdata = [];
-        res.data.forEach(function (item) {
-          candidates.push(item.spbm);
-          var a = {
-            spbm: item.spbm,
-            spsmm: item.spsmm,
-            spmc: item.spmc };
+          _this2.spbm = '';
+        } else {
+          var candidates = [];
+          var itemdata = [];
+          console.log(res.data);
+          res.data.forEach(function (item) {
+            candidates.push("".concat(item.spsmm, "--").concat(item.spmc));
+            var a = {
+              spbm: item.spbm,
+              spsmm: item.spsmm,
+              spmc: item.spmc };
 
-          itemdata.push(a);
-        });
-        _this2.candidates = candidates;
-        _this2.itemdata = itemdata;
+
+            itemdata.push(a);
+          });
+          _this2.candidates = candidates;
+          _this2.itemdata = itemdata;
+          _this2.spbm = res.data[0].spbm;
+        }
       });
-      console.log(this.spbm);
     },
     //基本信息
+
     isinfo: function isinfo() {var _this3 = this;
       var data = {
         access_token: uni.getStorageSync('access_token'),
-        fdbh: '000501',
+        fdbh: uni.getStorageSync('fdbh'),
         spbm: this.spbm };
 
-      uni.request({
-        url: "http://211.149.188.114:92/mzsale/web/goods/fast/info",
-        method: "POST",
-        header: {
-          'Content-Type': 'application/x-www-form-urlencoded' },
+      (0, _api.rcinfos)(data).then(function (res) {
+        if (res.error_code == '0') {
 
-        data: data,
-        success: function success(res) {
-          console.log('基本信息', res.data.list);
-          console.log(_this3, res.data.list.Table3);
-          _this3.iszgys(res.data.list.Table3);
-        } });
+          _this3.spsmm = res.list.Table[0] ? res.list.Table[0]['商品条码'] : '';
+          _this3.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
+          _this3.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+          _this3.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+          _this3.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+          _this3.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
+          _this3.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+          _this3.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+          _this3.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
+          _this3.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
 
+
+          _this3.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+          _this3.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+          _this3.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+          if (_this3.testdata[7].value == "T") {
+            _this3.testdata[7].value = true;
+          } else {
+            _this3.testdata[7].value = false;
+          }
+
+          _this3.iszgys(res.list.Table3);
+        }
+        if (res.error_code == '500') {
+          _this3.testdata.forEach(function (item) {
+            item.value = '';
+          });
+          uni.showToast({
+            title: res.message,
+            duration: 2000,
+            icon: 'none' });
+
+        }
+      });
     },
     //保存
     save: function save() {
+      var kczt = '';
+      if (this.testdata[7].value) {
+        kczt = "T";
+      } else {
+        kczt = "F";
+      }
       var data = {
         "access_token": uni.getStorageSync('access_token'),
-        "spbm": "0020101002",
-        "spsmm": "665547552",
+        "spbm": this.spbm,
+        "spsmm": this.spsmm, //商品条码
         "spmc": "测试",
-        "gg": "1",
-        "dw": "个  ",
-        "sjbh": "0005010101",
-        "zlbmid": "001000108",
-        "nsjg": 2,
-        "hyjg": 83.7,
-        "pjjj": 64.56,
-        "needkcbz": "T",
-        "dqkcl": -1,
-        "zdkcl": 4,
-        "zxkcl": 1,
-        "userid": "00005",
-        "fdbh": "000501" };
+        "gg": this.testdata[1].value, //规格
+        "dw": this.testdata[2].value, //单位
+        "sjbh": this.xzzgys.split('-')[1], //主供应商
+        "zlbmid": this.testdata[0].value, //小类
+        "nsjg": this.testdata[3].value, //零售价
+        "hyjg": this.testdata[4].value, //会员价
+        "pjjj": this.testdata[5].value, //最近价
+        "needkcbz": kczt,
+        "dqkcl": this.testdata[6].value, //当前库存量 -1 代表不修正
+        "zdkcl": this.testdata[8].value, //最大陈列量
+        "zxkcl": this.testdata[9].value, //最小陈列量
+        "userid": uni.getStorageSync('userid'),
+        "fdbh": uni.getStorageSync('fdbh') };
 
-      uni.request({
-        url: "http://211.149.188.114:92/mzsale/web/goods/fast/dosave",
-        method: "POST",
-        data: data,
-        header: {
-          'Content-Type': 'application/x-www-form-urlencoded' },
+      (0, _api.rcdosave)(data).then(function (res) {
+        console.log(res);
+        uni.showToast({
+          title: res.message,
+          duration: 2000,
+          icon: 'none' });
 
-        success: function success(res) {
-          console.log('保存信息', res);
-
-        } });
-
+      });
 
     },
     //小类编码
-    isqueryall: function isqueryall() {
-      var data = { "access_token": "C1EC-F868-FCCE-39A5-8470-4E39-1F36-50BB", "CompanyID": "00040179552", "level": "5", "keys": "", "ParentsID": "", "fdbh": "000401" };
+    isqueryall: function isqueryall(datas) {var _this4 = this;
+      console.log(datas.value);
+      var data = {
+        "access_token": uni.getStorageSync('access_token'),
+        "CompanyID": uni.getStorageSync('companyid'),
+        "level": "5",
+        "keys": datas.value,
+        "ParentsID": "",
+        "fdbh": uni.getStorageSync('fdbh') };
+
       (0, _api.queryall)(data).then(function (res) {
         console.log('小类', res);
+        _this4.column = [{
+          name: '小类编码',
+          label: '小类编码',
+          width: 200,
+          fixed: true },
+
+
+        {
+          name: '中类编码',
+          label: '中类编码',
+          width: 120 },
+
+        {
+          name: '大类编码',
+          label: '大类编码',
+          width: 200 },
+
+        {
+          name: '部门分组',
+          label: '部门分组',
+          width: 200 }];
+
+
+        if (res.error_code == '0') {
+          var result = [];
+          res.nodes.forEach(function (item) {
+            var a = {
+              '小类编码': item.title,
+              '中类编码': item.ParentId,
+              '大类编码': item.supermc,
+              '部门分组': item.departgroupmc };
+
+            result.push(a);
+          });
+          console.log(result);
+          _this4.result = result;
+          var column = JSON.stringify(_this4.column);
+          var results = JSON.stringify(_this4.result);
+          uni.navigateTo({
+            url: "../../pagesA/table/table?result=".concat(results, "&column=").concat(column) });
+
+        }
+
+
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

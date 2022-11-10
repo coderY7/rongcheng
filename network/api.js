@@ -162,3 +162,4 @@ export const rcinfos=(params, config = {}) => http.post("mzsale/web/goods/fast/i
 export const rclogin=(params, config = {}) => http.post("mzsale/web/login", params, config)
 export const queryall=(params, config = {}) => http.post("mzsale/web/goodstype/queryall", params, config)
 
+export const rcdosave=(params, config = {}) => http.post("mzsale/web/goods/fast/dosave", params, config)

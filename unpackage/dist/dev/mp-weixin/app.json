@@ -23,7 +23,8 @@
         "work/work",
         "work/component/minutework",
         "result/result",
-        "detail/detail"
+        "detail/detail",
+        "table/table"
       ]
     }
   ],

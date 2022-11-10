@@ -514,47 +514,17 @@
 					datamark: 'ssale',
 					selfdbh: this.xzfd ? this.xzfd : 'ALL'
 				}
-				//test
-				uni.request({
-					url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-					data: {
-						saledate: "2022-10-19",
-						datamark: "ssale",
-						selfdbh: "ALL",
-						sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
-					},
-					method: "POST",
-					header: {
-						'Content-Type': 'application/json',
-					},
-					success: (res) => {
-						console.log('仪表盘数据', JSON.parse(res.data))
-						let data = JSON.parse(res.data)
-
-						this.ybpdata = data
-						this.manage()
-            this.percent()
-					}
-				});
+				
 				//实际方法
-				// getappsalereport(getpcadmindaysaledata).then((res) => {
-				// 	console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
-				// 	let data = JSON.parse(JSON.stringify(res))
-				// 	this.ybpdata = data
-				// 	//处理实销数据表盘
-				// 	let table0 = this.ybpdata.table0[0]
-				// 	let table = []
-				// 	for (var [key, value] of Object.entries(table0)) {
-				// 		table.push({
-				// 			key,
-				// 			value
-				// 		})
-				// 	}
-				// 	this.tablecolor.forEach((item, index) => {
-				// 		table[index].color = item
-				// 	})
-				// 	this.ybpdata.table0[0] = table
-				// })
+				getappsalereport(getpcadmindaysaledata).then((res) => {
+					console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
+					console.log('仪表盘数据', JSON.parse(res.data))
+											let data = JSON.parse(res.data)
+					
+											this.ybpdata = data
+											this.manage()
+					                        this.percent()
+				})
 			},
 			//开始日期
 			startdate(e) {
@@ -765,45 +735,34 @@ console.log(res)
           selfdbh: this.xzfd ? this.xzfd : 'ALL'
         }
         //test
-        uni.request({
-          url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-          data: {
-            saledate: "2022-10-19",
-            datamark: "sdays",
-            selfdbh: 'ALL',
-            sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
-          },
-          method: "POST",
-          header: {
-            'Content-Type': 'application/json',
-          },
-          success: (res) => {
-            console.log('数据', JSON.parse(res.data))
-            let data = JSON.parse(res.data)
-            this.sdays = data
-            //默认显示数据
-            this.xzshu=this.sdays.table0[0]
-          }
-        });
+        // uni.request({
+        //   url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
+        //   data: {
+        //     saledate: "2022-10-19",
+        //     datamark: "sdays",
+        //     selfdbh: 'ALL',
+        //     sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
+        //   },
+        //   method: "POST",
+        //   header: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   success: (res) => {
+        //     console.log('数据', JSON.parse(res.data))
+        //     let data = JSON.parse(res.data)
+        //     this.sdays = data
+        //     //默认显示数据
+        //     this.xzshu=this.sdays.table0[0]
+        //   }
+        // });
         //实际方法
-        // getappsalereport(getpcadmindaysaledata).then((res) => {
-        // 	console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
-        // 	let data = JSON.parse(JSON.stringify(res))
-        // 	this.ybpdata = data
-        // 	//处理实销数据表盘
-        // 	let table0 = this.ybpdata.table0[0]
-        // 	let table = []
-        // 	for (var [key, value] of Object.entries(table0)) {
-        // 		table.push({
-        // 			key,
-        // 			value
-        // 		})
-        // 	}
-        // 	this.tablecolor.forEach((item, index) => {
-        // 		table[index].color = item
-        // 	})
-        // 	this.ybpdata.table0[0] = table
-        // })
+        getappsalereport(getpcadmindaysaledata).then((res) => {
+        	console.log('数据', JSON.parse(res.data))
+        	            let data = JSON.parse(res.data)
+        	            this.sdays = data
+        	            //默认显示数据
+        	            this.xzshu=this.sdays.table0[0]
+        })
       },
 
       section1(){
@@ -989,8 +948,10 @@ console.log(res)
     width: 100%;
     display: inline-flex;
     font-size: 22rpx;
-    .ownbox{
+    .ownbox:not(:last-child){
       border-right: 1px silver dashed;
+    }
+    .ownbox{
       padding: 20rpx;
       width: 48%;
       display: flex;

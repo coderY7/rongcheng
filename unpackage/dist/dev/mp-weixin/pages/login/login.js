@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 292))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 298))
     }
   }
 } catch (e) {
@@ -283,9 +283,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
                 js_code: res.code };
 
               console.log(getopeniddata);
-              //蓉城test
-              uni.navigateTo({
-                url: '/pages/trade/trade' });
 
               (0, _api.getopenid)(getopeniddata).then(function (res) {
                 console.log('获取到openid', res);
@@ -294,12 +291,9 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
                 uni.setStorageSync('session_key', res.session_key);
                 uni.setStorageSync('userid', _this2.userid);
                 _this2.openid = res.openid;
-                //uni.switchTab({
-                //	url: '/pages/home/home'
-                //});
-                //蓉城test
-                uni.navigateTo({
-                  url: '/pages/trade/trade' });
+                uni.switchTab({
+                  url: '/pages/home/home' });
+
 
                 _this2.basics();
               });
@@ -350,6 +344,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
                   title: resdata.message });
 
               } else {
+
                 uni.setStorageSync('access_token', resdata.access_token.
                 access_token);
                 uni.setStorageSync('dlmc', _this3.resdata['userinfos'].dlmc);
@@ -357,17 +352,16 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
                 CompanyID);
                 uni.setStorageSync('userid', _this3.resdata['userinfos'].
                 USERID);
-                uni.setStorageSync('fdbh', _this3.resdata['userinfos'].
-                FDBHList);
+                uni.setStorageSync('fdbh', resdata.access_token.
+                erp_fdbh);
+                uni.setStorageSync('fdmc', resdata.access_token.
+                erp_fdmc);
                 uni.setStorageSync('groupid', _this3.resdata['userinfos'].
                 GROUPID);
                 _this3.basics();
-                //uni.switchTab({
-                //	url: '/pages/home/home'
-                //}); 
-                //蓉城test
-                uni.navigateTo({
-                  url: '/pages/trade/trade' });
+                uni.switchTab({
+                  url: '/pages/home/home' });
+
 
               }
             });

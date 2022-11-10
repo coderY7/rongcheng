@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
+  "navigationStyle": "custom",
   "usingComponents": {
     "mk-upload": "/components/mk-upload/mk-upload",
     "u-button": "/node-modules/uview-ui/components/u-button/u-button",

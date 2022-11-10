@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<navbar title='新建商品' @lefts=left() leftname="设置"></navbar>
+		<navbar title='新建商品' @lefts=left()></navbar>
 
 		<view class="container">
 			<uni-card>
 				<view class="box">
-					<view class="boxname">商品编码 :</view>
-					<view class=boxinput>
-						<uni-combox :candidates="candidates" placeholder="请输入商品编码" v-model="spbm" @input="change()">
+					<view class="boxname">商品条码 :</view>
+					<view class=boxinput style="z-index: 99999;">
+						<uni-combox :candidates="candidates" placeholder="请输入商品编码" v-model="spsmm" @input="change()">
 						</uni-combox>
 					</view>
 					<view class="">
@@ -16,24 +16,34 @@
 				</view>
 			</uni-card>
 
-			<uni-card v-if="itemdata[0]">
-				<view>编码:{{itemdata[0].spbm}}</view>
-				<view>条码:{{itemdata[0].spsmm}}</view>
-				<view>名称:{{itemdata[0].spmc}}</view>
+			<uni-card v-if="spmc">
+				<view>编码:{{spbm}}</view>
+				<view>条码:{{spsmm}}</view>
+				<view>名称:{{spmc}}</view>
 			</uni-card>
 
 			<uni-card>
 				<view v-for="(item, index) in testdata" :key="item">
-					<view v-if="item.number">
-						<view>{{item.key}}:</view>
+
+					<view v-if="item.table" class="box">
+						<view class="boxname">{{item.key}}:</view>
+						<view class="boxinput">
+							<u-input border="surround" v-model="item.value" type="digit"></u-input>
+						</view>
+						<view class="">
+							<button @click="isqueryall(item)" class="search">查询</button>
+						</view>
+					</view>		
+					<view v-else-if="item.number" class="box">
+						<view class="boxname">{{item.key}}:</view>
 						<u-input border="surround" v-model="item.value" type="digit"></u-input>
 					</view>
-					<view v-else-if="item.Boolean">
-						<view>{{item.key}}:</view>
-						<u-input border="surround" v-model="item.value" type="digit"></u-input>
+					<view v-else-if="item.Boolean" class="box">
+						<view class="boxname">{{item.key}}:</view>
+						<u-switch v-model="item.value" @change="switchs()"></u-switch>
 					</view>
-					<view v-else-if="item.combox">
-						<view>{{item.key}}:</view>
+					<view v-else-if="item.combox" class="box">
+						<view class="boxname">{{item.key}}:</view>
 						<view class="boxinput">
 							<uni-section type="line">
 								<uni-data-select v-model="xzzgys" :localdata="zgys">
@@ -41,8 +51,8 @@
 							</uni-section>
 						</view>
 					</view>
-					<view v-else>
-						<view>{{item.key}}:</view>
+					<view v-else class="box">
+						<view class="boxname">{{item.key}}:</view>
 						<u-input border="surround" v-model="item.value" type="digit"></u-input>
 					</view>
 				</view>
@@ -60,16 +70,22 @@
 	import {
 		rcsearchs,
 		rcinfos,
-    queryall
+		queryall,
+    rcdosave
 	} from '../../network/api.js'
 	export default {
 		data() {
 			return {
+				columndata: '',
+				column: '',
+				result: '',
 				spbm: '', //商品编码
+				spmc:'',
 				candidates: [],
 				itemdata: '',
 				zgys: '', //主供应商
-				xzzgys:'',
+				spsmm:'',
+				xzzgys: '',
 				testdata: {
 					小类编码: '',
 					商品规格: '',
@@ -81,31 +97,33 @@
 					库存状态: '',
 					最大陈列: '',
 					最小陈列: '',
-					主供应商: '',
+					主供应商: ''
+					
 				}
 			};
 		},
 		watch: {
-			spbm: function(newValue, oldValue) {
-				if (newValue == undefined) {
-					this.itemdata = false
-				}
-			}
+
 		},
 		components: {
 			navbar
 		},
-		onShow() {
+		onLoad() {
 			this.datachuli(this.testdata)
-this.isqueryall()
 		},
-
+		onShow() {
+			this.testdata[0].value = uni.getStorageSync('xzxlbm')
+		},
 		methods: {
+			//库存状态
+			switchs(e) {
+				console.log(e)
+			},
 			//主供应商处理
 			iszgys(data) {
 				let test = []
-				data.forEach((item)=>{
-					let data=`${item['商家名称']}-${item['商家编号']}`
+				data.forEach((item) => {
+					let data = `${item['商家名称']}-${item['商家编号']}`
 					test.push(data)
 				})
 				console.log(test)
@@ -126,6 +144,7 @@ this.isqueryall()
 				let test = []
 				for (let [key, value] of Object.entries(data)) {
 					switch (key) {
+
 						case '零售价格':
 						case '会员价格':
 						case '最近进价':
@@ -141,7 +160,7 @@ this.isqueryall()
 						case '库存状态':
 							test.push({
 								key,
-								value,
+								value: false,
 								Boolean: true
 							})
 							break;
@@ -150,6 +169,13 @@ this.isqueryall()
 								key,
 								value,
 								combox: true
+							})
+							break;
+							case '小类编码':
+							test.push({
+								key,
+								value,
+								table: true
 							})
 							break;
 						default:
@@ -164,109 +190,192 @@ this.isqueryall()
 				this.testdata = test
 			},
 			async change(e) {
-				console.log(e)
-				await this.issearch()
-				//this.spbm = e
+				 console.log(e.split('-')[0])
+
+				 await this.issearch(e.split('-')[0])
+				 //this.spbm=e
 			},
 			//商品查询
-			issearch() {
+			issearch(e) {
 				let data = {
 					access_token: uni.getStorageSync('access_token'), //token
 					companyid: uni.getStorageSync('companyid'),
-					condition: this.spbm,
+					condition: e,
 					fdbh: uni.getStorageSync('fdbh'),
 					findtype: "01",
 					goodstype: "SP",
 					userid: uni.getStorageSync('userid'),
 				};
 				rcsearchs(data).then((res) => {
-          console.log(res);
-          if(res.error_code=='500'){
+					if (res.error_code == '500') {
+						uni.showToast({
+							title: res.message,
+							duration: 2000,
+							icon: 'none'
+						});
+            this.spbm=''
+					} else {
+						let candidates = []
+						let itemdata = []
+						console.log(res.data)
+						res.data.forEach((item) => {
+							candidates.push(`${item.spsmm}--${item.spmc}`)
+							let a = {
+								spbm: item.spbm,
+								spsmm: item.spsmm,
+								spmc: item.spmc,
+				
+							}
+							itemdata.push(a)
+						})
+						this.candidates = candidates
+						this.itemdata = itemdata
+            this.spbm=res.data[0].spbm
+					}
+				})
+			},
+			//基本信息
+			
+			isinfo() {
+				let data = {
+					access_token: uni.getStorageSync('access_token'),
+					fdbh: uni.getStorageSync('fdbh'),
+					spbm: this.spbm,
+				};
+				rcinfos(data).then((res)=>{
+          if(res.error_code=='0'){
+
+            this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
+            this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
+            this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
+            this.testdata[4].value=res.list.Table[0]?res.list.Table[0]['会员价格']:''
+            this.testdata[2].value=res.list.Table[0]?res.list.Table[0]['单位']:''
+            this.testdata[0].value=res.list.Table[0]?res.list.Table[0]['小类编码']:''
+            this.testdata[6].value=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
+            this.testdata[8].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
+            this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
+            this.testdata[5].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
+
+
+            this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['管理库存']:''
+            this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['规格']:''
+            this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['零售价格']:''
+            if (this.testdata[7].value=="T") {
+              this.testdata[7].value=true
+            } else {
+              this.testdata[7].value=false
+            }
+
+            this.iszgys(res.list.Table3)
+          }
+					if(res.error_code=='500'){
+            this.testdata.forEach((item)=>{
+              item.value=''
+            })
             uni.showToast({
               title:res.message,
               duration: 2000,
               icon:'none'
             });
           }
-					let candidates = []
-					let itemdata = []
-					res.data.forEach((item) => {
-						candidates.push(item.spbm)
-						let a = {
-							spbm: item.spbm,
-							spsmm: item.spsmm,
-							spmc: item.spmc
-						}
-						itemdata.push(a)
-					})
-					this.candidates = candidates
-					this.itemdata = itemdata
-				})
-				console.log(this.spbm)
-			},
-			//基本信息
-			isinfo() {
-				let data = {
-					access_token:uni.getStorageSync('access_token'),
-					fdbh: '000501',
-					spbm: this.spbm,
-				};
-				uni.request({
-					url: "http://211.149.188.114:92/mzsale/web/goods/fast/info",
-					method: "POST",
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-					},
-					data: data,
-					success: (res) => {
-						console.log('基本信息', res.data.list)
-						console.log(this,res.data.list.Table3)
-						this.iszgys(res.data.list.Table3)
-					}
 				})
 			},
 			//保存
 			save() {
-				let data = {
-					"access_token":uni.getStorageSync('access_token'),
-					"spbm": "0020101002",
-					"spsmm": "665547552",
-					"spmc": "测试",
-					"gg": "1",
-					"dw": "个  ",
-					"sjbh": "0005010101",
-					"zlbmid": "001000108",
-					"nsjg": 2,
-					"hyjg": 83.7,
-					"pjjj": 64.56,
-					"needkcbz": "T",
-					"dqkcl": -1,
-					"zdkcl": 4,
-					"zxkcl": 1,
-					"userid": "00005",
-					"fdbh": "000501"
+				let kczt = '';
+				if (this.testdata[7].value) {
+					kczt = "T"
+				} else {
+					kczt = "F"
 				}
-				uni.request({
-					url: "http://211.149.188.114:92/mzsale/web/goods/fast/dosave",
-					method: "POST",
-					data: data,
-					header: {
-						'Content-Type': 'application/x-www-form-urlencoded',
-					},
-					success: (res) => {
-						console.log('保存信息', res)
-
-					}
-				})
+				let data = {
+					"access_token": uni.getStorageSync('access_token'),
+					"spbm": this.spbm,
+					"spsmm": this.spsmm, //商品条码
+					"spmc": "测试",
+					"gg": this.testdata[1].value, //规格
+					"dw": this.testdata[2].value, //单位
+					"sjbh": this.xzzgys.split('-')[1], //主供应商
+					"zlbmid": this.testdata[0].value, //小类
+					"nsjg": this.testdata[3].value, //零售价
+					"hyjg": this.testdata[4].value, //会员价
+					"pjjj": this.testdata[5].value, //最近价
+					"needkcbz": kczt,
+					"dqkcl": this.testdata[6].value, //当前库存量 -1 代表不修正
+					"zdkcl": this.testdata[8].value, //最大陈列量
+					"zxkcl": this.testdata[9].value, //最小陈列量
+					"userid": uni.getStorageSync('userid'),
+					"fdbh": uni.getStorageSync('fdbh'),
+				}
+        rcdosave(data).then((res)=>{
+          console.log(res)
+          uni.showToast({
+            title: res.message,
+            duration: 2000,
+            icon:'none'
+          });
+        })
 
 			},
-      //小类编码
-      isqueryall(){
-        let data={"access_token":"C1EC-F868-FCCE-39A5-8470-4E39-1F36-50BB","CompanyID":"00040179552","level":"5","keys":"","ParentsID":"","fdbh":"000401"}
-        queryall(data).then((res)=>{
-          console.log('小类',res);
-        })
-      }
+			//小类编码
+			isqueryall(datas) {
+				console.log(datas.value)
+				let data = {
+					"access_token": uni.getStorageSync('access_token'),
+					"CompanyID": uni.getStorageSync('companyid'),
+					"level": "5",
+					"keys": datas.value,
+					"ParentsID": "",
+					"fdbh": uni.getStorageSync('fdbh')
+				}
+				queryall(data).then((res) => {
+					console.log('小类', res);
+					this.column = [{
+							name: '小类编码',
+							label: '小类编码',
+							width: 200,
+							fixed: true
+
+						},
+						{
+							name: '中类编码',
+							label: '中类编码',
+							width: 120,
+						},
+						{
+							name: '大类编码',
+							label: '大类编码',
+							width: 200,
+						},
+						{
+							name: '部门分组',
+							label: '部门分组',
+							width: 200,
+						}
+					]
+					if (res.error_code == '0') {
+						let result = []
+						res.nodes.forEach((item) => {
+							let a = {
+								'小类编码': item.title,
+								'中类编码': item.ParentId,
+								'大类编码': item.supermc,
+								'部门分组': item.departgroupmc
+							}
+							result.push(a)
+						})
+						console.log(result)
+						this.result = result
+						let column = JSON.stringify(this.column);
+						let results = JSON.stringify(this.result)
+						uni.navigateTo({
+							url: `../../pagesA/table/table?result=${results}&column=${column}`
+						})
+					}
+
+
+				})
+			},
 		}
 	}
 </script>

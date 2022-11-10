@@ -40,8 +40,8 @@
 		    navbar
 		  },
 		onLoad() {
-			this.isreportForm()
-
+			//this.isreportForm()
+this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'}]
 		},
 		methods: {
 			//获取报表
@@ -57,18 +57,17 @@
 			},
 			enter(item) {
 				console.log(item)
-				uni.setStorageSync('dqbb', item) //当前报表
-				let dataes = {
-					access_token: uni.getStorageSync('access_token'),
-					cxbh: item.cxbh
-				}
-				condition(dataes).then((res) => {
-					console.log('查询条件', res)
-					let items = JSON.stringify(res)
+				if(item.cxmc=='商品修改'){
 					uni.navigateTo({
-						url: `../../pagesA/condition/condition?cxdj=${items}`
+						url: '../../pages/trade/trade'
 					})
-				})
+				}
+				if(item.cxmc=='库存查询'){
+					uni.navigateTo({
+						url: '../../pagesA/condition/condition'
+					})
+				}
+			
 			},
 
       //设置

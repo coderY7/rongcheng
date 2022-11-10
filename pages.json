@@ -62,14 +62,16 @@
 			"path": "pages/myset/component/jianyi",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
 			"path": "pages/myset/component/weixin",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false
+				"enablePullDownRefresh": false,
+				"navigationStyle": "custom"
 			}
 		},
 		{
@@ -162,6 +164,15 @@
                     "navigationBarTitleText": "",
                     "enablePullDownRefresh": false,
 					"navigationStyle": "custom"
+                }
+                
+                }
+                ,{
+                    "path" : "table/table",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
                 }
                 
                 }

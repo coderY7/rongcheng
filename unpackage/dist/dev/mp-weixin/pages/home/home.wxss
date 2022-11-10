@@ -141,8 +141,10 @@ u-navbar {
   display: inline-flex;
   font-size: 22rpx;
 }
-.own .ownbox {
+.own .ownbox:not(:last-child) {
   border-right: 1px silver dashed;
+}
+.own .ownbox {
   padding: 20rpx;
   width: 48%;
   display: flex;

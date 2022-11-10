@@ -98,19 +98,19 @@ var components
 try {
   components = {
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 302))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 308))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 292))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 298))
     },
     uniGroup: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 313))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 319))
     },
     qiunDataCharts: function() {
-      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 320))
+      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 326))
     },
     uniSegmentedControl: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 329))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 335))
     }
   }
 } catch (e) {
@@ -692,47 +692,17 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         datamark: 'ssale',
         selfdbh: this.xzfd ? this.xzfd : 'ALL' };
 
-      //test
-      uni.request({
-        url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-        data: {
-          saledate: "2022-10-19",
-          datamark: "ssale",
-          selfdbh: "ALL",
-          sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH" },
-
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json' },
-
-        success: function success(res) {
-          console.log('仪表盘数据', JSON.parse(res.data));
-          var data = JSON.parse(res.data);
-
-          _this3.ybpdata = data;
-          _this3.manage();
-          _this3.percent();
-        } });
 
       //实际方法
-      // getappsalereport(getpcadmindaysaledata).then((res) => {
-      // 	console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
-      // 	let data = JSON.parse(JSON.stringify(res))
-      // 	this.ybpdata = data
-      // 	//处理实销数据表盘
-      // 	let table0 = this.ybpdata.table0[0]
-      // 	let table = []
-      // 	for (var [key, value] of Object.entries(table0)) {
-      // 		table.push({
-      // 			key,
-      // 			value
-      // 		})
-      // 	}
-      // 	this.tablecolor.forEach((item, index) => {
-      // 		table[index].color = item
-      // 	})
-      // 	this.ybpdata.table0[0] = table
-      // })
+      (0, _api.getappsalereport)(getpcadmindaysaledata).then(function (res) {
+        console.log('仪表盘数据', JSON.parse(JSON.stringify(res)));
+        console.log('仪表盘数据', JSON.parse(res.data));
+        var data = JSON.parse(res.data);
+
+        _this3.ybpdata = data;
+        _this3.manage();
+        _this3.percent();
+      });
     },
     //开始日期
     startdate: function startdate(e) {
@@ -943,45 +913,34 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         selfdbh: this.xzfd ? this.xzfd : 'ALL' };
 
       //test
-      uni.request({
-        url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-        data: {
-          saledate: "2022-10-19",
-          datamark: "sdays",
-          selfdbh: 'ALL',
-          sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH" },
-
-        method: "POST",
-        header: {
-          'Content-Type': 'application/json' },
-
-        success: function success(res) {
-          console.log('数据', JSON.parse(res.data));
-          var data = JSON.parse(res.data);
-          _this11.sdays = data;
-          //默认显示数据
-          _this11.xzshu = _this11.sdays.table0[0];
-        } });
-
+      // uni.request({
+      //   url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
+      //   data: {
+      //     saledate: "2022-10-19",
+      //     datamark: "sdays",
+      //     selfdbh: 'ALL',
+      //     sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
+      //   },
+      //   method: "POST",
+      //   header: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   success: (res) => {
+      //     console.log('数据', JSON.parse(res.data))
+      //     let data = JSON.parse(res.data)
+      //     this.sdays = data
+      //     //默认显示数据
+      //     this.xzshu=this.sdays.table0[0]
+      //   }
+      // });
       //实际方法
-      // getappsalereport(getpcadmindaysaledata).then((res) => {
-      // 	console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
-      // 	let data = JSON.parse(JSON.stringify(res))
-      // 	this.ybpdata = data
-      // 	//处理实销数据表盘
-      // 	let table0 = this.ybpdata.table0[0]
-      // 	let table = []
-      // 	for (var [key, value] of Object.entries(table0)) {
-      // 		table.push({
-      // 			key,
-      // 			value
-      // 		})
-      // 	}
-      // 	this.tablecolor.forEach((item, index) => {
-      // 		table[index].color = item
-      // 	})
-      // 	this.ybpdata.table0[0] = table
-      // })
+      (0, _api.getappsalereport)(getpcadmindaysaledata).then(function (res) {
+        console.log('数据', JSON.parse(res.data));
+        var data = JSON.parse(res.data);
+        _this11.sdays = data;
+        //默认显示数据
+        _this11.xzshu = _this11.sdays.table0[0];
+      });
     },
 
     section1: function section1() {
