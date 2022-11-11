@@ -2,9 +2,11 @@
   <view>
     <navbar title='新建商品' @lefts=left()></navbar>
     <view class="container">
-      <view>
-        <u-input v-model="sptm" border="surround" type="digit"></u-input>
-        <view @click="scan()">扫码</view>
+      <view class="unit1">
+        <view class="unit1left">
+          <u-input v-model="sptm" border="surround" type="digit"></u-input>
+        </view>
+        <view class="unit1right" @click="scan()">扫码</view>
       </view>
       <view class="" @click="search()">查询</view>
       <view v-if="sp">
@@ -235,6 +237,18 @@ export default {
 </script>
 
 <style lang="scss">
+unit1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  .unit1left{
+    width: 70%;
+  }
+  .unit1right{
+    width: 30%;
+  }
+}
 .box {
   display: flex;
   align-items: center;

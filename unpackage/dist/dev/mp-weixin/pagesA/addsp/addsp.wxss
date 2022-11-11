@@ -24,6 +24,18 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+unit1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+unit1 .unit1left {
+  width: 70%;
+}
+unit1 .unit1right {
+  width: 30%;
+}
 .box {
   display: flex;
   align-items: center;
