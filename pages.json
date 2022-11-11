@@ -176,6 +176,17 @@
                 }
                 
                 }
+                ,{
+                    "path" : "addsp/addsp",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+					
+                }
+                
+                }
             ]
 	}],
 	"tabBar": {

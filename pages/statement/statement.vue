@@ -41,7 +41,7 @@
 		  },
 		onLoad() {
 			//this.isreportForm()
-this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'}]
+this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'},{cxmc:'新增商品'}]
 		},
 		methods: {
 			//获取报表
@@ -67,6 +67,11 @@ this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'}]
 						url: '../../pagesA/condition/condition'
 					})
 				}
+        if(item.cxmc=='新增商品'){
+          uni.navigateTo({
+            url: '../../pagesA/addsp/addsp'
+          })
+        }
 			
 			},
 

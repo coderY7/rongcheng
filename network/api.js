@@ -163,3 +163,9 @@ export const rclogin=(params, config = {}) => http.post("mzsale/web/login", para
 export const queryall=(params, config = {}) => http.post("mzsale/web/goodstype/queryall", params, config)
 
 export const rcdosave=(params, config = {}) => http.post("mzsale/web/goods/fast/dosave", params, config)
+
+export const rcgetpctodayssale=(params, config = {}) => http.post("mzsale/web/basic/getpctodayssale", params, config)
+export const rcspsearch=(params, config = {}) => http.post("api/goods/rcyg/search", params, config)
+export const rcadd=(params, config = {}) => http.post("api/goods/rcyg/add", params, config)
+//basics
+export const rcbasics=(params, config = {}) => http.post("mzsale/web/basic", params, config)

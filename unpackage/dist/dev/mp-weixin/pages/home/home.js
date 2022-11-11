@@ -98,19 +98,19 @@ var components
 try {
   components = {
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 308))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 316))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 298))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 306))
     },
     uniGroup: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 319))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 327))
     },
     qiunDataCharts: function() {
-      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 326))
+      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 334))
     },
     uniSegmentedControl: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 335))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 343))
     }
   }
 } catch (e) {
@@ -356,6 +356,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);
 
 
 
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _createForOfIteratorHelper(o, allowArrayLike) {var it;if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {if (it) o = it;var i = 0;var F = function F() {};return { s: F, n: function n() {if (i >= o.length) return { done: true };return { done: false, value: o[i++] };}, e: function e(_e2) {throw _e2;}, f: F };}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}var normalCompletion = true,didErr = false,err;return { s: function s() {it = o[Symbol.iterator]();}, n: function n() {var step = it.next();normalCompletion = step.done;return step;}, e: function e(_e3) {didErr = true;err = _e3;}, f: function f() {try {if (!normalCompletion && it.return != null) it.return();} finally {if (didErr) throw err;}} };}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
@@ -559,10 +560,10 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
     this.getServerDataB();
     this.getServerDataC();
     this.getServerDataD();
-    this.getServerDataE();
+    //this.getServerDataE();
     this.getServerDataF();
     this.getServerDataG();
-    this.section1();
+    //this.section1()
 
   },
   onShow: function onShow() {var _this = this;
@@ -601,7 +602,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
       _this.fdlist = cxfdbh;
     }, 2000);
     this.getdata();
-    this.getdata2();
+    //this.getdata2()
 
   },
   onLoad: function onLoad() {
@@ -623,7 +624,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
 
     //处理数据
     manage: function manage(e) {var _this2 = this;
-      var table0 = this.ybpdata.table0[0];
+      var table0 = this.ybpdata.Table[0];
       var table = [];
       for (var _i = 0, _Object$entries = Object.entries(table0); _i < _Object$entries.length; _i++) {var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),key = _Object$entries$_i[0],value = _Object$entries$_i[1];
         table.push({
@@ -634,29 +635,29 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
       this.tablecolor.forEach(function (item, index) {
         table[index].color = item;
       });
-      this.ybpdata.table0[0] = table;
+      this.ybpdata.Table[0] = table;
 
       //剔除会员和促销
       var newdata = [];var _iterator = _createForOfIteratorHelper(
-      this.ybpdata.table0[0]),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {key = _step.value;
+      this.ybpdata.Table[0]),_step;try {for (_iterator.s(); !(_step = _iterator.n()).done;) {key = _step.value;
           if (key.key == '会员占比' || key.key == "促销占比") {
             newdata.push(key);
           }
         }} catch (err) {_iterator.e(err);} finally {_iterator.f();}
       this.bfb = newdata;
 
-      this.ybpdata.table0[0].forEach(function (item, index) {
+      this.ybpdata.Table[0].forEach(function (item, index) {
         if (item.key == '会员占比') {
-          var a = _this2.ybpdata.table0[0].splice(index, 1);
+          var a = _this2.ybpdata.Table[0].splice(index, 1);
         }
         if (item.key == "促销占比") {
-          var _a = _this2.ybpdata.table0[0].splice(index, 1);
+          var _a = _this2.ybpdata.Table[0].splice(index, 1);
         }
         if (item.key == "Result") {
-          var _a2 = _this2.ybpdata.table0[0].splice(index, 1);
+          var _a2 = _this2.ybpdata.Table[0].splice(index, 1);
         }
       });
-      console.log(this.ybpdata.table0[0]);
+      console.log(this.ybpdata.Table[0]);
     },
     //会员比和促销比
     percent: function percent() {
@@ -688,16 +689,17 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
       this.xzindex = index;
       var getpcadmindaysaledata = {
         access_token: uni.getStorageSync('access_token'),
-        saledate: item ? item.value : this.sdate,
-        datamark: 'ssale',
-        selfdbh: this.xzfd ? this.xzfd : 'ALL' };
+        sdate: item ? item.value : this.sdate,
+        companyid: uni.getStorageSync('companyid'),
+        fdbh: uni.getStorageSync('fdbh'), //this.xzfd ? this.xzfd : 'ALL',
+        fdtype: uni.getStorageSync('fdtype') };
 
 
       //实际方法
-      (0, _api.getappsalereport)(getpcadmindaysaledata).then(function (res) {
-        console.log('仪表盘数据', JSON.parse(JSON.stringify(res)));
-        console.log('仪表盘数据', JSON.parse(res.data));
-        var data = JSON.parse(res.data);
+      (0, _api.rcgetpctodayssale)(getpcadmindaysaledata).then(function (res) {
+        //console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
+        console.log('仪表盘数据', res.data);
+        var data = res.data;
 
         _this3.ybpdata = data;
         _this3.manage();
@@ -726,7 +728,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         var sxje = []; //实销金额
         var yjml = []; //预计毛利
         var kdbs = []; //客单笔数
-        _this4.sdays.table0.forEach(function (item) {
+        _this4.ybpdata.Table4.forEach(function (item) {
           bmmc.push(item['部门名称']);
           bmid.push(item['部门ID']);
           kdbs.push(parseFloat(item['客单笔数']));
@@ -772,14 +774,12 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         _this6.chartDataC = JSON.parse(JSON.stringify(res));
       }, 500);
     },
-
-
     //会员分析
     getServerDataE: function getServerDataE() {var _this7 = this;
       //模拟从服务器获取数据时的延时
       setTimeout(function () {
         var data = [];
-        var test = _this7.ybpdata.table3[0];
+        var test = _this7.ybpdata.Table3[0];
         var title = [];
         for (var _i2 = 0, _Object$entries2 = Object.entries(test); _i2 < _Object$entries2.length; _i2++) {var _Object$entries2$_i = _slicedToArray(_Object$entries2[_i2], 2),_key = _Object$entries2$_i[0],_value = _Object$entries2$_i[1];
           var a = {};
@@ -803,22 +803,22 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           }
         }
         var table1 = [];
-        for (var _i3 = 0, _Object$entries3 = Object.entries(_this7.ybpdata.table3[1]); _i3 < _Object$entries3.length; _i3++) {var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),key = _Object$entries3$_i[0],value = _Object$entries3$_i[1];
+        for (var _i3 = 0, _Object$entries3 = Object.entries(_this7.ybpdata.Table3[1]); _i3 < _Object$entries3.length; _i3++) {var _Object$entries3$_i = _slicedToArray(_Object$entries3[_i3], 2),key = _Object$entries3$_i[0],value = _Object$entries3$_i[1];
           table1.push({
             key: key,
             value: value });
 
         }
-        _this7.ybpdata.table3[1] = table1;
+        _this7.ybpdata.Table3[1] = table1;
 
         var table2 = [];
-        for (var _i4 = 0, _Object$entries4 = Object.entries(_this7.ybpdata.table3[2]); _i4 < _Object$entries4.length; _i4++) {var _Object$entries4$_i = _slicedToArray(_Object$entries4[_i4], 2),key = _Object$entries4$_i[0],value = _Object$entries4$_i[1];
+        for (var _i4 = 0, _Object$entries4 = Object.entries(_this7.ybpdata.Table3[2]); _i4 < _Object$entries4.length; _i4++) {var _Object$entries4$_i = _slicedToArray(_Object$entries4[_i4], 2),key = _Object$entries4$_i[0],value = _Object$entries4$_i[1];
           table2.push({
             key: key,
             value: value });
 
         }
-        _this7.ybpdata.table3[2] = table2;
+        _this7.ybpdata.Table3[2] = table2;
 
 
 
@@ -842,21 +842,21 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
           series: [] };
 
-        var table = _this8.ybpdata.table2;
+        var table = _this8.ybpdata.Table5;
         var fd = [];
         var kdbs = [];
         var yjmle = [];
         var sxje = [];
         table.forEach(function (item) {
-          fd.push(item['分店号']);
+          fd.push(item['分店名称']);
           kdbs.push(parseFloat(item['客单笔数']));
-          yjmle.push(parseFloat(item['预计毛利额']));
-          sxje.push(parseFloat(item['实销金额']));
+          yjmle.push(parseFloat(item['预计毛利']));
+          sxje.push(parseFloat(item['实销总额']));
         });
         res.categories = fd;
 
-        res.series.push({ name: '实销金额', data: sxje },
-        { name: '预计毛利额', data: yjmle },
+        res.series.push({ name: '实销总额', data: sxje },
+        { name: '预计毛利', data: yjmle },
         { name: '客单笔数', data: kdbs });
         console.log(res);
         _this8.chartDataF = JSON.parse(JSON.stringify(res));
@@ -871,7 +871,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
           series: [] };
 
-        var table = _this9.ybpdata.table1;
+        var table = _this9.ybpdata.Table1;
         var kdll = [];
         var kdj = [];
         var sxje = [];
@@ -912,29 +912,9 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         datamark: 'sdays',
         selfdbh: this.xzfd ? this.xzfd : 'ALL' };
 
-      //test
-      // uni.request({
-      //   url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-      //   data: {
-      //     saledate: "2022-10-19",
-      //     datamark: "sdays",
-      //     selfdbh: 'ALL',
-      //     sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
-      //   },
-      //   method: "POST",
-      //   header: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   success: (res) => {
-      //     console.log('数据', JSON.parse(res.data))
-      //     let data = JSON.parse(res.data)
-      //     this.sdays = data
-      //     //默认显示数据
-      //     this.xzshu=this.sdays.table0[0]
-      //   }
-      // });
+
       //实际方法
-      (0, _api.getappsalereport)(getpcadmindaysaledata).then(function (res) {
+      (0, _api.rcgetpctodayssale)(getpcadmindaysaledata).then(function (res) {
         console.log('数据', JSON.parse(res.data));
         var data = JSON.parse(res.data);
         _this11.sdays = data;

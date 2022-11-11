@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<navbar title='新建商品' @lefts=left()></navbar>
+		<navbar title='商品修改' @lefts=left()></navbar>
 
 		<view class="container">
 			<uni-card>

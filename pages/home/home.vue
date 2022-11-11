@@ -41,7 +41,7 @@
         <view class="unit">
           <view class="unit1box">
             <view class="box">
-              <view class="boxitem" v-for="(item,index) of ybpdata.table0[0]">
+              <view class="boxitem" v-for="(item,index) of ybpdata.Table[0]">
                 <view class="box_left" :style="{backgroundColor:item.color}">
                   <image></image>
                 </view>
@@ -55,38 +55,38 @@
         </view>
       </uni-group>
 
-      <uni-group title="会员分析" top="20">
-        <view class="unit">
-          <view class="charts-box">
-            <qiun-data-charts type="ring" :opts="optsE" :chartData="chartDataE" />
-          </view>
+<!--      <uni-group title="会员分析" top="20">-->
+<!--        <view class="unit">-->
+<!--          <view class="charts-box">-->
+<!--            <qiun-data-charts type="ring" :opts="optsE" :chartData="chartDataE" />-->
+<!--          </view>-->
 
-          <!-- 圆环图 -->
-          <view class="own">
-            <view class="ownbox" style="padding-right: 40rpx">
-              <view class="uwntop">今日新增</view>
-              <view class="uwnbottom">
-                <view v-for="(item,key) in ybpdata.table3[1]" class="uwnbottombox">
-                  <view v-if="item.key!='标识'">{{item.key}}</view>
-                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>
-                </view>
-              </view>
-            </view>
+<!--          &lt;!&ndash; 圆环图 &ndash;&gt;-->
+<!--          <view class="own">-->
+<!--            <view class="ownbox" style="padding-right: 40rpx">-->
+<!--              <view class="uwntop">今日新增</view>-->
+<!--              <view class="uwnbottom">-->
+<!--                <view v-for="(item,key) in ybpdata.Table3[1]" class="uwnbottombox">-->
+<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
+<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
 
-            <view class="ownbox" style="padding-left: 40rpx">
-              <view class="uwntop">昨日新增</view>
-              <view class="uwnbottom">
-                <view v-for="(item,key) in ybpdata.table3[2]" class="uwnbottombox">
-                  <view v-if="item.key!='标识'">{{item.key}}</view>
-                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>
-                </view>
-              </view>
-            </view>
+<!--            <view class="ownbox" style="padding-left: 40rpx">-->
+<!--              <view class="uwntop">昨日新增</view>-->
+<!--              <view class="uwnbottom">-->
+<!--                <view v-for="(item,key) in ybpdata.Table3[2]" class="uwnbottombox">-->
+<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
+<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
+<!--                </view>-->
+<!--              </view>-->
+<!--            </view>-->
 
-          </view>
-        </view>
+<!--          </view>-->
+<!--        </view>-->
 
-      </uni-group>
+<!--      </uni-group>-->
 
       <uni-group title="销售占比" top="20">
         <view class="percent">
@@ -174,7 +174,8 @@
 <script>
 	import {
 		getfendians,
-		getpctodayssale,
+    rcgetpctodayssale,
+
 		getappsalereport, //仪表盘数据
 
 	} from '../../network/api.js';
@@ -381,10 +382,10 @@
 			this.getServerDataB();
 			this.getServerDataC();
 			this.getServerDataD();
-			this.getServerDataE();
+			//this.getServerDataE();
 			this.getServerDataF();
 			this.getServerDataG();
-      this.section1()
+      //this.section1()
 
     },
 		onShow() {
@@ -423,7 +424,7 @@
 				this.fdlist = cxfdbh
 			}, 2000)
 			this.getdata()
-      this.getdata2()
+      //this.getdata2()
 
     },
 		onLoad() {
@@ -445,7 +446,7 @@
 
 			//处理数据
 			manage(e) {
-        let table0 = this.ybpdata.table0[0]
+        let table0 = this.ybpdata.Table[0]
         let table = []
 				for (var [key, value] of Object.entries(table0)) {
 					table.push({
@@ -456,29 +457,29 @@
 				this.tablecolor.forEach((item, index) => {
 					table[index].color = item
 				})
-				this.ybpdata.table0[0] = table
+				this.ybpdata.Table[0] = table
 
         //剔除会员和促销
         let newdata=[]
-        for ( key of this.ybpdata.table0[0]) {
+        for ( key of this.ybpdata.Table[0]) {
           if (key.key == '会员占比' || key.key=="促销占比") {
             newdata.push(key)
           }
         }
         this.bfb=newdata
 
-        this.ybpdata.table0[0].forEach((item,index)=>{
+        this.ybpdata.Table[0].forEach((item,index)=>{
           if (item.key == '会员占比') {
-            let a=this.ybpdata.table0[0].splice(index,1)
+            let a=this.ybpdata.Table[0].splice(index,1)
           }
           if (item.key=="促销占比") {
-            let a=this.ybpdata.table0[0].splice(index,1)
+            let a=this.ybpdata.Table[0].splice(index,1)
           }
           if (item.key=="Result") {
-            let a=this.ybpdata.table0[0].splice(index,1)
+            let a=this.ybpdata.Table[0].splice(index,1)
           }
         })
-        console.log(this.ybpdata.table0[0])
+        console.log(this.ybpdata.Table[0])
 			},
 //会员比和促销比
       percent(){
@@ -510,20 +511,21 @@
 				this.xzindex = index
 				let getpcadmindaysaledata = {
 					access_token: uni.getStorageSync('access_token'),
-					saledate: item ? item.value : this.sdate,
-					datamark: 'ssale',
-					selfdbh: this.xzfd ? this.xzfd : 'ALL'
+					sdate: item ? item.value : this.sdate,
+          companyid:uni.getStorageSync('companyid'),
+					fdbh:uni.getStorageSync('fdbh'), //this.xzfd ? this.xzfd : 'ALL',
+          fdtype:uni.getStorageSync('fdtype')
 				}
 				
 				//实际方法
-				getappsalereport(getpcadmindaysaledata).then((res) => {
-					console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
-					console.log('仪表盘数据', JSON.parse(res.data))
-											let data = JSON.parse(res.data)
+        rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
+					//console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
+					console.log('仪表盘数据', res.data)
+											let data = res.data
 					
 											this.ybpdata = data
 											this.manage()
-					                        this.percent()
+                      this.percent()
 				})
 			},
 			//开始日期
@@ -548,7 +550,7 @@
           let sxje=[]//实销金额
           let yjml=[]//预计毛利
           let kdbs=[]//客单笔数
-					this.sdays.table0.forEach((item) => {
+					this.ybpdata.Table4.forEach((item) => {
 						bmmc.push(item['部门名称'])
             bmid.push(item['部门ID'])
             kdbs.push(parseFloat(item['客单笔数']))
@@ -594,14 +596,12 @@
           this.chartDataC = JSON.parse(JSON.stringify(res));
         }, 500);
       },
-
-
       //会员分析
 			getServerDataE() {
 				//模拟从服务器获取数据时的延时
 				setTimeout(() => {
 					let data = [];
-					let test = this.ybpdata.table3[0]
+					let test = this.ybpdata.Table3[0]
 					let title = []
 					for (const [key, value] of Object.entries(test)) {
 						let a = {}
@@ -625,22 +625,22 @@
 						}
 					}
           let table1 = []
-          for (var [key, value] of Object.entries(this.ybpdata.table3[1])) {
+          for (var [key, value] of Object.entries(this.ybpdata.Table3[1])) {
             table1.push({
               key,
               value
             })
           }
-          this.ybpdata.table3[1] = table1
+          this.ybpdata.Table3[1] = table1
 
           let table2 = []
-          for (var [key, value] of Object.entries(this.ybpdata.table3[2])) {
+          for (var [key, value] of Object.entries(this.ybpdata.Table3[2])) {
             table2.push({
               key,
               value
             })
           }
-          this.ybpdata.table3[2] = table2
+          this.ybpdata.Table3[2] = table2
 
 
 
@@ -664,21 +664,21 @@
             categories: ["2016","2017","2018","2019","2020","2021"],
             series: []
           };
-          let table=this.ybpdata.table2
+          let table=this.ybpdata.Table5
           let fd=[]
           let kdbs=[]
           let yjmle=[]
           let sxje=[]
           table.forEach((item)=>{
-            fd.push(item['分店号'])
+            fd.push(item['分店名称'])
             kdbs.push(parseFloat(item['客单笔数']))
-            yjmle.push(parseFloat(item['预计毛利额']))
-            sxje.push(parseFloat(item['实销金额']))
+            yjmle.push(parseFloat(item['预计毛利']))
+            sxje.push(parseFloat(item['实销总额']))
           })
           res.categories=fd
 
-          res.series.push({name:'实销金额',data:sxje},
-              {name:'预计毛利额',data:yjmle},
+          res.series.push({name:'实销总额',data:sxje},
+              {name:'预计毛利',data:yjmle},
               {name:'客单笔数',data:kdbs})
 console.log(res)
           this.chartDataF = JSON.parse(JSON.stringify(res));
@@ -693,7 +693,7 @@ console.log(res)
             categories: ["2016","2017","2018","2019","2020","2021"],
             series: []
           };
-          let table=this.ybpdata.table1
+          let table=this.ybpdata.Table1
           let kdll=[]
           let kdj=[]
           let sxje=[]
@@ -734,29 +734,9 @@ console.log(res)
           datamark: 'sdays',
           selfdbh: this.xzfd ? this.xzfd : 'ALL'
         }
-        //test
-        // uni.request({
-        //   url: 'http://webapibeta.mzsale.com/mzato/main/app/getappsalereport', //仅为示例，并非真实接口地址。
-        //   data: {
-        //     saledate: "2022-10-19",
-        //     datamark: "sdays",
-        //     selfdbh: 'ALL',
-        //     sn: "MOPMPI-MLKKNG-KFOLNF-QINPHH"
-        //   },
-        //   method: "POST",
-        //   header: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   success: (res) => {
-        //     console.log('数据', JSON.parse(res.data))
-        //     let data = JSON.parse(res.data)
-        //     this.sdays = data
-        //     //默认显示数据
-        //     this.xzshu=this.sdays.table0[0]
-        //   }
-        // });
+
         //实际方法
-        getappsalereport(getpcadmindaysaledata).then((res) => {
+        rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
         	console.log('数据', JSON.parse(res.data))
         	            let data = JSON.parse(res.data)
         	            this.sdays = data

@@ -24,7 +24,8 @@
         "work/component/minutework",
         "result/result",
         "detail/detail",
-        "table/table"
+        "table/table",
+        "addsp/addsp"
       ]
     }
   ],

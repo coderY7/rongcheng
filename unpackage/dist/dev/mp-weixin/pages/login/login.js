@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 298))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 306))
     }
   }
 } catch (e) {
@@ -157,6 +157,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 
@@ -270,6 +271,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
           uni.setStorageSync('refresh_token', res.refresh_token); //刷新
           uni.setStorageSync('dlmc', res.userinfo.erp_username); //名称
           uni.setStorageSync('loginaccess', res); //登录成功返回的数据
+          uni.setStorageSync('fdtype', res.companyinfo.erp_saletype); //分店类型
           uni.setStorageSync('login', true);
           // 获取用户信息
           uni.login({
@@ -379,21 +381,22 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
         dtype: 'GetBufferAll',
         companyid: uni.getStorageSync('companyid') };
 
-      // basic(data).then((res)=>{
-      //   console.log(res);
-      // })
-      uni.request({
-        url: 'http://erpai.mzsale.com/mzsale/web/basic', //仅为示例，并非真实接口地址。
-        data: data,
-        method: 'POST',
-        header: {
-          'custom-header': 'hello' //自定义请求头信息
-        },
-        success: function success(res) {
-          console.log(res);
-          uni.setStorageSync('basic', res.data);
-        } });
-
+      (0, _api.rcbasics)(data).then(function (res) {
+        console.log(res);
+        uni.setStorageSync('basic', res);
+      });
+      // uni.request({
+      // 	url: 'http://erpai.mzsale.com/mzsale/web/basic', //仅为示例，并非真实接口地址。
+      // 	data: data,
+      // 	method: 'POST',
+      // 	header: {
+      // 		'custom-header': 'hello' //自定义请求头信息
+      // 	},
+      // 	success: (res) => {
+      // 		console.log(res);
+      // 		uni.setStorageSync('basic', res.data)
+      // 	}
+      // });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
