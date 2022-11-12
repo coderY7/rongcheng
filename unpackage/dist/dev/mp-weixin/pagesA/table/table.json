@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "zb-table": "/uni_modules/zb-table/components/zb-table/zb-table",
+    "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination"
+  }
+}

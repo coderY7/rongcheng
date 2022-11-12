@@ -3,62 +3,70 @@
     <navbar title='新建商品' @lefts=left()></navbar>
     <view class="container">
       <view class="unit1">
-        <view class="unit1left">
-          <u-input v-model="sptm" border="surround" type="digit"></u-input>
-        </view>
-        <view class="unit1right" @click="scan()">扫码</view>
-      </view>
-      <view class="" @click="search()">查询</view>
-      <view v-if="sp">
-        <view>商品状态：{{spzt}}</view>
-        <view>商品编码：{{sp.barcode}}</view>
-        <view class="box">
-          <view class="boxname">商品名称:</view>
-          <view class="boxinput">
-            <view v-if="spzt=='normal'">
-              <view>{{sp.name}}</view>
-            </view>
-            <view v-else>
-              <u-input v-model="sp.name" border="surround" type="digit"></u-input>
-            </view>
-          </view>
-        </view>
-        <view class="box">
-          <view class="boxname">零售价格:</view>
-          <view class="boxinput">
-            <view v-if="spzt=='normal'">
-              <view>{{sp.price}}</view>
-            </view>
-            <view v-else>
-              <u-input v-model="sp.price" border="surround" type="digit"></u-input>
-            </view>
-
-          </view>
-        </view>
-        <view class="box">
-          <view class="boxname">商家名称:</view>
-          <view class="boxinput" @click="sjlist()">
-            <uni-section  type="line">
-              <uni-data-select
-                  v-model="sjbh"
-                  :localdata="cxsjht"
-                  @change="change"
-              ></uni-data-select>
-            </uni-section>
-          </view>
-        </view>
-
-        <view v-if="isautosetcldsp">
-          <view class="box">
-            <view class="boxname">是否关联商品标识:</view>
-            <view class="boxinput"><u-switch v-model="autosetcldsp" @change="relevancy()"></u-switch>
-            </view>
-          </view>
-        </view>
-
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
       </view>
 
-      <view @click="save()" v-if="spzt!='normal'">保存</view>
+      <view >
+          <uni-card :title="sp.name"  :extra="spzt"  :is-shadow="true" shadow="0px 0px 3px 1px rgba(0, 0, 0, 0.08)" >
+            <view>商品状态:{{spzt}}</view>
+            <view class="box">
+              <view class="boxname">商品条码:</view>
+              <view class="boxinput">
+                <u-input v-model="sp.barcode" border="surround" type="digit" :disabled="true"></u-input>
+              </view>
+            </view>
+            <view class="box">
+              <view class="boxname">商品名称:</view>
+              <view class="boxinput">
+                <view v-if="spzt=='normal'">
+                  <u-input v-model="sp.name" border="surround"  :disabled="true"></u-input>
+                </view>
+                <view v-else>
+                  <u-input v-model="sp.name" border="surround" ></u-input>
+                </view>
+              </view>
+            </view>
+            <view class="box">
+              <view class="boxname">零售价格:</view>
+              <view class="boxinput">
+                <view v-if="spzt=='normal'">
+                  <u-input v-model="sp.price" border="surround" type="digit" :disabled="true"></u-input>
+                </view>
+                <view v-else>
+                  <u-input v-model="sp.price" border="surround" type="digit"></u-input>
+                </view>
+              </view>
+            </view>
+            <view class="box">
+              <view class="boxname">商家名称:</view>
+              <view class="boxinput" @click="sjlist()">
+                <uni-section  type="line">
+                  <uni-data-select
+                      v-model="sjbh"
+                      :localdata="cxsjht"
+                      @change="change"
+                  ></uni-data-select>
+                </uni-section>
+              </view>
+            </view>
+            <view v-if="isautosetcldsp">
+              <view class="box">
+                <view class="boxname">是否关联商品标识:</view>
+                <view class="boxinput"><u-switch v-model="autosetcldsp" @change="relevancy()"></u-switch>
+                </view>
+              </view>
+            </view>
+          </uni-card>
+
+
+
+
+
+<!--        <view @click="save()" v-if="spzt!='normal'">保存</view>-->
+        <u-button @click="save()" text="保存" type="primary"></u-button>
+
+      </view>
+
     </view>
   </view>
 </template>
@@ -187,6 +195,15 @@ export default {
                 this.spzt = 'other'
                 break;
             }
+          }else {
+            if(res.data.result=='warning'){
+              uni.showToast({
+                title: res.data.message,
+                duration: 2000,
+                icon:'none'
+              });
+              this.sptm=''
+            }
           }
         }
       });
@@ -220,7 +237,16 @@ export default {
               icon:'none'
             });
             this.sp=''
-          }else {
+          }
+          if(res.data.result=='warning'){
+            uni.showToast({
+              title: res.data.message,
+              duration: 2000,
+              icon:'none'
+            });
+            this.sp=''
+          }
+          if(res.data.result=='error') {
             uni.showToast({
               title: '商品保存失败',
               duration: 2000,
@@ -237,6 +263,9 @@ export default {
 </script>
 
 <style lang="scss">
+.container{
+  padding:20rpx;
+}
 unit1{
   display: flex;
   justify-content: center;
@@ -262,9 +291,13 @@ unit1{
   }
 
   .boxinput {
-    width: 60%;
+    width: 65%;
     margin-left: 10rpx;
     margin-right: 20rpx;
+    //overflow: hidden;
+  }
+  .uni-select__input-box{
+    width: 100%;
   }
 }
 </style>

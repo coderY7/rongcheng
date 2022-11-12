@@ -2,7 +2,7 @@
 		<view class="navbar" :style="{'height':titleHeight + 'px'}">
 			<view class="nav" :style="{'height':(titleHeight-statusBarHeight)+'px', 'padding-top':statusBarHeight + 'px',}">
 				<view class="navicon" @click="isleft()">{{leftname}}</view>
-				<view class="navname" style="width: calc(100% - 196px)"><view>{{title}}</view></view>
+				<view class="navname" style="width: calc(100% - 180px)"><view>{{title}}</view></view>
 			</view>
 		</view>
 </template>

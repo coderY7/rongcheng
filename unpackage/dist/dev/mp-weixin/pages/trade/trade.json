@@ -7,6 +7,7 @@
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
     "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
     "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
     "navbar": "/components/nav"
   }
 }

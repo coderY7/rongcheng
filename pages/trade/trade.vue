@@ -28,7 +28,7 @@
 					<view v-if="item.table" class="box">
 						<view class="boxname">{{item.key}}:</view>
 						<view class="boxinput">
-							<u-input border="surround" v-model="item.value" type="digit"></u-input>
+							<u-input border="surround" v-model="item.value" ></u-input>
 						</view>
 						<view class="">
 							<button @click="isqueryall(item)" class="search">查询</button>
@@ -59,7 +59,8 @@
 			</uni-card>
 
 			<view class="">
-				<button @click="save()" class="search">保存</button>
+<!--				<button @click="save()" class="search">保存</button>-->
+        <u-button @click="save()" text="保存" type="primary"></u-button>
 			</view>
 		</view>
 	</view>
@@ -292,7 +293,7 @@
 					"access_token": uni.getStorageSync('access_token'),
 					"spbm": this.spbm,
 					"spsmm": this.spsmm, //商品条码
-					"spmc": "测试",
+					"spmc": this.spmc,
 					"gg": this.testdata[1].value, //规格
 					"dw": this.testdata[2].value, //单位
 					"sjbh": this.xzzgys.split('-')[1], //主供应商
@@ -413,5 +414,8 @@
 		.search:hover {
 			transform: scale(1.1, 1.1);
 		}
+    .uni-select__input-box{
+      width: 100%;
+    }
 	}
 </style>

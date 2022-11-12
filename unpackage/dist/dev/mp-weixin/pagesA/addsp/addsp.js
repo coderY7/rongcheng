@@ -97,6 +97,9 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uSearch: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 454))
+    },
     uInput: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 391))
     },
@@ -105,6 +108,9 @@ try {
     },
     uSwitch: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 376))
+    },
+    uButton: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 366))
     }
   }
 } catch (e) {
@@ -162,6 +168,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
 
 
 
@@ -350,6 +364,15 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
                 _this2.spzt = 'other';
                 break;}
 
+          } else {
+            if (res.data.result == 'warning') {
+              uni.showToast({
+                title: res.data.message,
+                duration: 2000,
+                icon: 'none' });
+
+              _this2.sptm = '';
+            }
           }
         } });
 
@@ -383,7 +406,16 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
               icon: 'none' });
 
             _this3.sp = '';
-          } else {
+          }
+          if (res.data.result == 'warning') {
+            uni.showToast({
+              title: res.data.message,
+              duration: 2000,
+              icon: 'none' });
+
+            _this3.sp = '';
+          }
+          if (res.data.result == 'error') {
             uni.showToast({
               title: '商品保存失败',
               duration: 2000,

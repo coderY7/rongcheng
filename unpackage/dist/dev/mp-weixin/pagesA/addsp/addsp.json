@@ -3,9 +3,11 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
     "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
     "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
     "navbar": "/components/nav"
   }
 }

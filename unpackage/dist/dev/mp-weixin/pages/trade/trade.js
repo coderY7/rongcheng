@@ -108,6 +108,9 @@ try {
     },
     uniDataSelect: function() {
       return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 306))
+    },
+    uButton: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 366))
     }
   }
 } catch (e) {
@@ -165,6 +168,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 34));
+
 
 
 
@@ -458,7 +462,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         "access_token": uni.getStorageSync('access_token'),
         "spbm": this.spbm,
         "spsmm": this.spsmm, //商品条码
-        "spmc": "测试",
+        "spmc": this.spmc,
         "gg": this.testdata[1].value, //规格
         "dw": this.testdata[2].value, //单位
         "sjbh": this.xzzgys.split('-')[1], //主供应商
