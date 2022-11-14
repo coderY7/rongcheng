@@ -25,7 +25,10 @@
         "result/result",
         "detail/detail",
         "table/table",
-        "addsp/addsp"
+        "addsp/addsp",
+        "ruku/ruku",
+        "ruku/edit",
+        "ruku/rkxd"
       ]
     }
   ],

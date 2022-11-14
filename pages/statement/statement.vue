@@ -41,7 +41,7 @@
 		  },
 		onLoad() {
 			//this.isreportForm()
-this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'}]
+this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
 		},
 		methods: {
 			//获取报表
@@ -61,12 +61,17 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'}]
 					uni.navigateTo({
 						url: '../../pages/trade/trade'
 					})
-				}
+				};
 				if(item.cxmc=='库存查询'){
 					uni.navigateTo({
 						url: '../../pagesA/condition/condition'
 					})
-				}
+				};
+        if(item.cxmc=='商品入库'){
+          uni.navigateTo({
+            url: '../../pagesA/ruku/ruku'
+          })
+        };
         if(item.cxmc=='导入商品'){
           uni.navigateTo({
             url: '../../pagesA/addsp/addsp'

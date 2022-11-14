@@ -3,8 +3,7 @@
 		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 
-	"pages": [
-		{
+	"pages": [{
 			"path": "pages/login/login",
 			"style": {
 				"navigationBarTitleText": "",
@@ -81,18 +80,16 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		}
-	    ,{
-            "path" : "pages/trade/trade",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "",
-                "enablePullDownRefresh": false,
+		}, {
+			"path": "pages/trade/trade",
+			"style": {
+				"navigationBarTitleText": "",
+				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
-            }
-            
-        }
-    ],
+			}
+
+		}
+	],
 	"subPackages": [{
 		"root": "pagesA",
 		"pages": [{
@@ -125,68 +122,80 @@
 					"navigationBarTitleText": "",
 					"enablePullDownRefresh": false
 				}
-			
+
 			}
 
-		    ,{
-                    "path" : "work/work",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                ,{
-                    "path" : "work/component/minutework",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                ,{
-                    "path" : "result/result",
-                    "style" :                                                                                    
-                {
+			, {
+				"path": "work/work",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "work/component/minutework",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "result/result",
+				"style": {
 					"navigationStyle": "custom",
 					"navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
+					"enablePullDownRefresh": false
 
 				}
-                
-                }
-                ,{
-                    "path" : "detail/detail",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false,
+
+			}, {
+				"path": "detail/detail",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
 					"navigationStyle": "custom"
-                }
-                
-                }
-                ,{
-                    "path" : "table/table",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                ,{
-                    "path" : "addsp/addsp",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false,
+				}
+
+			}, {
+				"path": "table/table",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "addsp/addsp",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
 					"navigationStyle": "custom"
-					
-                }
-                }
-            ]
+				}
+			}
+
+			, {
+				"path": "ruku/ruku",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}, {
+				"path": "ruku/edit",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			},
+			{
+				"path": "ruku/rkxd",
+				"style": {
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}
+		]
 	}],
 	"tabBar": {
 		"color": "#C0C4CC",
@@ -199,7 +208,7 @@
 				"selectedIconPath": "static/images/tabbar/home-active.png",
 				"text": "首页"
 			},
-				{
+			{
 				"pagePath": "pages/statement/statement",
 				"iconPath": "static/images/tabbar/shopping.png",
 				"selectedIconPath": "static/images/tabbar/shopping-active.png",
@@ -212,7 +221,7 @@
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
-		
+
 
 	}
 }

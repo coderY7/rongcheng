@@ -169,3 +169,15 @@ export const rcspsearch=(params, config = {}) => http.post("api/goods/rcyg/searc
 export const rcadd=(params, config = {}) => http.post("api/goods/rcyg/add", params, config)
 //basics
 export const rcbasics=(params, config = {}) => http.post("mzsale/web/basic", params, config)
+export const rcgetlist = (params, config = {}) => http.post("/mzsale/web/report/getlist", params, config)
+export const rccondition = (params, config = {}) => http.post("mzsale/web/report/condition", params, config)
+export const rcsearch = (params, config = {}) => http.post("/mzsale/web/goods/search", params, config)
+export const rcRkdCheck = (params, config = {}) => http.post("/mzsale/web/rkd/check", params, config)
+export const rcRkdDelete = (params, config = {}) => http.post("/mzsale/web/rkd/delete", params, config)
+export const rcRkdDosave = (params, config = {}) => http.post("/mzsale/web/rkd/dosave", params, config)
+export const rcrkddelLine = (params, config = {}) => http.post("/mzsale/web/rkczd/delete/line", params, config)
+
+export const rcGetlistC = (params, config = {}) => http.post("/mzsale/web/common/getlist", params, config)
+export const rcOrderNew = (params, config = {}) => http.post("/mzsale/web/common/order/new", params, config)
+
+export const rcqueryHT = (params, config = {}) => http.post("/mzsale/web/contract/ht/query", params, config)

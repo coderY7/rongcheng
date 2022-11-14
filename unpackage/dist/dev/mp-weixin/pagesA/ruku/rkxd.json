@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "u-form": "/node-modules/uview-ui/components/u-form/u-form",
+    "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "u-input": "/node-modules/uview-ui/components/u-input/u-input",
+    "uni-datetime-picker": "/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-overlay": "/node-modules/uview-ui/components/u-overlay/u-overlay",
+    "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
+    "u-popup": "/node-modules/uview-ui/components/u-popup/u-popup",
+    "xuan-switch": "/components/xuan-switch/xuan-switch",
+    "edit": "/pagesA/ruku/edit"
+  }
+}
