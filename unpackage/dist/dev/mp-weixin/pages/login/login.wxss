@@ -101,7 +101,16 @@
   line-height: 40rpx;
 }
 .boxinput {
-  margin: 50rpx 70rpx 0 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50rpx;
+}
+.boxinput .boxinputleft {
+  width: 23%;
+}
+.boxinput .boxinputright {
+  width: 77%;
 }
 .navbar {
   background: linear-gradient(#52c8f1, #85d8f3);

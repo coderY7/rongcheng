@@ -1,19 +1,25 @@
 <template>
   <view>
-    <navbar title='新建商品' @lefts=left()></navbar>
+    <navbar title='导入商品' @lefts=left() @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
           <u-search  placeholder="请输入商品条码" searchIcon="scan" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
       </view>
 
       <view >
-          <uni-card :title="sp.name"  :extra="spzt"  :is-shadow="true" shadow="0px 0px 3px 1px rgba(0, 0, 0, 0.08)" >
-            <view>商品状态:{{spzt}}</view>
+          <uni-card :title="sp.name"  :extra="spzt"  :is-shadow="true" >
+            <view class="box">
+              <view class="boxname">商品状态:</view>
+              <view class="boxinput">
+                <u-input v-model="ztmc" border="surround"  :disabled="true"></u-input>
+            </view>
+            </view>
             <view class="box">
               <view class="boxname">商品条码:</view>
               <view class="boxinput">
                 <u-input v-model="sp.barcode" border="surround" type="digit" :disabled="true"></u-input>
               </view>
+
             </view>
             <view class="box">
               <view class="boxname">商品名称:</view>
@@ -22,9 +28,11 @@
                   <u-input v-model="sp.name" border="surround"  :disabled="true"></u-input>
                 </view>
                 <view v-else>
-                  <u-input v-model="sp.name" border="surround" ></u-input>
+                  <u-input v-model="sp.name" placeholder="请输入商品名称" border="surround" ></u-input>
                 </view>
               </view>
+              <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
+
             </view>
             <view class="box">
               <view class="boxname">零售价格:</view>
@@ -36,6 +44,8 @@
                   <u-input v-model="sp.price" border="surround" type="digit"></u-input>
                 </view>
               </view>
+              <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
+
             </view>
             <view class="box">
               <view class="boxname">商家名称:</view>
@@ -48,6 +58,8 @@
                   ></uni-data-select>
                 </uni-section>
               </view>
+              <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
+
             </view>
             <view v-if="isautosetcldsp">
               <view class="box">
@@ -62,8 +74,9 @@
 
 
 
-<!--        <view @click="save()" v-if="spzt!='normal'">保存</view>-->
-        <u-button @click="save()" text="保存" type="primary"></u-button>
+<view v-if="spzt!='normal'">
+  <u-button @click="save()" text="导入" type="primary"></u-button>
+</view>
 
       </view>
 
@@ -83,6 +96,7 @@ export default {
     return {
       sptm: '',//商品条码
       spzt: '',//商品状态
+      ztmc:'',
       spbm:'',
       sp:'',
       cxsjht:'',
@@ -99,7 +113,17 @@ export default {
 
   },
   onShow(){
-
+    this.cxsjht=uni.getStorageSync('basic').SJINFO
+    //处理商家合同下拉框数据
+    let cxsjht=[];
+    this.cxsjht.forEach((item)=>{
+      let datas={}
+      datas.value=item.sjbh;
+      datas.text=item.sjmc
+      cxsjht.push(datas)
+    })
+    this.cxsjht=cxsjht
+    this.sjbh=this.cxsjht[0].value
   },
   methods: {
     relevancy(e){
@@ -134,6 +158,7 @@ export default {
           console.log('条码内容：' + res.result);
           if (res.result) {
             this.sptm = res.result
+            this.search()
           }
         }
       });
@@ -167,15 +192,22 @@ export default {
             switch (res.data.message) {
               case 'rcyg':
                 this.spzt = 'rcyg'
+                  this.ztmc='蓉城易购模版库'
                 break;
               case 'mzsale':
                 this.spzt = 'mzsale'
+                this.ztmc='麦子易商模版库'
+
                 break;
               case 'normal':
                 this.spzt = 'normal'
+                this.ztmc='已导入商品'
+
                 break;
               case 'allnew':
                 this.spzt = 'allnew'
+                this.ztmc='新增商品'
+
                 uni.showModal({
                   title: '未查到商品',
                   content: '是否新增商品？',
@@ -193,6 +225,8 @@ export default {
                 break;
               case 'other':
                 this.spzt = 'other'
+                this.ztmc='其他模版库'
+
                 break;
             }
           }else {
@@ -221,6 +255,7 @@ export default {
         userid:uni.getStorageSync('userid'),
         autosetcldsp:this.autosetcldspvalue
       }
+      
       uni.request({
         url: 'http://211.149.188.114:86/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
         data: data,
@@ -256,7 +291,11 @@ export default {
           }
         }
       })
-
+        },
+        back(){
+          uni.navigateBack({
+            delta: 1
+          });
         }
   }
 }
@@ -284,6 +323,7 @@ unit1{
   margin: 0 auto;
   margin-bottom: 20rpx;
   width: 100%;
+  margin: 30rpx 0;
 
   .boxname {
     font-size: 30rpx;

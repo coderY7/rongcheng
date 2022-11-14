@@ -1,7 +1,12 @@
 <template>
 		<view class="navbar" :style="{'height':titleHeight + 'px'}">
 			<view class="nav" :style="{'height':(titleHeight-statusBarHeight)+'px', 'padding-top':statusBarHeight + 'px',}">
-				<view class="navicon" @click="isleft()">{{leftname}}</view>
+				<view class="navicon" @click="isleft()">
+          <view v-if="leftname">{{leftname}}</view>
+          <view v-else @click="back()">
+            <u-icon name="arrow-left"></u-icon>
+          </view>
+         </view>
 				<view class="navname" style="width: calc(100% - 180px)"><view>{{title}}</view></view>
 			</view>
 		</view>
@@ -24,7 +29,10 @@
 		 methods: {
 		    isleft(data) {
 		      this.$emit('lefts',this.icons)
-		    }
+		    },
+       back(data) {
+         this.$emit('back',this.icons)
+       }
 		  },
 		created() {
 			const res = uni.getSystemInfoSync()

@@ -4,11 +4,11 @@
 		<view class="container">
 			<view class="unit1">
 				<!--        近期查询日期-->
-				<view class="recent">
-					<view class="ubut" v-for="(item,index) in datelist">
-						<button @click="getdata(item,index)" :class="{'active':xzindex==index}">{{item.name}}</button>
-					</view>
-				</view>
+<!--				<view class="recent">-->
+<!--					<view class="ubut" v-for="(item,index) in datelist">-->
+<!--						<button @click="getdata(item,index)" :class="{'active':xzindex==index}">{{item.name}}</button>-->
+<!--					</view>-->
+<!--				</view>-->
 				<!-- 选择时间-->
 				<view class="xzbox">
 					<view class="xz">
@@ -140,32 +140,32 @@
 
       </uni-group>
 
-      <uni-group title="15天数据分析" top="20">
-        <view class="unit">
-          <!-- 折线图 -->
-          <view class="charts-box">
-            <qiun-data-charts type="line" :opts="optsD" :chartData="chartDataD" />
-          </view>
-        </view>
+<!--      <uni-group title="15天数据分析" top="20">-->
+<!--        <view class="unit">-->
+<!--          &lt;!&ndash; 折线图 &ndash;&gt;-->
+<!--          <view class="charts-box">-->
+<!--            <qiun-data-charts type="line" :opts="optsD" :chartData="chartDataD" />-->
+<!--          </view>-->
+<!--        </view>-->
 
-      </uni-group>
+<!--      </uni-group>-->
 
-      <uni-group title="部门经营概况" top="20">
-        <view class="unit">
-          <view class="shu">
-            <uni-segmented-control :current="current1" :values="list1" @clickItem="onClickItem1" styleType="button" activeColor="#4f99ff"></uni-segmented-control>
+<!--      <uni-group title="部门经营概况" top="20">-->
+<!--        <view class="unit">-->
+<!--          <view class="shu">-->
+<!--            <uni-segmented-control :current="current1" :values="list1" @clickItem="onClickItem1" styleType="button" activeColor="#4f99ff"></uni-segmented-control>-->
 
-            <uni-segmented-control :current="current2" :values="list2" @clickItem="onClickItem2" styleType="text" activeColor="#4f99ff"></uni-segmented-control>
+<!--            <uni-segmented-control :current="current2" :values="list2" @clickItem="onClickItem2" styleType="text" activeColor="#4f99ff"></uni-segmented-control>-->
 
-            <view class="shu3" v-if="xzshu.length!=0">
-              <view class="shu3box" v-for="(item,index) in Object.entries(xzshu)">
-                <view>{{item[0]}}</view>
-                <view>{{item[1]}}</view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </uni-group>
+<!--            <view class="shu3" v-if="xzshu.length!=0">-->
+<!--              <view class="shu3box" v-for="(item,index) in Object.entries(xzshu)">-->
+<!--                <view>{{item[0]}}</view>-->
+<!--                <view>{{item[1]}}</view>-->
+<!--              </view>-->
+<!--            </view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </uni-group>-->
 
 		</view>
 	</view>
@@ -422,6 +422,7 @@
 					cxfdbh.push(datas)
 				})
 				this.fdlist = cxfdbh
+        this.xzfd=this.fdlist[0].value
 			}, 2000)
 			this.getdata()
       //this.getdata2()
@@ -433,7 +434,8 @@
 		watch: {
 			xzfd: function(now, old) {
 				if (now) {
-					this.getdata()
+          console.log(this.xzfd);
+          this.getdata()
 				}
 			},
 			sdate: function(now, old) {

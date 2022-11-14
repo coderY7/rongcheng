@@ -183,7 +183,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
       Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {//this.isreportForm()
-    this.Alllist = [{ cxmc: '商品修改' }, { cxmc: '库存查询' }, { cxmc: '新增商品' }];}, methods: { //获取报表
+    this.Alllist = [{ cxmc: '导入商品' }, { cxmc: '商品修改' }];}, methods: { //获取报表
     isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid') };(0, _api.reportForm)(reportFormdata).then(function (res) {
         console.log('报表查询', res);
         _this.Alllist = res.data;
@@ -201,7 +201,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
           url: '../../pagesA/condition/condition' });
 
       }
-      if (item.cxmc == '新增商品') {
+      if (item.cxmc == '导入商品') {
         uni.navigateTo({
           url: '../../pagesA/addsp/addsp' });
 

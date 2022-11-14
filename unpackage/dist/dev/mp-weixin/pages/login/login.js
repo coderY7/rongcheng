@@ -273,6 +273,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
           uni.setStorageSync('loginaccess', res); //登录成功返回的数据
           uni.setStorageSync('fdtype', res.companyinfo.erp_saletype); //分店类型
           uni.setStorageSync('login', true);
+
           // 获取用户信息
           uni.login({
             provider: 'weixin',
@@ -354,10 +355,8 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
                 CompanyID);
                 uni.setStorageSync('userid', _this3.resdata['userinfos'].
                 USERID);
-                uni.setStorageSync('fdbh', resdata.access_token.
-                erp_fdbh);
-                uni.setStorageSync('fdmc', resdata.access_token.
-                erp_fdmc);
+                uni.setStorageSync('fdbh', resdata.userinfos.fdbh);
+                uni.setStorageSync('fdmc', resdata.userinfos.fdmc);
                 uni.setStorageSync('groupid', _this3.resdata['userinfos'].
                 GROUPID);
                 _this3.basics();

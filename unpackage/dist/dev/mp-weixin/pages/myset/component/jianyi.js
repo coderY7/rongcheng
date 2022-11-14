@@ -98,10 +98,10 @@ var components
 try {
   components = {
     mkUpload: function() {
-      return __webpack_require__.e(/*! import() | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then(__webpack_require__.bind(null, /*! @/components/mk-upload/mk-upload.vue */ 359))
+      return __webpack_require__.e(/*! import() | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then(__webpack_require__.bind(null, /*! @/components/mk-upload/mk-upload.vue */ 352))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 366))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 359))
     }
   }
 } catch (e) {
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _api = __webpack_require__(/*! ../../../network/api.js */ 143);
 
-var _nav = _interopRequireDefault(__webpack_require__(/*! ../../../components/nav.vue */ 197));var _components$data$comp;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var mkupload = function mkupload() {__webpack_require__.e(/*! require.ensure | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then((function () {return resolve(__webpack_require__(/*! @/components/mk-upload/mk-upload.vue */ 359));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_components$data$comp = {
+var _nav = _interopRequireDefault(__webpack_require__(/*! ../../../components/nav.vue */ 197));var _components$data$comp;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var mkupload = function mkupload() {__webpack_require__.e(/*! require.ensure | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then((function () {return resolve(__webpack_require__(/*! @/components/mk-upload/mk-upload.vue */ 352));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_components$data$comp = {
 
   components: {
     mkupload: mkupload },
@@ -331,6 +331,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uIcon: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 343))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -377,6 +400,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 var _default =
 {
   name: "nav",
@@ -394,6 +422,9 @@ var _default =
   methods: {
     isleft: function isleft(data) {
       this.$emit('lefts', this.icons);
+    },
+    back: function back(data) {
+      this.$emit('back', this.icons);
     } },
 
   created: function created() {

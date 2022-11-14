@@ -4,7 +4,7 @@
 			title="报表" @leftClick="leftClick">
 		</u-navbar> -->	
 
-    <navbar title='报表' @lefts=left() leftname="设置"></navbar>
+    <navbar title='功能'></navbar>
 
     <view class="unit1">
 			<ul>
@@ -41,7 +41,7 @@
 		  },
 		onLoad() {
 			//this.isreportForm()
-this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'},{cxmc:'新增商品'}]
+this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'}]
 		},
 		methods: {
 			//获取报表
@@ -67,7 +67,7 @@ this.Alllist=[{cxmc:'商品修改'},{cxmc:'库存查询'},{cxmc:'新增商品'}]
 						url: '../../pagesA/condition/condition'
 					})
 				}
-        if(item.cxmc=='新增商品'){
+        if(item.cxmc=='导入商品'){
           uni.navigateTo({
             url: '../../pagesA/addsp/addsp'
           })

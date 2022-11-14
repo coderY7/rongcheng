@@ -51,7 +51,7 @@
         "pagePath": "pages/statement/statement",
         "iconPath": "static/images/tabbar/shopping.png",
         "selectedIconPath": "static/images/tabbar/shopping-active.png",
-        "text": "报表"
+        "text": "功能"
       }
     ]
   },

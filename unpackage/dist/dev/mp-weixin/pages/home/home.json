@@ -7,7 +7,6 @@
     "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
     "uni-group": "/uni_modules/uni-group/components/uni-group/uni-group",
     "qiun-data-charts": "/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts",
-    "uni-segmented-control": "/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control",
     "navbar": "/components/nav"
   }
 }

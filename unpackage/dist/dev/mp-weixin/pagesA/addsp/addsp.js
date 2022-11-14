@@ -98,19 +98,19 @@ var components
 try {
   components = {
     uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 454))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 447))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 391))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 384))
     },
     uniDataSelect: function() {
       return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 306))
     },
     uSwitch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 376))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 369))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 366))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 359))
     }
   }
 } catch (e) {
@@ -242,6 +242,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -252,6 +265,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
     return {
       sptm: '', //商品条码
       spzt: '', //商品状态
+      ztmc: '',
       spbm: '',
       sp: '',
       cxsjht: '',
@@ -268,7 +282,17 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
 
   },
   onShow: function onShow() {
-
+    this.cxsjht = uni.getStorageSync('basic').SJINFO;
+    //处理商家合同下拉框数据
+    var cxsjht = [];
+    this.cxsjht.forEach(function (item) {
+      var datas = {};
+      datas.value = item.sjbh;
+      datas.text = item.sjmc;
+      cxsjht.push(datas);
+    });
+    this.cxsjht = cxsjht;
+    this.sjbh = this.cxsjht[0].value;
   },
   methods: {
     relevancy: function relevancy(e) {
@@ -303,6 +327,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
           console.log('条码内容：' + res.result);
           if (res.result) {
             _this.sptm = res.result;
+            _this.search();
           }
         } });
 
@@ -336,15 +361,22 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
             switch (res.data.message) {
               case 'rcyg':
                 _this2.spzt = 'rcyg';
+                _this2.ztmc = '蓉城易购模版库';
                 break;
               case 'mzsale':
                 _this2.spzt = 'mzsale';
+                _this2.ztmc = '麦子易商模版库';
+
                 break;
               case 'normal':
                 _this2.spzt = 'normal';
+                _this2.ztmc = '已导入商品';
+
                 break;
               case 'allnew':
                 _this2.spzt = 'allnew';
+                _this2.ztmc = '新增商品';
+
                 uni.showModal({
                   title: '未查到商品',
                   content: '是否新增商品？',
@@ -362,6 +394,8 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
                 break;
               case 'other':
                 _this2.spzt = 'other';
+                _this2.ztmc = '其他模版库';
+
                 break;}
 
           } else {
@@ -389,6 +423,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
         modeltype: this.spzt,
         userid: uni.getStorageSync('userid'),
         autosetcldsp: this.autosetcldspvalue };
+
 
       uni.request({
         url: 'http://211.149.188.114:86/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
@@ -425,6 +460,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
           }
         } });
 
+    },
+    back: function back() {
+      uni.navigateBack({
+        delta: 1 });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -1,13 +1,13 @@
 <template>
 	<view>
-		<navbar title='商品修改' @lefts=left()></navbar>
+		<navbar title='商品修改' @lefts=left() @back="back()"></navbar>
 
 		<view class="container">
 			<uni-card>
 				<view class="box">
 					<view class="boxname">商品条码 :</view>
 					<view class=boxinput style="z-index: 99999;">
-						<uni-combox :candidates="candidates" placeholder="请输入商品编码" v-model="spsmm" @input="change()">
+						<uni-combox :candidates="candidates" placeholder="请输入商品条码" v-model="spsmm" @input="change()">
 						</uni-combox>
 					</view>
 					<view class="">
@@ -17,9 +17,14 @@
 			</uni-card>
 
 			<uni-card v-if="spmc">
-				<view>编码:{{spbm}}</view>
-				<view>条码:{{spsmm}}</view>
-				<view>名称:{{spmc}}</view>
+        <view  class="box">
+          <view class="boxname">商品编号:</view>
+          <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
+        </view>
+        <view  class="box">
+          <view class="boxname">商品名称:</view>
+          <u-input border="surround" v-model="spmc" :disabled="true"></u-input>
+        </view>
 			</uni-card>
 
 			<uni-card>
@@ -377,6 +382,11 @@
 
 				})
 			},
+      back(){
+        uni.navigateBack({
+          delta: 1
+        });
+      }
 		}
 	}
 </script>

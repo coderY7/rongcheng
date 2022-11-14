@@ -108,9 +108,6 @@ try {
     },
     qiunDataCharts: function() {
       return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 334))
-    },
-    uniSegmentedControl: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control */ "uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-segmented-control/components/uni-segmented-control/uni-segmented-control.vue */ 343))
     }
   }
 } catch (e) {
@@ -134,15 +131,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.xzshu.length != 0 ? Object.entries(_vm.xzshu) : null
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        l0: l0
-      }
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -600,6 +588,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         cxfdbh.push(datas);
       });
       _this.fdlist = cxfdbh;
+      _this.xzfd = _this.fdlist[0].value;
     }, 2000);
     this.getdata();
     //this.getdata2()
@@ -611,6 +600,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
   watch: {
     xzfd: function xzfd(now, old) {
       if (now) {
+        console.log(this.xzfd);
         this.getdata();
       }
     },
