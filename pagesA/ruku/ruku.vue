@@ -1,34 +1,56 @@
 <template>
   <view class="box">
+    <view class="status-bar"></view>
+    <view class="nav-bar" style="display: flex; justify-content: space-between;
+align-items: center;height: 60rpx;
+    margin: 10rpx 20rpx;">
+      <view class="left">
+      </view>
+      <view class="center">
+<!--        <text>商品入库</text>-->
+      </view>
+      <view class="right">
+        <view @click="newOrder">
+          <u-icon name="plus-square-fill" size="36" color="#358CC9"></u-icon>
+        </view>
+<!--        <u-icon name="plus-square-fill"></u-icon>-->
+<!--        <u-button class="icon-button guideJS1" text="" throttleTime="2000" @tap="newOrder">-->
+<!--          <uni-icons type="plusempty" size="30" color="#fff"></uni-icons>-->
+<!--        </u-button>-->
+      </view>
+    </view>
     <view class="box-content">
       <!-- 查询表头 -->
       <view class="form-card">
-        <view class="" v-for="(v,i) in queryData">
+        <view class="" v-for="(v,i) in queryData" style="margin-left: 20rpx">
           <view class="view-flex" v-if="v.type=='开始DATE'">
-            <text class="form-left-text">{{v.colname}}</text>
+            <text class="form-left-text">{{v.colname}}:</text>
             <uni-datetime-picker v-model="v.value" type="date" :clear-icon="false"/>
             <text class="inp-right-text"></text>
           </view>
           <view class="view-flex" v-if="v.type=='结束DATE'">
-            <text class="form-left-text">{{v.colname}}</text>
+            <text class="form-left-text">{{v.colname}}:</text>
             <uni-datetime-picker v-model="v.value" type="date" :clear-icon="false"/>
             <text class="inp-right-text"></text>
           </view>
           <view v-show="foldMoreShow">
             <view class="view-flex" v-if="v.type=='查询下拉框'">
-              <text class="form-left-text">{{v.colname}}</text>
-              <u-input :placeholder="'请输入'+ v.colname" :disabled="v.readonly==''?false:true" v-model="v.value" @change="inpChange">
-                <template slot="suffix">
-                  <uni-icons type="clear" size="19" color="#e1e1e1" v-if="v.readonly==''&&v.value!=''" @tap="clearAlone(v,i)"></uni-icons>
-                </template>
-              </u-input>
+              <text class="form-left-text">{{v.colname}}:</text>
+              <view style="width: 74%">
+                <u-input :placeholder="'请输入'+ v.colname" :disabled="v.readonly==''?false:true" v-model="v.value" @change="inpChange">
+                  <template slot="suffix">
+                    <uni-icons type="clear" size="19" color="#e1e1e1" v-if="v.readonly==''&&v.value!=''" @tap="clearAlone(v,i)"></uni-icons>
+                  </template>
+                </u-input>
+              </view>
+
               <uni-icons custom-prefix="iconfont" class="guideJS2" type="icon-jiugongge" size="19" color="#8f8f8f" @tap="queryMore(v,i,v.type,'ALL')">
               </uni-icons>
 
 
             </view>
             <view class="view-flex" v-else-if="v.type=='下拉框'" @tap="queryMore(v,i,v.type,'ALL')">
-              <text class="form-left-text">{{v.colname}}</text>
+              <text class="form-left-text">{{v.colname}}:</text>
               <u-radio-group v-model="v.value" placement="row" v-if="v.codeid=='SK'">
                 <u-radio v-for="(item,index) in v.tabname" :key="item.id" :label="item.name" :name="item.id"></u-radio>
               </u-radio-group>
@@ -42,7 +64,7 @@
               <text class="inp-right-text"></text>
             </view>
             <view class="view-flex" v-else-if="v.type=='字符'">
-              <text class="form-left-text">{{v.colname}}</text>
+              <text class="form-left-text">{{v.colname}}:</text>
               <u-input :placeholder="'请输入'+v.colname" v-model="v.value">
                 <template slot="suffix">
                   <uni-icons type="clear" size="19" color="#e1e1e1" v-if="v.value!=''" @tap="clearAlone(v,i)"></uni-icons>
@@ -54,8 +76,12 @@
           </view>
         </view>
         <view class="linear-mask" v-if="!foldMoreShow"></view>
-        <u-button type="primary" class="my-primary-button" text="查询" throttleTime="2000" @tap="getlist">
-        </u-button>
+        <view  style="display: flex;justify-content: center">
+          <view style="width: 90%"><u-button type="primary" class="my-primary-button" text="查询" throttleTime="2000" @tap="getlist">
+          </u-button></view>
+
+        </view>
+
         <view class="fold-more" @tap="foldMoreShow=!foldMoreShow" >
           <text v-if="foldMoreShow">收起</text>
           <text v-else>展开</text>
@@ -134,7 +160,7 @@ import dayjs from 'dayjs';
 import {
   rccondition,
   rcbasics,
-  OrderNew,
+  rcOrderNew,
   rcgetlist
 } from "@/network/api.js";
 // import xkyGuideStep from '@/components/xky-guideStep/xky-guideStep';
@@ -270,11 +296,11 @@ export default {
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid"),
       }
-      OrderNew(dataes).then((res) => {
+      rcOrderNew(dataes).then((res) => {
         // console.log("orderNew res",res)
         if(res.error_code==0){
           uni.navigateTo({
-            url: `/pages/function/component/getstorage/rkxd?djbh=${res.djbh}&state=add`
+            url: `../../pagesA/ruku/rkxd?djbh=${res.djbh}&state=add`
           });
         }else{
           this.$refs.uToast.show({
@@ -286,18 +312,19 @@ export default {
         console.log(err)
       })
     },
+
     // 编辑单
     tolook(item){
-      if(item.单据状态=="未审核"){
-        uni.navigateTo({
-          url: `../../pagesA/ruku/rkxd?djbh=${item.入库单号}&state=edit`
-        });
-      }else{
-        uni.navigateTo({
-          url: `../../pagesA/ruku/rkxd?djbh=${item.入库单号}&state=look`
-        });
-      }
       uni.$emit("editTitle",item)
+      let states=""
+      if(item.单据状态=="未审核"){
+        states="edit"
+      }else{
+        states="look"
+      }
+      uni.navigateTo({
+        url: `../../pagesA/ruku/rkxd?state=${states}&djbh=${item['入库单号']}&djzt=${item['单据状态']}&sjbh=${item['商家合同号']}&sjmc=${item['商家名称']}&ckbh=${item['入库仓库']}&ysdh=${item['原始单号']}&fdbh=${item['入库分店']}&rkzl=${item['入库总量']}&rkze=${item['入库总额']}`
+      });
     },
 
     //查找表格数据。。。。。。。。。。。。。。。。。。。。。。。。。
@@ -379,7 +406,7 @@ export default {
       .view-flex{
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        //justify-content: space-between;
         align-items: center;
         margin: 20rpx 0;
       }
@@ -552,6 +579,16 @@ export default {
   }
   .u-popup__content.data-v-52d4ddd1{
     width: 90%;
+  }
+  .nav-bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .boxunit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
 }

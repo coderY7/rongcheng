@@ -38,7 +38,6 @@
 .box .box-content .form-card .view-flex.data-v-60d5534b {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin: 20rpx 0;
 }
@@ -187,5 +186,15 @@
 }
 .data-v-60d5534b .u-popup .u-popup__content.data-v-52d4ddd1 {
   width: 90%;
+}
+.data-v-60d5534b .u-popup .nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.data-v-60d5534b .u-popup .boxunit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 

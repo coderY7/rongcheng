@@ -175,8 +175,9 @@
 			, {
 				"path": "ruku/ruku",
 				"style": {
-					"navigationBarTitleText": "",
+					"navigationBarTitleText": "商品入库",
 					"enablePullDownRefresh": false
+					
 				}
 
 			}, {

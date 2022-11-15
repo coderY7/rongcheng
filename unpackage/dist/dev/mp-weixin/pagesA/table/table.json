@@ -2,6 +2,7 @@
   "navigationBarTitleText": "",
   "enablePullDownRefresh": false,
   "usingComponents": {
+    "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
     "zb-table": "/uni_modules/zb-table/components/zb-table/zb-table",
     "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination"
   }

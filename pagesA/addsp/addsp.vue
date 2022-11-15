@@ -7,7 +7,7 @@
       </view>
 
       <view >
-          <uni-card :title="sp.name"  :extra="spzt"  :is-shadow="true" >
+
             <view class="box">
               <view class="boxname">商品状态:</view>
               <view class="boxinput">
@@ -50,13 +50,13 @@
             <view class="box">
               <view class="boxname">商家名称:</view>
               <view class="boxinput" @click="sjlist()">
-                <uni-section  type="line">
+                
                   <uni-data-select
                       v-model="sjbh"
                       :localdata="cxsjht"
                       @change="change"
                   ></uni-data-select>
-                </uni-section>
+                
               </view>
               <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
 
@@ -68,7 +68,6 @@
                 </view>
               </view>
             </view>
-          </uni-card>
 
 
 

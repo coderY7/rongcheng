@@ -27,9 +27,9 @@
 						<view class="boxname">选择分店:</view>
 						<view class="boxinput">
 							<view>
-								<uni-section type="line">
+								
 									<uni-data-select v-model="xzfd" :localdata="fdlist"></uni-data-select>
-								</uni-section>
+								
 							</view>
 						</view>
 					</view>
@@ -528,6 +528,15 @@
 											this.ybpdata = data
 											this.manage()
                       this.percent()
+					  this.getServerDataA();
+					  			this.getServerDataB();
+					  			this.getServerDataC();
+					  			this.getServerDataD();
+					  			//this.getServerDataE();
+					  			this.getServerDataF();
+					  			this.getServerDataG();
+					        //this.section1()
+
 				})
 			},
 			//开始日期

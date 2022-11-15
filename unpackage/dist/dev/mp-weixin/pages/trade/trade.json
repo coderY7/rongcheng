@@ -4,6 +4,7 @@
   "navigationStyle": "custom",
   "usingComponents": {
     "uni-combox": "/uni_modules/uni-combox/components/uni-combox/uni-combox",
+    "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
     "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
     "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",

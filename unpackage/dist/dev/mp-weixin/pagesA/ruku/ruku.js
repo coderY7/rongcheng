@@ -97,29 +97,32 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uIcon: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 374))
+    },
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 344))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 347))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 412))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 422))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 483))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 493))
     },
     uRadioGroup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio-group/u-radio-group */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio-group/u-radio-group")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio-group/u-radio-group.vue */ 491))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio-group/u-radio-group */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio-group/u-radio-group")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio-group/u-radio-group.vue */ 501))
     },
     uRadio: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 499))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 509))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 387))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 390))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 507))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 517))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 515))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 525))
     }
   }
 } catch (e) {
@@ -186,6 +189,32 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -449,6 +478,32 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import xkyGuideStep from '@/components/xky-guideStep/xky-guideStep';
 var _default = { components: {// xkyGuideStep
   }, data: function data() {return { cxsjht: '', sjbh: '', queryData: [], foldMoreShow: true, radiovalue1: "T", selectIndex: -1, ifDrawer: "", popupShow: false, selectData: [], tableData: [] };}, onLoad: function onLoad() {}, onReady: function onReady() {this.condition();}, onShow: function onShow() {}, methods: { //拉取查询条件
@@ -456,35 +511,10 @@ var _default = { components: {// xkyGuideStep
     inpChange: function inpChange(val) {var _this2 = this;setTimeout(function () {if (val != "") {for (var i in _this2.queryData) {if (val == _this2.queryData[i].value) {_this2.queryMore(_this2.queryData[i], i, _this2.queryData[i].type, val);uni.hideKeyboard();}}}}, 500);}, // 查询条件中的单个查询.................................
     queryMore: function queryMore(obj, index, state, isAll) {var _this3 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": obj.tabname.type, "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {console.log(obj.tabname.type + " 基本信息basic res", res);_this3.selectIndex = index;if (obj.readonly != "") {//分店编号
           _this3.$set(_this3.queryData[_this3.selectIndex], "value", "".concat(res.data[0][obj.tabname.id], "-").concat(res.data[0][obj.tabname.name]));_this3.$forceUpdate();return;}_this3.ifDrawer = state;_this3.popupShow = true;_this3.selectData = [];for (var i in res.data) {if (isAll == "ALL") {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });} else {if (res.data[i][obj.tabname.id].indexOf(isAll) > -1 || res.data[i][obj.tabname.name].indexOf(isAll) > -1) {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });}}}}).catch(function (err) {console.log(err);});}, // 创建新单
-    newOrder: function newOrder() {var _this4 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid") };
-      (0, _api.OrderNew)(dataes).then(function (res) {
-        // console.log("orderNew res",res)
-        if (res.error_code == 0) {
-          uni.navigateTo({
-            url: "/pages/function/component/getstorage/rkxd?djbh=".concat(res.djbh, "&state=add") });
+    newOrder: function newOrder() {var _this4 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid") };(0, _api.rcOrderNew)(dataes).then(function (res) {// console.log("orderNew res",res)
+        if (res.error_code == 0) {uni.navigateTo({ url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });} else {_this4.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 编辑单
+    tolook: function tolook(item) {uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({ url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额']) });
 
-        } else {
-          _this4.$refs.uToast.show({
-            type: "error",
-            message: res.message });
-
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
-    // 编辑单
-    tolook: function tolook(item) {
-      if (item.单据状态 == "未审核") {
-        uni.navigateTo({
-          url: "../../pagesA/ruku/rkxd?djbh=".concat(item.入库单号, "&state=edit") });
-
-      } else {
-        uni.navigateTo({
-          url: "../../pagesA/ruku/rkxd?djbh=".concat(item.入库单号, "&state=look") });
-
-      }
-      uni.$emit("editTitle", item);
     },
 
     //查找表格数据。。。。。。。。。。。。。。。。。。。。。。。。。

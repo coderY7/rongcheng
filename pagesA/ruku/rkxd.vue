@@ -1,6 +1,25 @@
 <template>
 	<view class="box">
-
+    <view class="status-bar"></view>
+    <view class="nav-bar" style="display: flex; justify-content: space-between;
+align-items: center;height: 50rpx;
+    margin: 10rpx 20rpx;">
+      <view class="left">
+        <navigator open-type="navigateBack" v-show="ifpage">
+          <u-icon type="allow-left" size="30" color="#358CC9"></u-icon>
+        </navigator>
+        <view class="navleftview" v-show="!ifpage" @tap="toback">
+          <u-icon type="allow-left" size="30" color="#358CC9"></u-icon>
+        </view>
+      </view>
+      <view class="center" v-show="ifpage">入库新单</view>
+      <view class="center" v-show="!ifpage">商品明细</view>
+      <view class="right" v-show="ifpage">
+        <view class="icon-button" text="" throttleTime="2000" :disabled="state=='add'" @tap="newOrder">
+          <u-icon type="file-text" size="30" color="#358CC9"></u-icon>
+        </view>
+      </view>
+    </view>
 		<view class="box-content" v-show="ifpage">
 			<!-- 新增单据 表头 -->
 			<view class="my-collapse">
@@ -21,46 +40,70 @@
 				<view class="my-collapse-con" v-show="myCollShow">
 					<view style="text-align:center;color:#F56C6C;" v-if="neworderShow">这是一个新单！！！</view>
 					<u-form class="form-card" labelPosition="left" :model="uFormTitle">
-						<u-form-item label="商家编号" :labelWidth="76" prop="sjbh" @tap="queryHt(false,'sjbh')">
-							<u-input placeholder="请选择商家编号" disabled
-								:disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
-								v-model="uFormTitle.sjbh">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="入库日期" :labelWidth="76" prop="rkrq">
-							<uni-datetime-picker v-model="uFormTitle.rkrq" type="date" disabled :clear-icon="false"/>
-						</u-form-item>
-						<u-form-item label="仓库编号" :labelWidth="76" prop="ckbh" @tap="queryMore(false,'CKINFO','ckbh')">
-							<u-input placeholder="请选择仓库编号" disabled
-								:disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
-								v-model="uFormTitle.ckbh">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="采购业务" :labelWidth="76" prop="service"
-							@tap="queryMore(false,'USERINFO','service')">
-							<u-input placeholder="请选择采购业务" disabled
-								:disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
-								v-model="uFormTitle.service">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="原始单号" :labelWidth="76" prop="ysdh">
-							<u-input placeholder="请输入原始单号" :disabled="state=='pladd'||state=='edit'||state=='look'||state=='check'"
-								v-model="uFormTitle.ysdh">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="税票号码" :labelWidth="76" prop="sphm">
-							<u-input placeholder="请输入税票号码" :disabled="state=='pladd'||state=='edit'||state=='look'||state=='check'"
-								v-model="uFormTitle.sphm">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="入库分店" :labelWidth="76" prop="fdbh" @tap="queryMore(false,'FDINFO','fdbh')">
-							<u-input placeholder="请选择入库分店" disabled v-model="uFormTitle.fdbh">
-							</u-input>
-						</u-form-item>
-						<u-form-item label="备注说明" :labelWidth="76" prop="remarks">
-							<u-input placeholder="请输入备注说明" v-model="uFormTitle.remarks" :disabled="state=='look'||state=='check'">
-							</u-input>
-						</u-form-item>
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="商家编号" :labelWidth="76" prop="sjbh" @tap="queryHt(false,'sjbh')">
+                <u-input placeholder="请选择商家编号" disabled
+                         :disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
+                         v-model="uFormTitle.sjbh"
+                >
+                </u-input>
+              </u-form-item>
+            </view>
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="入库日期" :labelWidth="76" prop="rkrq" style="margin: 20rpx 0">
+                <uni-datetime-picker v-model="uFormTitle.rkrq" type="date" disabled :clear-icon="false"/>
+              </u-form-item>
+            </view>
+<view class="unitbox" style="margin: 20rpx 0">
+  <u-form-item label="仓库编号" :labelWidth="76" prop="ckbh" @tap="queryMore(false,'CKINFO','ckbh')">
+    <u-input placeholder="请选择仓库编号" disabled
+             :disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
+             v-model="uFormTitle.ckbh">
+    </u-input>
+  </u-form-item>
+</view>
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="采购业务" :labelWidth="76" prop="service"
+                           @tap="queryMore(false,'USERINFO','service')">
+                <u-input placeholder="请选择采购业务" disabled
+                         :disabledColor="state=='pladd'||state=='edit'||state=='look'||state=='check'?'#F5F7FA':'#fff'"
+                         v-model="uFormTitle.service">
+                </u-input>
+              </u-form-item>
+            </view>
+
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="原始单号" :labelWidth="76" prop="ysdh">
+                <u-input placeholder="请输入原始单号" :disabled="state=='pladd'||state=='look'||state=='check'"
+                         v-model="uFormTitle.ysdh">
+                </u-input>
+              </u-form-item>
+            </view>
+
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="税票号码" :labelWidth="76" prop="sphm">
+                <u-input placeholder="请输入税票号码" :disabled="state=='pladd'||state=='look'||state=='check'"
+                         v-model="uFormTitle.sphm">
+                </u-input>
+              </u-form-item>
+            </view>
+
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="入库分店" :labelWidth="76" prop="fdbh" @tap="queryMore(false,'FDINFO','fdbh')">
+                <u-input placeholder="请选择入库分店" disabled v-model="uFormTitle.fdbh">
+                </u-input>
+              </u-form-item>
+            </view>
+
+            <view class="unitbox" style="margin: 20rpx 0">
+              <u-form-item label="备注说明" :labelWidth="76" prop="remarks">
+                <u-input placeholder="请输入备注说明" v-model="uFormTitle.remarks" :disabled="state=='look'||state=='check'">
+                </u-input>
+              </u-form-item>
+            </view>
+
+
+
 					</u-form>
 					<view class="flex-btns">
 						<u-button type="primary" class="my-primary-button" text="报审"
@@ -79,17 +122,19 @@
 			<!-- 新增单据 内容 -->
 			<view v-show="contentShow">
 				<u-form class="form-card" labelPosition="left" :model="uFormModel" :rules="uFormRules" ref="uForm">
-					<u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
-						<u-input placeholder="请输入商品编码/名称/简码" :disabled="isVoiceMode" v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">
-							<template slot="suffix">
-								<uni-icons type="clear" size="19" color="#e1e1e1" v-if="uFormModel.spbm!=''"
-									@tap="clearAlone('spbm')"></uni-icons>
-							</template>
-						</u-input>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='shoping'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('shoping',false)"></uni-icons>
-						<uni-icons custom-prefix="iconfont" type="icon-shouye" size="20" color="#606060"
-							@tap="scan()" v-if="!isVoiceMode&&!ispda"></uni-icons>
-					</u-form-item>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
+              <u-input placeholder="请输入商品编码/名称/简码" :disabled="isVoiceMode" v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">
+                <template slot="suffix">
+                  <uni-icons type="clear" size="19" color="#e1e1e1" v-if="uFormModel.spbm!=''"
+                             @tap="clearAlone('spbm')"></uni-icons>
+                </template>
+              </u-input>
+              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='shoping'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('shoping',false)"></uni-icons>
+              <uni-icons custom-prefix="iconfont" type="icon-shouye" size="20" color="#606060"
+                         @tap="scan()" v-if="!isVoiceMode&&!ispda"></uni-icons>
+            </u-form-item>
+          </view>
 					<view>
 						<view class="shopTishi">
 							<view class="shopTishi-view show-dots" v-if="uFormModel.spmc">
@@ -109,27 +154,35 @@
 							</view>
 						</view>
 					</view>
-					<u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
-						<u-input placeholder="请输入入库数量" type="number" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
-						</u-input>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='num'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('num',false)"></uni-icons>
-						<text class="inp-right-text" v-else></text>
-					</u-form-item>
-					<u-form-item label="入库价格" :labelWidth="74" prop="jycgjg" v-show="doingindex>=2">
-						<u-input placeholder="请输入入库价格" type="number" v-model="uFormModel.jycgjg" :focus="focusObj.priceFocus">
-						</u-input>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='price'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('price',false)"></uni-icons>
-						<text class="inp-right-text" v-else></text>
-					</u-form-item>
-					<u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">
-						<xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='switch'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('switch',false)"></uni-icons>
-					</u-form-item>
-					<u-form-item label="生产日期" :labelWidth="76" prop="scrq" v-show="doingindex>=4">
-						<uni-datetime-picker v-model="uFormModel.scrq" type="date" :clear-icon="false"/>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='rq'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('rq',false)"></uni-icons>
-						<text class="inp-right-text" v-else></text>
-					</u-form-item>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
+              <u-input placeholder="请输入入库数量" type="number" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
+              </u-input>
+              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='num'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('num',false)"></uni-icons>
+              <text class="inp-right-text" v-else></text>
+            </u-form-item>
+          </view>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="入库价格" :labelWidth="74" prop="jycgjg" v-show="doingindex>=2">
+              <u-input placeholder="请输入入库价格" type="number" v-model="uFormModel.jycgjg" :focus="focusObj.priceFocus">
+              </u-input>
+              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='price'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('price',false)"></uni-icons>
+              <text class="inp-right-text" v-else></text>
+            </u-form-item>
+          </view>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">
+              <xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>
+              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='switch'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('switch',false)"></uni-icons>
+            </u-form-item>
+          </view>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="生产日期" :labelWidth="76" prop="scrq" v-show="doingindex>=4">
+              <uni-datetime-picker v-model="uFormModel.scrq" type="date" :clear-icon="false"/>
+              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='rq'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('rq',false)"></uni-icons>
+              <text class="inp-right-text" v-else></text>
+            </u-form-item>
+          </view>
 				</u-form>
 				<view class="form-card" v-show="doingindex>=5">
 					<view style="display:flex;justify-content:space-between;">
@@ -155,8 +208,8 @@
 		<!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
 		<u-overlay :show="coverShow"></u-overlay>
 		<u-toast ref="uToast"></u-toast>
-		<u-popup :show="popupShow" mode="center" class="u-popup-center" zIndex="5000">
-			<scroll-view style="max-height: 60vh;" scroll-y="true">
+		<u-popup :show="popupShow" mode="center" class="u-popup-center" zIndex="20000">
+			<scroll-view style="max-height: 80vh; margin-top: 30rpx" scroll-y="true">
 				<view v-if="ifDrawer=='title'">
 					<view class="list" v-for="(v, i) in selectData" @tap="titleChange(v.id,v.name)">
 						<text>{{v.id}}</text>-
@@ -417,31 +470,40 @@
 				
 			}
 		},
-		onLoad(option) {
-			uni.getSystemInfo({
-				success: function(res) {
-					this.x=res.screenWidth-10
-					this.y=res.screenHeight-400
-				}.bind(this)
-			});
-			
-			this.uFormTitle.djbh = option.djbh
-			this.state = option.state
-			this.queryHt(true, "sjbh")
-			this.queryMore(true, "CKINFO", "ckbh")
-			this.queryMore(true, "FDINFO", "fdbh")
-			this.queryMore(true, "USERINFO", "service")
-			if (option.state == "add") {
-				
-			}else if (option.state == "edit"||option.state == "look") {
-				this.ifpage = true
-				this.getList()
-				uni.$on("editTitle",(data)=>{
-					this.editTitleObj=data
-				})
-			}
-			this.formMore("",true)
-		},
+    onLoad(option) {
+      console.log(option)
+      uni.getSystemInfo({
+        success: function(res) {
+          this.x=res.screenWidth-10
+          this.y=res.screenHeight-400
+        }.bind(this)
+      });
+      this.uFormTitle.djbh = option.djbh
+      this.state = option.state
+      let sjVal = option.sjbh
+      let ckVal = option.ckbh
+      let fdVal = option.fdbh
+      if (option.state == "add") {
+
+      }else if (option.state == "edit"||option.state == "look") {
+        this.ifpage = true
+        let datee=option.djbh.split("RK")[1]
+        let y="20"+datee.slice(0,2)
+        let m=datee.slice(2,4)
+        let d=datee.slice(4,6)
+        this.uFormTitle.rkrq=`${y}-${m}-${d}`
+        this.uFormTitle.ysdh=option.ysdh
+        this.getList()
+        uni.$on("editTitle",(data)=>{
+          this.editTitleObj=data
+        })
+      }
+      this.queryHt(true, sjVal, "sjbh")
+      this.queryMore(true, ckVal, "CKINFO", "ckbh")
+      this.queryMore(true, fdVal, "FDINFO", "fdbh")
+      this.queryMore(true, "", "USERINFO", "service")
+      this.formMore("",true)
+    },
 		onReady() {
 			// 设置状态栏文字颜色为 白色
 			// #ifdef APP-PLUS
@@ -519,115 +581,137 @@
 			},
 			
 			//新增单据 单头 函数........................................................
-			// 查询合同
-			queryHt(isauto, fixid) {
-				if (!isauto) {
-					if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
-						return
-					}
-				}
-				this.searchCode=400
-				let dataes={
-					"access_token": uni.getStorageSync("access_token"),
-					"CompanyID": uni.getStorageSync("companyid"),
-					"EndRQ": "",
-					"StartRQ": "",
-					"htlxid": "",
-					"sjbh": "",
-					"sjmc": ""
-				}
+      // 查询合同
+      queryHt(isauto, value, fixid) {
+        if (!isauto) {
+          if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
+            return
+          }
+        }
+        this.searchCode=400
+        let dataes={
+          "access_token": uni.getStorageSync("access_token"),
+          "CompanyID": uni.getStorageSync("companyid"),
+          "EndRQ": "",
+          "StartRQ": "",
+          "htlxid": "",
+          "sjbh": "",
+          "sjmc": ""
+        }
         rcqueryHT(dataes).then((res) => {
-					// console.log("queryHt res",res)
-					if (res.error_code == 0) {
-						if (isauto) { //自动填充
-							this.uFormTitle[fixid] = `${res.data[0].SJBH}-${res.data[0].SJMC}`
-						} else {
-							this.selectData = []
-							this.popupShow = true
-							this.ifDrawer = "title"
-							this.selectId = fixid
-							for (var i in res.data) {
-								this.selectData.push({
-									"id": res.data[i].SJBH,
-									"name": res.data[i].SJMC
-								})
-							}
-						}
-					} else {
-						this.$refs.uToast.show({
-							type: "error",
-							message: res.message
-						})
-					}
-				}).catch((err) => {
-					console.log(err)
-				})
-			},
-			// 新增单据 查询更多 查询更多
-			queryMore(isauto, type, fixid) {
-				if (!isauto) {
-					if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
-						return
-					}
-				}
-				this.searchCode=400
-				let dataes={
-					"access_token": uni.getStorageSync("access_token"),
-					"dtype": type,
-					"companyid": uni.getStorageSync("companyid"),
-				}
-				rcbasics(dataes).then((res) => {
-					// console.log(type + " 基本信息basic res", res)
-					if (res.error_code == 0) {
-						if (isauto) { //自动填充
-							if (type == "CKINFO") {
-								this.uFormTitle[fixid] =
-									`${res.data[0].ckbmid}-${res.data[0].ckmc}`
-							}else if (type == "FDINFO") {
-								this.uFormTitle[fixid] =
-									`${res.data[0].fdbh}-${res.data[0].fdmc}`
-							}else if (type == "USERINFO") {
-								this.uFormTitle[fixid] =
-									`${res.data[0].userid}-${res.data[0].dlmc}`
-							}else if (type == "") {
-					
-							}
-						} else {
-							this.selectId = fixid
-							this.selectData = []
-							this.popupShow = true
-							this.ifDrawer = "title"
-							for (var i in res.data) {
-								if (type == "CKINFO") {
-									this.selectData.push({
-										"id": res.data[i].ckbmid,
-										"name": res.data[i].ckmc
-									})
-								}else if (type == "FDINFO") {
-									this.selectData.push({
-										"id": res.data[i].fdbh,
-										"name": res.data[i].fdmc
-									})
-								}else if (type == "USERINFO") {
-									this.selectData.push({
-										"id": res.data[i].userid,
-										"name": res.data[i].dlmc
-									})
-								}else if (type == "") {
-					
-								}
-							}
-						}
-					} else {
-						this.$refs.uToast.show({
-							type: "error",
-							message: res.message
-						})
-					}
-				}).catch((err) => {
-					console.log(err)
-				})
-			},
+          // console.log("queryHt res",res)
+          if (res.error_code == 0) {
+            if(value){
+              for (var i in res.data) {
+                if(res.data[i].SJBH==value){
+                  this.uFormTitle[fixid] = `${res.data[i].SJBH}-${res.data[i].SJMC}`
+                }
+              }
+            }else{
+              if (isauto) { //自动填充
+                this.uFormTitle[fixid] = `${res.data[0].SJBH}-${res.data[0].SJMC}`
+              } else {
+                this.selectData = []
+                this.popupShow = true
+                this.ifDrawer = "title"
+                this.selectId = fixid
+                for (var i in res.data) {
+                  this.selectData.push({
+                    "id": res.data[i].SJBH,
+                    "name": res.data[i].SJMC
+                  })
+                }
+              }
+            }
+          } else {
+            this.$refs.uToast.show({
+              type: "error",
+              message: res.message
+            })
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      },
+      // 新增单据 查询更多 查询更多
+      queryMore(isauto, value, type, fixid) {
+        if (!isauto) {
+          if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
+            return
+          }
+        }
+        this.searchCode=400
+        let dataes={
+          "access_token": uni.getStorageSync("access_token"),
+          "dtype": type,
+          "companyid": uni.getStorageSync("companyid"),
+        }
+        rcbasics(dataes).then((res) => {
+          // console.log(type + " 基本信息basic res", res)
+          if (res.error_code == 0) {
+            if(value){
+              for (var i in res.data) {
+                if (type == "CKINFO") {
+                  if(res.data[i].ckbmid==value.split(" ")[0]){
+                    this.uFormTitle[fixid] = `${res.data[i].ckbmid}-${res.data[i].ckmc}`
+                  }
+                }else if (type == "FDINFO") {
+                  if(res.data[i].fdbh==value){
+                    this.uFormTitle[fixid] = `${res.data[i].fdbh}-${res.data[i].fdmc}`
+                  }
+                }
+              }
+            }else{
+              if (isauto) { //自动填充
+                if (type == "CKINFO") {
+                  this.uFormTitle[fixid] =
+                      `${res.data[0].ckbmid}-${res.data[0].ckmc}`
+                }else if (type == "FDINFO") {
+                  this.uFormTitle[fixid] =
+                      `${res.data[0].fdbh}-${res.data[0].fdmc}`
+                }else if (type == "USERINFO") {
+                  this.uFormTitle[fixid] =
+                      `${res.data[0].userid}-${res.data[0].dlmc}`
+                }else if (type == "") {
+
+                }
+              } else {
+                this.selectId = fixid
+                this.selectData = []
+                this.popupShow = true
+                this.ifDrawer = "title"
+                for (var i in res.data) {
+                  if (type == "CKINFO") {
+                    this.selectData.push({
+                      "id": res.data[i].ckbmid,
+                      "name": res.data[i].ckmc
+                    })
+                  }else if (type == "FDINFO") {
+                    this.selectData.push({
+                      "id": res.data[i].fdbh,
+                      "name": res.data[i].fdmc
+                    })
+                  }else if (type == "USERINFO") {
+                    this.selectData.push({
+                      "id": res.data[i].userid,
+                      "name": res.data[i].dlmc
+                    })
+                  }else if (type == "") {
+
+                  }
+                }
+              }
+            }
+          } else {
+            this.$refs.uToast.show({
+              type: "error",
+              message: res.message
+            })
+          }
+        }).catch((err) => {
+          console.log(err)
+        })
+      },
 			// 报审核
 			subCheck() {
 				uni.showModal({
@@ -1141,7 +1225,7 @@
 
 <style lang="scss" scoped>
 	.box {
-
+margin: 20rpx;
 
 		.box-content {
 
@@ -1450,10 +1534,20 @@
 			color: #358CC9;
 			font-size: 17px;
 		}
+
+    .u-fade-enter-active.data-v-39e33bf2{
+      z-index:0
+    }
+    .u-safe-bottom.data-v-758fd84f{
+      padding: 0;
+    }
+    .u-popup__content.data-v-52d4ddd1{
+      width: 90%;
+    }
+    //.unitbox{
+    //  margin: 20rpx 0;
+    //}
+
 	}
 </style>
-<style lang="scss">
-	page {
-		background-color: #f8f8f8;
-	}
-</style>
+

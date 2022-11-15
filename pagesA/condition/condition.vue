@@ -46,13 +46,13 @@
               <view v-if="item.colname=='分店编号'">
                 <view>{{ item.colname }}</view>
                 <view class="boxinput">
-                  <uni-section  type="line">
+                 
                     <uni-data-select
                         v-model="item.defval"
                         :localdata="cxfdbh"
                         @change="change"
                     ></uni-data-select>
-                  </uni-section>
+                  
                 </view>
               </view>
             </view>
@@ -62,26 +62,26 @@
               <view v-if="item.colname=='分店编号'">
                 <view>{{ item.colname }}</view>
                 <view class="boxinput">
-                  <uni-section  type="line">
+                 
                     <uni-data-select
                         v-model="item.defval"
                         :localdata="cxfdbh"
                         @change="change"
                     ></uni-data-select>
-                  </uni-section>
+                  
                 </view>
               </view>
 
               <view v-if="item.colname=='商品品牌'">
                 <view class="boxname">{{ item.colname }}</view>
                 <view class="boxinput">
-                  <uni-section  type="line">
+                  
                     <uni-data-select
                         v-model="item.defval"
                         :localdata="cxsppp"
                         @change="change"
                     ></uni-data-select>
-                  </uni-section>
+                 
                 </view>
               </view>
 
@@ -92,13 +92,13 @@
               <view v-if="item.colname=='商家合同'">
                 <view class="boxname">{{ item.colname }}</view>
                 <view class="boxinput">
-                  <uni-section  type="line">
+                 
                     <uni-data-select
                         v-model="item.defval"
                         :localdata="cxsjht"
                         @change="change"
                     ></uni-data-select>
-                  </uni-section>
+                  
                 </view>
               </view>
 

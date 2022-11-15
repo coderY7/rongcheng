@@ -3,7 +3,7 @@
 		<navbar title='商品修改' @lefts=left() @back="back()"></navbar>
 
 		<view class="container">
-			<uni-card>
+
 				<view class="box">
 					<view class="boxname">商品条码 :</view>
 					<view class=boxinput style="z-index: 99999;">
@@ -14,7 +14,7 @@
 						<button @click="isinfo()" class="search">搜索</button>
 					</view>
 				</view>
-			</uni-card>
+
 
 			<uni-card v-if="spmc">
         <view  class="box">
@@ -27,7 +27,7 @@
         </view>
 			</uni-card>
 
-			<uni-card>
+
 				<view v-for="(item, index) in testdata" :key="item">
 
 					<view v-if="item.table" class="box">
@@ -50,10 +50,10 @@
 					<view v-else-if="item.combox" class="box">
 						<view class="boxname">{{item.key}}:</view>
 						<view class="boxinput">
-							<uni-section type="line">
+							
 								<uni-data-select v-model="xzzgys" :localdata="zgys">
 								</uni-data-select>
-							</uni-section>
+							
 						</view>
 					</view>
 					<view v-else class="box">
@@ -61,7 +61,7 @@
 						<u-input border="surround" v-model="item.value" type="digit"></u-input>
 					</view>
 				</view>
-			</uni-card>
+
 
 			<view class="">
 <!--				<button @click="save()" class="search">保存</button>-->
