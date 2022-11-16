@@ -181,3 +181,5 @@ export const rcGetlistC = (params, config = {}) => http.post("/mzsale/web/common
 export const rcOrderNew = (params, config = {}) => http.post("/mzsale/web/common/order/new", params, config)
 
 export const rcqueryHT = (params, config = {}) => http.post("/mzsale/web/contract/ht/query", params, config)
+export const rcip = (params, config = {}) => http.get("/mzsale/web/login", params, config)
+export const rcserct = (params, config = {}) => http.post("/mzato/main/app/serct", params, config)

@@ -98,16 +98,16 @@ var components
 try {
   components = {
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 347))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 340))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 337))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 330))
     },
     uniGroup: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 358))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-group/components/uni-group/uni-group */ "uni_modules/uni-group/components/uni-group/uni-group").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-group/components/uni-group/uni-group.vue */ 351))
     },
     qiunDataCharts: function() {
-      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 365))
+      return Promise.all(/*! import() | uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts")]).then(__webpack_require__.bind(null, /*! @/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue */ 358))
     }
   }
 } catch (e) {
@@ -338,7 +338,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! ../../network/api.js */ 143);
+
+var _api = __webpack_require__(/*! ../../network/api.js */ 165);
 
 
 
@@ -376,22 +377,22 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
       datelist: '',
       chartDataA: {},
       optsA: {
-        color: ["#1890FF", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
-        "#ea7ccc"],
-
+        color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4", "#ea7ccc"],
         padding: [15, 15, 0, 5],
         legend: {},
         xAxis: {
           disableGrid: true },
 
         yAxis: {
-          data: [{
+          data: [
+          {
             min: 0 }] },
+
 
 
         extra: {
           column: {
-            type: "stack",
+            type: "group",
             width: 30,
             activeBgColor: "#000000",
             activeBgOpacity: 0.08 } } },
@@ -495,6 +496,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
 
 
       chartDataF: {},
+
       optsF: {
         color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4", "#ea7ccc"],
         padding: [15, 15, 0, 5],
@@ -511,8 +513,8 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
 
         extra: {
           column: {
-            type: "stack",
-            width: 50,
+            type: "group",
+            width: 30,
             activeBgColor: "#000000",
             activeBgOpacity: 0.08 } } },
 
@@ -718,7 +720,20 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
         //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
         var res = {
           categories: [],
-          series: [] };
+          series: [
+          {
+            name: "客单笔数",
+            data: [] },
+
+          {
+            name: "预计毛利",
+            data: [] },
+
+          {
+            name: "实销总额",
+            data: [] }] };
+
+
 
 
         //处理柱形图数据
@@ -735,9 +750,14 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           sxje.push(parseFloat(item['实销金额']));
         });
         res.categories = bmmc;
-        res.series.push({ name: '实销金额', data: sxje },
-        { name: '预计毛利', data: yjml },
-        { name: '客单笔数', data: kdbs });
+
+        res.series[0].data = kdbs;
+        res.series[1].data = yjml;
+        res.series[2].data = sxje;
+
+        // res.series.push({name:'实销金额',data:sxje},
+        //     {name:'预计毛利',data:yjml},
+        //     {name:'客单笔数',data:kdbs})
         _this4.chartDataA = JSON.parse(JSON.stringify(res));
       }, 500);
     },
@@ -750,7 +770,6 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           series: [
           {
             data: _this5.cxdata }] };
-
 
 
 
@@ -838,8 +857,21 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
       setTimeout(function () {
         //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
         var res = {
-          categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
-          series: [] };
+          categories: [],
+          series: [
+          {
+            name: "客单笔数",
+            data: [] },
+
+          {
+            name: "预计毛利",
+            data: [] },
+
+          {
+            name: "实销总额",
+            data: [] }] };
+
+
 
         var table = _this8.ybpdata.Table5;
         var fd = [];
@@ -853,10 +885,14 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));funct
           sxje.push(parseFloat(item['实销总额']));
         });
         res.categories = fd;
+        res.series[0].data = kdbs;
+        res.series[1].data = yjmle;
+        res.series[2].data = sxje;
 
-        res.series.push({ name: '实销总额', data: sxje },
-        { name: '预计毛利', data: yjmle },
-        { name: '客单笔数', data: kdbs });
+
+        // res.series.push({name:'实销总额',data:sxje},
+        //     {name:'预计毛利',data:yjmle},
+        //     {name:'客单笔数',data:kdbs})
         console.log(res);
         _this8.chartDataF = JSON.parse(JSON.stringify(res));
       }, 500);

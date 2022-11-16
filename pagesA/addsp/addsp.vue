@@ -1,6 +1,6 @@
 <template>
   <view>
-    <navbar title='导入商品' @lefts=left() @back="back()"></navbar>
+    <navbar title='导入商品'  @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
           <u-search  placeholder="请输入商品条码" searchIcon="scan" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
@@ -171,7 +171,7 @@ export default {
         disrate: ''
       }
       uni.request({
-        url: 'http://211.149.188.114:86/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
+        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
         data: data,
         method: 'POST',
         header: {
@@ -256,7 +256,7 @@ export default {
       }
       
       uni.request({
-        url: 'http://211.149.188.114:86/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
+        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
         data: data,
         method: 'POST',
         header: {

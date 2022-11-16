@@ -25,7 +25,8 @@
 <script>
 	import {
 		reportForm,
-		condition
+		condition,
+      rcOrderNew
 	} from "../../network/api.js";
 	import navbar from '../../components/nav.vue'
 	export default {
@@ -68,9 +69,31 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
 					})
 				};
         if(item.cxmc=='商品入库'){
-          uni.navigateTo({
-            url: '../../pagesA/ruku/ruku'
-          })
+          // 创建新单
+
+            let dataes={
+              "access_token": uni.getStorageSync("access_token"),
+              "djtype": "SPRKD",
+              "fdbh": uni.getStorageSync("fdbh"),
+              "userid": uni.getStorageSync("userid"),
+            }
+            rcOrderNew(dataes).then((res) => {
+              // console.log("orderNew res",res)
+              if(res.error_code==0){
+                uni.navigateTo({
+                  url: `../../pagesA/ruku/rkxd?djbh=${res.djbh}&state=add`
+                });
+              }else{
+                this.$refs.uToast.show({
+                  type:"error",
+                  message: res.message
+                })
+              }
+            }).catch((err) => {
+              console.log(err)
+            })
+
+
         };
         if(item.cxmc=='导入商品'){
           uni.navigateTo({

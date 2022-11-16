@@ -1,4 +1,5 @@
 <script>
+	
 	export default {
 		onLaunch: function() {
 			console.log('App Launch')
@@ -9,25 +10,8 @@
     },
 		onShow: function() {
 
-      // 获取设备的ip地址
-          uni.request({
-            url: "http://self.mzsale.com/mzsale/web/login",
-            method: "GET",
-            success: (res) => {
-              uni.setStorageSync("ip", res.data.ip)
-            }
-          });
-      uni.request({
-        url: "http://self.mzsale.com/mzato/main/app/serct",
-        method: "POST",
-        header:{
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        success: (res) => {
-          console.log(res.data.data[0].secret_id)
-          uni.setStorageSync("secret", res.data.data[0].secret_id)
-        }
-      })
+      
+      
 		},
 		onHide: function() {
 			console.log('App Hide')

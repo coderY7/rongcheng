@@ -80,22 +80,22 @@ var components
 try {
   components = {
     uForm: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 532))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 525))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 541))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 534))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 422))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 415))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 390))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 383))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 493))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 486))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 525))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 518))
     }
   }
 } catch (e) {
@@ -311,7 +311,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
-var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = __webpack_require__(/*! @/network/api.js */ 165);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -459,7 +459,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 478));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", splx: false, //赠送商品
+var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 471));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", splx: false, //赠送商品
         cxjbz: "" //供价类型
       }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);console.log("tableData", this.tableData);}, methods: { // 查询 特供（供价类型）
     formMore: function formMore(lx, isAll) {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": "DMINFO", "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (isAll) {_this.lxlist = res.data;} else {for (var i in res.data) {if (res.data[i].sjcxlxid.indexOf(lx) > -1) {var xx = res.data[i].sjcxlxid;_this.formMoreChange(xx);}}}} else {_this.$refs.uToast.show({ type: "error", message: "查询失败" });}}).catch(function (err) {console.log(err);});}, formMoreChange: function formMoreChange(item) {this.editForm.cxjbz = item;}, // 编辑商品
@@ -692,34 +692,34 @@ var components
 try {
   components = {
     uIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 374))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 367))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 493))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 486))
     },
     uForm: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 532))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 525))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 541))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 534))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 422))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 415))
     },
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 347))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 340))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 390))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 383))
     },
     uOverlay: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-overlay/u-overlay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-overlay/u-overlay")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-overlay/u-overlay.vue */ 549))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-overlay/u-overlay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-overlay/u-overlay")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-overlay/u-overlay.vue */ 542))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 525))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 518))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 517))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 510))
     }
   }
 } catch (e) {
@@ -1037,22 +1037,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
-var _api = __webpack_require__(/*! @/network/api.js */ 143);
+var _api = __webpack_require__(/*! @/network/api.js */ 165);
 
 
 
@@ -1310,22 +1296,8 @@ var _edit = _interopRequireDefault(__webpack_require__(/*! ./edit.vue */ 315));f
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 478));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { xuanSwitch: xuanSwitch, // goodsVoice,
-    edit: _edit.default }, data: function data() {return { x: 400, y: 300, ifpage: true, uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
+var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 471));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { xuanSwitch: xuanSwitch, // goodsVoice,
+    edit: _edit.default }, data: function data() {return { navber: true, x: 400, y: 300, ifpage: true, uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
       neworderShow: false, uFormModel: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", jgcxbz: "", //供价类型
         splx: false, //赠送商品
         jycgsl: "", jycgjg: "", scrq: (0, _dayjs.default)().format('YYYY-MM-DD') }, uFormRules: { "spbm": { type: "string", required: true, message: "请输入商品编码/名称/条码 查询", trigger: ["blur", "change"] }, "jycgsl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "jycgjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "jgcxbz": { type: "string", required: true, message: "请选择供价类型", trigger: ["blur", "change"] } }, contentShow: false, spbmClearShow: false, isSpComplete: false, switchList: ["是", "否"], lxlist: [], ispda: uni.getStorageSync("pda"), focusObj: { spbmFocus: false, numFocus: false, priceFocus: false }, selectId: "", uploadarr: [], serchGoodsData: "", // 第二页面 已上传数据页面 data
@@ -1333,128 +1305,14 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       ifDrawer: "", selectData: [], // 搜索的数据(语音)
       popupShow: false, coverShow: false, //语音data
       isVoiceMode: false, //是否语音模式
-      doingId: "", doingindex: 100, yuyinModelArr: [], searchCode: 400, yuyinArr: [{ "tips": "请说出您要搜索的商品", //提示
-        "id": "spbm", //需要填充的id
-        "fixedId": "shoping", //固定值，部门-depart，分店-fendian，商家-business，商品-shoping，数量-num，价格-price，备注-remarks，开关-switch，保存-save
-        "searchFunc": "serchGoods", //需要搜索的函数名
-        "isSearchCon": true, //是否需要搜索内容
-        "nextFunc": "setForm", //是否需要进行搜索 的函数名
-        "completeFunc": "", //步骤完成的函数名
-        "isSkip": false, //是否可以跳过该步骤，不需要输入
-        "isNext": true //该步骤完成后是否可以自动跳转到下一步
-      }, { "tips": "请说出您要输入的数量", "id": "jycgsl", "fixedId": "num", "searchFunc": "", "isSearchCon": false, "nextFunc": "", "completeFunc": "", "isSkip": false, "isNext": true }, { "tips": "请说出您要输入的价格", "id": "jycgjg", "fixedId": "price", "searchFunc": "", "isSearchCon": false, "nextFunc": "", "completeFunc": "", "isSkip": true, "isNext": true }, { "tips": "请说出是否赠送商品", "id": "splx", "fixedId": "switch", "searchFunc": "", "isSearchCon": false, "nextFunc": "switChange", "completeFunc": "", "isSkip": true, "isNext": true }, { "tips": "请说出您要选择的日期", "id": "scrq", "fixedId": "rq", "searchFunc": "", "isSearchCon": false, "nextFunc": "", "completeFunc": "", "isSkip": true, "isNext": true }, { "tips": "请说出您要选择的供价类型", "id": "jgcxbz", "fixedId": "lx", "searchFunc": "formMore", "isSearchCon": true, "nextFunc": "formMoreChange", "completeFunc": "", "isSkip": true, "isNext": true }, { "tips": "请确认是否保存商品", "id": "", "fixedId": "save", "searchFunc": "", "isSearchCon": false, "nextFunc": "", "completeFunc": "save", "isSkip": false, "isNext": false }] };}, onLoad: function onLoad(option) {var _this = this;console.log(option);uni.getSystemInfo({ success: function (res) {this.x = res.screenWidth - 10;this.y = res.screenHeight - 400;}.bind(this) });this.uFormTitle.djbh = option.djbh;this.state = option.state;var sjVal = option.sjbh;var ckVal = option.ckbh;var fdVal = option.fdbh;if (option.state == "add") {} else if (option.state == "edit" || option.state == "look") {this.ifpage = true;var datee = option.djbh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);this.uFormTitle.rkrq = "".concat(y, "-").concat(m, "-").concat(d);this.uFormTitle.ysdh = option.ysdh;this.getList();uni.$on("editTitle", function (data) {_this.editTitleObj = data;});}this.queryHt(true, sjVal, "sjbh");this.queryMore(true, ckVal, "CKINFO", "ckbh");this.queryMore(true, fdVal, "FDINFO", "fdbh");this.queryMore(true, "", "USERINFO", "service");this.formMore("", true);}, onReady: function onReady() {// 设置状态栏文字颜色为 白色
-  }, onShow: function onShow() {console.log("uni.getStorageSync(access_token)", uni.getStorageSync("access_token"));}, methods: { // 语音模式。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
-    changeSwitch: function changeSwitch() {if (this.state == "look" || this.state == "check") {return;}this.myCollShow = false;this.contentShow = true;this.yuyinModelArr = this.yuyinArr;this.isVoiceMode = true;uni.getSystemInfo({ success: function (res) {this.x = 0;this.y = res.screenHeight - res.statusBarHeight - 94;}.bind(this) });}, changeVoiceShow: function changeVoiceShow() {// 进入普通模式
-      this.yuyinModelArr = [];this.isVoiceMode = false;uni.getSystemInfo({ success: function (res) {this.x = res.screenWidth - 10;this.y = res.screenHeight - 400;}.bind(this) });}, changeParentValue: function changeParentValue(obj) {if (obj.nextFunc) {if (obj.searchFunc) {this[obj.nextFunc](obj.val, true);} else {//为类似 switch开关时的 操作
-          this[obj.nextFunc](obj.val);}} else {if (!obj.isSearchCon) {this.uFormModel[obj.id] = obj.val;}}if (obj.completeFunc) {this[obj.completeFunc]();}
-      if (obj.next) {
-        this.$refs.goodsVoice.stepFunc(obj.next);
-      }
-    },
-    doing: function doing(id, index) {
-      this.doingId = id;
-      this.doingindex = index;
-    },
-    clickYuyin: function clickYuyin(fixid, isnext) {//语音 执行顺序跳转
-      for (var i in this.yuyinModelArr) {
-        if (this.yuyinModelArr[i].fixedId == fixid) {
-          if (isnext) {//从下一步开始顺序执行
-            if (i != this.yuyinModelArr.length - 1) {
-              this.$refs.goodsVoice.stepFunc(Number(i) + 1);
-              return;
-            }
-          } else {//从本步骤开始顺序执行
-            // this.$set(this.yuyinModelArr[i], "isNext", false)
-            this.$refs.goodsVoice.stepFunc(Number(i));
-            return;
-          }
-        }
-      }
-    },
-
-    //新增单据 单头 函数........................................................
+      doingId: "", doingindex: 100, yuyinModelArr: [], searchCode: 400, yuyinArr: [] };}, onLoad: function onLoad(option) {var _this = this;console.log(option);uni.getSystemInfo({ success: function (res) {this.x = res.screenWidth - 10;this.y = res.screenHeight - 400;}.bind(this) });if (option.navber == 'false') {this.navber = false;}this.uFormTitle.djbh = option.djbh;this.state = option.state;var sjVal = option.sjbh;var ckVal = option.ckbh;var fdVal = option.fdbh;if (option.state == "add") {} else if (option.state == "edit" || option.state == "look") {this.ifpage = true;var datee = option.djbh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);this.uFormTitle.rkrq = "".concat(y, "-").concat(m, "-").concat(d);this.uFormTitle.ysdh = option.ysdh;this.getList();uni.$on("editTitle", function (data) {_this.editTitleObj = data;});}this.queryHt(true, sjVal, "sjbh");this.queryMore(true, ckVal, "CKINFO", "ckbh");this.queryMore(true, fdVal, "FDINFO", "fdbh");this.queryMore(true, "", "USERINFO", "service");this.formMore("", true);}, onReady: function onReady() {// 设置状态栏文字颜色为 白色
+  }, onShow: function onShow() {console.log("uni.getStorageSync(access_token)", uni.getStorageSync("access_token"));}, methods: { historydh: function historydh() {uni.navigateTo({ url: "../../pagesA/ruku/ruku" });}, tuichu: function tuichu() {this.ifpage = true;}, //新增单据 单头 函数........................................................
     // 查询合同
-    queryHt: function queryHt(isauto, value, fixid) {var _this2 = this;
-      if (!isauto) {
-        if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
-          return;
-        }
-      }
-      this.searchCode = 400;
-      var dataes = {
-        "access_token": uni.getStorageSync("access_token"),
-        "CompanyID": uni.getStorageSync("companyid"),
-        "EndRQ": "",
-        "StartRQ": "",
-        "htlxid": "",
-        "sjbh": "",
-        "sjmc": "" };
-
-      (0, _api.rcqueryHT)(dataes).then(function (res) {
-        // console.log("queryHt res",res)
-        if (res.error_code == 0) {
-          if (value) {
-            for (var i in res.data) {
-              if (res.data[i].SJBH == value) {
-                _this2.uFormTitle[fixid] = "".concat(res.data[i].SJBH, "-").concat(res.data[i].SJMC);
-              }
-            }
-          } else {
-            if (isauto) {//自动填充
-              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);
-            } else {
-              _this2.selectData = [];
-              _this2.popupShow = true;
-              _this2.ifDrawer = "title";
-              _this2.selectId = fixid;
-              for (var i in res.data) {
-                _this2.selectData.push({
-                  "id": res.data[i].SJBH,
-                  "name": res.data[i].SJMC });
-
-              }
-            }
-          }
-        } else {
-          _this2.$refs.uToast.show({
-            type: "error",
-            message: res.message });
-
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    },
-    // 新增单据 查询更多 查询更多
-    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;
-      if (!isauto) {
-        if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
-          return;
-        }
-      }
-      this.searchCode = 400;
-      var dataes = {
-        "access_token": uni.getStorageSync("access_token"),
-        "dtype": type,
-        "companyid": uni.getStorageSync("companyid") };
-
-      (0, _api.rcbasics)(dataes).then(function (res) {
-        // console.log(type + " 基本信息basic res", res)
-        if (res.error_code == 0) {
-          if (value) {
-            for (var i in res.data) {
-              if (type == "CKINFO") {
-                if (res.data[i].ckbmid == value.split(" ")[0]) {
-                  _this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);
-                }
-              } else if (type == "FDINFO") {
-                if (res.data[i].fdbh == value) {
-                  _this3.uFormTitle[fixid] = "".concat(res.data[i].fdbh, "-").concat(res.data[i].fdmc);
-                }
-              }
-            }
-          } else {
-            if (isauto) {//自动填充
+    queryHt: function queryHt(isauto, value, fixid) {var _this2 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "CompanyID": uni.getStorageSync("companyid"), "EndRQ": "", "StartRQ": "", "htlxid": "", "sjbh": "", "sjmc": "" };(0, _api.rcqueryHT)(dataes).then(function (res) {// console.log("queryHt res",res)
+        if (res.error_code == 0) {if (value) {for (var i in res.data) {if (res.data[i].SJBH == value) {_this2.uFormTitle[fixid] = "".concat(res.data[i].SJBH, "-").concat(res.data[i].SJMC);}}} else {if (isauto) {//自动填充
+              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 新增单据 查询更多 查询更多
+    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": type, "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {// console.log(type + " 基本信息basic res", res)
+        if (res.error_code == 0) {if (value) {for (var i in res.data) {if (type == "CKINFO") {if (res.data[i].ckbmid == value.split(" ")[0]) {_this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);}} else if (type == "FDINFO") {if (res.data[i].fdbh == value) {_this3.uFormTitle[fixid] = "".concat(res.data[i].fdbh, "-").concat(res.data[i].fdmc);}}}} else {if (isauto) {//自动填充
               if (type == "CKINFO") {
                 _this3.uFormTitle[fixid] = "".concat(
                 res.data[0].ckbmid, "-").concat(res.data[0].ckmc);
@@ -1665,7 +1523,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         this.selectData = arrTemp;
         this.searchCode = 0;
         if (!isauto) {//语音模式 手动点击调用函数时
-          this.clickYuyin("shoping", true);
+
         }
       } else {
         setTimeout(function () {
@@ -1745,11 +1603,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     },
     formMoreChange: function formMoreChange(item, isauto) {
       this.uFormModel.jgcxbz = item.split("-")[0];
-      if (this.isVoiceMode) {
-        if (!isauto) {// 语音模式时 手动点击进入
-          this.clickYuyin("lx", true);
-        }
-      }
+
     },
 
     //获取该单号已上传的商品
@@ -1814,13 +1668,15 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     editSave: function editSave(arr) {
       this.uploadarr = arr;
       this.doSave("EDIT");
+
+
     },
     toback: function toback() {
       this.ifpage = true;
       this.getList();
     },
 
-    newOrder: function newOrder() {var _this13 = this;
+    newOrders: function newOrders() {var _this13 = this;
       if (this.state == "add") {
         return;
       }
@@ -1884,6 +1740,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       //})
     },
     doSave: function doSave(state) {var _this14 = this;
+
       var dataes = {
         "access_token": uni.getStorageSync("access_token"),
         "djbh": this.uFormTitle.djbh,

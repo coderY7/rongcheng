@@ -43,14 +43,15 @@
 						<view class="boxname">{{item.key}}:</view>
 						<u-input border="surround" v-model="item.value" type="digit"></u-input>
 					</view>
-					<view v-else-if="item.Boolean" class="box">
-						<view class="boxname">{{item.key}}:</view>
-						<u-switch v-model="item.value" @change="switchs()"></u-switch>
+					<view v-else-if="item.Boolean" class="boxbool">
+						<view class="boxname ">{{item.key}}:</view>
+            <view>
+              <u-switch v-model="item.value" @change="switchs()"></u-switch>
+            </view>
 					</view>
 					<view v-else-if="item.combox" class="box">
 						<view class="boxname">{{item.key}}:</view>
-						<view class="boxinput">
-							
+						<view style="width: 80%">
 								<uni-data-select v-model="xzzgys" :localdata="zgys">
 								</uni-data-select>
 							
@@ -413,7 +414,12 @@
 			margin-left: 10rpx;
 			margin-right: 20rpx;
 		}
-
+.boxbool{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0;
+}
 		.search {
 			color: #FFFFFF;
 			font-size: 28rpx;

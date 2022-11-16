@@ -98,31 +98,31 @@ var components
 try {
   components = {
     uIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 374))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 367))
     },
     uniDatetimePicker: function() {
-      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 347))
+      return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 340))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 422))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 415))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 493))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 486))
     },
     uRadioGroup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio-group/u-radio-group */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio-group/u-radio-group")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio-group/u-radio-group.vue */ 501))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio-group/u-radio-group */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio-group/u-radio-group")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio-group/u-radio-group.vue */ 494))
     },
     uRadio: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 509))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 502))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 390))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 383))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 517))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 510))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 525))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 518))
     }
   }
 } catch (e) {
@@ -347,7 +347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
-var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+var _api = __webpack_require__(/*! @/network/api.js */ 165);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -513,7 +513,7 @@ var _default = { components: {// xkyGuideStep
           _this3.$set(_this3.queryData[_this3.selectIndex], "value", "".concat(res.data[0][obj.tabname.id], "-").concat(res.data[0][obj.tabname.name]));_this3.$forceUpdate();return;}_this3.ifDrawer = state;_this3.popupShow = true;_this3.selectData = [];for (var i in res.data) {if (isAll == "ALL") {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });} else {if (res.data[i][obj.tabname.id].indexOf(isAll) > -1 || res.data[i][obj.tabname.name].indexOf(isAll) > -1) {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });}}}}).catch(function (err) {console.log(err);});}, // 创建新单
     newOrder: function newOrder() {var _this4 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid") };(0, _api.rcOrderNew)(dataes).then(function (res) {// console.log("orderNew res",res)
         if (res.error_code == 0) {uni.navigateTo({ url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });} else {_this4.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 编辑单
-    tolook: function tolook(item) {uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({ url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额']) });
+    tolook: function tolook(item) {uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({ url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额'], "&navber=false") });
 
     },
 

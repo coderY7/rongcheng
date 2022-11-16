@@ -92,11 +92,11 @@
         <view class="percent">
           <!--饼状图促销-->
           <view class="charts-box">
-            <qiun-data-charts type="pie" :opts="optsB" :chartData="chartDataB" />
+            <qiun-data-charts type="pie" :opts="optsB" :chartData="chartDataB" :canvas2d="true" canvasId="sthnghnr"/>
           </view>
           <!--饼状图会员-->
           <view class="charts-box">
-            <qiun-data-charts type="pie" :opts="optsC" :chartData="chartDataC" />
+            <qiun-data-charts type="pie" :opts="optsC" :chartData="chartDataC" :canvas2d="true" canvasId="swnhnmdsgerhg"/>
           </view>
         </view>
       </uni-group>
@@ -108,7 +108,7 @@
                 type="column"
                 :opts="optsF"
                 :chartData="chartDataF"
-
+:canvas2d="true" canvasId="swiperhtnbjkmhrt"
             />
           </view>
         </view>
@@ -121,6 +121,7 @@
                 type="line"
                 :opts="optsG"
                 :chartData="chartDataG"
+				:canvas2d="true" canvasId="swiperidafbvfbd"
             />
           </view>
         </view>
@@ -133,7 +134,7 @@
                 type="column"
                 :opts="optsA"
                 :chartData="chartDataA"
-
+:canvas2d="true" canvasId="swiperhtnbfbg"
             />
           </view>
         </view>
@@ -210,28 +211,28 @@
 				datelist: '',
 				chartDataA: {},
 				optsA: {
-					color: ["#1890FF", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
-						"#ea7ccc"
-					],
-					padding: [15, 15, 0, 5],
-					legend: {},
-					xAxis: {
-						disableGrid: true
-					},
-					yAxis: {
-						data: [{
-							min: 0
-						}]
-					},
-					extra: {
-						column: {
-							type: "stack",
-							width: 30,
-							activeBgColor: "#000000",
-							activeBgOpacity: 0.08
-						}
-					}
-				},
+          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
+          padding: [15,15,0,5],
+          legend: {},
+          xAxis: {
+            disableGrid: true
+          },
+          yAxis: {
+            data: [
+              {
+                min: 0
+              }
+            ]
+          },
+          extra: {
+            column: {
+              type: "group",
+              width: 30,
+              activeBgColor: "#000000",
+              activeBgOpacity: 0.08
+            }
+          }
+        },
 				ybpdata: '',
         chartDataB: {},
 				optsB: {
@@ -329,6 +330,7 @@
 					}
 				},
         chartDataF: {},
+
         optsF: {
           color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
           padding: [15,15,0,5],
@@ -345,8 +347,8 @@
           },
           extra: {
             column: {
-              type: "stack",
-              width: 50,
+              type: "group",
+              width: 30,
               activeBgColor: "#000000",
               activeBgOpacity: 0.08
             }
@@ -552,7 +554,20 @@
 					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
 					let res = {
 						categories: [],
-						series: []
+						series: [
+              {
+                name: "客单笔数",
+                data: []
+              },
+              {
+                name: "预计毛利",
+                data: []
+              },
+              {
+                name: "实销总额",
+                data: []
+              },
+            ]
 					};
 
 					//处理柱形图数据
@@ -569,9 +584,14 @@
             sxje.push(parseFloat(item['实销金额']))
           })
 					res.categories = bmmc
-          res.series.push({name:'实销金额',data:sxje},
-              {name:'预计毛利',data:yjml},
-              {name:'客单笔数',data:kdbs})
+
+          res.series[0].data=kdbs
+          res.series[1].data=yjml
+          res.series[2].data=sxje
+
+          // res.series.push({name:'实销金额',data:sxje},
+          //     {name:'预计毛利',data:yjml},
+          //     {name:'客单笔数',data:kdbs})
 					this.chartDataA = JSON.parse(JSON.stringify(res));
 				}, 500);
 			},
@@ -587,7 +607,6 @@
               }
             ]
           };
-
 					this.chartDataB = JSON.parse(JSON.stringify(res));
 				}, 500);
 			},
@@ -672,8 +691,21 @@
         setTimeout(() => {
           //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
           let res = {
-            categories: ["2016","2017","2018","2019","2020","2021"],
-            series: []
+            categories: [],
+            series: [
+              {
+                name: "客单笔数",
+                data: []
+              },
+              {
+                name: "预计毛利",
+                data: []
+              },
+              {
+                name: "实销总额",
+                data: []
+              },
+            ]
           };
           let table=this.ybpdata.Table5
           let fd=[]
@@ -687,10 +719,14 @@
             sxje.push(parseFloat(item['实销总额']))
           })
           res.categories=fd
+          res.series[0].data=kdbs
+          res.series[1].data=yjmle
+          res.series[2].data=sxje
 
-          res.series.push({name:'实销总额',data:sxje},
-              {name:'预计毛利',data:yjmle},
-              {name:'客单笔数',data:kdbs})
+
+          // res.series.push({name:'实销总额',data:sxje},
+          //     {name:'预计毛利',data:yjmle},
+          //     {name:'客单笔数',data:kdbs})
 console.log(res)
           this.chartDataF = JSON.parse(JSON.stringify(res));
         }, 500);

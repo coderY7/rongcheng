@@ -3,19 +3,17 @@
     <view class="status-bar"></view>
     <view class="nav-bar" style="display: flex; justify-content: space-between;
 align-items: center;height: 50rpx;
-    margin: 10rpx 20rpx;">
+    margin: 10rpx 20rpx;" v-if="navber">
       <view class="left">
-        <navigator open-type="navigateBack" v-show="ifpage">
-          <u-icon type="allow-left" size="30" color="#358CC9"></u-icon>
-        </navigator>
+        <view @click="historydh()" v-show="ifpage">历史单号</view>
         <view class="navleftview" v-show="!ifpage" @tap="toback">
           <u-icon type="allow-left" size="30" color="#358CC9"></u-icon>
         </view>
       </view>
-      <view class="center" v-show="ifpage">入库新单</view>
-      <view class="center" v-show="!ifpage">商品明细</view>
+<!--      <view class="center" v-show="ifpage">入库新单</view>-->
+<!--      <view class="center" v-show="!ifpage">商品明细</view>-->
       <view class="right" v-show="ifpage">
-        <view class="icon-button" text="" throttleTime="2000" :disabled="state=='add'" @tap="newOrder">
+        <view class="icon-button" text="" throttleTime="2000" :disabled="state=='add'" @tap="newOrders">
           <u-icon type="file-text" size="30" color="#358CC9"></u-icon>
         </view>
       </view>
@@ -124,13 +122,13 @@ align-items: center;height: 50rpx;
 				<u-form class="form-card" labelPosition="left" :model="uFormModel" :rules="uFormRules" ref="uForm">
           <view style="margin: 10rpx 0">
             <u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
-              <u-input placeholder="请输入商品编码/名称/简码" :disabled="isVoiceMode" v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">
+              <u-input placeholder="请输入商品编码/名称/简码"  v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">
                 <template slot="suffix">
                   <uni-icons type="clear" size="19" color="#e1e1e1" v-if="uFormModel.spbm!=''"
                              @tap="clearAlone('spbm')"></uni-icons>
                 </template>
               </u-input>
-              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='shoping'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('shoping',false)"></uni-icons>
+
               <uni-icons custom-prefix="iconfont" type="icon-shouye" size="20" color="#606060"
                          @tap="scan()" v-if="!isVoiceMode&&!ispda"></uni-icons>
             </u-form-item>
@@ -158,36 +156,34 @@ align-items: center;height: 50rpx;
             <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
               <u-input placeholder="请输入入库数量" type="number" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
               </u-input>
-              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='num'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('num',false)"></uni-icons>
-              <text class="inp-right-text" v-else></text>
+
+
             </u-form-item>
           </view>
           <view style="margin: 10rpx 0">
             <u-form-item label="入库价格" :labelWidth="74" prop="jycgjg" v-show="doingindex>=2">
               <u-input placeholder="请输入入库价格" type="number" v-model="uFormModel.jycgjg" :focus="focusObj.priceFocus">
               </u-input>
-              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='price'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('price',false)"></uni-icons>
-              <text class="inp-right-text" v-else></text>
+
             </u-form-item>
           </view>
           <view style="margin: 10rpx 0">
             <u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">
               <xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>
-              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='switch'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('switch',false)"></uni-icons>
+
             </u-form-item>
           </view>
           <view style="margin: 10rpx 0">
             <u-form-item label="生产日期" :labelWidth="76" prop="scrq" v-show="doingindex>=4">
               <uni-datetime-picker v-model="uFormModel.scrq" type="date" :clear-icon="false"/>
-              <uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='rq'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('rq',false)"></uni-icons>
-              <text class="inp-right-text" v-else></text>
+
             </u-form-item>
           </view>
 				</u-form>
 				<view class="form-card" v-show="doingindex>=5">
 					<view style="display:flex;justify-content:space-between;">
 						<text>供价类型</text>
-						<uni-icons custom-prefix="iconfont" type="icon-yuyin" :color="doingId=='lx'?'#358CC9':'#7A7A7A'" size="19" v-if="isVoiceMode" @tap="clickYuyin('lx',false)"></uni-icons>
+
 					</view>
 					<view>
 						<view class="radio-view">
@@ -199,6 +195,8 @@ align-items: center;height: 50rpx;
 		</view>
 		<u-button type="primary" class="my-primary-button sticky-bottom" text="保存" throttleTime="2000" v-show="ifpage&&contentShow" @tap="save">
 		</u-button>
+    <u-button type="primary" class="my-primary-button sticky-bottom" text="退出" throttleTime="2000" v-show="!ifpage" @tap="tuichu()">
+    </u-button>
 		
 		<view class="box-content" v-show="!ifpage">
 			<edit :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
@@ -240,19 +238,7 @@ align-items: center;height: 50rpx;
 			</scroll-view>
 			<view class="closebtn" @tap="popupShow=false">取消</view>
 		</u-popup>
-<!--		<movable-area class="movable-area" v-show="ifpage">-->
-<!--			<movable-view class="movable-view" :x="x" :y="y" direction="all" :animation="false" :out-of-bounds="true" v-show="!isVoiceMode">-->
-<!--				<view class="iconimgs guideJS2" @tap="changeSwitch">-->
-<!--					<view class="iconView">-->
-<!--						<uni-icons custom-prefix="iconfont" type="icon-yuyin" color="#fff" size="30"></uni-icons>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--			</movable-view>-->
-<!--			<movable-view class="movable-view movable-view-large" :x="x" :y="y" direction="all" :animation="false" :out-of-bounds="true" v-show="isVoiceMode">-->
-<!--				<goodsVoice ref="goodsVoice" :step="yuyinModelArr" :list.sync="selectData" :searchCode="searchCode" @changeParentValue="changeParentValue" @changeVoiceShow="changeVoiceShow" @doing="doing"></goodsVoice>-->
-<!--			</movable-view>-->
-<!--		</movable-area>-->
-		
+
 
 
 	</view>
@@ -281,6 +267,7 @@ align-items: center;height: 50rpx;
 		},
 		data() {
 			return {
+        navber:true,
 				x: 400,
 				y: 300,
 				ifpage: true,
@@ -388,84 +375,7 @@ align-items: center;height: 50rpx;
 				doingindex: 100,
 				yuyinModelArr:[],
 				searchCode: 400,
-				yuyinArr:[{
-						"tips": "请说出您要搜索的商品",//提示
-						"id": "spbm",//需要填充的id
-						"fixedId": "shoping",//固定值，部门-depart，分店-fendian，商家-business，商品-shoping，数量-num，价格-price，备注-remarks，开关-switch，保存-save
-						"searchFunc": "serchGoods",//需要搜索的函数名
-						"isSearchCon": true,//是否需要搜索内容
-						"nextFunc": "setForm",//是否需要进行搜索 的函数名
-						"completeFunc": "",//步骤完成的函数名
-						"isSkip": false,//是否可以跳过该步骤，不需要输入
-						"isNext": true,//该步骤完成后是否可以自动跳转到下一步
-					},
-					{
-						"tips": "请说出您要输入的数量",
-						"id": "jycgsl",
-						"fixedId": "num",
-						"searchFunc": "",
-						"isSearchCon": false,
-						"nextFunc": "",
-						"completeFunc": "",
-						"isSkip": false,
-						"isNext": true,
-					},
-					{
-						"tips": "请说出您要输入的价格",
-						"id": "jycgjg",
-						"fixedId": "price",
-						"searchFunc": "",
-						"isSearchCon": false,
-						"nextFunc": "",
-						"completeFunc": "",
-						"isSkip": true,
-						"isNext": true,
-					},
-					{
-						"tips": "请说出是否赠送商品",
-						"id": "splx",
-						"fixedId": "switch",
-						"searchFunc": "",
-						"isSearchCon": false,
-						"nextFunc": "switChange",
-						"completeFunc": "",
-						"isSkip": true,
-						"isNext": true,
-					},
-					{
-						"tips": "请说出您要选择的日期",
-						"id": "scrq",
-						"fixedId": "rq",
-						"searchFunc": "",
-						"isSearchCon": false,
-						"nextFunc": "",
-						"completeFunc": "",
-						"isSkip": true,
-						"isNext": true,
-					},
-					{
-						"tips": "请说出您要选择的供价类型",
-						"id": "jgcxbz",
-						"fixedId": "lx",
-						"searchFunc": "formMore",
-						"isSearchCon": true,
-						"nextFunc": "formMoreChange",
-						"completeFunc": "",
-						"isSkip": true,
-						"isNext": true,
-					}, 
-					{
-						"tips": "请确认是否保存商品",
-						"id": "",
-						"fixedId": "save",
-						"searchFunc": "",
-						"isSearchCon": false,
-						"nextFunc": "",
-						"completeFunc": "save",
-						"isSkip": false,
-						"isNext": false,
-					}
-				],
+				yuyinArr:[],
 				
 				
 			}
@@ -478,6 +388,10 @@ align-items: center;height: 50rpx;
           this.y=res.screenHeight-400
         }.bind(this)
       });
+      if(option.navber=='false'){
+        this.navber=false
+      }
+
       this.uFormTitle.djbh = option.djbh
       this.state = option.state
       let sjVal = option.sjbh
@@ -512,73 +426,17 @@ align-items: center;height: 50rpx;
 		},
 		onShow() {
 			console.log("uni.getStorageSync(access_token)",uni.getStorageSync("access_token"))
+
 		},
 		methods: {
-			// 语音模式。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
-			changeSwitch(){
-				if(this.state=="look"||this.state=="check"){
-					return
-				}
-				this.myCollShow=false
-				this.contentShow=true
-				this.yuyinModelArr=this.yuyinArr
-				this.isVoiceMode=true
-				uni.getSystemInfo({
-					success: function(res) {
-						this.x=0
-						this.y=res.screenHeight-res.statusBarHeight-94
-					}.bind(this)
-				});
-			},
-			changeVoiceShow(){// 进入普通模式
-				this.yuyinModelArr=[]
-				this.isVoiceMode=false
-				uni.getSystemInfo({
-					success: function(res) {
-						this.x=res.screenWidth-10
-						this.y=res.screenHeight-400
-					}.bind(this)
-				});
-			},
-			changeParentValue(obj){
-				if(obj.nextFunc){
-					if(obj.searchFunc){
-						this[obj.nextFunc](obj.val,true)
-					}else{//为类似 switch开关时的 操作
-						this[obj.nextFunc](obj.val)
-					}
-				}else{
-					if(!obj.isSearchCon){
-						this.uFormModel[obj.id]=obj.val
-					}
-				}
-				if(obj.completeFunc){
-					this[obj.completeFunc]()
-				}
-				if(obj.next){
-					this.$refs.goodsVoice.stepFunc(obj.next)
-				}
-			},
-			doing(id,index){
-				this.doingId=id
-				this.doingindex=index
-			},
-			clickYuyin(fixid,isnext){//语音 执行顺序跳转
-				for(var i in this.yuyinModelArr){
-					if(this.yuyinModelArr[i].fixedId==fixid){
-						if(isnext){//从下一步开始顺序执行
-							if(i!=this.yuyinModelArr.length-1){
-								this.$refs.goodsVoice.stepFunc(Number(i)+1)
-								return
-							}
-						}else{//从本步骤开始顺序执行
-							// this.$set(this.yuyinModelArr[i], "isNext", false)
-							this.$refs.goodsVoice.stepFunc(Number(i))
-							return
-						}
-					}
-				}
-			},
+      historydh(){
+        uni.navigateTo({
+          url: `../../pagesA/ruku/ruku`
+        });
+      },
+      tuichu(){
+        this.ifpage=true
+      },
 			
 			//新增单据 单头 函数........................................................
       // 查询合同
@@ -873,7 +731,7 @@ align-items: center;height: 50rpx;
 					this.selectData = arrTemp
 					this.searchCode=0
 					if(!isauto){//语音模式 手动点击调用函数时
-						this.clickYuyin("shoping",true)
+
 					}
 				}else{
 					setTimeout(()=>{
@@ -953,11 +811,7 @@ align-items: center;height: 50rpx;
 			},
 			formMoreChange(item,isauto){
 				this.uFormModel.jgcxbz = item.split("-")[0]
-				if(this.isVoiceMode){
-					if(!isauto){// 语音模式时 手动点击进入
-						this.clickYuyin("lx",true)
-					}
-				}
+
 			},
 			
 			//获取该单号已上传的商品
@@ -1022,13 +876,15 @@ align-items: center;height: 50rpx;
 			editSave(arr) {
 				this.uploadarr = arr
 				this.doSave("EDIT")
-			},
+
+
+      },
 			toback(){
 				this.ifpage=true
 				this.getList()
 			},
 			
-			newOrder() {
+			newOrders() {
 				if (this.state == "add") {
 					return
 				}
@@ -1092,6 +948,7 @@ align-items: center;height: 50rpx;
 				//})
 			},
 			doSave(state) {
+
 				let dataes = {
 					"access_token": uni.getStorageSync("access_token"),
 					"djbh": this.uFormTitle.djbh,

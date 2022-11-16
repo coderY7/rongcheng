@@ -96,6 +96,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
+
 {
   onLaunch: function onLaunch() {
     console.log('App Launch');
@@ -106,24 +107,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   onShow: function onShow() {
 
-    // 获取设备的ip地址
-    uni.request({
-      url: "http://self.mzsale.com/mzsale/web/login",
-      method: "GET",
-      success: function success(res) {
-        uni.setStorageSync("ip", res.data.ip);
-      } });
 
-    uni.request({
-      url: "http://self.mzsale.com/mzato/main/app/serct",
-      method: "POST",
-      header: {
-        'Content-Type': 'application/x-www-form-urlencoded' },
-
-      success: function success(res) {
-        console.log(res.data.data[0].secret_id);
-        uni.setStorageSync("secret", res.data.data[0].secret_id);
-      } });
 
   },
   onHide: function onHide() {

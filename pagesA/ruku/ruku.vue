@@ -323,7 +323,7 @@ export default {
         states="look"
       }
       uni.navigateTo({
-        url: `../../pagesA/ruku/rkxd?state=${states}&djbh=${item['入库单号']}&djzt=${item['单据状态']}&sjbh=${item['商家合同号']}&sjmc=${item['商家名称']}&ckbh=${item['入库仓库']}&ysdh=${item['原始单号']}&fdbh=${item['入库分店']}&rkzl=${item['入库总量']}&rkze=${item['入库总额']}`
+        url: `../../pagesA/ruku/rkxd?state=${states}&djbh=${item['入库单号']}&djzt=${item['单据状态']}&sjbh=${item['商家合同号']}&sjmc=${item['商家名称']}&ckbh=${item['入库仓库']}&ysdh=${item['原始单号']}&fdbh=${item['入库分店']}&rkzl=${item['入库总量']}&rkze=${item['入库总额']}&navber=false`
       });
     },
 

@@ -157,7 +157,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
+var _api = __webpack_require__(/*! ../../network/api.js */ 165); //
 //
 //
 //
@@ -184,12 +184,13 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
       Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {//this.isreportForm()
     this.Alllist = [{ cxmc: '导入商品' }, { cxmc: '商品修改' }, { cxmc: '商品入库' }];}, methods: { //获取报表
-    isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid') };(0, _api.reportForm)(reportFormdata).then(function (res) {
+    isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid') };
+      (0, _api.reportForm)(reportFormdata).then(function (res) {
         console.log('报表查询', res);
         _this.Alllist = res.data;
       });
     },
-    enter: function enter(item) {
+    enter: function enter(item) {var _this2 = this;
       console.log(item);
       if (item.cxmc == '商品修改') {
         uni.navigateTo({
@@ -202,8 +203,30 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
       };
       if (item.cxmc == '商品入库') {
-        uni.navigateTo({
-          url: '../../pagesA/ruku/ruku' });
+        // 创建新单
+
+        var dataes = {
+          "access_token": uni.getStorageSync("access_token"),
+          "djtype": "SPRKD",
+          "fdbh": uni.getStorageSync("fdbh"),
+          "userid": uni.getStorageSync("userid") };
+
+        (0, _api.rcOrderNew)(dataes).then(function (res) {
+          // console.log("orderNew res",res)
+          if (res.error_code == 0) {
+            uni.navigateTo({
+              url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });
+
+          } else {
+            _this2.$refs.uToast.show({
+              type: "error",
+              message: res.message });
+
+          }
+        }).catch(function (err) {
+          console.log(err);
+        });
+
 
       };
       if (item.cxmc == '导入商品') {
