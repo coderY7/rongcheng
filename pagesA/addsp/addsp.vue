@@ -3,7 +3,7 @@
     <navbar title='导入商品'  @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
-          <u-search  placeholder="请输入商品条码" searchIcon="scan" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
       </view>
 
       <view >
@@ -47,6 +47,21 @@
               <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
 
             </view>
+
+        <view class="box">
+          <view class="boxname">商品进价:</view>
+          <view class="boxinput">
+            <view v-if="spzt=='normal'">
+              <u-input v-model="sp.sjprice" border="surround" type="digit" :disabled="true"></u-input>
+            </view>
+            <view v-else>
+              <u-input v-model="sp.sjprice" border="surround" type="digit"></u-input>
+            </view>
+          </view>
+          <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
+
+        </view>
+
             <view class="box">
               <view class="boxname">商家名称:</view>
               <view class="boxinput" @click="sjlist()">
@@ -182,7 +197,7 @@ export default {
 
           if (res.data.result == 'success') {
             this.sp=res.data.goodslist[0]
-
+           this.sp.sjprice=this.sp.price*0.8
            if(this.sp.incode=='T'){
              this.isautosetcldsp=true
            }else {
@@ -248,7 +263,7 @@ export default {
       spsmm:this.sptm,
         spmc:this.sp.name,
         nsjg:this.sp.price,
-        pjjj:'0',
+        pjjj:this.sp.sjprice,
         sjbh:this.sjbh,
         modeltype:this.spzt,
         userid:uni.getStorageSync('userid'),
@@ -271,6 +286,8 @@ export default {
               icon:'none'
             });
             this.sp=''
+            this.sptm=''
+            this.spzt=''
           }
           if(res.data.result=='warning'){
             uni.showToast({

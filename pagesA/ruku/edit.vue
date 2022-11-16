@@ -5,7 +5,7 @@
 			
 			<u-form class="form-card" labelPosition="left" :model="editForm" :rules="editRules" ref="uForm">
 				<u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping">
-					<u-input placeholder="请输入商品编码/名称/简码" disabled v-model="editForm.spbm">
+					<u-input placeholder="请输入商品编码/名称/条码" disabled v-model="editForm.spbm">
 					</u-input>
 				</u-form-item>
 				<view>
@@ -51,52 +51,53 @@
 			</view>
 			<view class="btns" v-if="stateDetail">
 				<u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
-					@tap="cancelDetail"></u-button>
-				<u-button type="primary" class="my-primary-button" text="保存" throttleTime="2000" @tap="editDetailSave">
+					@click="cancelDetail"></u-button>
+				<u-button type="primary" class="my-primary-button" text="保存" throttleTime="2000" @click="editDetailSave">
 				</u-button>
 			</view>
 		</view>
 		<!--  -->
 		<view class="foldGroup" v-show="!stateDetail">
-			<view class="fold-title" v-if="Object.keys(title).length!=0">
-				<view class="fold-title-t fold-title-flex-start">
-					<text>{{title['入库单号']}}</text>
-				</view>
-				<view class="fold-title-flex-start fold-title-con show-dots-2">
-					<text class="left-con">商家编号:</text>
-					<text class="right-con">{{title['商家合同号']}}-{{title['商家名称']}}</text>
-				</view>
-				<view class="fold-title-flex-start fold-title-con show-dots-1" v-if="title['原始单号']">
-					<text class="left-con">原始单号:</text>
-					<text class="right-con">{{title['原始单号']}}</text>
-				</view>
-				<view class="multiples">
-					<view class="multiple-con">
-						<text class="left-con">入库仓库:</text>
-						<text class="right-con">{{title['入库仓库']}}</text>
-					</view>
-					<view class="multiple-con">
-						<text class="left-con">入库分店:</text>
-						<text class="right-con">{{title['入库分店']}}</text>
-					</view>
-				</view>
-				<view class="multiples">
-					<view class="multiple-con">
-						<text class="left-con">入库总量:</text>
-						<text class="right-con">{{title['入库总量']}}</text>
-					</view>
-					<view class="multiple-con">
-						<text class="left-con">入库总额:</text>
-						<text class="right-con">￥{{title['入库总额']}}</text>
-					</view>
-				</view>
-				<view class="multiples">
-					<view class="multiple-con">
-						<text class="left-con">单据状态:</text>
-						<text class="right-con">{{title['单据状态']}}</text>
-					</view>
-				</view>
-			</view>
+<!--			<view class="fold-title" v-if="Object.keys(title).length!=0">-->
+<!--				<view class="fold-title-t fold-title-flex-start">-->
+<!--					<text>{{title['入库单号']}}</text>-->
+<!--				</view>-->
+<!--				<view class="fold-title-flex-start fold-title-con show-dots-2">-->
+<!--					<text class="left-con">商家编号:</text>-->
+<!--					<text class="right-con">{{title['商家合同号']}}-{{title['商家名称']}}</text>-->
+<!--				</view>-->
+<!--				<view class="fold-title-flex-start fold-title-con show-dots-1" v-if="title['原始单号']">-->
+<!--					<text class="left-con">原始单号:</text>-->
+<!--					<text class="right-con">{{title['原始单号']}}</text>-->
+<!--				</view>-->
+<!--				<view class="multiples">-->
+<!--					<view class="multiple-con">-->
+<!--						<text class="left-con">入库仓库:</text>-->
+<!--						<text class="right-con">{{title['入库仓库']}}</text>-->
+<!--					</view>-->
+<!--					<view class="multiple-con">-->
+<!--						<text class="left-con">入库分店:</text>-->
+<!--						<text class="right-con">{{title['入库分店']}}</text>-->
+<!--					</view>-->
+<!--				</view>-->
+<!--				<view class="multiples">-->
+<!--					<view class="multiple-con">-->
+<!--						<text class="left-con">入库总量:</text>-->
+<!--						<text class="right-con">{{title['入库总量']}}</text>-->
+<!--					</view>-->
+<!--					<view class="multiple-con">-->
+<!--						<text class="left-con">入库总额:</text>-->
+<!--						<text class="right-con">￥{{title['入库总额']}}</text>-->
+<!--					</view>-->
+<!--				</view>-->
+<!--				<view class="multiples">-->
+<!--					<view class="multiple-con">-->
+<!--						<text class="left-con">单据状态:</text>-->
+<!--						<text class="right-con">{{title['单据状态']}}</text>-->
+<!--					</view>-->
+<!--				</view>-->
+<!--			</view>-->
+
 			<view class="fold-content" v-for="(item,index) in tableData">
 				<view class="card-flex-wrap">
 					<view class="card-row">{{item.spmc}}</view>
@@ -238,8 +239,12 @@
 		},
 		mounted() {
 			this.formMore("",true)
-			console.log("tableData",this.tableData)
-		},
+
+
+    },
+    onshow(){
+
+    },
 		methods: {
 			// 查询 特供（供价类型）
 			formMore(lx,isAll) {
@@ -276,6 +281,11 @@
 			
 			// 编辑商品
 			toeditDetail(row, index) {
+        this.$emit('pygb')
+        console.log('edit',this.tableData);
+        console.log("row",row)
+        console.log("index",index)
+        console.log('title',this.title);
 				this.serchGoods(row.spbm)
 				this.editForm.splx = row.splx=="T"?true:false
 				this.editForm.rksl = row.rksl
@@ -297,6 +307,7 @@
 				this.editForm.rkhsjg= ""
 				this.stateDetail = false
 				this.tableIndex = -1
+        this.$emit('byqx')
 			},
 			
 			switChange(val){
@@ -327,13 +338,14 @@
 			
 			// 删除商品
 			delGoods(row, index) {
+        console.log('删除',this.title,row)
 				uni.showModal({
 					content: "是否确认删除商品",
 					success: (resm)=> {
 						if (resm.confirm) {
 							let dataes={
 								"access_token": uni.getStorageSync("access_token"),
-								"djbh": this.title.入库单号,
+								"djbh": row.rkdbh,
 								"fdbh": uni.getStorageSync("fdbh"),
 								"userid": uni.getStorageSync("userid"),
 								"username": uni.getStorageSync("dlmc"),
@@ -395,9 +407,9 @@
 			
 		},
 		watch: {
-			title: function(newv, oldv) {
-				console.log("this.title",this.title)
-			},
+			// title: function(newv, oldv) {
+			// 	console.log("this.title",this.title)
+			// },
 		}
 		
 	}

@@ -16,15 +16,20 @@
 				</view>
 
 
-			<uni-card v-if="spmc">
-        <view  class="box">
-          <view class="boxname">商品编号:</view>
-          <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
+			<uni-card v-if="spmc" margin="5px" spacing="0px">
+        <view  class="boxunit">
+          <view class="boxunit1">商品名称:</view>
+          <view class="boxunit2">
+            <u-input border="surround" v-model="spmc" :disabled="true"></u-input>
+          </view>
         </view>
-        <view  class="box">
-          <view class="boxname">商品名称:</view>
-          <u-input border="surround" v-model="spmc" :disabled="true"></u-input>
+        <view  class="boxunit">
+          <view class="boxunit1">商品编号:</view>
+          <view class="boxunit2">
+            <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
+          </view>
         </view>
+
 			</uni-card>
 
 
@@ -59,7 +64,7 @@
 					</view>
 					<view v-else class="box">
 						<view class="boxname">{{item.key}}:</view>
-						<u-input border="surround" v-model="item.value" type="digit"></u-input>
+						<u-input border="surround" v-model="item.value" ></u-input>
 					</view>
 				</view>
 
@@ -105,7 +110,7 @@
 					最大陈列: '',
 					最小陈列: '',
 					主供应商: ''
-					
+					// 商品进价:''
 				}
 			};
 		},
@@ -151,14 +156,14 @@
 				let test = []
 				for (let [key, value] of Object.entries(data)) {
 					switch (key) {
-
 						case '零售价格':
 						case '会员价格':
 						case '最近进价':
 						case '最大陈列':
 						case '最小陈列':
 						case '当前库存':
-							test.push({
+            // case '商品进价':
+              test.push({
 								key,
 								value,
 								number: true
@@ -251,7 +256,7 @@
 				};
 				rcinfos(data).then((res)=>{
           if(res.error_code=='0'){
-
+console.log(res)
             this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
             this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
             this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
@@ -315,6 +320,12 @@
 					"fdbh": uni.getStorageSync('fdbh'),
 				}
         rcdosave(data).then((res)=>{
+          this.spbm=''
+          this.spmc=''
+          this.spsmm=''
+          this.testdata.forEach((item)=>{
+            item.value=''
+          })
           console.log(res)
           uni.showToast({
             title: res.message,
@@ -396,7 +407,23 @@
 	.container {
 		padding: 20rpx;
 	}
+.boxunit{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  width: 100%;
 
+  .boxunit1{
+    font-size: 30rpx;
+    width: 20%;
+  }
+  .boxunit2{
+    width: 70%;
+    margin-left: 10rpx;
+    margin-right: 20rpx;
+  }
+}
 	.box {
 		display: flex;
 		align-items: center;

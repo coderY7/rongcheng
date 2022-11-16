@@ -196,7 +196,26 @@
 				}
 
 			}
-		]
+		    ,{
+                    "path" : "honest/honest",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                
+                ,{
+                    "path" : "chuku/chuku",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
 	}],
 	"tabBar": {
 		"color": "#C0C4CC",

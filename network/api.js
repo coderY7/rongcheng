@@ -176,10 +176,13 @@ export const rcRkdCheck = (params, config = {}) => http.post("/mzsale/web/rkd/ch
 export const rcRkdDelete = (params, config = {}) => http.post("/mzsale/web/rkd/delete", params, config)
 export const rcRkdDosave = (params, config = {}) => http.post("/mzsale/web/rkd/dosave", params, config)
 export const rcrkddelLine = (params, config = {}) => http.post("/mzsale/web/rkczd/delete/line", params, config)
-
 export const rcGetlistC = (params, config = {}) => http.post("/mzsale/web/common/getlist", params, config)
 export const rcOrderNew = (params, config = {}) => http.post("/mzsale/web/common/order/new", params, config)
-
 export const rcqueryHT = (params, config = {}) => http.post("/mzsale/web/contract/ht/query", params, config)
 export const rcip = (params, config = {}) => http.get("/mzsale/web/login", params, config)
 export const rcserct = (params, config = {}) => http.post("/mzato/main/app/serct", params, config)
+//出库
+export const rcckdosave = (params, config = {}) => http.post("/mzsale/web/thd/dosave", params, config)
+export const rcckcheck = (params, config = {}) => http.post("/mzsale/web/thd/check", params, config)
+export const rcckdelete = (params, config = {}) => http.post("/mzsale/web/thd/delete", params, config)
+export const rcckline = (params, config = {}) => http.post("/mzsale/web/thd/delete/line", params, config)

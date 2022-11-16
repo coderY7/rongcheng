@@ -82,7 +82,7 @@ align-items: center;height: 60rpx;
 
         </view>
 
-        <view class="fold-more" @tap="foldMoreShow=!foldMoreShow" >
+        <view class="fold-more" @tap="foldMoreShow=!foldMoreShow">
           <text v-if="foldMoreShow">收起</text>
           <text v-else>展开</text>
           <uni-icons type="top" size="19" color="#3386c4" v-if="foldMoreShow"></uni-icons>
@@ -188,11 +188,9 @@ export default {
 
   },
   onReady() {
-
     this.condition()
   },
   onShow() {
-
   },
   methods: {
     //拉取查询条件

@@ -1,8 +1,5 @@
 <template>
 	<view class="container">
-		<!-- <u-navbar :bgColor="bgColor" :placeholder="true" leftIcon='tags' leftIconColor='#f60506' leftText='设置'
-			title="报表" @leftClick="leftClick">
-		</u-navbar> -->	
 
     <navbar title='功能'></navbar>
 
@@ -12,6 +9,7 @@
 					<view class="unit1_box" @click="enter(item)">
 						<view class="boxs">
 							<view class="boxsimg">
+                <image :src="item.url"></image>
 							</view>
 							<view class="boxsname">{{item.cxmc}}</view>
 						</view>
@@ -42,7 +40,7 @@
 		  },
 		onLoad() {
 			//this.isreportForm()
-this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
+this.Alllist=[{cxmc:'导入商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'},{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}]
 		},
 		methods: {
 			//获取报表
@@ -70,7 +68,6 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
 				};
         if(item.cxmc=='商品入库'){
           // 创建新单
-
             let dataes={
               "access_token": uni.getStorageSync("access_token"),
               "djtype": "SPRKD",
@@ -78,6 +75,7 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
               "userid": uni.getStorageSync("userid"),
             }
             rcOrderNew(dataes).then((res) => {
+              uni.setStorageSync('djbh',res.djbh)
               // console.log("orderNew res",res)
               if(res.error_code==0){
                 uni.navigateTo({
@@ -98,6 +96,11 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
         if(item.cxmc=='导入商品'){
           uni.navigateTo({
             url: '../../pagesA/addsp/addsp'
+          })
+        }
+        if(item.cxmc=='商品出库'){
+          uni.navigateTo({
+            url: '../../pagesA/chuku/chuku'
           })
         }
 			
@@ -175,7 +178,6 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
 				width: 60rpx;
 				height: 60rpx;
 				border-radius: 5rpx;
-				background-color: #4f99ff;
 				margin-bottom: 20rpx;
 			}
 			.boxsname{
@@ -187,5 +189,9 @@ this.Alllist=[{cxmc:'导入商品'},{cxmc:'商品修改'},{cxmc:'商品入库'}]
     background: url('../../static/shilu-login/logobj.png') no-repeat;
     background-position: center center;
     background-attachment: fixed;
+  }
+  image{
+    height: 100%;
+    width: 100%;
   }
 </style>

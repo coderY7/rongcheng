@@ -27,6 +27,22 @@
 .container {
   padding: 20rpx;
 }
+.boxunit {
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+  width: 100%;
+}
+.boxunit .boxunit1 {
+  font-size: 30rpx;
+  width: 20%;
+}
+.boxunit .boxunit2 {
+  width: 70%;
+  margin-left: 10rpx;
+  margin-right: 20rpx;
+}
 .box {
   display: flex;
   align-items: center;
