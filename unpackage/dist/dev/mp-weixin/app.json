@@ -9,19 +9,14 @@
     "pages/myset/myset",
     "pages/myset/component/jianyi",
     "pages/myset/component/weixin",
-    "pages/statement/statement",
-    "pages/trade/trade"
+    "pages/statement/statement"
   ],
   "subPackages": [
     {
       "root": "pagesA",
       "pages": [
-        "statement/statement",
         "condition/condition",
-        "notice/notice",
         "notice/component/Noticedetails",
-        "work/work",
-        "work/component/minutework",
         "result/result",
         "detail/detail",
         "table/table",
@@ -29,8 +24,8 @@
         "ruku/ruku",
         "ruku/edit",
         "ruku/rkxd",
-        "honest/honest",
-        "chuku/chuku"
+        "chuku/chuku",
+        "trade/trade"
       ]
     }
   ],

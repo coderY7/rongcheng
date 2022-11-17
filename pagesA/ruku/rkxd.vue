@@ -90,16 +90,19 @@ align-items: center;height: 50rpx;
 
 					</u-form>
 					<view class="flex-btns">
-						<u-button type="primary" class="my-primary-button" text="报审"
-							:disabled="state=='look'||state=='check'" throttleTime="2000"
-							@click="subCheck">
-						</u-button>
-						<u-button type="primary" class="my-primary-button" text="删单"
-							:disabled="state=='look'" throttleTime="2000" @click="deldh">
-						</u-button>
-						<u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
-							throttleTime="2000" @click="getcolumns">
-						</u-button>
+            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="报审"
+                            :disabled="state=='look'||state=='check'" throttleTime="2000"
+                            @click="subCheck">
+            </u-button></view>
+            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="删单"
+                            :disabled="state=='look'" throttleTime="2000" @click="deldh">
+            </u-button></view>
+            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
+                            throttleTime="2000" @click="getcolumns">
+            </u-button></view>
+
+
+
 					</view>
 				</view>
 			</view>
@@ -165,15 +168,16 @@ align-items: center;height: 50rpx;
           </view>
 				</u-form>
 				<view class="form-card" v-show="doingindex>=5">
+
 					<view style="display:flex;justify-content:space-between;">
 						<text>供价类型</text>
-
 					</view>
 					<view>
 						<view class="radio-view">
 							<view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:uFormModel.jgcxbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid+'-'+v.lxmc,false)">{{v.lxmc}}</view>
 						</view>
 					</view>
+
 				</view>
 			</view>
 		</view>

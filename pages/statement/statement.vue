@@ -58,7 +58,7 @@ this.Alllist=[{cxmc:'导入商品',url:'https://integral-1256268364.cos.ap-cheng
 				console.log(item)
 				if(item.cxmc=='商品修改'){
 					uni.navigateTo({
-						url: '../../pages/trade/trade'
+						url: '../../pagesA/trade/trade'
 					})
 				};
 				if(item.cxmc=='库存查询'){

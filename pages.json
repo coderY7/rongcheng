@@ -80,37 +80,14 @@
 				"enablePullDownRefresh": false,
 				"navigationStyle": "custom"
 			}
-		}, {
-			"path": "pages/trade/trade",
-			"style": {
-				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom"
-			}
-
 		}
 	],
 	"subPackages": [{
 		"root": "pagesA",
 		"pages": [{
-				"path": "statement/statement",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false,
-					"navigationStyle": "custom"
-				}
-
-			}, {
 				"path": "condition/condition",
 				"style": {
 					"navigationStyle": "custom",
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "notice/notice",
-				"style": {
 					"navigationBarTitleText": "",
 					"enablePullDownRefresh": false
 				}
@@ -126,20 +103,6 @@
 			}
 
 			, {
-				"path": "work/work",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
-				"path": "work/component/minutework",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-
-			}, {
 				"path": "result/result",
 				"style": {
 					"navigationStyle": "custom",
@@ -197,21 +160,21 @@
 
 			}
 		    ,{
-                    "path" : "honest/honest",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
-                
-                }
-                
-                ,{
                     "path" : "chuku/chuku",
                     "style" :                                                                                    
                 {
                     "navigationBarTitleText": "",
                     "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "trade/trade",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false,
+					"navigationStyle": "custom"
                 }
                 
                 }

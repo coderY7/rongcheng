@@ -192,7 +192,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       console.log(item);
       if (item.cxmc == '商品修改') {
         uni.navigateTo({
-          url: '../../pages/trade/trade' });
+          url: '../../pagesA/trade/trade' });
 
       };
       if (item.cxmc == '库存查询') {
