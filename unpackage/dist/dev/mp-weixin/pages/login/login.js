@@ -98,7 +98,7 @@ var components
 try {
   components = {
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 306))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 308))
     }
   }
 } catch (e) {
@@ -276,7 +276,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
         return;
       }
-      if (this.hqcompanyid == this.companyid) {
+      if (this.hqcompanyid) {
         uni.setStorageSync('companyid', this.hqcompanyid);
         var logindata = {
           "vtype": "login",

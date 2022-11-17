@@ -76,45 +76,6 @@
 		</view>
 		<!--  -->
 		<view class="foldGroup" v-show="!stateDetail">
-<!--			<view class="fold-title" v-if="Object.keys(title).length!=0">-->
-<!--				<view class="fold-title-t fold-title-flex-start">-->
-<!--					<text>{{title['入库单号']}}</text>-->
-<!--				</view>-->
-<!--				<view class="fold-title-flex-start fold-title-con show-dots-2">-->
-<!--					<text class="left-con">商家编号:</text>-->
-<!--					<text class="right-con">{{title['商家合同号']}}-{{title['商家名称']}}</text>-->
-<!--				</view>-->
-<!--				<view class="fold-title-flex-start fold-title-con show-dots-1" v-if="title['原始单号']">-->
-<!--					<text class="left-con">原始单号:</text>-->
-<!--					<text class="right-con">{{title['原始单号']}}</text>-->
-<!--				</view>-->
-<!--				<view class="multiples">-->
-<!--					<view class="multiple-con">-->
-<!--						<text class="left-con">入库仓库:</text>-->
-<!--						<text class="right-con">{{title['入库仓库']}}</text>-->
-<!--					</view>-->
-<!--					<view class="multiple-con">-->
-<!--						<text class="left-con">入库分店:</text>-->
-<!--						<text class="right-con">{{title['入库分店']}}</text>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--				<view class="multiples">-->
-<!--					<view class="multiple-con">-->
-<!--						<text class="left-con">入库总量:</text>-->
-<!--						<text class="right-con">{{title['入库总量']}}</text>-->
-<!--					</view>-->
-<!--					<view class="multiple-con">-->
-<!--						<text class="left-con">入库总额:</text>-->
-<!--						<text class="right-con">￥{{title['入库总额']}}</text>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--				<view class="multiples">-->
-<!--					<view class="multiple-con">-->
-<!--						<text class="left-con">单据状态:</text>-->
-<!--						<text class="right-con">{{title['单据状态']}}</text>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--			</view>-->
 
 			<view class="fold-content" v-for="(item,index) in tableData">
 				<view class="card-flex-wrap">

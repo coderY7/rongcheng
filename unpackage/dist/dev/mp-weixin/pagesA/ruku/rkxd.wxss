@@ -487,6 +487,35 @@
 .box .flex-btns.data-v-65167343 .u-button--primary.my-primary-button {
   width: 28%;
 }
+.box .unitbox.data-v-65167343 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.box .unitbox .unitbox_l.data-v-65167343 {
+  width: 20%;
+  margin-right: 10rpx;
+}
+.box .unitbox .unitbox_r.data-v-65167343 {
+  width: 75%;
+}
+.box .gjlxbox.data-v-65167343 {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.box .gjlxbox .gjlxbox_l.data-v-65167343 {
+  width: 20%;
+  margin-right: 10rpx;
+}
+.box .gjlxbox .gjlxbox_r.data-v-65167343 {
+  width: 75%;
+}
+.box .gjlxbox .gjlxbox_r .gjlxbox_rr.data-v-65167343 {
+  display: inline-flex;
+  margin: 0 10px;
+}
 .box .movable-area.data-v-65167343 {
   width: 100%;
   height: 100vh;
@@ -619,5 +648,8 @@
   width: 70%;
   margin-left: 10rpx;
   margin-right: 20rpx;
+}
+.data-v-65167343 .u-popup .uni-select__input-box {
+  width: 100%;
 }
 
