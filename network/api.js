@@ -175,7 +175,7 @@ export const rcsearch = (params, config = {}) => http.post("/mzsale/web/goods/se
 export const rcRkdCheck = (params, config = {}) => http.post("/mzsale/web/rkd/check", params, config)
 export const rcRkdDelete = (params, config = {}) => http.post("/mzsale/web/rkd/delete", params, config)
 export const rcRkdDosave = (params, config = {}) => http.post("/mzsale/web/rkd/dosave", params, config)
-export const rcrkddelLine = (params, config = {}) => http.post("/mzsale/web/rkczd/delete/line", params, config)
+export const rcrkddelLine = (params, config = {}) => http.post("/mzsale/web/rkd/delete/line", params, config)
 export const rcGetlistC = (params, config = {}) => http.post("/mzsale/web/common/getlist", params, config)
 export const rcOrderNew = (params, config = {}) => http.post("/mzsale/web/common/order/new", params, config)
 export const rcqueryHT = (params, config = {}) => http.post("/mzsale/web/contract/ht/query", params, config)

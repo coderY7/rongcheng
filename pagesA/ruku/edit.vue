@@ -315,15 +315,20 @@
 			},
 			// 保存商品
 			editDetailSave() {
+
+        let a=dayjs(this.tableData[this.tableIndex].scrq).format("YYYY-MM-DD")
+        let b=dayjs(this.tableData[this.tableIndex].bzjzrq).format("YYYY-MM-DD")
+
+        console.log('修改后保存',this.tableData,this.tableIndex)
 				//this.$refs.uForm.setRules().then(resf => {
 					this.uploadarr = []
 					this.uploadarr.push({
-						"bzjzrq": this.tableData[this.tableIndex].bzjzrq,
+						"bzjzrq": b,
 						"hsjj": this.editForm.rkhsjg,
 						"rksl": this.editForm.rksl,
 						"cxtype": this.editForm.cxjbz,
-						"guid": this.tableData[this.tableIndex].guid,
-						"scrq": this.tableData[this.tableIndex].scrq,
+						"guid": this.editForm.recordid,
+						"scrq": a,
 						"spbm": this.editForm.spbm,
 						"splx": this.editForm.splx?"T":"F",
 						"jjsl": this.serchGoodsData.sl,
@@ -350,8 +355,8 @@
 								"userid": uni.getStorageSync("userid"),
 								"username": uni.getStorageSync("dlmc"),
 								"list": [{
-									// "guid": row.guid,
-									"guid": "",
+									 "guid": row.recordid,
+                  "rkdbh":row.rkdbh,
 									"spbm": row.spbm,
 									"spmc": row.spmc,
 									"spsmm": row.spsmm

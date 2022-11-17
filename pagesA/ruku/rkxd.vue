@@ -107,7 +107,7 @@ align-items: center;height: 50rpx;
 			<view v-show="contentShow">
 				<u-form class="form-card" labelPosition="left" :model="uFormModel"  ref="uForm">
           <view style="margin: 10rpx 0">
-            <u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
+            <u-form-item label="商品条码" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
               <u-input placeholder="请输入商品编码/名称/简码"  v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">
                 <template slot="suffix">
                   <uni-icons type="clear" size="19" color="#e1e1e1" v-if="uFormModel.spbm!=''"
@@ -119,25 +119,24 @@ align-items: center;height: 50rpx;
                          @tap="scan()" v-if="!isVoiceMode&&!ispda"></uni-icons>
             </u-form-item>
           </view>
-					<view>
-						<view class="shopTishi">
-							<view class="shopTishi-view show-dots" v-if="uFormModel.spmc">
-								<text class="left-con">名称-条码:</text>
-								<text>{{uFormModel.spmc}}</text>-
-								<text>{{uFormModel.spsmm}}</text>
-							</view>
-						</view>
-						<view class="shopTishi">
-							<view class="shopTishi-view-half" v-if="uFormModel.dw">
-								<text class="left-con">单位:</text>
-								<text>{{uFormModel.dw}}</text>
-							</view>
-							<view class="shopTishi-view-half" v-if="uFormModel.gg">
-								<text class="left-con">规格:</text>
-								<text>{{uFormModel.gg}}</text>
-							</view>
-						</view>
-					</view>
+
+<!--          搜索到选择的商品条码-->
+          <uni-card v-if="uFormModel.spmc" margin="5px" spacing="0px">
+            <view  class="boxunit">
+              <view class="boxunit1">商品名称:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="uFormModel.spmc" :disabled="true"></u-input>
+              </view>
+            </view>
+            <view  class="boxunit">
+              <view class="boxunit1">商品条号:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>
+              </view>
+            </view>
+
+          </uni-card>
+
           <view style="margin: 10rpx 0">
             <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
               <u-input placeholder="请输入入库数量" type="number" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
@@ -813,8 +812,6 @@ align-items: center;height: 50rpx;
 			editSave(arr) {
 				this.uploadarr = arr
 				this.doSave("EDIT")
-
-
       },
 			toback(){
 				this.ifpage=true
@@ -863,7 +860,7 @@ align-items: center;height: 50rpx;
 			
 			// 保存事件函数。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
 			save() {
-
+        console.log('保存')
 					this.uploadarr = []
 					this.uploadarr.push({
 						"bzjzrq": dayjs().date(dayjs().date() + this.serchGoodsData.bzqts).format("YYYY-MM-DD"),
@@ -884,7 +881,7 @@ align-items: center;height: 50rpx;
 
 			},
 			doSave(state) {
-
+console.log('编译保存')
 				let dataes = {
 					"access_token": uni.getStorageSync("access_token"),
 					"djbh": this.uFormTitle.djbh,
@@ -1341,6 +1338,23 @@ margin: 20rpx;
     //  margin: 20rpx 0;
     //}
 
+    .boxunit{
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      margin-bottom: 20rpx;
+      width: 100%;
+
+      .boxunit1{
+        font-size: 30rpx;
+        width: 20%;
+      }
+      .boxunit2{
+        width: 70%;
+        margin-left: 10rpx;
+        margin-right: 20rpx;
+      }
+    }
 	}
 </style>
 
