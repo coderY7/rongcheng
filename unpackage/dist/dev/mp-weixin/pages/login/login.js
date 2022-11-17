@@ -171,7 +171,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
   data: function data() {
     return {
       companyid: '',
-      company: false,
+      company: true,
       bgColor: '#4f99ff', //动态背景
       userid: '',
       password: '',
@@ -179,8 +179,9 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
       fdbh: '',
       fdlist: [], //分店列表
       isfdlist: false,
-      resdata: null };
-
+      resdata: null,
+      hqcompanyid: '' //获取的
+    };
   },
   components: {
     navbar: navbar },
@@ -235,7 +236,8 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
           if (res.fdlist) {
             _this.isfdlist = true;
           };
-          uni.setStorageSync("companyid", res.companyid);
+          _this.hqcompanyid = res.companyid;
+          //uni.setStorageSync("companyid", res.companyid)
           _this.fdbh = res.fdlist[0].fdbh;
           uni.setStorageSync("fdbh", res.fdlist[0].fdbh);
           _this.fdlist = [];
@@ -263,74 +265,84 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
       if (this.userid.length != 5) {
         uni.showToast({
           icon: 'none',
-          title: '工号不正确' });
+          title: '工号错误' });
 
         return;
       }
       if (this.password.length < 4) {
         uni.showToast({
           icon: 'none',
-          title: '密码不正确' });
+          title: '密码错误' });
 
         return;
       }
-      var logindata = {
-        "vtype": "login",
-        "userid": this.userid,
-        "password": this.password,
-        "fdbh": this.fdbh,
-        "companyid": uni.getStorageSync("companyid"),
-        "computerid": uni.getStorageSync("computerid"), //设备唯一标识
-        "ipaddress": uni.getStorageSync("ip") };
+      if (this.hqcompanyid == this.companyid) {
+        uni.setStorageSync('companyid', this.hqcompanyid);
+        var logindata = {
+          "vtype": "login",
+          "userid": this.userid,
+          "password": this.password,
+          "fdbh": this.fdbh,
+          "companyid": uni.getStorageSync("companyid"),
+          "computerid": uni.getStorageSync("computerid"), //设备唯一标识
+          "ipaddress": uni.getStorageSync("ip") };
 
-      (0, _api.rclogin)(logindata).then(function (res) {
-        console.log(res);
-        if (res.error_code == '0') {
-          uni.setStorageSync('userid', res.userinfo.erp_userid); //token
-          uni.setStorageSync('access_token', res.access_token); //token
-          uni.setStorageSync('refresh_token', res.refresh_token); //刷新
-          uni.setStorageSync('dlmc', res.userinfo.erp_username); //名称
-          uni.setStorageSync('loginaccess', res); //登录成功返回的数据
-          uni.setStorageSync('fdtype', res.companyinfo.erp_saletype); //分店类型
-          uni.setStorageSync('login', true);
+        (0, _api.rclogin)(logindata).then(function (res) {
+          console.log(res);
+          if (res.error_code == '0') {
+            uni.setStorageSync('userid', res.userinfo.erp_userid); //token
+            uni.setStorageSync('access_token', res.access_token); //token
+            uni.setStorageSync('refresh_token', res.refresh_token); //刷新
+            uni.setStorageSync('dlmc', res.userinfo.erp_username); //名称
+            uni.setStorageSync('loginaccess', res); //登录成功返回的数据
+            uni.setStorageSync('fdtype', res.companyinfo.erp_saletype); //分店类型
+            uni.setStorageSync('login', true);
 
-          // 获取用户信息
-          uni.login({
-            provider: 'weixin',
-            success: function success(res) {
-              //获取code,换取openid
-              console.log(res);
-              var getopeniddata = {
-                appid: uni.getStorageSync('appid'),
-                secret: uni.getStorageSync('secret'),
-                js_code: res.code };
+            // 获取用户信息
+            uni.login({
+              provider: 'weixin',
+              success: function success(res) {
+                //获取code,换取openid
+                console.log(res);
+                var getopeniddata = {
+                  appid: uni.getStorageSync('appid'),
+                  secret: uni.getStorageSync('secret'),
+                  js_code: res.code };
 
-              console.log(getopeniddata);
+                console.log(getopeniddata);
 
-              (0, _api.getopenid)(getopeniddata).then(function (res) {
-                console.log('获取到openid', res);
-                //存储openid
-                uni.setStorageSync('openid', res.openid);
-                uni.setStorageSync('session_key', res.session_key);
-                uni.setStorageSync('userid', _this2.userid);
-                _this2.openid = res.openid;
-                uni.switchTab({
-                  url: '/pages/home/home' });
-
-
-                _this2.basics();
-              });
-            } });
+                (0, _api.getopenid)(getopeniddata).then(function (res) {
+                  console.log('获取到openid', res);
+                  //存储openid
+                  uni.setStorageSync('openid', res.openid);
+                  uni.setStorageSync('session_key', res.session_key);
+                  uni.setStorageSync('userid', _this2.userid);
+                  _this2.openid = res.openid;
+                  uni.switchTab({
+                    url: '/pages/home/home' });
 
 
-        } else {
-          uni.showToast({
-            icon: 'none',
-            title: res.message });
+                  _this2.basics();
+                });
+              } });
 
-        }
 
-      });
+          } else {
+            uni.showToast({
+              icon: 'none',
+              title: res.message });
+
+          }
+
+        });
+      } else {
+        uni.showToast({
+          icon: 'none',
+          title: '商户错误' });
+
+        return;
+      }
+
     },
     //微信登录
     wxLogin: function wxLogin() {var _this3 = this;
@@ -404,18 +416,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
         console.log(res);
         uni.setStorageSync('basic', res);
       });
-      // uni.request({
-      // 	url: 'http://erpai.mzsale.com/mzsale/web/basic', //仅为示例，并非真实接口地址。
-      // 	data: data,
-      // 	method: 'POST',
-      // 	header: {
-      // 		'custom-header': 'hello' //自定义请求头信息
-      // 	},
-      // 	success: (res) => {
-      // 		console.log(res);
-      // 		uni.setStorageSync('basic', res.data)
-      // 	}
-      // });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

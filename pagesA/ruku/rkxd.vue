@@ -2,16 +2,16 @@
 	<view class="box">
     <view class="status-bar"></view>
     <view v-if="navber">
-      <view class="nav-bar" style="display: flex; justify-content: space-between;
+      <uni-card :is-shadow="false" is-full padding="0px" margin="0px">
+        <view class="nav-bar" style="display: flex; justify-content: space-between;
 align-items: center;height: 50rpx;
-    margin: 10rpx 20rpx;" >
-        <view class="left">
-          <view @click="historydh()" v-if="ifpage">历史单号</view>
-<!--          <view class="navleftview" v-if="!ifpage" @click="toback">-->
-<!--            <u-icon type="allow-left" size="30" color="#358CC9"></u-icon>-->
-<!--          </view>-->
+    margin: 10rpx 0rpx;" >
+          <view class="left">
+            <view @click="historydh()" v-if="ifpage" style="color: #4f99ff">历史单号</view>
+          </view>
         </view>
-      </view>
+      </uni-card>
+
     </view>
 
 		<view class="box-content" v-show="ifpage">
@@ -129,12 +129,11 @@ align-items: center;height: 50rpx;
               </view>
             </view>
             <view  class="boxunit">
-              <view class="boxunit1">商品条号:</view>
+              <view class="boxunit1">商品条码:</view>
               <view class="boxunit2">
                 <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>
               </view>
             </view>
-
           </uni-card>
 
           <view style="margin: 10rpx 0">
@@ -180,8 +179,14 @@ align-items: center;height: 50rpx;
 		</view>
 		<u-button type="primary" class="my-primary-button sticky-bottom" text="保存" throttleTime="2000" v-if="ifpage || contentShow" @click="save">
 		</u-button>
-    <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭" throttleTime="2000" v-if="honestshow" @click="tuichu()">
-    </u-button>
+    <view style="display: flex;justify-content: center;align-items: center">
+      <view style="width: 60%;margin-bottom:20rpx">
+        <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
+        </u-button>
+      </view>
+    </view>
+
+
 		
 		<view class="box-content" v-show="!ifpage">
 			<edit @byqx="qxby()" @pygb="gbpy()" :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
@@ -765,6 +770,9 @@ align-items: center;height: 50rpx;
 					if (res.error_code == 0) {
 						this.tableData = []
 						this.tableData = res.data
+            if(this.tableData.length=='0'){
+              this.tuichu()
+            }
 					} else {
 						this.$refs.uToast.show({
 							type: "error",
@@ -810,6 +818,7 @@ align-items: center;height: 50rpx;
 			
 			// 编辑商品 保存商品............................................................
 			editSave(arr) {
+        this.honestshow=true
 				this.uploadarr = arr
 				this.doSave("EDIT")
       },
@@ -1015,7 +1024,7 @@ console.log('编译保存')
 
 <style lang="scss" scoped>
 	.box {
-margin: 20rpx;
+margin: 10rpx 20rpx;
 
 		.box-content {
 

@@ -31,10 +31,7 @@
         </view>
 
 			</uni-card>
-
-
 				<view v-for="(item, index) in testdata" :key="item">
-
 					<view v-if="item.table" class="box">
 						<view class="boxname">{{item.key}}:</view>
 						<view class="boxinput">
@@ -48,7 +45,12 @@
 						<view class="boxname">{{item.key}}:</view>
 						<u-input border="surround" v-model="item.value" type="digit"></u-input>
 					</view>
-					<view v-else-if="item.Boolean" class="boxbool">
+					<view v-else-if="item.Boolean" style="
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0;
+">
 						<view class="boxname ">{{item.key}}:</view>
             <view>
               <u-switch v-model="item.value" @change="switchs()"></u-switch>
@@ -441,12 +443,7 @@ console.log(res)
 			margin-left: 10rpx;
 			margin-right: 20rpx;
 		}
-.boxbool{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20rpx 0;
-}
+
 		.search {
 			color: #FFFFFF;
 			font-size: 28rpx;
@@ -459,6 +456,12 @@ console.log(res)
 		}
     .uni-select__input-box{
       width: 100%;
+    }
+    .boxbool{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20rpx 0;
     }
 	}
 </style>

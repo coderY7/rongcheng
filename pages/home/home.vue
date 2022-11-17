@@ -14,7 +14,7 @@
 					<view class="xz">
 						<view class="boxname">选择时间:</view>
 						<view class="boxinput">
-							<uni-datetime-picker type="date" :value="single" v-model="item.defval"
+							<uni-datetime-picker type="date" :value="sdate" v-model="sdate"
 								@change="startdate()" />
 						</view>
 					</view>

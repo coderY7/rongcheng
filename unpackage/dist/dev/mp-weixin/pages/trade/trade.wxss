@@ -59,12 +59,6 @@
   margin-left: 10rpx;
   margin-right: 20rpx;
 }
-.box .boxbool {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 20rpx 0;
-}
 .box .search {
   color: #FFFFFF;
   font-size: 28rpx;
@@ -77,5 +71,11 @@
 }
 .box .uni-select__input-box {
   width: 100%;
+}
+.box .boxbool {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0;
 }
 

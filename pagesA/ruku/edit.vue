@@ -9,35 +9,53 @@
 					</u-input>
 				</u-form-item>
 				<view>
-					<view class="shopTishi">
-						<view class="shopTishi-view show-dots" v-if="editForm.spmc">
-							<text class="left-con">名称-条码:</text>
-							<text>{{editForm.spmc}}</text>-
-							<text>{{editForm.spsmm}}</text>
-						</view>
-					</view>
-					<view class="shopTishi">
-						<view class="shopTishi-view-half" v-if="editForm.dw">
-							<text class="left-con">单位:</text>
-							<text>{{editForm.dw}}</text>
-						</view>
-						<view class="shopTishi-view-half" v-if="editForm.gg">
-							<text class="left-con">规格:</text>
-							<text>{{editForm.gg}}</text>
-						</view>
-					</view>
+
+          <uni-card v-if="editForm.spmc" margin="5px" spacing="0px">
+            <view  class="boxunit">
+              <view class="boxunit1">商品名称:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="editForm.spmc" :disabled="true"></u-input>
+              </view>
+            </view>
+            <view  class="boxunit">
+              <view class="boxunit1">商品条码:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="editForm.spsmm"  :disabled="true"></u-input>
+              </view>
+            </view>
+            <view  class="boxunit">
+              <view class="boxunit1">商品单位:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="editForm.dw"  :disabled="true"></u-input>
+              </view>
+            </view>
+            <view  class="boxunit">
+              <view class="boxunit1">商品规格:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="editForm.gg"  :disabled="true"></u-input>
+              </view>
+            </view>
+          </uni-card>
+
 				</view>
-				<u-form-item label="入库数量" :labelWidth="74" prop="rksl">
-					<u-input placeholder="请输入入库数量" type="number" v-model="editForm.rksl">
-					</u-input>
-				</u-form-item>
-				<u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">
-					<u-input placeholder="请输入入库价格" type="number" v-model="editForm.rkhsjg">
-					</u-input>
-				</u-form-item>
-				<u-form-item label="是否赠品" :labelWidth="74" prop="splx">
-					<xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>
-				</u-form-item>
+        <view style="margin: 10rpx 0">
+          <u-form-item label="入库数量" :labelWidth="74" prop="rksl">
+            <u-input placeholder="请输入入库数量" type="number" v-model="editForm.rksl">
+            </u-input>
+          </u-form-item>
+        </view>
+        <view style="margin: 10rpx 0">
+          <u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">
+            <u-input placeholder="请输入入库价格" type="number" v-model="editForm.rkhsjg">
+            </u-input>
+          </u-form-item>
+        </view>
+				<view style="margin: 10rpx 0">
+          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">
+            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>
+          </u-form-item>
+        </view>
+
 			</u-form>
 			<view class="form-card">
 				<view style="display:flex;justify-content:space-between;">
@@ -191,6 +209,7 @@
 					gg: "",
 					rksl: "",
 					rkhsjg: "",
+          guid:'',
 					splx: false,//赠送商品
 					cxjbz: "",//供价类型
 				},
@@ -286,7 +305,9 @@
         console.log("row",row)
         console.log("index",index)
         console.log('title',this.title);
-				this.serchGoods(row.spbm)
+        this.editForm.guid = row.recordid
+
+        this.serchGoods(row.spbm)
 				this.editForm.splx = row.splx=="T"?true:false
 				this.editForm.rksl = row.rksl
 				this.editForm.rkhsjg = row.rkhsjg
@@ -327,7 +348,7 @@
 						"hsjj": this.editForm.rkhsjg,
 						"rksl": this.editForm.rksl,
 						"cxtype": this.editForm.cxjbz,
-						"guid": this.editForm.recordid,
+						"guid": this.editForm.guid,
 						"scrq": a,
 						"spbm": this.editForm.spbm,
 						"splx": this.editForm.splx?"T":"F",
@@ -338,7 +359,9 @@
 					})
 					// console.log("保存商品 editDetailSave this.uploadarr",this.uploadarr)
 					this.$emit("editSave",this.uploadarr)
-				//})
+
+
+        //})
 			},
 			
 			// 删除商品
@@ -767,5 +790,22 @@
 			color: #358CC9;
 			font-size: 17px;
 		}
+    .boxunit{
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      margin-bottom: 20rpx;
+      width: 100%;
+
+      .boxunit1{
+        font-size: 30rpx;
+        width: 20%;
+      }
+      .boxunit2{
+        width: 70%;
+        margin-left: 10rpx;
+        margin-right: 20rpx;
+      }
+    }
 	}
 </style>
