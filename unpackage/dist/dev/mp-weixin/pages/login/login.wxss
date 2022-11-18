@@ -112,6 +112,7 @@ image {
 }
 .boxinput .boxinputleft {
   width: 23%;
+  font-size: 30rpx;
 }
 .boxinput .boxinputright {
   width: 77%;

@@ -382,8 +382,6 @@
 }
 .box .box-content .my-collapse .my-collapse-con.data-v-65167343 {
   background-color: #fff;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
 }
 .box .box-content .my-collapse .my-collapse-con .form-card.data-v-65167343 {
   border-top-left-radius: 0;
@@ -483,6 +481,7 @@
 .box .flex-btns.data-v-65167343 {
   display: flex;
   justify-content: space-between;
+  margin: 20rpx 0;
 }
 .box .flex-btns.data-v-65167343 .u-button--primary.my-primary-button {
   width: 28%;
@@ -495,9 +494,10 @@
 .box .unitbox .unitbox_l.data-v-65167343 {
   width: 20%;
   margin-right: 10rpx;
+  font-size: 28rpx;
 }
 .box .unitbox .unitbox_r.data-v-65167343 {
-  width: 75%;
+  width: 80%;
 }
 .box .gjlxbox.data-v-65167343 {
   width: 100%;
@@ -650,12 +650,6 @@
   margin-right: 20rpx;
 }
 .data-v-65167343 .u-popup .uni-select__input-box {
-  height: 35px;
-  position: relative;
-  display: flex;
-  flex: 1;
-  flex-direction: row;
   width: 100%;
-  align-items: center;
 }
 

@@ -1,7 +1,13 @@
 <template>
 	<view>
-		<view class="">
-			<uni-card title="固定多列和表头">
+    <uni-card padding="10px 5px" margin="10px 16px">
+      <view class="box">
+        <u-search placeholder="请输入小类编码" v-model="xlbh" :showAction="true" @custom="isqueryall()"></u-search>
+      </view>
+    </uni-card>
+
+    <view class="">
+			<uni-card >
 				<view style="height: 500px">
 					<zb-table :columns="column" :stripe="true" @rowClick="rowClick"
 						@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
@@ -19,9 +25,13 @@
 </template>
 
 <script>
-	export default {
+	import {queryall} from "../../network/api";
+
+  export default {
 		name: "table",
-		data() {
+    components: {},
+
+    data() {
 			return {
 				columndata: '',
 				column: '',
@@ -31,6 +41,7 @@
 				page: '', //当前页
 				total: '', //数据总量
 				spbm: '', //商品编码
+        xlbh:''//小类编号
 			};
 		},
 		onLoad(option) {
@@ -67,35 +78,18 @@
 				this.columndata = this.result[0]
 			},
 			//小类编码
-			isqueryall(datas) {
-				console.log(datas.value)
+			isqueryall() {
 				let data = {
 					"access_token": uni.getStorageSync('access_token'),
 					"CompanyID": uni.getStorageSync('companyid'),
 					"level": "5",
-					"keys": "",
+					"keys":this.xlbh,
 					"ParentsID": "",
 					"fdbh": uni.getStorageSync('fdbh')
 				}
 				queryall(data).then((res) => {
 					console.log('小类', res);
-					this.column = [{
-							name: '小类编码',
-							label: '小类编码'
-						},
-						{
-							name: '中类编码',
-							label: '中类编码'
-						},
-						{
-							name: '大类编码',
-							label: '大类编码'
-						},
-						{
-							name: '部门分组',
-							label: '部门分组'
-						}
-					]
+
 					let result = []
 					res.nodes.forEach((item) => {
 						let a = {
@@ -118,16 +112,17 @@
 				uni.navigateBack({
 					delta: 1
 				});
-				// uni.showToast({
-				// 	icon: 'none',
-				// 	duration: 2000,
-				// 	title: row
-				// })
+
 			},
+
+
 		}
 	}
 </script>
 
 <style lang="scss">
+.fypage{
+  margin: 0 200rpx;
+}
 
 </style>

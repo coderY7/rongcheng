@@ -353,14 +353,14 @@ console.log(res)
 					this.column = [{
 							name: '小类编码',
 							label: '小类编码',
-							width: 200,
+							width: 150,
 							fixed: true
 
 						},
 						{
 							name: '中类编码',
 							label: '中类编码',
-							width: 120,
+							width: 80,
 						},
 						{
 							name: '大类编码',

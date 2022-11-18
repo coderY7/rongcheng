@@ -82,23 +82,12 @@ align-items: center;height: 50rpx;
 
 					</u-form>
 
-					<view class="flex-btns">
-            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="审核"
-                            :disabled="state=='look'||state=='check'" throttleTime="2000"
-                            @click="subCheck">
-            </u-button></view>
-            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="删单"
-                            :disabled="state=='look'" throttleTime="2000" @click="deldh">
-            </u-button></view>
-            <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
-                            throttleTime="2000" @click="getcolumns">
-            </u-button></view>
-					</view>
+
 
 				</view>
 			</view>
 			<!-- 新增单据 内容 -->
-			<view v-show="contentShow">
+			<view v-if="state=='add' ||state=='edit' ||state=='pladd'">
 				<u-form class="form-card" labelPosition="left" :model="uFormModel"  ref="uForm">
           <view style="margin: 10rpx 0">
             <u-form-item label="商品条码:" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
@@ -113,11 +102,8 @@ align-items: center;height: 50rpx;
 <!--                -->
 <!--              </u-input>-->
           <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spbm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
-              
-
             </u-form-item>
           </view>
-
 <!--          搜索到选择的商品条码-->
           <uni-card v-if="uFormModel.spmc" margin="5px" spacing="0px">
             <view  class="boxunit">
@@ -149,12 +135,12 @@ align-items: center;height: 50rpx;
 
             </u-form-item>
           </view>
-          <view style="margin: 10rpx 0">
-            <u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">
-              <xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>
+<!--          <view style="margin: 10rpx 0">-->
+<!--            <u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">-->
+<!--              <xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>-->
 
-            </u-form-item>
-          </view>
+<!--            </u-form-item>-->
+<!--          </view>-->
           <view style="margin: 10rpx 0">
             <u-form-item label="生产日期" :labelWidth="76" prop="scrq" v-show="doingindex>=4">
               <uni-datetime-picker v-model="uFormModel.scrq" type="date" :clear-icon="false"/>
@@ -174,8 +160,30 @@ align-items: center;height: 50rpx;
 
 			</view>
 		</view>
-		<u-button type="primary" class="my-primary-button sticky-bottom" text="审核" throttleTime="2000" v-if="ifpage || contentShow" @click="save">
-		</u-button>
+
+
+<view>
+  <u-button type="primary" class="my-primary-button sticky-bottom" text="明细提交" throttleTime="2000" v-if="ifpage || contentShow" @click="save">
+  </u-button>
+</view>
+
+
+    <view class="flex-btns" v-if="!honestshow">
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单审核"
+                                         :disabled="state=='look'||state=='check'" throttleTime="2000"
+                                         @click="subCheck">
+      </u-button></view>
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单删除"
+                                         :disabled="state=='look'" throttleTime="2000" @click="deldh">
+      </u-button></view>
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
+                                         throttleTime="2000" @click="getcolumns">
+      </u-button></view>
+    </view>
+
+
+
+
     <view style="display: flex;justify-content: center;align-items: center">
       <view style="width: 60%;margin-bottom:20rpx">
         <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
@@ -336,10 +344,10 @@ align-items: center;height: 50rpx;
           this.editTitleObj=data
         })
       // }
-      this.queryHt(true, sjVal, "sjbh")
-      this.queryMore(true, ckVal, "CKINFO", "ckbh")
-      this.queryMore(true, fdVal, "FDINFO", "fdbh")
-      this.queryMore(true, "", "USERINFO", "service")
+      //this.queryHt(true, sjVal, "sjbh")
+       this.queryMore(true, ckVal, "CKINFO", "ckbh")
+      // this.queryMore(true, fdVal, "FDINFO", "fdbh")
+       this.queryMore(true, "", "USERINFO", "service")
       this.formMore("",true)
     },
 		onReady() {
@@ -564,7 +572,7 @@ align-items: center;height: 50rpx;
 										message: "审核成功"
 									})
 									this.state = "check"
-
+//审核后退出
 								} else {
 									this.$refs.uToast.show({
 										type: "error",
@@ -1099,8 +1107,7 @@ margin: 10rpx 20rpx;
 
 				.my-collapse-con {
 					background-color: #fff;
-					padding-bottom: 10px;
-					margin-bottom: 10px;
+
 
 					.form-card {
 						border-top-left-radius: 0;
@@ -1225,7 +1232,7 @@ margin: 10rpx 20rpx;
 		.flex-btns {
 			display: flex;
 			justify-content: space-between;
-
+margin: 20rpx 0;
 			/deep/.u-button--primary.my-primary-button {
 				width: 28%;
 			}
@@ -1237,9 +1244,10 @@ margin: 10rpx 20rpx;
       .unitbox_l{
         width: 20%;
         margin-right:10rpx;
+        font-size: 28rpx;
       }
       .unitbox_r{
-        width: 75%;
+        width: 80%;
 
       }
     }
@@ -1426,13 +1434,7 @@ margin: 10rpx 20rpx;
     }
     
 		.uni-select__input-box {
-		    height: 35px;
-		    position: relative;
-		    display: flex;
-		    flex: 1;
-		    flex-direction: row;
 		    width: 100%;
-		    align-items: center;
 		}
 	}
 </style>

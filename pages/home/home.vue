@@ -12,7 +12,7 @@
 				<!-- 选择时间-->
 				<view class="xzbox">
 					<view class="xz">
-						<view class="boxname">选择时间:</view>
+						<view class="boxname">时间:</view>
 						<view class="boxinput">
 							<uni-datetime-picker type="date" :value="sdate" v-model="sdate"
 								@change="startdate()" />
@@ -24,7 +24,7 @@
 				<!-- 选择门店 -->
 				<view class="xzbox">
 					<view class="xz">
-						<view class="boxname">选择分店:</view>
+						<view class="boxname">分店:</view>
 						<view class="boxinput">
 							<view>
 								
@@ -936,7 +936,7 @@ console.log(res)
 
 		.boxinput {
 			margin: 0 20rpx;
-			flex: 3;
+			flex: 4;
 		}
 	}
 

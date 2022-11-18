@@ -3,6 +3,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
     "zb-table": "/uni_modules/zb-table/components/zb-table/zb-table",
     "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination"
   }

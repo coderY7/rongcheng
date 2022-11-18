@@ -38,10 +38,10 @@
               <view class="boxname">零售价格:</view>
               <view class="boxinput">
                 <view v-if="spzt=='normal'">
-                  <u-input v-model="sp.price" border="surround" type="digit" :disabled="true"></u-input>
+                  <u-input v-model="price" border="surround" type="digit" :disabled="true"></u-input>
                 </view>
                 <view v-else>
-                  <u-input v-model="sp.price" border="surround" type="digit"></u-input>
+                  <u-input v-model="price" border="surround" type="digit" @focus="changeprice()"></u-input>
                 </view>
               </view>
               <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
@@ -52,10 +52,10 @@
           <view class="boxname">商品进价:</view>
           <view class="boxinput">
             <view v-if="spzt=='normal'">
-              <u-input v-model="sp.sjprice" border="surround" type="digit" :disabled="true"></u-input>
+              <u-input v-model="sjprice" border="surround" type="digit" :disabled="true"></u-input>
             </view>
             <view v-else>
-              <u-input v-model="sp.sjprice" border="surround" type="digit"></u-input>
+              <u-input v-model="sjprice" border="surround" type="digit"></u-input>
             </view>
           </view>
           <text style="color: #ff0000;font-size: 20rpx;">* (必填)</text>
@@ -117,7 +117,9 @@ export default {
       sjbh:'',
       isautosetcldsp:false,//是否显示开关
       autosetcldsp:false, //关联
-      autosetcldspvalue:'F'
+      autosetcldspvalue:'F',
+      price:'',
+      sjprice:''
     };
   },
   components: {
@@ -126,6 +128,7 @@ export default {
   onLoad(){
 
   },
+
   onShow(){
     this.cxsjht=uni.getStorageSync('basic').SJINFO
     //处理商家合同下拉框数据
@@ -140,6 +143,11 @@ export default {
     this.sjbh=this.cxsjht[0].value
   },
   methods: {
+    changeprice(){
+      if(this.sp.sjprice==''|| this.sp.sjprice=='0'){
+        this.sjprice=this.price*0.8
+      }
+    },
     relevancy(e){
       if(e){
         this.autosetcldspvalue='T'
@@ -197,7 +205,13 @@ export default {
 
           if (res.data.result == 'success') {
             this.sp=res.data.goodslist[0]
-           this.sp.sjprice=this.sp.price*0.8
+            this.price=this.sp.price
+            if(this.sp.sjprice==''|| this.sp.sjprice=='0'){
+              this.sjprice=this.price*0.8
+            }else {
+              this.sjprice=this.sp.sjprice
+
+            }
            if(this.sp.incode=='T'){
              this.isautosetcldsp=true
            }else {
@@ -262,8 +276,8 @@ export default {
         fdbh: uni.getStorageSync('fdbh'),
       spsmm:this.sptm,
         spmc:this.sp.name,
-        nsjg:this.sp.price,
-        pjjj:this.sp.sjprice,
+        nsjg:this.price,
+        pjjj:this.sjprice,
         sjbh:this.sjbh,
         modeltype:this.spzt,
         userid:uni.getStorageSync('userid'),
@@ -288,6 +302,9 @@ export default {
             this.sp=''
             this.sptm=''
             this.spzt=''
+            this.ztmc=''
+            this.price=''
+            this.sjprice=''
           }
           if(res.data.result=='warning'){
             uni.showToast({
