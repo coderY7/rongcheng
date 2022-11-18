@@ -112,14 +112,8 @@ align-items: center;height: 50rpx;
 <!--                             @tap="scan()" ></uni-icons>-->
 <!--                -->
 <!--              </u-input>-->
-
-              <u-input
-                  placeholder="图标"
-                  prefixIcon="scan"
-                  prefixIconStyle="font-size: 22px;color: #909399"
-                  suffixIcon="close-circle"
-                  suffixIconStyle="color: #909399"
-              ></u-input>
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spbm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
+              
 
             </u-form-item>
           </view>
@@ -1430,9 +1424,16 @@ margin: 10rpx 20rpx;
         margin-right: 20rpx;
       }
     }
-    .uni-select__input-box{
-      width: 100%;
-    }
+    
+		.uni-select__input-box {
+		    height: 35px;
+		    position: relative;
+		    display: flex;
+		    flex: 1;
+		    flex-direction: row;
+		    width: 100%;
+		    align-items: center;
+		}
 	}
 </style>
 

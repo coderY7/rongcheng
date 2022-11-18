@@ -650,6 +650,12 @@
   margin-right: 20rpx;
 }
 .data-v-65167343 .u-popup .uni-select__input-box {
+  height: 35px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
   width: 100%;
+  align-items: center;
 }
 

@@ -9,6 +9,7 @@
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
     "u-button": "/node-modules/uview-ui/components/u-button/u-button",
     "u-form-item": "/node-modules/uview-ui/components/u-form-item/u-form-item",
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
     "uni-datetime-picker": "/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker",
     "u-overlay": "/node-modules/uview-ui/components/u-overlay/u-overlay",
     "u-toast": "/node-modules/uview-ui/components/u-toast/u-toast",
