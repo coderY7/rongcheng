@@ -21,6 +21,13 @@
           "query": "result=%5B%7B%22%E5%B0%8F%E7%B1%BB%E7%BC%96%E7%A0%81%22%3A%22001000102.%E6%B8%85%E6%B4%81%E7%9A%82%22%2C%22%E4%B8%AD%E7%B1%BB%E7%BC%96%E7%A0%81%22%3A%220010001%22%2C%22%E5%A4%A7%E7%B1%BB%E7%BC%96%E7%A0%81%22%3A%2200100.%E5%AE%B6%E5%B1%85%E6%97%A5%E7%94%A8%22%2C%22%E9%83%A8%E9%97%A8%E5%88%86%E7%BB%84%22%3A%22001.%E9%9B%B6%E5%94%AE%E4%BE%BF%E5%88%A9%E7%B1%BB%22%7D%5D&column=%5B%7B%22name%22%3A%22%E5%B0%8F%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22label%22%3A%22%E5%B0%8F%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22width%22%3A150%2C%22fixed%22%3Atrue%7D%2C%7B%22name%22%3A%22%E4%B8%AD%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22label%22%3A%22%E4%B8%AD%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22width%22%3A80%7D%2C%7B%22name%22%3A%22%E5%A4%A7%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22label%22%3A%22%E5%A4%A7%E7%B1%BB%E7%BC%96%E7%A0%81%22%2C%22width%22%3A200%7D%2C%7B%22name%22%3A%22%E9%83%A8%E9%97%A8%E5%88%86%E7%BB%84%22%2C%22label%22%3A%22%E9%83%A8%E9%97%A8%E5%88%86%E7%BB%84%22%2C%22width%22%3A200%7D%5D",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "出库",
+          "pathName": "pagesA/chuku/chuku",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
