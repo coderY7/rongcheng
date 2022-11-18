@@ -4,13 +4,19 @@
 		<view v-show="stateDetail">
 			
 			<u-form class="form-card" labelPosition="left" :model="editForm" :rules="editRules" ref="uForm">
-				<u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping">
-					<u-input placeholder="请输入商品编码/名称/条码" disabled v-model="editForm.spbm">
-					</u-input>
-				</u-form-item>
+<!--				<u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping">-->
+<!--					<u-input placeholder="请输入商品编码/名称/条码" disabled v-model="editForm.spbm">-->
+<!--					</u-input>-->
+<!--				</u-form-item>-->
 				<view>
 
           <uni-card v-if="editForm.spmc" margin="5px" spacing="0px">
+            <view  class="boxunit">
+              <view class="boxunit1">商品编码:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="editForm.spbm" :disabled="true"></u-input>
+              </view>
+            </view>
             <view  class="boxunit">
               <view class="boxunit1">商品名称:</view>
               <view class="boxunit2">
@@ -40,13 +46,13 @@
 				</view>
         <view style="margin: 10rpx 0">
           <u-form-item label="入库数量" :labelWidth="74" prop="rksl">
-            <u-input placeholder="请输入入库数量" type="number" v-model="editForm.rksl">
+            <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.rksl">
             </u-input>
           </u-form-item>
         </view>
         <view style="margin: 10rpx 0">
           <u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">
-            <u-input placeholder="请输入入库价格" type="number" v-model="editForm.rkhsjg">
+            <u-input placeholder="请输入入库价格" type="digit" v-model="editForm.rkhsjg">
             </u-input>
           </u-form-item>
         </view>

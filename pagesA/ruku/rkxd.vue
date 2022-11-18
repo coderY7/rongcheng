@@ -122,7 +122,7 @@ align-items: center;height: 50rpx;
 
           <view style="margin: 10rpx 0">
             <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
-              <u-input placeholder="请输入入库数量" type="number" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
+              <u-input placeholder="请输入入库数量" type="digit" v-model="uFormModel.jycgsl" :focus="focusObj.numFocus">
               </u-input>
 
 
@@ -130,7 +130,7 @@ align-items: center;height: 50rpx;
           </view>
           <view style="margin: 10rpx 0">
             <u-form-item label="入库价格" :labelWidth="74" prop="jycgjg" v-show="doingindex>=2">
-              <u-input placeholder="请输入入库价格" type="number" v-model="uFormModel.jycgjg" :focus="focusObj.priceFocus">
+              <u-input placeholder="请输入入库价格" type="digit" v-model="uFormModel.jycgjg" :focus="focusObj.priceFocus">
               </u-input>
 
             </u-form-item>
@@ -168,7 +168,7 @@ align-items: center;height: 50rpx;
 </view>
 
 
-    <view class="flex-btns" v-if="!honestshow">
+    <view class="flex-btns" v-if="threean">
       <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单审核"
                                          :disabled="state=='look'||state=='check'" throttleTime="2000"
                                          @click="subCheck">
@@ -251,6 +251,7 @@ align-items: center;height: 50rpx;
 			return {
         navber:true,
 				ifpage: true,
+        threean:true,
         range:[],
         cxsjbh:'',
         sjbh:'',
@@ -397,6 +398,7 @@ align-items: center;height: 50rpx;
       honest(){
         console.log('明细')
         this.ifpage=false
+        this.threean=false
         this.navber=false
         this.honestshow=true
         this.contentShow=false
@@ -408,6 +410,7 @@ align-items: center;height: 50rpx;
       },
       //退出明细
       tuichu(){
+        this.threean=true
         this.ifpage=true
         this.honestshow=false
         this.navber=true

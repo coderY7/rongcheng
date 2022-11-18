@@ -82,14 +82,14 @@ try {
     uForm: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 480))
     },
-    uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 489))
+    uniCard: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 397))
     },
     uInput: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 379))
     },
-    uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 397))
+    uFormItem: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 489))
     },
     uButton: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 361))
@@ -156,6 +156,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
 
 
 
@@ -413,17 +419,17 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
+//
+//
+//
+//
+//
+//
 var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 426));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
       }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);}, onshow: function onshow() {}, methods: { // 查询 特供（供价类型）
     formMore: function formMore(lx, isAll) {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": "DMINFO", "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (isAll) {_this.lxlist = res.data;} else {for (var i in res.data) {if (res.data[i].sjcxlxid.indexOf(lx) > -1) {var xx = res.data[i].sjcxlxid;_this.formMoreChange(xx);}}}} else {_this.$refs.uToast.show({ type: "error", message: "查询失败" });}}).catch(function (err) {console.log(err);});}, formMoreChange: function formMoreChange(item) {this.editForm.cxjbz = item;}, // 编辑商品
-    toeditDetail: function toeditDetail(row, index) {
-      this.$emit('pygb');
-      console.log('edit', this.tableData);
-      console.log("row", row);
-      console.log("index", index);
-      console.log('title', this.title);
-      this.editForm.guid = row.recordid;
+    toeditDetail: function toeditDetail(row, index) {this.$emit('pygb');console.log('edit', this.tableData);console.log("row", row);console.log("index", index);console.log('title', this.title);this.editForm.guid = row.recordid;
 
       this.serchGoods(row.spbm);
       this.editForm.splx = row.splx == "T" ? true : false;
@@ -1258,7 +1264,7 @@ var _edit = _interopRequireDefault(__webpack_require__(/*! ./edit.vue */ 277));f
 //
 //
 var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 426));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { xuanSwitch: xuanSwitch, // goodsVoice,
-    edit: _edit.default }, data: function data() {return { navber: true, ifpage: true, range: [], cxsjbh: '', sjbh: '', cxfdbh: '', fdbh: '', uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
+    edit: _edit.default }, data: function data() {return { navber: true, ifpage: true, threean: true, range: [], cxsjbh: '', sjbh: '', cxfdbh: '', fdbh: '', uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
       neworderShow: false, uFormModel: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", jgcxbz: "", //供价类型
         splx: false, //赠送商品
         jycgsl: "", jycgjg: "", scrq: (0, _dayjs.default)().format('YYYY-MM-DD') }, contentShow: false, spbmClearShow: false, isSpComplete: false, switchList: ["是", "否"], lxlist: [], ispda: uni.getStorageSync("pda"), focusObj: { spbmFocus: false, numFocus: false, priceFocus: false }, selectId: "", uploadarr: [], serchGoodsData: "", // 第二页面 已上传数据页面 data
@@ -1278,14 +1284,17 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     change: function change(e) {console.log(e);}, //取消编译
     qxby: function qxby() {this.honestshow = true;}, //进去编译
     gbpy: function gbpy() {this.honestshow = false;}, //点击明细
-    honest: function honest() {console.log('明细');this.ifpage = false;this.navber = false;this.honestshow = true;this.contentShow = false;}, historydh: function historydh() {uni.navigateTo({ url: "../../pagesA/ruku/ruku" });}, //退出明细
-    tuichu: function tuichu() {this.ifpage = true;this.honestshow = false;this.navber = true;}, //新增单据 单头 函数........................................................
+    honest: function honest() {console.log('明细');this.ifpage = false;this.threean = false;this.navber = false;this.honestshow = true;this.contentShow = false;}, historydh: function historydh() {uni.navigateTo({ url: "../../pagesA/ruku/ruku" });}, //退出明细
+    tuichu: function tuichu() {this.threean = true;this.ifpage = true;this.honestshow = false;this.navber = true;}, //新增单据 单头 函数........................................................
     // 查询合同
     queryHt: function queryHt(isauto, value, fixid) {var _this2 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "CompanyID": uni.getStorageSync("companyid"), "EndRQ": "", "StartRQ": "", "htlxid": "", "sjbh": "", "sjmc": "" };(0, _api.rcqueryHT)(dataes).then(function (res) {// console.log("queryHt res",res)
         if (res.error_code == 0) {if (value) {for (var i in res.data) {if (res.data[i].SJBH == value) {_this2.uFormTitle[fixid] = "".concat(res.data[i].SJBH, "-").concat(res.data[i].SJMC);}}} else {if (isauto) {//自动填充
               _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 新增单据
     queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": type, "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {// console.log(type + " 基本信息basic res", res)
-        if (res.error_code == 0) {if (value) {for (var i in res.data) {if (type == "CKINFO") {if (res.data[i].ckbmid == value.split(" ")[0]) {_this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);}} else if (type == "FDINFO") {if (res.data[i].fdbh == value) {_this3.uFormTitle[fixid] = "".concat(res.data[i].fdbh, "-").concat(res.data[i].fdmc);}}}} else {if (isauto) {//自动填充
+        if (res.error_code == 0) {if (value) {for (var i in res.data) {if (type == "CKINFO") {if (res.data[i].ckbmid == value.split(" ")[0]) {_this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);}} else if (type == "FDINFO") {if (res.data[i].fdbh == value) {_this3.uFormTitle[fixid] = "".concat(res.data[i].fdbh, "-").concat(res.data[i].fdmc);}}
+            }
+          } else {
+            if (isauto) {//自动填充
               if (type == "CKINFO") {
                 _this3.uFormTitle[fixid] = "".concat(
                 res.data[0].ckbmid, "-").concat(res.data[0].ckmc);
