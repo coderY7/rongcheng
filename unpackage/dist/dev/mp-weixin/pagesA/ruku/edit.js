@@ -303,18 +303,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
 //
 //
 //
@@ -447,7 +437,12 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         cxjbz: "" //供价类型
       }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);}, onshow: function onshow() {}, methods: { // 查询 特供（供价类型）
     formMore: function formMore(lx, isAll) {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": "DMINFO", "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (isAll) {_this.lxlist = res.data;} else {for (var i in res.data) {if (res.data[i].sjcxlxid.indexOf(lx) > -1) {var xx = res.data[i].sjcxlxid;_this.formMoreChange(xx);}}}} else {_this.$refs.uToast.show({ type: "error", message: "查询失败" });}}).catch(function (err) {console.log(err);});}, formMoreChange: function formMoreChange(item) {this.editForm.cxjbz = item;}, // 编辑商品
-    toeditDetail: function toeditDetail(row, index) {this.$emit('pygb');console.log('edit', this.tableData);console.log("row", row);console.log("index", index);console.log('title', this.title);this.editForm.guid = row.recordid;
+    toeditDetail: function toeditDetail(row, index) {this.$emit('pygb');
+      console.log('edit', this.tableData);
+      console.log("row", row);
+      console.log("index", index);
+      console.log('title', this.title);
+      this.editForm.guid = row.recordid;
 
       this.serchGoods(row.spbm);
       this.editForm.splx = row.splx == "T" ? true : false;
@@ -573,14 +568,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       }).catch(function (err) {
         console.log(err);
       });
-    } },
-
-
-  watch: {
-    // title: function(newv, oldv) {
-    // 	console.log("this.title",this.title)
-    // },
-  } };exports.default = _default2;
+    } } };exports.default = _default2;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

@@ -313,6 +313,7 @@ export default {
 
     // 编辑单
     tolook(item){
+      console.log('j进入编译',item)
       uni.$emit("editTitle",item)
       let states=""
       if(item.单据状态=="未审核"){

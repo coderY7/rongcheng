@@ -182,7 +182,9 @@ align-items: center;height: 50rpx;
     </view>
 
 
-
+		<view class="box-content" v-show="!ifpage">
+			<edit @byqx="qxby()" @pygb="gbpy()" :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
+		</view>
 
     <view style="display: flex;justify-content: center;align-items: center">
       <view style="width: 60%;margin-bottom:20rpx">
@@ -190,12 +192,6 @@ align-items: center;height: 50rpx;
         </u-button>
       </view>
     </view>
-
-
-		<view class="box-content" v-show="!ifpage">
-			<edit @byqx="qxby()" @pygb="gbpy()" :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
-		</view>
-
 
 		<!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
 		<u-overlay :show="coverShow"></u-overlay>
@@ -307,8 +303,7 @@ align-items: center;height: 50rpx;
 				selectData: [],// 搜索的数据(语音)
 				popupShow: false,
 				coverShow: false,
-				//语音data
-				isVoiceMode: false,//是否语音模式
+
 				doingId: "",
 				doingindex: 100,
 				yuyinModelArr:[],
@@ -484,7 +479,7 @@ align-items: center;height: 50rpx;
           "companyid": uni.getStorageSync("companyid"),
         }
         rcbasics(dataes).then((res) => {
-          // console.log(type + " 基本信息basic res", res)
+
           if (res.error_code == 0) {
             if(value){
               for (var i in res.data) {
@@ -704,20 +699,10 @@ align-items: center;height: 50rpx;
 				this.popupShow=false
 				this.searchCode=400
 				this.isSpComplete = true
-				// console.log("this.serchGoodsData this.serchGoodsData", this.serchGoodsData)
-				if(this.isVoiceMode){
-					let arrTemp=[]
-					arrTemp.push(data)
-					this.selectData = arrTemp
-					this.searchCode=0
-					if(!isauto){//语音模式 手动点击调用函数时
-
-					}
-				}else{
 					setTimeout(()=>{
 						this.focusObj.numFocus=true
 					},300)
-				}
+
 			},
 			// 扫码 搜索商品
 			scan() {
@@ -755,25 +740,19 @@ align-items: center;height: 50rpx;
 							this.lxlist = res.data
 							this.uFormModel.jgcxbz=res.data[0].sjcxlxid
 						} else {
-							if(this.isVoiceMode){
-								isyuyinBol=true
-							}
+
 							let tempArr=[]
 							for(var i in res.data){
 								if(res.data[i].sjcxlxid.indexOf(lx)>-1){
-									if(this.isVoiceMode){
-										tempArr.push(res.data[i])
-									}else{
+
 										let xx = `${res.data[i].sjcxlxid}-${res.data[i].lxmc}`
 										this.formMoreChange(xx,isyuyinBol)
-									}
+
 								}else if(res.data[i].lxmc.indexOf(lx)>-1){
-									if(this.isVoiceMode){
-										tempArr.push(res.data[i])
-									}else{
+
 										let xx = `${res.data[i].sjcxlxid}-${res.data[i].lxmc}`
 										this.formMoreChange(xx,isyuyinBol)
-									}
+
 								}
 							}
 							this.selectData=tempArr
@@ -833,11 +812,7 @@ align-items: center;height: 50rpx;
 			},
 			
 			clearAlone(item) {
-				if(this.isVoiceMode){
-					
-				}else{
 					this.uFormModel[item]=""
-				}
 			},
 			clearForm() {
 				this.uFormModel.spbm= ""
@@ -881,7 +856,7 @@ align-items: center;height: 50rpx;
 					if (res.error_code == 0) {
 						this.uFormTitle.djbh = res.djbh
 						this.state = "add"
-						this.queryHt(true, "sjbh")
+						//this.queryHt(true, "sjbh")
 						this.queryMore(true, "CKINFO", "ckbh")
 						this.queryMore(true, "FDINFO", "fdbh")
 						this.queryMore(true, "USERINFO", "service")
@@ -970,16 +945,11 @@ console.log('编译保存')
 						this.clearFocus()
 						this.clearForm()
 						this.getList()
-						if(this.isVoiceMode){//语音模式时
-							this.yuyinModelArr=[]
-							setTimeout(()=>{
-								this.yuyinModelArr=this.yuyinArr
-							},1500)
-						}else{
+
 							setTimeout(()=>{
 								this.focusObj.spbmFocus=true
 							},300)
-						}
+
 					} else if (res.error_code == 2) {
 						uni.showModal({
 							content: res.error_data[0].message,
@@ -1015,26 +985,13 @@ console.log('编译保存')
 							});
 						}
 					}
-					if(this.isVoiceMode){
-						if (res.error_code != 0){
-							this.$voice({
-								voiceSet: {
-									tex: "保存失败，请根据提示操作",
-								}
-							})
-						}
-					}
+
 				}).catch((err) => {
 					console.log(err)
 				})
 			}
 			
 			
-		},
-		computed: {
-			// skin() {
-			// 	return this.$store.state.skin;
-			// }
 		},
 		watch: {
 			state: function(newv, oldv) {

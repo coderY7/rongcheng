@@ -4,12 +4,7 @@
 		<view v-show="stateDetail">
 			
 			<u-form class="form-card" labelPosition="left" :model="editForm" :rules="editRules" ref="uForm">
-<!--				<u-form-item label="商品编码" :labelWidth="74" prop="spbm" class="shoping">-->
-<!--					<u-input placeholder="请输入商品编码/名称/条码" disabled v-model="editForm.spbm">-->
-<!--					</u-input>-->
-<!--				</u-form-item>-->
 				<view>
-
           <uni-card v-if="editForm.spmc" margin="5px" spacing="0px">
             <view  class="boxunit">
               <view class="boxunit1">商品编码:</view>
@@ -400,13 +395,7 @@
 				})
 			},
 			
-		},
-		watch: {
-			// title: function(newv, oldv) {
-			// 	console.log("this.title",this.title)
-			// },
 		}
-		
 	}
 </script>
 
