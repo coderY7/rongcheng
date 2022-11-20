@@ -57,19 +57,7 @@ align-items: center;height: 50rpx;
               </view>
             </view>
 
-
-<!--            <view class="unitbox" style="margin: 20rpx 0">-->
-<!--              <u-form-item label="入库分店" :labelWidth="76" prop="fdbh" @click="queryMore(false,'FDINFO','fdbh')">-->
-<!--                <u-input placeholder="请选择入库分店" disabled v-model="uFormTitle.fdbh">-->
-<!--                </u-input>-->
-<!--              </u-form-item>-->
-<!--            </view>-->
-
             <view class="unitbox" style="margin: 20rpx 0">
-<!--              <u-form-item label="备注说明" :labelWidth="76" prop="remarks">-->
-<!--                -->
-<!--              </u-form-item>-->
-
 
               <view class="unitbox_l">备注说明:</view>
               <view @ckick="xzfhlist()" class="unitbox_r">
@@ -91,16 +79,6 @@ align-items: center;height: 50rpx;
 				<u-form class="form-card" labelPosition="left" :model="uFormModel"  ref="uForm">
           <view style="margin: 10rpx 0">
             <u-form-item label="商品条码:" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
-<!--              <u-input placeholder="请输入商品编码/名称/简码"  v-model="uFormModel.spbm" @change="spbmChange" :focus="focusObj.spbmFocus">-->
-<!--                <template slot="suffix">-->
-<!--                  <uni-icons type="clear" size="20" color="#e1e1e1"-->
-<!--                             @tap="clearAlone('spbm')"></uni-icons>-->
-<!--                </template>-->
-<!--                -->
-<!--                  <uni-icons custom-prefix="iconfont" type="icon-shouye" size="20" color="#606060"-->
-<!--                             @tap="scan()" ></uni-icons>-->
-<!--                -->
-<!--              </u-input>-->
           <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spbm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
             </u-form-item>
           </view>

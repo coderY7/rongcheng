@@ -984,28 +984,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);
 
@@ -1020,28 +998,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);
 
 
 var _edit = _interopRequireDefault(__webpack_require__(/*! ./edit.vue */ 279));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -1267,8 +1223,30 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     // 查询合同
     queryHt: function queryHt(isauto, value, fixid) {var _this2 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "CompanyID": uni.getStorageSync("companyid"), "EndRQ": "", "StartRQ": "", "htlxid": "", "sjbh": "", "sjmc": "" };(0, _api.rcqueryHT)(dataes).then(function (res) {// console.log("queryHt res",res)
         if (res.error_code == 0) {if (value) {for (var i in res.data) {if (res.data[i].SJBH == value) {_this2.uFormTitle[fixid] = "".concat(res.data[i].SJBH, "-").concat(res.data[i].SJMC);}}} else {if (isauto) {//自动填充
-              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 新增单据
-    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": type, "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (value) {for (var i in res.data) {if (type == "CKINFO") {if (res.data[i].ckbmid == value.split(" ")[0]) {_this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);
+              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);
+      });
+    },
+    // 新增单据
+    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;
+      if (!isauto) {
+        if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
+          return;
+        }
+      }
+      this.searchCode = 400;
+      var dataes = {
+        "access_token": uni.getStorageSync("access_token"),
+        "dtype": type,
+        "companyid": uni.getStorageSync("companyid") };
+
+      (0, _api.rcbasics)(dataes).then(function (res) {
+
+        if (res.error_code == 0) {
+          if (value) {
+            for (var i in res.data) {
+              if (type == "CKINFO") {
+                if (res.data[i].ckbmid == value.split(" ")[0]) {
+                  _this3.uFormTitle[fixid] = "".concat(res.data[i].ckbmid, "-").concat(res.data[i].ckmc);
                 }
               } else if (type == "FDINFO") {
                 if (res.data[i].fdbh == value) {
