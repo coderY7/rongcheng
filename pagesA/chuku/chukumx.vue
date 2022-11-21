@@ -228,7 +228,6 @@ this.getlist()
       this.editForm.guid = row.guid
       this.editForm.thjg = row.thjg
       this.editForm.spmc = row.spmc
-      //this.editForm.thsl = row.thsl
       this.editForm.spsmm = row.spsmm
       this.editForm.spbm = row.spbm
       this.editForm.spsl = row.thsl
@@ -240,15 +239,18 @@ this.getlist()
       this.tableIndex = index
     },
     cancelDetail() {
-      this.editForm.spbm= ""
-      this.editForm.spsmm= ""
-      this.editForm.spmc= ""
-      this.editForm.dw= ""
-      this.editForm.gg= ""
+      this.editForm.guid = ''
+      this.editForm.thjg =''
+      this.editForm.spmc =''
+      this.editForm.spsmm =''
+      this.editForm.spbm =''
+      this.editForm.spsl =''
+      this.editForm.nsjg =''
+      this.editForm.sppc =''
       this.editForm.cxjbz= ""//供价类型
       this.editForm.splx= false//赠送商品
-      this.editForm.rksl= ""
-      this.editForm.rkhsjg= ""
+      this.editForm.thsl= ""
+      this.editForm.thjg= ""
       this.stateDetail = false
       this.tableIndex = -1
 

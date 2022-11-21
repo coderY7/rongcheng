@@ -269,8 +269,6 @@ console.log(res)
             this.testdata[8].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
             this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
             this.testdata[5].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
-
-
             this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['管理库存']:''
             this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['规格']:''
             this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['零售价格']:''
@@ -279,7 +277,6 @@ console.log(res)
             } else {
               this.testdata[7].value=false
             }
-
             this.iszgys(res.list.Table3)
           }
 					if(res.error_code=='500'){
