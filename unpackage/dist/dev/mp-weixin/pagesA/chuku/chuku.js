@@ -98,22 +98,22 @@ var components
 try {
   components = {
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 399))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 310))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 324))
     },
     uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 435))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 449))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 381))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 363))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 467))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 481))
     }
   }
 } catch (e) {
@@ -176,6 +176,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -417,30 +430,33 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var _default = { components: {}, data: function data() {return { sjbh: '', sjbhlist: '', thck: '', //仓库
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { components: {}, data: function data() {return { spbm: '', sjbh: '', sjbhlist: '', thck: '', //仓库
       thcklist: '', thlx: '', //退回类型
       thlxlist: '', thdh: '', //退货单
       thrq: '', //退货日期
       detail: true, //明细
       detaildata: [], //明细数据
-      from: {}, popupShow: false, searchdata: '' };}, onLoad: function onLoad() {}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
+      from: {}, popupShow: false, searchdata: '', pitchdata: '' //选中
+    };}, onLoad: function onLoad() {}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
     this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value; //处理退货类型下拉框数据
     this.thlxlist = uni.getStorageSync('basic').TKLX;var thlxlist = [];this.thlxlist.forEach(function (item) {var datas = {};datas.value = item.tklxid;datas.text = item.tklxmc;thlxlist.push(datas);});this.thlxlist = thlxlist;this.thlx = this.thlxlist[0].value;this.new();}, methods: { //创建出库单
     new: function _new() {var _this = this;var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPTHD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('退货单创建成功', res);_this.thdh = res.djbh;var datee = _this.thdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});}, // 扫码 搜索商品
-    scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.from.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.from.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0') {_this3.popupShow = true;_this3.searchdata = res.data;}});}, //选中的商品
-    pitchdata: function pitchdata(item) {this.popupShow = false;console.log('选中的商品', item);this.from.spbm = item.spbm, this.from.spsmm = item.spsmm, this.from.spmc = item.spmc,
-      this.from.nsjg = item.nsjg;
-      this.from.sppc = '';
-      this.from.thjg = '';
-      this.from.spsl = '';
-      this.from.guid = '';
-    },
-    added: function added() {var _this4 = this;
-      var data = {
-        access_token: uni.getStorageSync('access_token'),
-        userid: uni.getStorageSync('userid'),
-        vtype: 'ADD',
+    scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.from.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0') {_this3.popupShow = true;_this3.searchdata = res.data;}});}, //选中的商品
+    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.spbm = this.pitchdata.spbm, this.from.spsmm = this.pitchdata.spsmm, this.from.spmc = this.pitchdata.spmc, this.from.nsjg = this.pitchdata.nsjg;this.from.sppc = '';this.from.thjg = '';this.from.spsl = '';this.from.guid = '';}, added: function added() {var _this4 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), vtype: 'ADD',
         djbh: this.thdh,
         fdbh: uni.getStorageSync('fdbh'),
         ysdh: '',
@@ -453,11 +469,21 @@ var _default = { components: {}, data: function data() {return { sjbh: '', sjbhl
       (0, _api.rcckdosave)(data).then(function (res) {
         console.log('新增', res);
         _this4.getlist();
-        uni.showToast({
-          title: '新增商品成功',
-          duration: 2000,
-          icon: 'none' });
+        if (res.error_code == '0') {
+          uni.showToast({
+            title: '新增商品成功',
+            duration: 2000,
+            icon: 'none' });
 
+          _this4.pitchdata = '';
+          _this4.from = {};
+        } else {
+          uni.showToast({
+            title: '新增商品失败',
+            duration: 2000,
+            icon: 'none' });
+
+        }
 
       });
     },
@@ -477,7 +503,7 @@ var _default = { components: {}, data: function data() {return { sjbh: '', sjbhl
     },
     isdetail: function isdetail() {
       uni.navigateTo({
-        url: "../chuku/chukumx?thdh=".concat(this.thdh) });
+        url: "../chuku/chukumx?thdh=".concat(this.thdh, "&thck=").concat(this.thck, "&thlx=").concat(this.thlx) });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

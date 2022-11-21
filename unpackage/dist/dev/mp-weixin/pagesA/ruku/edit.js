@@ -98,25 +98,25 @@ var components
 try {
   components = {
     uForm: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 482))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 496))
     },
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 399))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 381))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 491))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 505))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 363))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 443))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 457))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 475))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 489))
     }
   }
 } catch (e) {
@@ -433,7 +433,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 428));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
+var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 442));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
       }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);}, onshow: function onshow() {}, methods: { // 查询 特供（供价类型）
     formMore: function formMore(lx, isAll) {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": "DMINFO", "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (isAll) {_this.lxlist = res.data;} else {for (var i in res.data) {if (res.data[i].sjcxlxid.indexOf(lx) > -1) {var xx = res.data[i].sjcxlxid;_this.formMoreChange(xx);}}}} else {_this.$refs.uToast.show({ type: "error", message: "查询失败" });}}).catch(function (err) {console.log(err);});}, formMoreChange: function formMoreChange(item) {this.editForm.cxjbz = item;}, // 编辑商品

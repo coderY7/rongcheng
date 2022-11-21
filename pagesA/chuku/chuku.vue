@@ -44,12 +44,35 @@
           <view class="box">
             <view class="box_l">商品条码:</view>
             <view class="box_r">
-              <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="from.spbm" height="30" @clickIcon="scan()" @custom="Search()"></u-search>
+              <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spbm" height="30" @clickIcon="scan()" @custom="Search()"></u-search>
+            </view>
+          </view>
+
+          <view class="box" v-if="pitchdata">
+            <view class="box_l">商品名称:</view>
+            <view class="box_r">
+              <u-input
+                  v-model="pitchdata.spmc"
+                  border="bottom"
+                  :disabled="true"
+              ></u-input>
+            </view>
+          </view>
+
+          <view class="box" v-if="pitchdata">
+            <view class="box_l">零售价格:</view>
+            <view class="box_r">
+              <u-input
+                  placeholder="请输入价格"
+                  border="bottom"
+                  v-model="from.nsjg"
+                  :disabled="true"
+              ></u-input>
             </view>
           </view>
 
           <view class="box">
-            <view class="box_l">商品数量:</view>
+            <view class="box_l">退货数量:</view>
             <view class="box_r">
               <u-input
                   placeholder="请输入数量"
@@ -60,17 +83,7 @@
             </view>
           </view>
 
-          <view class="box">
-            <view class="box_l">商品价格:</view>
-            <view class="box_r">
-              <u-input
-                  placeholder="请输入价格"
-                  border="bottom"
-                  v-model="from.nsjg"
-                  clearable
-              ></u-input>
-            </view>
-          </view>
+
 
           <view class="box">
             <view class="box_l">退货价格:</view>
@@ -97,12 +110,12 @@
 
 <!--    弹出框-->
     <view>
-      <u-popup :show="popupShow" @close="close" @open="open">
+      <u-popup :show="popupShow" @close="close" @open="open" mode="center" :round="10">
         <view>
           <scroll-view style="max-height: 80vh; margin-top: 30rpx" scroll-y="true">
             <view  class="">
-              <view class="" v-for="(v, i) in searchdata" class="" @click="pitchdata(v)">
-                <view style="display: flex;justify-content: center;padding: 10px 0;border-bottom: #6a6a6a solid 1px">
+              <view class="" v-for="(v, i) in searchdata" class="" @click="ispitchdata(v)">
+                <view style="display: flex;justify-content: center;padding: 10px 20px;border-bottom: #6a6a6a solid 1px">
                   <view>{{v.spmc}}---</view>
                   <view>{{v.spbm}}</view>
                   <view></view>
@@ -110,7 +123,7 @@
               </view>
             </view>
           </scroll-view>
-          <view class="" @click="popupShow=false">取消</view>
+          <view class="closebtn" @click="popupShow=false">取消</view>
         </view>
       </u-popup>
     </view>
@@ -134,6 +147,7 @@ export default {
   components: {},
   data() {
     return {
+      spbm:'',
       sjbh: '',
       sjbhlist: '',
       thck: '',//仓库
@@ -146,7 +160,8 @@ export default {
       detaildata:[],//明细数据
       from:{},
       popupShow:false,
-      searchdata:''
+      searchdata:'',
+      pitchdata:'',//选中
     }
   },
   onLoad() {
@@ -232,7 +247,7 @@ this.Search()
       let data={
         access_token: uni.getStorageSync('access_token'),
         companyid:uni.getStorageSync('companyid'),
-        condition:this.from.spbm,
+        condition:this.spbm,
         fdbh:uni.getStorageSync('fdbh'),
         findtype:'01',
         goodstype:'SP',
@@ -247,13 +262,14 @@ this.Search()
       })
     },
     //选中的商品
-    pitchdata(item) {
+    ispitchdata(item) {
+      this.pitchdata=item
       this.popupShow=false
-      console.log('选中的商品', item);
-      this.from.spbm = item.spbm,
-          this.from.spsmm = item.spsmm,
-          this.from.spmc = item.spmc,
-          this.from.nsjg = item.nsjg
+      console.log('选中的商品', this.pitchdata);
+      this.from.spbm = this.pitchdata.spbm,
+          this.from.spsmm = this.pitchdata.spsmm,
+          this.from.spmc = this.pitchdata.spmc,
+          this.from.nsjg = this.pitchdata.nsjg
       this.from.sppc =''
       this.from.thjg=''
       this.from.spsl=''
@@ -276,12 +292,22 @@ this.Search()
       rcckdosave(data).then((res)=>{
         console.log('新增',res)
         this.getlist()
-        uni.showToast({
-          title: '新增商品成功',
-          duration: 2000,
-          icon:'none'
+        if(res.error_code=='0'){
+          uni.showToast({
+            title: '新增商品成功',
+            duration: 2000,
+            icon:'none'
+          });
+          this.pitchdata=''
+          this.from={}
+        }else {
+          uni.showToast({
+            title: '新增商品失败',
+            duration: 2000,
+            icon:'none'
+          });
+        }
 
-        });
       })
     },
     getlist(){
@@ -300,7 +326,7 @@ this.Search()
     },
     isdetail(){
       uni.navigateTo({
-        url:`../chuku/chukumx?thdh=${this.thdh}`
+        url:`../chuku/chukumx?thdh=${this.thdh}&thck=${this.thck}&thlx=${this.thlx}`
       })
     }
   }
@@ -310,7 +336,7 @@ this.Search()
 
 <style lang="scss" scoped>
 .head{
-  padding: 10px 10px 0;
+  padding: 10px;
   color: #fff;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -352,6 +378,14 @@ this.Search()
 
 .uni-select__input-box {
   width: 100%;
+}
+.closebtn {
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  color: #358CC9;
+  font-size: 18px;
+  margin-top: 15px;
 }
 </style>
 

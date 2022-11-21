@@ -83,20 +83,20 @@ align-items: center;height: 50rpx;
             </u-form-item>
           </view>
 <!--          搜索到选择的商品条码-->
-          <uni-card v-if="uFormModel.spmc" margin="5px" spacing="0px">
-            <view  class="boxunit">
-              <view class="boxunit1">商品名称:</view>
-              <view class="boxunit2">
+
+            <view  class="unitbox" style="margin: 20rpx 0">
+              <view class="unitbox_l">商品名称:</view>
+              <view class="unitbox_r">
                 <u-input border="surround" v-model="uFormModel.spmc" :disabled="true"></u-input>
               </view>
             </view>
-            <view  class="boxunit">
-              <view class="boxunit1">商品条码:</view>
-              <view class="boxunit2">
-                <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>
-              </view>
-            </view>
-          </uni-card>
+<!--            <view  class="unitbox">-->
+<!--              <view class="unitbox_l">商品条码:</view>-->
+<!--              <view class="unitbox_r">-->
+<!--                <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>-->
+<!--              </view>-->
+<!--            </view>-->
+
 
           <view style="margin: 10rpx 0">
             <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
@@ -1365,7 +1365,7 @@ margin: 20rpx 0;
         width: 20%;
       }
       .boxunit2{
-        width: 70%;
+        width: 80%;
         margin-left: 10rpx;
         margin-right: 20rpx;
       }
