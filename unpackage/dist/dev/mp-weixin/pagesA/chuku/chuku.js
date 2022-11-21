@@ -453,9 +453,15 @@ var _default = { components: {}, data: function data() {return { sjbh: '', sjbhl
       (0, _api.rcckdosave)(data).then(function (res) {
         console.log('新增', res);
         _this4.getlist();
+        uni.showToast({
+          title: '新增商品成功',
+          duration: 2000,
+          icon: 'none' });
+
+
       });
     },
-    getlist: function getlist() {
+    getlist: function getlist() {var _this5 = this;
       var data = {
         "access_token": uni.getStorageSync("access_token"),
         "djbh": this.thdh,
@@ -466,7 +472,13 @@ var _default = { components: {}, data: function data() {return { sjbh: '', sjbhl
 
       (0, _api.rcGetlistC)(data).then(function (res) {
         console.log('明细列表', res);
+        _this5.detaildata = res.data;
       });
+    },
+    isdetail: function isdetail() {
+      uni.navigateTo({
+        url: "../chuku/chukumx?thdh=".concat(this.thdh) });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

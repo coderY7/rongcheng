@@ -3,7 +3,7 @@
     <view class="unit1">
       <view class="head">
         <view>退货单:{{thdh}}</view>
-        <view v-if="detail" class="dhliang" @click="getlist()">
+        <view v-if="detail" class="dhliang" @click="isdetail()">
           明细:{{detaildata.length}}
         </view>
       </view>
@@ -276,6 +276,12 @@ this.Search()
       rcckdosave(data).then((res)=>{
         console.log('新增',res)
         this.getlist()
+        uni.showToast({
+          title: '新增商品成功',
+          duration: 2000,
+          icon:'none'
+
+        });
       })
     },
     getlist(){
@@ -289,6 +295,12 @@ this.Search()
       }
       rcGetlistC(data).then((res)=>{
         console.log('明细列表',res)
+        this.detaildata=res.data
+      })
+    },
+    isdetail(){
+      uni.navigateTo({
+        url:`../chuku/chukumx?thdh=${this.thdh}`
       })
     }
   }
