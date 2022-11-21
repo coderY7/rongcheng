@@ -18,7 +18,7 @@ export default {
     }
   },
   onShow(){
-
+this.condition()
   },
   methods:{
     //拉取查询条件

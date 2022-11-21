@@ -1,5 +1,8 @@
 <template>
   <view>
+    <view>
+    <view @click="jl()" style="color: #4f99ff;margin:0 0 20rpx 20rpx">历史记录</view>
+    </view>
     <view class="unit1">
       <view class="head">
         <view>退货单:{{thdh}}</view>
@@ -97,14 +100,29 @@
             </view>
           </view>
 
+          <view class="box">
+            <view class="box_l">备注信息:</view>
+            <view class="box_r">
+              <u-input
+                  placeholder="请输入备注信息(可不填)"
+                  border="bottom"
+                  v-model="remark"
+                  clearable
+              ></u-input>
+            </view>
+          </view>
 
         </uni-card>
 
       </view>
     </view>
     <view class="unit2">
+      <u-button text="新增明细" @click="added()" type="primary"></u-button>
+    </view>
 
-      <u-button text="新增删除明细" @click="added()"></u-button>
+    <view class="unit3">
+      <view class="unit3_l"><u-button type="primary" text="整单审核" @click="ischeck()"></u-button></view>
+      <view class="unit3_r"><u-button type="primary" text="整单删除" @click="isdelete()"></u-button></view>
     </view>
 
 
@@ -141,6 +159,8 @@ import {
   rcckdosave,
   rcsearch,
   rcGetlistC,
+  rcckcheck,
+  rcckdelete,
 } from "@/network/api.js";
 
 export default {
@@ -162,9 +182,11 @@ export default {
       popupShow:false,
       searchdata:'',
       pitchdata:'',//选中
+      remark:'',//备注
     }
   },
   onLoad() {
+    this.new()
 
   },
   onReady() {
@@ -205,26 +227,40 @@ export default {
     })
     this.thlxlist = thlxlist
     this.thlx = this.thlxlist[0].value
-    this.new()
+    this.getlist()
   },
   methods: {
     //创建出库单
     new() {
-      let data = {
-        access_token: uni.getStorageSync('access_token'),
-        djtype: 'SPTHD',
-        fdbh: uni.getStorageSync('fdbh'),
-        userid: uni.getStorageSync('userid')
-      }
-      rcOrderNew(data).then((res) => {
-        console.log('退货单创建成功', res)
-        this.thdh=res.djbh
-        let datee=this.thdh.split("TH")[1]
-        let y="20"+datee.slice(0,2)
-        let m=datee.slice(2,4)
-        let d=datee.slice(4,6)
-        this.thrq=`${y}-${m}-${d}`
-      })
+      uni.showModal({
+        title: '提示',
+        content: '是否创建新退货单',
+        success:(res) =>{
+          if (res.confirm) {
+            console.log('用户点击确定');
+            let data = {
+              access_token: uni.getStorageSync('access_token'),
+              djtype: 'SPTHD',
+              fdbh: uni.getStorageSync('fdbh'),
+              userid: uni.getStorageSync('userid')
+            }
+            rcOrderNew(data).then((res) => {
+              console.log('退货单创建成功', res)
+              this.thdh=res.djbh
+              let datee=this.thdh.split("TH")[1]
+              let y="20"+datee.slice(0,2)
+              let m=datee.slice(2,4)
+              let d=datee.slice(4,6)
+              this.thrq=`${y}-${m}-${d}`
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消');
+            this.thdh=''
+            this.from={}
+          }
+        }
+      });
+
 
     },
     // 扫码 搜索商品
@@ -232,7 +268,7 @@ export default {
       uni.scanCode({
         success: (res) => {
           console.log('扫码内容', res.result)
-          this.from.spbm=res.result
+          this.spbm=res.result
 this.Search()
         },
         fail: (err) => {
@@ -243,6 +279,7 @@ this.Search()
         }
       });
     },
+    //商品搜索
     Search(){
       let data={
         access_token: uni.getStorageSync('access_token'),
@@ -275,6 +312,7 @@ this.Search()
       this.from.spsl=''
       this.from.guid=''
     },
+    //上传商品
     added(){
       let data={
         access_token:uni.getStorageSync('access_token'),
@@ -300,9 +338,19 @@ this.Search()
           });
           this.pitchdata=''
           this.from={}
-        }else {
+        }
+        if(res.error_code=='2'){
           uni.showToast({
-            title: '新增商品失败',
+            title:res.error_data[0].message,
+            duration: 2000,
+            icon:'none'
+          });
+          this.pitchdata=''
+          this.from={}
+        }
+        if(res.error_code=='500'){
+          uni.showToast({
+            title: res.message,
             duration: 2000,
             icon:'none'
           });
@@ -310,6 +358,7 @@ this.Search()
 
       })
     },
+    //查询上传商品
     getlist(){
       let data={
         "access_token": uni.getStorageSync("access_token"),
@@ -324,11 +373,56 @@ this.Search()
         this.detaildata=res.data
       })
     },
+    //点击明细
     isdetail(){
       uni.navigateTo({
         url:`../chuku/chukumx?thdh=${this.thdh}&thck=${this.thck}&thlx=${this.thlx}`
       })
+    },
+    //审核
+    ischeck(){
+      let data={
+        access_token:uni.getStorageSync('access_token'),
+        userid:uni.getStorageSync('userid'),
+        username:uni.getStorageSync('dlmc'),
+        djbh:this.thdh,
+        fdbh:uni.getStorageSync('fdbh'),
+        remark:this.remark,
+        checkin:'F'
+      }
+      rcckcheck(data).then((res)=>{
+        console.log('审核',res)
+      })
+    },
+    //整单删除
+    isdelete(){
+      let data={
+        access_token:uni.getStorageSync('access_token'),
+        userid:uni.getStorageSync('userid'),
+        username:uni.getStorageSync('dlmc'),
+        djbh:this.thdh,
+      }
+      rcckdelete(data).then((res)=>{
+        console.log('整单删除',res)
+if(res.error_code=='0'){
+  uni.showToast({
+    title: '整单删除成功',
+    duration: 2000,
+    icon:'none'
+  });
+  setTimeout(()=>{
+    this.new()
+  },2000)
+}
+      })
+    },
+    //记录
+    jl(){
+      uni.navigateTo({
+        url:`../chuku/chukujl`
+      });
     }
+
   }
 
 }
@@ -386,6 +480,25 @@ this.Search()
   color: #358CC9;
   font-size: 18px;
   margin-top: 15px;
+}
+.unit2{
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.unit3{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  .unit3_l{
+    width: 45%;
+  }
+  .unit3_r{
+    width: 45%;
+
+  }
 }
 </style>
 

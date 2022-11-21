@@ -276,7 +276,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
         return;
       }
-      if (this.hqcompanyid == this.companyid) {
+      if (this.hqcompanyid) {
         uni.setStorageSync('companyid', this.hqcompanyid);
         var logindata = {
           "vtype": "login",

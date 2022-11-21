@@ -309,8 +309,44 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -449,15 +485,17 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
       thrq: '', //退货日期
       detail: true, //明细
       detaildata: [], //明细数据
-      from: {}, popupShow: false, searchdata: '', pitchdata: '' //选中
-    };}, onLoad: function onLoad() {}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
+      from: {}, popupShow: false, searchdata: '', pitchdata: '', //选中
+      remark: '' //备注
+    };}, onLoad: function onLoad() {this.new();}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
     this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value; //处理退货类型下拉框数据
-    this.thlxlist = uni.getStorageSync('basic').TKLX;var thlxlist = [];this.thlxlist.forEach(function (item) {var datas = {};datas.value = item.tklxid;datas.text = item.tklxmc;thlxlist.push(datas);});this.thlxlist = thlxlist;this.thlx = this.thlxlist[0].value;this.new();}, methods: { //创建出库单
-    new: function _new() {var _this = this;var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPTHD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('退货单创建成功', res);_this.thdh = res.djbh;var datee = _this.thdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});}, // 扫码 搜索商品
-    scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.from.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0') {_this3.popupShow = true;_this3.searchdata = res.data;}});}, //选中的商品
-    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.spbm = this.pitchdata.spbm, this.from.spsmm = this.pitchdata.spsmm, this.from.spmc = this.pitchdata.spmc, this.from.nsjg = this.pitchdata.nsjg;this.from.sppc = '';this.from.thjg = '';this.from.spsl = '';this.from.guid = '';}, added: function added() {var _this4 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), vtype: 'ADD',
-        djbh: this.thdh,
+    this.thlxlist = uni.getStorageSync('basic').TKLX;var thlxlist = [];this.thlxlist.forEach(function (item) {var datas = {};datas.value = item.tklxid;datas.text = item.tklxmc;thlxlist.push(datas);});this.thlxlist = thlxlist;this.thlx = this.thlxlist[0].value;this.getlist();}, methods: { //创建出库单
+    new: function _new() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新退货单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPTHD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('退货单创建成功', res);_this.thdh = res.djbh;var datee = _this.thdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.thdh = '';_this.from = {};}} });}, // 扫码 搜索商品
+    scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, //商品搜索
+    Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0') {_this3.popupShow = true;_this3.searchdata = res.data;}});}, //选中的商品
+    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.spbm = this.pitchdata.spbm, this.from.spsmm = this.pitchdata.spsmm, this.from.spmc = this.pitchdata.spmc, this.from.nsjg = this.pitchdata.nsjg;this.from.sppc = '';this.from.thjg = '';this.from.spsl = '';this.from.guid = '';}, //上传商品
+    added: function added() {var _this4 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), vtype: 'ADD', djbh: this.thdh,
         fdbh: uni.getStorageSync('fdbh'),
         ysdh: '',
         ckid: this.thck,
@@ -477,9 +515,19 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
 
           _this4.pitchdata = '';
           _this4.from = {};
-        } else {
+        }
+        if (res.error_code == '2') {
           uni.showToast({
-            title: '新增商品失败',
+            title: res.error_data[0].message,
+            duration: 2000,
+            icon: 'none' });
+
+          _this4.pitchdata = '';
+          _this4.from = {};
+        }
+        if (res.error_code == '500') {
+          uni.showToast({
+            title: res.message,
             duration: 2000,
             icon: 'none' });
 
@@ -487,6 +535,7 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
 
       });
     },
+    //查询上传商品
     getlist: function getlist() {var _this5 = this;
       var data = {
         "access_token": uni.getStorageSync("access_token"),
@@ -501,9 +550,53 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
         _this5.detaildata = res.data;
       });
     },
+    //点击明细
     isdetail: function isdetail() {
       uni.navigateTo({
         url: "../chuku/chukumx?thdh=".concat(this.thdh, "&thck=").concat(this.thck, "&thlx=").concat(this.thlx) });
+
+    },
+    //审核
+    ischeck: function ischeck() {
+      var data = {
+        access_token: uni.getStorageSync('access_token'),
+        userid: uni.getStorageSync('userid'),
+        username: uni.getStorageSync('dlmc'),
+        djbh: this.thdh,
+        fdbh: uni.getStorageSync('fdbh'),
+        remark: this.remark,
+        checkin: 'F' };
+
+      (0, _api.rcckcheck)(data).then(function (res) {
+        console.log('审核', res);
+      });
+    },
+    //整单删除
+    isdelete: function isdelete() {var _this6 = this;
+      var data = {
+        access_token: uni.getStorageSync('access_token'),
+        userid: uni.getStorageSync('userid'),
+        username: uni.getStorageSync('dlmc'),
+        djbh: this.thdh };
+
+      (0, _api.rcckdelete)(data).then(function (res) {
+        console.log('整单删除', res);
+        if (res.error_code == '0') {
+          uni.showToast({
+            title: '整单删除成功',
+            duration: 2000,
+            icon: 'none' });
+
+          setTimeout(function () {
+            _this6.new();
+          }, 2000);
+        }
+      });
+    },
+    //记录
+    jl: function jl() {
+      uni.navigateTo({
+        url: "../chuku/chukujl" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

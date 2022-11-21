@@ -150,7 +150,7 @@ var _default =
 
   },
   onShow: function onShow() {
-
+    this.condition();
   },
   methods: {
     //拉取查询条件

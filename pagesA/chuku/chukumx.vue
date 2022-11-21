@@ -58,16 +58,16 @@
 <!--        </view>-->
 
       </u-form>
-      <view class="form-card">
-        <view style="display:flex;justify-content:space-between;">
-          <text>供价类型</text>
-        </view>
-        <view>
-          <view class="radio-view">
-            <view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>
-          </view>
-        </view>
-      </view>
+<!--      <view class="form-card">-->
+<!--        <view style="display:flex;justify-content:space-between;">-->
+<!--          <text>供价类型</text>-->
+<!--        </view>-->
+<!--        <view>-->
+<!--          <view class="radio-view">-->
+<!--            <view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>-->
+<!--          </view>-->
+<!--        </view>-->
+<!--      </view>-->
       <view class="btns" v-if="stateDetail">
         <u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
                   @click="cancelDetail"></u-button>
@@ -76,7 +76,7 @@
       </view>
     </view>
 
-    <view class="foldGroup">
+    <view class="foldGroup" v-if="!stateDetail">
 
       <view class="fold-content" v-for="(item,index) in detaildata">
         <view class="card-flex-wrap">
@@ -98,21 +98,21 @@
         </view>
         <view class="multiples">
           <view class="multiple-con view-flex">
-            <text class="left-con">特供:</text>
-            <text class="right-con">{{item.cxjbz}}</text>
+            <text class="left-con">规格:</text>
+            <text class="right-con">{{item.gg}}</text>
           </view>
           <view class="multiple-con view-flex">
-            <text class="left-con">赠品:</text>
-            <text class="right-con">{{item.splx}}</text>
+            <text class="left-con">零售价格:</text>
+            <text class="right-con">{{item.nsjg}}</text>
           </view>
         </view>
         <view class="multiples">
           <view class="multiple-con view-flex">
-            <text class="left-con">数量:</text>
+            <text class="left-con">退货数量:</text>
             <text class="right-con">{{item.thsl}}</text>
           </view>
           <view class="multiple-con view-flex">
-            <text class="left-con">价格:</text>
+            <text class="left-con">退货价格:</text>
             <text class="right-con">￥{{item.thjg}}</text>
           </view>
         </view>
@@ -221,6 +221,18 @@ this.getlist()
       rcGetlistC(data).then((res)=>{
         console.log('明细列表',res)
         this.detaildata=res.data
+        if(this.detaildata.length=='0'){
+          uni.showToast({
+            title: '没有商品明细',
+            duration: 2000,
+            icon:'none'
+          });
+          setTimeout(()=>{
+            uni.navigateBack({
+              delta: 1
+            });
+          },2000)
+        }
       })
     },
     // 编辑商品
@@ -322,7 +334,7 @@ this.getlist()
               "userid": uni.getStorageSync("userid"),
               "username": uni.getStorageSync("dlmc"),
               "list": [{
-                "guid": row.cwbmid,
+                "guid": row.guid,
                 "spbm": row.spbm,
                 "spmc": row.spmc,
                 "spsmm": row.spsmm
@@ -353,29 +365,30 @@ this.getlist()
         }
       });
     },
-    serchGoods(val) {
-      let dataes={
-        "access_token": uni.getStorageSync("access_token"),
-        "companyid": uni.getStorageSync("companyid"),
-        "condition": val,
-        "fdbh": uni.getStorageSync("fdbh"),
-        "findtype": "01",
-        "goodstype": "SP",
-        "userid": uni.getStorageSync("userid"),
-      }
-      rcsearch(dataes).then((res) => {
-        if (res.error_code == 0) {
-          this.serchGoodsData = res.data[0]
-          this.editForm.spbm=res.data[0].spbm
-          this.editForm.spsmm=res.data[0].spsmm
-          this.editForm.spmc=res.data[0].spmc
-          this.editForm.dw=res.data[0].dw
-          this.editForm.gg=res.data[0].gg
-        }
-      }).catch((err) => {
-        console.log(err)
-      })
-    },
+
+    // serchGoods(val) {
+    //   let dataes={
+    //     "access_token": uni.getStorageSync("access_token"),
+    //     "companyid": uni.getStorageSync("companyid"),
+    //     "condition": val,
+    //     "fdbh": uni.getStorageSync("fdbh"),
+    //     "findtype": "01",
+    //     "goodstype": "SP",
+    //     "userid": uni.getStorageSync("userid"),
+    //   }
+    //   rcsearch(dataes).then((res) => {
+    //     if (res.error_code == 0) {
+    //       this.serchGoodsData = res.data[0]
+    //       this.editForm.spbm=res.data[0].spbm
+    //       this.editForm.spsmm=res.data[0].spsmm
+    //       this.editForm.spmc=res.data[0].spmc
+    //       this.editForm.dw=res.data[0].dw
+    //       this.editForm.gg=res.data[0].gg
+    //     }
+    //   }).catch((err) => {
+    //     console.log(err)
+    //   })
+    // },
   }
 }
 </script>

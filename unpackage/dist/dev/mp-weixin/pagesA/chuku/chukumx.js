@@ -437,11 +437,23 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 var _default = { data: function data() {return { detaildata: '', thdh: '', thck: '', thlx: '', editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
-      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, onLoad: function onLoad(option) {this.thdh = option.thdh;this.thck = option.thck;this.thlx = option.thlx;}, onShow: function onShow() {this.getlist();}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.thdh, "djtype": "SPTHD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "F" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;});}, // 编辑商品
+      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, onLoad: function onLoad(option) {this.thdh = option.thdh;this.thck = option.thck;this.thlx = option.thlx;}, onShow: function onShow() {this.getlist();}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.thdh, "djtype": "SPTHD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "F" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({ title: '没有商品明细', duration: 2000, icon: 'none' });setTimeout(function () {uni.navigateBack({ delta: 1 });}, 2000);}});}, // 编辑商品
     toeditDetail: function toeditDetail(row, index) {this.editForm.guid = row.guid;this.editForm.thjg = row.thjg;this.editForm.spmc = row.spmc;this.editForm.spsmm = row.spsmm;this.editForm.spbm = row.spbm;this.editForm.spsl = row.thsl;this.editForm.nsjg = row.nsjg;this.editForm.sppc = row.sppc;this.editForm.splx = row.splx == "T" ? true : false;this.stateDetail = true;this.tableIndex = index;}, cancelDetail: function cancelDetail() {this.editForm.guid = '';this.editForm.thjg = '';this.editForm.spmc = '';this.editForm.spsmm = '';this.editForm.spbm = '';this.editForm.spsl = '';this.editForm.nsjg = '';this.editForm.sppc = '';this.editForm.cxjbz = ""; //供价类型
       this.editForm.splx = false; //赠送商品
-      this.editForm.thsl = "";this.editForm.thjg = "";this.stateDetail = false;this.tableIndex = -1;}, switChange: function switChange(val) {this.editForm.splx = val;}, // 保存商品
-    editDetailSave: function editDetailSave() {var _this2 = this;var a = (0, _dayjs.default)(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD");var b = (0, _dayjs.default)(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD");var from = { guid: this.editForm.guid, thjg: this.editForm.thjg, spmc: this.editForm.spmc,
+      this.editForm.thsl = "";this.editForm.thjg = "";this.stateDetail = false;this.tableIndex = -1;
+    },
+
+    switChange: function switChange(val) {
+      this.editForm.splx = val;
+    },
+    // 保存商品
+    editDetailSave: function editDetailSave() {var _this2 = this;
+      var a = (0, _dayjs.default)(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD");
+      var b = (0, _dayjs.default)(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD");
+      var from = {
+        guid: this.editForm.guid,
+        thjg: this.editForm.thjg,
+        spmc: this.editForm.spmc,
         thsl: this.editForm.thsl,
         spsmm: this.editForm.spsmm,
         spsl: this.editForm.spsl,
@@ -497,7 +509,7 @@ var _default = { data: function data() {return { detaildata: '', thdh: '', thck:
               "userid": uni.getStorageSync("userid"),
               "username": uni.getStorageSync("dlmc"),
               "list": [{
-                "guid": row.cwbmid,
+                "guid": row.guid,
                 "spbm": row.spbm,
                 "spmc": row.spmc,
                 "spsmm": row.spsmm }] };
@@ -527,30 +539,32 @@ var _default = { data: function data() {return { detaildata: '', thdh: '', thck:
           }
         } });
 
-    },
-    serchGoods: function serchGoods(val) {var _this4 = this;
-      var dataes = {
-        "access_token": uni.getStorageSync("access_token"),
-        "companyid": uni.getStorageSync("companyid"),
-        "condition": val,
-        "fdbh": uni.getStorageSync("fdbh"),
-        "findtype": "01",
-        "goodstype": "SP",
-        "userid": uni.getStorageSync("userid") };
+    }
 
-      (0, _api.rcsearch)(dataes).then(function (res) {
-        if (res.error_code == 0) {
-          _this4.serchGoodsData = res.data[0];
-          _this4.editForm.spbm = res.data[0].spbm;
-          _this4.editForm.spsmm = res.data[0].spsmm;
-          _this4.editForm.spmc = res.data[0].spmc;
-          _this4.editForm.dw = res.data[0].dw;
-          _this4.editForm.gg = res.data[0].gg;
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    } } };exports.default = _default;
+    // serchGoods(val) {
+    //   let dataes={
+    //     "access_token": uni.getStorageSync("access_token"),
+    //     "companyid": uni.getStorageSync("companyid"),
+    //     "condition": val,
+    //     "fdbh": uni.getStorageSync("fdbh"),
+    //     "findtype": "01",
+    //     "goodstype": "SP",
+    //     "userid": uni.getStorageSync("userid"),
+    //   }
+    //   rcsearch(dataes).then((res) => {
+    //     if (res.error_code == 0) {
+    //       this.serchGoodsData = res.data[0]
+    //       this.editForm.spbm=res.data[0].spbm
+    //       this.editForm.spsmm=res.data[0].spsmm
+    //       this.editForm.spmc=res.data[0].spmc
+    //       this.editForm.dw=res.data[0].dw
+    //       this.editForm.gg=res.data[0].gg
+    //     }
+    //   }).catch((err) => {
+    //     console.log(err)
+    //   })
+    // },
+  } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

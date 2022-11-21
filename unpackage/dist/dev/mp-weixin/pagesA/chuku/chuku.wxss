@@ -72,4 +72,22 @@
   font-size: 18px;
   margin-top: 15px;
 }
+.unit2.data-v-53a38061 {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+.unit3.data-v-53a38061 {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+}
+.unit3 .unit3_l.data-v-53a38061 {
+  width: 45%;
+}
+.unit3 .unit3_r.data-v-53a38061 {
+  width: 45%;
+}
 
