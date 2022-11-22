@@ -12,7 +12,7 @@
 				<!-- 选择时间-->
 				<view class="xzbox">
 					<view class="xz">
-						<view class="boxname">时间:</view>
+						<view class="boxname">日期:</view>
 						<view class="boxinput">
 							<uni-datetime-picker type="date" :value="sdate" v-model="sdate"
 								@change="startdate()" />

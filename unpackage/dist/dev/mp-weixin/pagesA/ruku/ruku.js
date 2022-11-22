@@ -103,9 +103,6 @@ try {
     uniDatetimePicker: function() {
       return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 334))
     },
-    uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
-    },
     uniIcons: function() {
       return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 457))
     },
@@ -114,6 +111,9 @@ try {
     },
     uRadio: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 473))
+    },
+    uInput: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
     },
     uButton: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
@@ -189,8 +189,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-
-
 
 
 
@@ -502,8 +500,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-//
-//
 // import xkyGuideStep from '@/components/xky-guideStep/xky-guideStep';
 var _default = { components: {// xkyGuideStep
   }, data: function data() {return { cxsjht: '', sjbh: '', queryData: [], foldMoreShow: true, radiovalue1: "T", selectIndex: -1, ifDrawer: "", popupShow: false, selectData: [], tableData: [] };}, onLoad: function onLoad() {}, onReady: function onReady() {this.condition();}, onShow: function onShow() {}, methods: { //拉取查询条件
@@ -513,7 +509,9 @@ var _default = { components: {// xkyGuideStep
           _this3.$set(_this3.queryData[_this3.selectIndex], "value", "".concat(res.data[0][obj.tabname.id], "-").concat(res.data[0][obj.tabname.name]));_this3.$forceUpdate();return;}_this3.ifDrawer = state;_this3.popupShow = true;_this3.selectData = [];for (var i in res.data) {if (isAll == "ALL") {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });} else {if (res.data[i][obj.tabname.id].indexOf(isAll) > -1 || res.data[i][obj.tabname.name].indexOf(isAll) > -1) {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });}}}}).catch(function (err) {console.log(err);});}, // 创建新单
     newOrder: function newOrder() {var _this4 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid") };(0, _api.rcOrderNew)(dataes).then(function (res) {// console.log("orderNew res",res)
         if (res.error_code == 0) {uni.navigateTo({ url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });} else {_this4.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 编辑单
-    tolook: function tolook(item) {console.log('j进入编译', item);uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({ url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额'], "&navber=false") });
+    tolook: function tolook(item) {console.log('j进入编译', item);uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({
+        url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额'], "&navber=false") });
+
     },
 
     //查找表格数据。。。。。。。。。。。。。。。。。。。。。。。。。

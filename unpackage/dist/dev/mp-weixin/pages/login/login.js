@@ -187,6 +187,9 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     navbar: navbar },
 
   onLoad: function onLoad() {
+    // if(uni.getStorageSync('companyid')){
+    //   this.company=false
+    // }
     console.log(wx.getMenuButtonBoundingClientRect());
     this.iswx = uni.getStorageSync('iswx'); //判断微信绑定
     this.userid = uni.getStorageSync('scandata').userid;

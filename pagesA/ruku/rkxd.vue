@@ -79,7 +79,7 @@ align-items: center;height: 50rpx;
 				<u-form class="form-card" labelPosition="left" :model="uFormModel"  ref="uForm">
           <view style="margin: 10rpx 0">
             <u-form-item label="商品条码:" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
-          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spbm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spsmm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
             </u-form-item>
           </view>
 <!--          搜索到选择的商品条码-->
@@ -90,12 +90,12 @@ align-items: center;height: 50rpx;
                 <u-input border="surround" v-model="uFormModel.spmc" :disabled="true"></u-input>
               </view>
             </view>
-<!--            <view  class="unitbox">-->
-<!--              <view class="unitbox_l">商品条码:</view>-->
-<!--              <view class="unitbox_r">-->
-<!--                <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>-->
-<!--              </view>-->
-<!--            </view>-->
+            <view  class="unitbox">
+              <view class="unitbox_l">商品编码:</view>
+              <view class="unitbox_r">
+                <u-input border="surround" v-model="uFormModel.spbm"  :disabled="true"></u-input>
+              </view>
+            </view>
 
 
           <view style="margin: 10rpx 0">
@@ -296,6 +296,7 @@ align-items: center;height: 50rpx;
         this.navber=false
       }
 
+
       this.uFormTitle.djbh = option.djbh
       this.state = option.state
       let sjVal = option.sjbh
@@ -323,6 +324,15 @@ align-items: center;height: 50rpx;
       // this.queryMore(true, fdVal, "FDINFO", "fdbh")
        this.queryMore(true, "", "USERINFO", "service")
       this.formMore("",true)
+
+      if(option.djzt=='已审核'){
+        this.ifpage=false
+        this.threean=false
+        this.navber=false
+        this.honestshow=false
+        this.contentShow=false
+      }
+
     },
 		onReady() {
 
@@ -613,7 +623,7 @@ align-items: center;height: 50rpx;
 				}
 				setTimeout(() => {
 					if (val != "") {
-						if (val == this.uFormModel.spbm) {
+						if (val == this.uFormModel.spsmm) {
 							this.serchGoods(val)
 							uni.hideKeyboard()
 						}
@@ -687,8 +697,8 @@ align-items: center;height: 50rpx;
 				uni.scanCode({
 					success: (res) => {
 						console.log('扫码内容', res.result)
-						this.uFormModel.spbm=res.result
-						this.serchGoods(this.uFormModel.spbm)
+						this.uFormModel.spsmm=res.result
+						this.serchGoods(this.uFormModel.spsmm)
 					},
 					fail: (err) => {
 						this.$refs.uToast.show({
@@ -982,7 +992,7 @@ console.log('编译保存')
 					this.neworderShow=false
 				}
 			},
-			"uFormModel.spbm": function(newv, oldv) {
+			"uFormModel.spsmm": function(newv, oldv) {
 				if(newv.length==0){
 					this.spbmClearShow=false
 					this.isSpComplete=false

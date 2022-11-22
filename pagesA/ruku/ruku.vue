@@ -34,21 +34,21 @@ align-items: center;height: 60rpx;
             <text class="inp-right-text"></text>
           </view>
           <view v-show="foldMoreShow">
+
             <view class="view-flex" v-if="v.type=='查询下拉框'">
-              <text class="form-left-text">{{v.colname}}:</text>
-              <view style="width: 74%">
-                <u-input :placeholder="'请输入'+ v.colname" :disabled="v.readonly==''?false:true" v-model="v.value" @change="inpChange">
-                  <template slot="suffix">
-                    <uni-icons type="clear" size="19" color="#e1e1e1" v-if="v.readonly==''&&v.value!=''" @tap="clearAlone(v,i)"></uni-icons>
-                  </template>
-                </u-input>
-              </view>
+<!--              <text class="form-left-text">{{v.colname}}:</text>-->
+<!--              <view style="width: 74%">-->
+<!--                <u-input :placeholder="'请输入'+ v.colname" :disabled="v.readonly==''?false:true" v-model="v.value" @change="inpChange">-->
+<!--                  <template slot="suffix">-->
+<!--                    <uni-icons type="clear" size="19" color="#e1e1e1" v-if="v.readonly==''&&v.value!=''" @tap="clearAlone(v,i)"></uni-icons>-->
+<!--                  </template>-->
+<!--                </u-input>-->
+<!--              </view>-->
 
               <uni-icons custom-prefix="iconfont" class="guideJS2" type="icon-jiugongge" size="19" color="#8f8f8f" @tap="queryMore(v,i,v.type,'ALL')">
               </uni-icons>
-
-
             </view>
+
             <view class="view-flex" v-else-if="v.type=='下拉框'" @tap="queryMore(v,i,v.type,'ALL')">
               <text class="form-left-text">{{v.colname}}:</text>
               <u-radio-group v-model="v.value" placement="row" v-if="v.codeid=='SK'">
@@ -94,7 +94,11 @@ align-items: center;height: 60rpx;
       <view class="foldGroup">
         <view class="fold-title" v-for="(v,i) in tableData" @tap="tolook(v)">
           <view class="fold-title-t fold-title-flex-start">
-            <text>{{v['入库单号']}}</text>
+            <view style="display: flex;justify-content: space-between;width:100%;margin-right:10px">
+              <view>{{v['入库单号']}}</view>
+              <view style="color:#358CC9">{{v['单据状态']}}</view>
+            </view>
+
           </view>
           <view class="fold-title-flex-start fold-title-con show-dots-2">
             <text class="left-con">商家编号:</text>
@@ -122,12 +126,6 @@ align-items: center;height: 60rpx;
             <view class="multiple-con">
               <text class="left-con">入库总额:</text>
               <text class="right-con">￥{{v['入库总额']}}</text>
-            </view>
-          </view>
-          <view class="multiples">
-            <view class="multiple-con">
-              <text class="left-con">单据状态:</text>
-              <text class="right-con">{{v['单据状态']}}</text>
             </view>
           </view>
 
@@ -468,7 +466,7 @@ export default {
         margin-bottom: 0px;
       }
       .fold-title{
-        margin-bottom: 10px;
+        margin-bottom: 15px;
         border-radius: 10px;
         box-sizing: border-box;
         padding: 10px;
@@ -496,6 +494,7 @@ export default {
           display: flex;
           justify-content: space-between;
           align-items: center;
+          margin: 5px 0;
           .multiple-con {
             width: 50%;
           }
@@ -521,6 +520,7 @@ export default {
         }
         .right-con{
           color: #1c1c28;
+          font-size: 14px;
         }
         .cu1{
           color: #3a3a3a;

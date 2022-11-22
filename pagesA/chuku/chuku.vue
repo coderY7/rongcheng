@@ -460,7 +460,6 @@ if(res.error_code=='0'){
     font-size: 26rpx;
     width: 20%;
   }
-
   .box_r {
     width: 80%;
   }
