@@ -6,7 +6,6 @@
 
 				<view class="box">
 					<view class="boxname">商品条码 :</view>
-
           <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spsmm" height="30" @clickIcon="scan()" @change="change()" @custom="isinfo"></u-search>
 				</view>
 
