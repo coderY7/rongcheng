@@ -424,7 +424,6 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
     change: function change(e) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 console.log(e.split('-')[0]);_context.next = 3;return (
-
                   _this2.issearch(e.split('-')[0]));case 3:case "end":return _context.stop();}}}, _callee);}))();
 
     },
@@ -458,6 +457,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     },
     //选中的商品
     ispitchdata: function ispitchdata(item) {
+      console.log(item);
       this.pitchdata = item;
       this.popupShow = false;
       this.spbm = this.pitchdata.spbm;
@@ -473,7 +473,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       (0, _api.rcinfos)(data).then(function (res) {
         if (res.error_code == '0') {
           console.log(res);
-          _this4.spsmm = res.list.Table[0] ? res.list.Table[0]['商品条码'] : '';
+          //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
           _this4.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
           _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
           _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
@@ -535,7 +535,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       (0, _api.rcdosave)(data).then(function (res) {
         _this5.spbm = '';
         _this5.spmc = '';
-        _this5.spsmm = '';
+        //this.spsmm=''
         _this5.testdata.forEach(function (item) {
           item.value = '';
         });

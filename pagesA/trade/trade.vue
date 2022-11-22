@@ -244,9 +244,8 @@
 
 			async change(e) {
 				 console.log(e.split('-')[0])
-
 				 await this.issearch(e.split('-')[0])
-				 //this.spbm=e
+
 			},
 			//商品查询
 			issearch(e) {
@@ -278,6 +277,7 @@
 			},
       //选中的商品
       ispitchdata(item) {
+        console.log(item)
         this.pitchdata=item
         this.popupShow=false
         this.spbm=this.pitchdata.spbm
@@ -293,7 +293,7 @@ this.isinfo()
 				rcinfos(data).then((res)=>{
           if(res.error_code=='0'){
 console.log(res)
-            this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
+            //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
             this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
             this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
             this.testdata[4].value=res.list.Table[0]?res.list.Table[0]['会员价格']:''
@@ -355,7 +355,7 @@ console.log(res)
         rcdosave(data).then((res)=>{
           this.spbm=''
           this.spmc=''
-          this.spsmm=''
+          //this.spsmm=''
           this.testdata.forEach((item)=>{
             item.value=''
           })

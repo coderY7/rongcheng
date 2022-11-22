@@ -1565,7 +1565,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     },
     //查找表格列(新增)。。。
     getcolumns: function getcolumns() {var _this12 = this;
-      this.myCollShow = false;
+      //this.myCollShow=false
       this.contentShow = true;
       setTimeout(function () {
         _this12.focusObj.spbmFocus = true;

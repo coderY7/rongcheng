@@ -176,13 +176,13 @@ this.Alllist=[{cxmc:'导入商品',url:'https://integral-1256268364.cos.ap-cheng
 			align-items: center;
 
 			.boxsimg {
-				width: 60rpx;
-				height: 60rpx;
+				width: 80rpx;
+				height: 80rpx;
 				border-radius: 5rpx;
 				margin-bottom: 20rpx;
 			}
 			.boxsname{
-				font-size: 24rpx;
+				font-size: 30rpx;
 			}
 		}
 	}

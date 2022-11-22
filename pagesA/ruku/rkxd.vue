@@ -128,12 +128,12 @@ align-items: center;height: 50rpx;
 				</u-form>
 
 
-					<view class="gjlxbox" v-show="doingindex>=5">
-						<view class="gjlxbox_l">供价类型:</view>
-            <view class="gjlxbox_r">
-              <view class="gjlxbox_rr" v-for="(v, i) in lxlist" :class="{lxactive:uFormModel.jgcxbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid+'-'+v.lxmc,false)">{{v.lxmc}}</view>
-            </view>
-					</view>
+<!--					<view class="gjlxbox" v-show="doingindex>=5">-->
+<!--						<view class="gjlxbox_l">供价类型:</view>-->
+<!--            <view class="gjlxbox_r">-->
+<!--              <view class="gjlxbox_rr" v-for="(v, i) in lxlist" :class="{lxactive:uFormModel.jgcxbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid+'-'+v.lxmc,false)">{{v.lxmc}}</view>-->
+<!--            </view>-->
+<!--					</view>-->
 
 
 			</view>
@@ -147,16 +147,16 @@ align-items: center;height: 50rpx;
 
 
     <view class="flex-btns" v-if="threean">
-      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单审核"
+      <view style="width: 45%"><u-button type="primary" class="my-primary-button" text="整单审核"
                                          :disabled="state=='look'||state=='check'" throttleTime="2000"
                                          @click="subCheck">
       </u-button></view>
-      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单删除"
+      <view style="width: 45%"><u-button type="primary" class="my-primary-button" text="整单删除"
                                          :disabled="state=='look'" throttleTime="2000" @click="deldh">
       </u-button></view>
-      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
-                                         throttleTime="2000" @click="getcolumns">
-      </u-button></view>
+<!--      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"-->
+<!--                                         throttleTime="2000" @click="getcolumns">-->
+<!--      </u-button></view>-->
     </view>
 
 
@@ -782,7 +782,7 @@ align-items: center;height: 50rpx;
 			},
 			//查找表格列(新增)。。。
 			getcolumns() {
-				this.myCollShow=false
+				//this.myCollShow=false
 				this.contentShow=true
 				setTimeout(()=>{
 					this.focusObj.spbmFocus=true
