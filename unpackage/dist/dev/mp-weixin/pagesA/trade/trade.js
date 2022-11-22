@@ -312,13 +312,23 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         最小陈列: '',
         主供应商: ''
         // 商品进价:''
-      } };
+      },
+      kucunzt: '' };
 
   },
   watch: {
-    testdata: function testdata(newValue, oldValue) {
-      console.log("新值: ", newValue, "旧值", oldValue);
+    kucunzt: {
+      handler: function handler(newValue, oldValue) {
+        deep: true;
+        console.log("新值: ", newValue.value, "旧值", oldValue.value);
+        if (oldValue.value == newValue.value) {
+          this.testdata[8].value = true;
+        }
+      },
+      deep: true // 深度侦听
+      //immediate: true // 立即执行
     } },
+
 
   components: {
     navbar: navbar },
@@ -421,6 +431,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
       }
       this.testdata = test;
+      this.kucunzt = this.testdata[7];
     },
 
     change: function change(e) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:

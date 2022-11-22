@@ -135,13 +135,23 @@
 					最小陈列: '',
 					主供应商: ''
 					// 商品进价:''
-				}
+				},
+        kucunzt:''
 			};
 		},
 		watch: {
-testdata: function(newValue, oldValue) {
-    console.log("新值: ", newValue, "旧值", oldValue);
-  }
+      kucunzt: {
+        handler: function(newValue, oldValue) {
+          deep:true
+          console.log("新值: ", newValue.value, "旧值", oldValue.value);
+          if(oldValue.value==newValue.value){
+            this.testdata[8].value=true
+          }
+        },
+        deep: true, // 深度侦听
+        //immediate: true // 立即执行
+      },
+
 		},
 		components: {
 			navbar
@@ -244,6 +254,7 @@ testdata: function(newValue, oldValue) {
 
 				}
 				this.testdata = test
+        this.kucunzt=this.testdata[7]
 			},
 
 			async change(e) {
