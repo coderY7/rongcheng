@@ -180,7 +180,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
       Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {//this.isreportForm()
     //{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}
-    this.Alllist = [{ cxmc: '导入商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }];}, methods: { //获取报表
+    this.Alllist = [{ cxmc: '新增商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }];}, methods: { //获取报表
     isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid') };
 
@@ -228,7 +228,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
 
       };
-      if (item.cxmc == '导入商品') {
+      if (item.cxmc == '新增商品') {
         uni.navigateTo({
           url: '../../pagesA/addsp/addsp' });
 

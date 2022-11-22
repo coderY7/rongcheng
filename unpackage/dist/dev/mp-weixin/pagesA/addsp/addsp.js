@@ -311,6 +311,30 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
     this.cxsjht = cxsjht;
     this.sjbh = this.cxsjht[0].value;
   },
+  watch: {
+    sptm: function sptm(newValue, oldValue) {
+      if (oldValue != newValue) {
+        var a = /(^-?[0-9]\d*$)/;
+        console.log(newValue);
+        console.log(a.test(newValue));
+        if (!a.test(newValue)) {
+          uni.showModal({
+            title: '提示',
+            content: '条码只能输入数字',
+            success: function success(res) {
+              if (res.confirm) {
+                console.log('用户点击确定');
+
+              } else if (res.cancel) {
+
+                console.log('用户点击取消');
+              }
+            } });
+
+        }
+      }
+    } },
+
   methods: {
     changeprice: function changeprice() {
       if (this.sp.sjprice == '' || this.sp.sjprice == '0') {

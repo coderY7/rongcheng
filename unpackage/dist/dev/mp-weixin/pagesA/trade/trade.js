@@ -100,9 +100,6 @@ try {
     uSearch: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 449))
     },
-    uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
-    },
     uInput: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
     },
@@ -303,6 +300,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       xzzgys: '',
       testdata: {
         小类编码: '',
+        商品名称: '',
         商品规格: '',
         销售单位: '',
         零售价格: '',
@@ -317,8 +315,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       } };
 
   },
-  watch: {},
-
+  watch: {
+    testdata: function testdata(newValue, oldValue) {
+      console.log("新值: ", newValue, "旧值", oldValue);
+    } },
 
   components: {
     navbar: navbar },
@@ -351,6 +351,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     switchs: function switchs(e) {
       console.log(e);
     },
+
     //主供应商处理
     iszgys: function iszgys(data) {
       var test = [];
@@ -475,21 +476,22 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           console.log(res);
           //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
           _this4.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
-          _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
-          _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
-          _this4.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+          _this4.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
+          _this4.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+          _this4.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+          _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
           _this4.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
-          _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
-          _this4.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
-          _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
-          _this4.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
-          _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
-          _this4.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
-          _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
-          if (_this4.testdata[7].value == "T") {
-            _this4.testdata[7].value = true;
+          _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+          _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+          _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
+          _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
+          _this4.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+          _this4.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+          _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+          if (_this4.testdata[8].value == "T") {
+            _this4.testdata[8].value = true;
           } else {
-            _this4.testdata[7].value = false;
+            _this4.testdata[8].value = false;
           }
           _this4.iszgys(res.list.Table3);
         }
@@ -508,7 +510,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     //保存
     save: function save() {var _this5 = this;
       var kczt = '';
-      if (this.testdata[7].value) {
+      if (this.testdata[8].value) {
         kczt = "T";
       } else {
         kczt = "F";
@@ -517,25 +519,25 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         "access_token": uni.getStorageSync('access_token'),
         "spbm": this.spbm,
         "spsmm": this.spsmm, //商品条码
-        "spmc": this.spmc,
-        "gg": this.testdata[1].value, //规格
-        "dw": this.testdata[2].value, //单位
+        "spmc": this.testdata[1].value,
+        "gg": this.testdata[2].value, //规格
+        "dw": this.testdata[3].value, //单位
         "sjbh": this.xzzgys.split('-')[1], //主供应商
         "zlbmid": this.testdata[0].value, //小类
-        "nsjg": this.testdata[3].value, //零售价
-        "hyjg": this.testdata[4].value, //会员价
-        "pjjj": this.testdata[5].value, //最近价
+        "nsjg": this.testdata[4].value, //零售价
+        "hyjg": this.testdata[5].value, //会员价
+        "pjjj": this.testdata[6].value, //最近价
         "needkcbz": kczt,
-        "dqkcl": this.testdata[6].value, //当前库存量 -1 代表不修正
-        "zdkcl": this.testdata[8].value, //最大陈列量
-        "zxkcl": this.testdata[9].value, //最小陈列量
+        "dqkcl": this.testdata[7].value, //当前库存量 -1 代表不修正
+        "zdkcl": this.testdata[9].value, //最大陈列量
+        "zxkcl": this.testdata[10].value, //最小陈列量
         "userid": uni.getStorageSync('userid'),
         "fdbh": uni.getStorageSync('fdbh') };
 
       (0, _api.rcdosave)(data).then(function (res) {
         _this5.spbm = '';
         _this5.spmc = '';
-        //this.spsmm=''
+        _this5.spsmm = '';
         _this5.testdata.forEach(function (item) {
           item.value = '';
         });

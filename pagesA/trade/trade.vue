@@ -13,21 +13,21 @@
 				</view>
 
 
-			<uni-card v-if="spmc" margin="5px" spacing="0px">
-        <view  class="boxunit">
-          <view class="boxunit1">商品名称:</view>
-          <view class="boxunit2">
-            <u-input border="surround" v-model="spmc" :disabled="true"></u-input>
-          </view>
-        </view>
-        <view  class="boxunit">
-          <view class="boxunit1">商品编号:</view>
-          <view class="boxunit2">
+
+<!--        <view  class="boxunit">-->
+<!--          <view class="boxunit1">商品名称:</view>-->
+<!--          <view class="boxunit2">-->
+<!--            <u-input border="surround" v-model="spmc" :disabled="true"></u-input>-->
+<!--          </view>-->
+<!--        </view>-->
+        <view  class="box">
+          <view class="boxname">商品编号:</view>
+
             <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
-          </view>
+
         </view>
 
-			</uni-card>
+
 				<view v-for="(item, index) in testdata" :key="item">
 					<view v-if="item.table" class="box">
 						<view class="boxname">{{item.key}}:</view>
@@ -123,6 +123,7 @@
 				xzzgys: '',
 				testdata: {
 					小类编码: '',
+          商品名称:'',
 					商品规格: '',
 					销售单位: '',
 					零售价格: '',
@@ -138,7 +139,9 @@
 			};
 		},
 		watch: {
-
+testdata: function(newValue, oldValue) {
+    console.log("新值: ", newValue, "旧值", oldValue);
+  }
 		},
 		components: {
 			navbar
@@ -171,6 +174,7 @@
 			switchs(e) {
 				console.log(e)
 			},
+
 			//主供应商处理
 			iszgys(data) {
 				let test = []
@@ -295,21 +299,22 @@ this.isinfo()
 console.log(res)
             //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
             this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
-            this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
-            this.testdata[4].value=res.list.Table[0]?res.list.Table[0]['会员价格']:''
-            this.testdata[2].value=res.list.Table[0]?res.list.Table[0]['单位']:''
+            this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['商品名称']:''
+            this.testdata[11].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
+            this.testdata[5].value=res.list.Table[0]?res.list.Table[0]['会员价格']:''
+            this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['单位']:''
             this.testdata[0].value=res.list.Table[0]?res.list.Table[0]['小类编码']:''
-            this.testdata[6].value=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
-            this.testdata[8].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
-            this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
-            this.testdata[5].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
-            this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['管理库存']:''
-            this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['规格']:''
-            this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['零售价格']:''
-            if (this.testdata[7].value=="T") {
-              this.testdata[7].value=true
+            this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
+            this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
+            this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
+            this.testdata[6].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
+            this.testdata[8].value=res.list.Table[0]?res.list.Table[0]['管理库存']:''
+            this.testdata[2].value=res.list.Table[0]?res.list.Table[0]['规格']:''
+            this.testdata[4].value=res.list.Table[0]?res.list.Table[0]['零售价格']:''
+            if (this.testdata[8].value=="T") {
+              this.testdata[8].value=true
             } else {
-              this.testdata[7].value=false
+              this.testdata[8].value=false
             }
             this.iszgys(res.list.Table3)
           }
@@ -328,7 +333,7 @@ console.log(res)
 			//保存
 			save() {
 				let kczt = '';
-				if (this.testdata[7].value) {
+				if (this.testdata[8].value) {
 					kczt = "T"
 				} else {
 					kczt = "F"
@@ -337,25 +342,25 @@ console.log(res)
 					"access_token": uni.getStorageSync('access_token'),
 					"spbm": this.spbm,
 					"spsmm": this.spsmm, //商品条码
-					"spmc": this.spmc,
-					"gg": this.testdata[1].value, //规格
-					"dw": this.testdata[2].value, //单位
+					"spmc": this.testdata[1].value,
+					"gg": this.testdata[2].value, //规格
+					"dw": this.testdata[3].value, //单位
 					"sjbh": this.xzzgys.split('-')[1], //主供应商
 					"zlbmid": this.testdata[0].value, //小类
-					"nsjg": this.testdata[3].value, //零售价
-					"hyjg": this.testdata[4].value, //会员价
-					"pjjj": this.testdata[5].value, //最近价
+					"nsjg": this.testdata[4].value, //零售价
+					"hyjg": this.testdata[5].value, //会员价
+					"pjjj": this.testdata[6].value, //最近价
 					"needkcbz": kczt,
-					"dqkcl": this.testdata[6].value, //当前库存量 -1 代表不修正
-					"zdkcl": this.testdata[8].value, //最大陈列量
-					"zxkcl": this.testdata[9].value, //最小陈列量
+					"dqkcl": this.testdata[7].value, //当前库存量 -1 代表不修正
+					"zdkcl": this.testdata[9].value, //最大陈列量
+					"zxkcl": this.testdata[10].value, //最小陈列量
 					"userid": uni.getStorageSync('userid'),
 					"fdbh": uni.getStorageSync('fdbh'),
 				}
         rcdosave(data).then((res)=>{
           this.spbm=''
           this.spmc=''
-          //this.spsmm=''
+          this.spsmm=''
           this.testdata.forEach((item)=>{
             item.value=''
           })

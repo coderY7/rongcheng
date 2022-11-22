@@ -1,6 +1,6 @@
 <template>
   <view>
-    <navbar title='导入商品'  @back="back()"></navbar>
+    <navbar title='新增商品'  @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
           <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
@@ -141,6 +141,30 @@ export default {
     })
     this.cxsjht=cxsjht
     this.sjbh=this.cxsjht[0].value
+  },
+  watch:{
+    sptm: (newValue, oldValue)=>{
+      if(oldValue!=newValue){
+        let a=/(^-?[0-9]\d*$)/
+        console.log(newValue);
+        console.log(a.test(newValue));
+        if(!a.test(newValue)){
+          uni.showModal({
+            title: '提示',
+            content: '条码只能输入数字',
+            success:  (res)=> {
+              if (res.confirm) {
+                console.log('用户点击确定');
+
+              } else if (res.cancel) {
+
+                console.log('用户点击取消');
+              }
+            }
+          });
+        }
+      }
+    }
   },
   methods: {
     changeprice(){
