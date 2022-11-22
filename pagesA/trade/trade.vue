@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<navbar title='商品修改' @lefts=left() @back="back()"></navbar>
+		<navbar title='商品修改'  @back="back()"></navbar>
 
 		<view class="container">
 
@@ -8,8 +8,6 @@
 					<view class="boxname">商品条码 :</view>
 
           <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spsmm" height="30" @clickIcon="scan()" @change="change()" @custom="isinfo"></u-search>
-
-
 				</view>
 
 
@@ -49,7 +47,9 @@
   margin: 20rpx 0;
 ">
 						<view class="boxname ">{{item.key}}:</view>
-            <view>
+
+            <view style="display: flex;align-items: center">
+              <text style="font-size: 12px; color: red">(是否管理库存)</text>
               <u-switch v-model="item.value" @change="switchs()"></u-switch>
             </view>
 					</view>
@@ -286,6 +286,9 @@
             if(res.data.length>'0'){
               this.popupShow=true
               this.searchdata=res.data
+              if(this.searchdata.length=='1'){
+                this.spbm=this.searchdata[0].spbm
+              }
             }
 					}
 				})

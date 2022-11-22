@@ -463,6 +463,9 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           if (res.data.length > '0') {
             _this3.popupShow = true;
             _this3.searchdata = res.data;
+            if (_this3.searchdata.length == '1') {
+              _this3.spbm = _this3.searchdata[0].spbm;
+            }
           }
         }
       });
