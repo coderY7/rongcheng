@@ -4,6 +4,14 @@
   },
   "pages": [
     {
+      "path": "pages/home/home",
+      "style": {
+        "navigationBarTitleText": "",
+        "enablePullDownRefresh": false,
+        "navigationStyle": "custom"
+      }
+    },
+    {
       "path": "pages/login/login",
       "style": {
         "navigationBarTitleText": "",
@@ -38,14 +46,7 @@
         "navigationBarTitleText": "用户协议"
       }
     },
-    {
-      "path": "pages/home/home",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false,
-        "navigationStyle": "custom"
-      }
-    },
+
     {
       "path": "pages/myset/myset",
       "style": {

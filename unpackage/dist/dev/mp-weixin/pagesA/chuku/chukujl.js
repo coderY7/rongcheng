@@ -93,6 +93,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
+try {
+  components = {
+    uniCard: function() {
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
+    }
+  }
+} catch (e) {
+  if (
+    e.message.indexOf("Cannot find module") !== -1 &&
+    e.message.indexOf(".vue") !== -1
+  ) {
+    console.error(e.message)
+    console.error("1. 排查组件名称拼写是否正确")
+    console.error(
+      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
+    )
+    console.error(
+      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
+    )
+  } else {
+    throw e
+  }
+}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -135,26 +158,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 180));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
-var _default =
-
-{
-  data: function data() {
-    return {};
-
-
-
-  },
-  onShow: function onShow() {
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { term: '' };}, onShow: function onShow() {
     this.condition();
   },
   methods: {
     //拉取查询条件
-    condition: function condition() {
+    condition: function condition() {var _this = this;
       var dataes = {
         "access_token": uni.getStorageSync("access_token"),
         "cxbh": "SPTHD_F",
@@ -164,6 +194,7 @@ var _default =
 
       (0, _api.rccondition)(dataes).then(function (res) {
         console.log('出库单条件', res);
+        _this.term = res.data;
       });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

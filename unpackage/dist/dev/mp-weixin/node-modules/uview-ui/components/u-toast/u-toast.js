@@ -83,13 +83,13 @@ try {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-overlay/u-overlay */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-overlay/u-overlay")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-overlay/u-overlay.vue */ 513))
     },
     uLoadingIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loading-icon/u-loading-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loading-icon/u-loading-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loading-icon/u-loading-icon.vue */ 555))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-loading-icon/u-loading-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-loading-icon/u-loading-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-loading-icon/u-loading-icon.vue */ 548))
     },
     uIcon: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 361))
     },
     uGap: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-gap/u-gap */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-gap/u-gap")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-gap/u-gap.vue */ 625))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-gap/u-gap */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-gap/u-gap")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-gap/u-gap.vue */ 618))
     }
   }
 } catch (e) {

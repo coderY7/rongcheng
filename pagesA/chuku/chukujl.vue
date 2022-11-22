@@ -1,5 +1,13 @@
 <template>
-
+<view>
+  <view>
+    <uni-card margin="0" padding="0" spaacing="">
+    <view>
+      <view></view>
+    </view>
+    </uni-card>
+  </view>
+</view>
 </template>
 
 <script>
@@ -13,8 +21,7 @@ import {
 export default {
   data(){
     return {
-
-
+      term:''
     }
   },
   onShow(){
@@ -32,6 +39,7 @@ this.condition()
       }
       rccondition(dataes).then((res) => {
         console.log('出库单条件',res)
+        this.term=res.data
       })
     },
   }

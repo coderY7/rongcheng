@@ -3,12 +3,13 @@
   "enablePullDownRefresh": false,
   "navigationStyle": "custom",
   "usingComponents": {
-    "uni-combox": "/uni_modules/uni-combox/components/uni-combox/uni-combox",
+    "u-search": "/node-modules/uview-ui/components/u-search/u-search",
     "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
     "u-input": "/node-modules/uview-ui/components/u-input/u-input",
     "u-switch": "/node-modules/uview-ui/components/u-switch/u-switch",
     "uni-data-select": "/uni_modules/uni-data-select/components/uni-data-select/uni-data-select",
     "u-button": "/node-modules/uview-ui/components/u-button/u-button",
+    "u-popup": "/node-modules/uview-ui/components/u-popup/u-popup",
     "navbar": "/components/nav"
   }
 }

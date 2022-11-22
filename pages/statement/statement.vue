@@ -41,7 +41,7 @@
 		onLoad() {
 			//this.isreportForm()
       //{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}
-this.Alllist=[{cxmc:'导入商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'},{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}]
+this.Alllist=[{cxmc:'导入商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'}]
 		},
 		methods: {
 			//获取报表

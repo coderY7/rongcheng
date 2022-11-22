@@ -6,13 +6,10 @@
 
 				<view class="box">
 					<view class="boxname">商品条码 :</view>
-					<view class=boxinput style="z-index: 99999;">
-						<uni-combox :candidates="candidates" placeholder="请输入商品条码" v-model="spsmm" @input="change()">
-						</uni-combox>
-					</view>
-					<view class="">
-						<button @click="isinfo()" class="search">搜索</button>
-					</view>
+
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spsmm" height="30" @clickIcon="scan()" @change="change()" @custom="isinfo"></u-search>
+
+
 				</view>
 
 
@@ -76,6 +73,27 @@
         <u-button @click="save()" text="保存" type="primary"></u-button>
 			</view>
 		</view>
+
+    <!--    弹出框-->
+    <view>
+      <u-popup :show="popupShow" @close="close" @open="open" mode="center" :round="10">
+        <view>
+          <scroll-view style="max-height: 80vh; margin-top: 30rpx" scroll-y="true">
+            <view  class="">
+              <view class="" v-for="(v, i) in searchdata" class="" @click="ispitchdata(v)">
+                <view style="display: flex;justify-content: center;padding: 10px 20px;border-bottom: #6a6a6a solid 1px">
+                  <view>{{v.spmc}}---</view>
+                  <view>{{v.spbm}}</view>
+                  <view></view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+          <view class="closebtn" @click="popupShow=false">取消</view>
+        </view>
+      </u-popup>
+    </view>
+
 	</view>
 </template>
 
@@ -90,6 +108,9 @@
 	export default {
 		data() {
 			return {
+        popupShow:false,
+        searchdata:'',
+        pitchdata:'',
 				columndata: '',
 				column: '',
 				result: '',
@@ -129,7 +150,24 @@
 			this.testdata[0].value = uni.getStorageSync('xzxlbm')
 		},
 		methods: {
-			//库存状态
+      // 扫码 搜索商品
+      scan() {
+        uni.scanCode({
+          success: (res) => {
+            console.log('扫码内容', res.result)
+            this.spsmm=res.result
+            this.issearch(this.spsmm)
+          },
+          fail: (err) => {
+            uni.showToast({
+              title: '识别失败',
+              duration: 2000,
+              icon:'none'
+            });
+          }
+        });
+      },
+      //库存状态
 			switchs(e) {
 				console.log(e)
 			},
@@ -203,6 +241,7 @@
 				}
 				this.testdata = test
 			},
+
 			async change(e) {
 				 console.log(e.split('-')[0])
 
@@ -228,28 +267,23 @@
 							icon: 'none'
 						});
             this.spbm=''
-					} else {
-						let candidates = []
-						let itemdata = []
-						console.log(res.data)
-						res.data.forEach((item) => {
-							candidates.push(`${item.spsmm}--${item.spmc}`)
-							let a = {
-								spbm: item.spbm,
-								spsmm: item.spsmm,
-								spmc: item.spmc,
-				
-							}
-							itemdata.push(a)
-						})
-						this.candidates = candidates
-						this.itemdata = itemdata
-            this.spbm=res.data[0].spbm
+					}
+          if(res.error_code == '0'){
+            if(res.data.length>'0'){
+              this.popupShow=true
+              this.searchdata=res.data
+            }
 					}
 				})
 			},
+      //选中的商品
+      ispitchdata(item) {
+        this.pitchdata=item
+        this.popupShow=false
+        this.spbm=this.pitchdata.spbm
+this.isinfo()
+      },
 			//基本信息
-			
 			isinfo() {
 				let data = {
 					access_token: uni.getStorageSync('access_token'),
@@ -461,4 +495,12 @@ console.log(res)
       margin: 20rpx 0;
     }
 	}
+  .closebtn {
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    color: #358CC9;
+    font-size: 18px;
+    margin-top: 15px;
+  }
 </style>

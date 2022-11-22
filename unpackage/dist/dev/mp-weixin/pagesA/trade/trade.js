@@ -97,8 +97,8 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
-    uniCombox: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-combox/components/uni-combox/uni-combox */ "uni_modules/uni-combox/components/uni-combox/uni-combox").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-combox/components/uni-combox/uni-combox.vue */ 521))
+    uSearch: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 449))
     },
     uniCard: function() {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
@@ -114,6 +114,9 @@ try {
     },
     uButton: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
+    },
+    uPopup: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 481))
     }
   }
 } catch (e) {
@@ -137,6 +140,11 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  if (!_vm._isMounted) {
+    _vm.e0 = function($event) {
+      _vm.popupShow = false
+    }
+  }
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -253,6 +261,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -262,6 +288,9 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 {
   data: function data() {
     return {
+      popupShow: false,
+      searchdata: '',
+      pitchdata: '',
       columndata: '',
       column: '',
       result: '',
@@ -301,6 +330,23 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     this.testdata[0].value = uni.getStorageSync('xzxlbm');
   },
   methods: {
+    // 扫码 搜索商品
+    scan: function scan() {var _this = this;
+      uni.scanCode({
+        success: function success(res) {
+          console.log('扫码内容', res.result);
+          _this.spsmm = res.result;
+          _this.issearch(_this.spsmm);
+        },
+        fail: function fail(err) {
+          uni.showToast({
+            title: '识别失败',
+            duration: 2000,
+            icon: 'none' });
+
+        } });
+
+    },
     //库存状态
     switchs: function switchs(e) {
       console.log(e);
@@ -375,14 +421,15 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       }
       this.testdata = test;
     },
-    change: function change(e) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+
+    change: function change(e) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 console.log(e.split('-')[0]);_context.next = 3;return (
 
-                  _this.issearch(e.split('-')[0]));case 3:case "end":return _context.stop();}}}, _callee);}))();
+                  _this2.issearch(e.split('-')[0]));case 3:case "end":return _context.stop();}}}, _callee);}))();
 
     },
     //商品查询
-    issearch: function issearch(e) {var _this2 = this;
+    issearch: function issearch(e) {var _this3 = this;
       var data = {
         access_token: uni.getStorageSync('access_token'), //token
         companyid: uni.getStorageSync('companyid'),
@@ -399,30 +446,25 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
             duration: 2000,
             icon: 'none' });
 
-          _this2.spbm = '';
-        } else {
-          var candidates = [];
-          var itemdata = [];
-          console.log(res.data);
-          res.data.forEach(function (item) {
-            candidates.push("".concat(item.spsmm, "--").concat(item.spmc));
-            var a = {
-              spbm: item.spbm,
-              spsmm: item.spsmm,
-              spmc: item.spmc };
-
-
-            itemdata.push(a);
-          });
-          _this2.candidates = candidates;
-          _this2.itemdata = itemdata;
-          _this2.spbm = res.data[0].spbm;
+          _this3.spbm = '';
+        }
+        if (res.error_code == '0') {
+          if (res.data.length > '0') {
+            _this3.popupShow = true;
+            _this3.searchdata = res.data;
+          }
         }
       });
     },
+    //选中的商品
+    ispitchdata: function ispitchdata(item) {
+      this.pitchdata = item;
+      this.popupShow = false;
+      this.spbm = this.pitchdata.spbm;
+      this.isinfo();
+    },
     //基本信息
-
-    isinfo: function isinfo() {var _this3 = this;
+    isinfo: function isinfo() {var _this4 = this;
       var data = {
         access_token: uni.getStorageSync('access_token'),
         fdbh: uni.getStorageSync('fdbh'),
@@ -431,28 +473,28 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       (0, _api.rcinfos)(data).then(function (res) {
         if (res.error_code == '0') {
           console.log(res);
-          _this3.spsmm = res.list.Table[0] ? res.list.Table[0]['商品条码'] : '';
-          _this3.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
-          _this3.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
-          _this3.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
-          _this3.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
-          _this3.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
-          _this3.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
-          _this3.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
-          _this3.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
-          _this3.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
-          _this3.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
-          _this3.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
-          _this3.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
-          if (_this3.testdata[7].value == "T") {
-            _this3.testdata[7].value = true;
+          _this4.spsmm = res.list.Table[0] ? res.list.Table[0]['商品条码'] : '';
+          _this4.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
+          _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+          _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+          _this4.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+          _this4.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
+          _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+          _this4.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+          _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
+          _this4.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
+          _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+          _this4.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+          _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+          if (_this4.testdata[7].value == "T") {
+            _this4.testdata[7].value = true;
           } else {
-            _this3.testdata[7].value = false;
+            _this4.testdata[7].value = false;
           }
-          _this3.iszgys(res.list.Table3);
+          _this4.iszgys(res.list.Table3);
         }
         if (res.error_code == '500') {
-          _this3.testdata.forEach(function (item) {
+          _this4.testdata.forEach(function (item) {
             item.value = '';
           });
           uni.showToast({
@@ -464,7 +506,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       });
     },
     //保存
-    save: function save() {var _this4 = this;
+    save: function save() {var _this5 = this;
       var kczt = '';
       if (this.testdata[7].value) {
         kczt = "T";
@@ -491,10 +533,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         "fdbh": uni.getStorageSync('fdbh') };
 
       (0, _api.rcdosave)(data).then(function (res) {
-        _this4.spbm = '';
-        _this4.spmc = '';
-        _this4.spsmm = '';
-        _this4.testdata.forEach(function (item) {
+        _this5.spbm = '';
+        _this5.spmc = '';
+        _this5.spsmm = '';
+        _this5.testdata.forEach(function (item) {
           item.value = '';
         });
         console.log(res);
@@ -507,7 +549,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
     },
     //小类编码
-    isqueryall: function isqueryall(datas) {var _this5 = this;
+    isqueryall: function isqueryall(datas) {var _this6 = this;
       console.log(datas.value);
       var data = {
         "access_token": uni.getStorageSync('access_token'),
@@ -519,7 +561,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
       (0, _api.queryall)(data).then(function (res) {
         console.log('小类', res);
-        _this5.column = [{
+        _this6.column = [{
           name: '小类编码',
           label: '小类编码',
           width: 150,
@@ -554,9 +596,9 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
             result.push(a);
           });
           console.log(result);
-          _this5.result = result;
-          var column = JSON.stringify(_this5.column);
-          var results = JSON.stringify(_this5.result);
+          _this6.result = result;
+          var column = JSON.stringify(_this6.column);
+          var results = JSON.stringify(_this6.result);
           uni.navigateTo({
             url: "../../pagesA/table/table?result=".concat(results, "&column=").concat(column) });
 

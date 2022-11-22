@@ -1,11 +1,11 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/login/login",
     "pages/index/index",
     "pages/login/reg",
     "pages/login/forget",
     "pages/login/agreement",
-    "pages/home/home",
     "pages/myset/myset",
     "pages/myset/component/jianyi",
     "pages/myset/component/weixin",

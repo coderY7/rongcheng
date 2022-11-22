@@ -525,6 +525,11 @@
         rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
 					//console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
 					console.log('仪表盘数据', res.data)
+          if(res.error_code=='40002'){
+            uni.navigateTo({
+              url: '../../pages/login/login'
+            });
+          }
 											let data = res.data
 					
 											this.ybpdata = data

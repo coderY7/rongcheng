@@ -78,4 +78,12 @@
   align-items: center;
   margin: 20rpx 0;
 }
+.closebtn {
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  color: #358CC9;
+  font-size: 18px;
+  margin-top: 15px;
+}
 
