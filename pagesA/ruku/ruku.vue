@@ -51,8 +51,8 @@ align-items: center;height: 60rpx;
 
             <view class="view-flex" v-else-if="v.type=='下拉框'" @tap="queryMore(v,i,v.type,'ALL')">
               <text class="form-left-text">{{v.colname}}:</text>
-              <u-radio-group v-model="v.value" placement="row" v-if="v.codeid=='SK'">
-                <u-radio v-for="(item,index) in v.tabname" :key="item.id" :label="item.name" :name="item.id"></u-radio>
+              <u-radio-group v-model="v.value" placement="row" v-if="v.codeid=='SK'" >
+                <u-radio :customStyle="{marginRight: '20px'}" size="30px" v-for="(item,index) in v.tabname" :key="item.id" :label="item.name" :name="item.id"></u-radio>
               </u-radio-group>
               <u-input :placeholder="'请选择'+v.colname" disabled :disabledColor="v.readonly==''?'#fff':'#F5F7FA'" v-model="v.value" v-else>
                 <template slot="suffix">
@@ -263,7 +263,12 @@ export default {
           return
         }
         this.ifDrawer=state
-        this.popupShow=true
+        if(res.data[0].result=="没用对应数据源标识！"){
+          this.popupShow=false
+        }else {
+          this.popupShow=true
+        }
+
         this.selectData=[]
         for(var i in res.data){
           if(isAll=="ALL"){
@@ -329,6 +334,7 @@ export default {
       let str="'SPRKD',"
       for(var i in this.queryData){
         if(this.queryData[i].type=="查询下拉框"||this.queryData[i].type=="下拉框"){
+          console.log(this.queryData[i].value);
           str+="'"+this.queryData[i].value.split("-")[0]+"'"
         }else{
           str+="'"+this.queryData[i].value+"'"
@@ -345,6 +351,7 @@ export default {
         "userid": uni.getStorageSync("userid"),
       }
       rcgetlist(dataes).then((res) => {
+        str=''
         console.log("！！查询已上传的数据！！ res",res)
         if(res.error_code==0){
           this.foldMoreShow=false
@@ -591,5 +598,6 @@ export default {
   }
 
 }
+
 </style>
 
