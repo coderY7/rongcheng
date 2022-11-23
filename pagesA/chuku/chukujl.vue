@@ -68,7 +68,7 @@
 
     <view class="unit2">
 <view>
-  <u-button text="查询" @click="query()"></u-button>
+  <u-button text="查询" @click="query()" type="primary"></u-button>
 </view>
       <view>
 
@@ -220,6 +220,9 @@ this.condition()
   .box_r{
     width: 80%;
   }
+}
+.unit2{
+  margin: 30rpx 0;
 }
 .unit3{
   width: 90%;

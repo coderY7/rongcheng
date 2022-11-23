@@ -37,6 +37,9 @@
 .box .box_r.data-v-5e7ace63 {
   width: 80%;
 }
+.unit2.data-v-5e7ace63 {
+  margin: 30rpx 0;
+}
 .unit3.data-v-5e7ace63 {
   width: 90%;
   display: flex;

@@ -212,7 +212,8 @@ thdh:'',
       lxlist:[],
       stateDetail: false,
       tableIndex: -1,
-      djzt:''
+      djzt:'',
+      shcg:false
     }
   },
   onLoad(option){
@@ -220,13 +221,23 @@ thdh:'',
     this.thck=option.thck
     this.thlx=option.thlx
     this.djzt=option.djzt
+    this.shcg=option.shcg
+    console.log(option);
   },
   onShow(){
 this.getlist()
     if(this.djzt=='已审核'){
       this.showbnt=false
-    }else {
+    }
+    if(this.djzt=='未审核'){
       this.showbnt=true
+    }
+    console.log(this.shcg)
+    if(this.shcg=='false'){
+      this.showbnt=true
+    }
+    if(this.shcg=='true'){
+      this.showbnt=false
     }
   },
   methods:{

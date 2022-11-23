@@ -119,7 +119,7 @@
       </view>
     </view>
     <view class="unit2">
-      <u-button text="新增明细" @click="added()" type="primary"></u-button>
+      <u-button text="新增明细" @click="added()" type="primary" :disabled="shcg"></u-button>
     </view>
 
     <view class="unit3">
@@ -185,6 +185,7 @@ export default {
       searchdata:'',
       pitchdata:'',//选中
       remark:'',//备注
+      shcg:false
     }
   },
   onLoad(option) {
@@ -248,6 +249,7 @@ export default {
             }
             rcOrderNew(data).then((res) => {
               console.log('退货单创建成功', res)
+              this.shcg=false
               this.thdh=res.djbh
               let datee=this.thdh.split("TH")[1]
               let y="20"+datee.slice(0,2)
@@ -378,7 +380,7 @@ this.Search()
     //点击明细
     isdetail(){
       uni.navigateTo({
-        url:`../chuku/chukumx?thdh=${this.thdh}&thck=${this.thck}&thlx=${this.thlx}`
+        url:`../chuku/chukumx?thdh=${this.thdh}&thck=${this.thck}&thlx=${this.thlx}&shcg=${this.shcg}`
       })
     },
     //审核
@@ -394,6 +396,21 @@ this.Search()
       }
       rcckcheck(data).then((res)=>{
         console.log('审核',res)
+        if(res.error_code=='0'){
+          uni.showToast({
+            title: '整单审核成功',
+            duration: 2000,
+            icon:'none'
+          });
+          this.shcg=true
+        }
+        if(res.error_code=='500'){
+          uni.showToast({
+            title: res.message,
+            duration: 2000,
+            icon:'none'
+          });
+        }
       })
     },
     //整单删除
