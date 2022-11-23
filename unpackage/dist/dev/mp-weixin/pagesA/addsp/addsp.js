@@ -104,7 +104,7 @@ try {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 324))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 335))
     },
     uSwitch: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 387))
@@ -315,23 +315,25 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
     sptm: function sptm(newValue, oldValue) {
       if (oldValue != newValue) {
         var a = /(^-?[0-9]\d*$)/;
-        console.log(newValue);
         console.log(a.test(newValue));
-        if (!a.test(newValue)) {
-          uni.showModal({
-            title: '提示',
-            content: '条码只能输入数字',
-            success: function success(res) {
-              if (res.confirm) {
-                console.log('用户点击确定');
+        if (newValue != ' ' && newValue != null && newValue != undefined && newValue != '') {
+          if (!a.test(newValue)) {
+            uni.showModal({
+              title: '提示',
+              content: '条码只能输入数字',
+              success: function success(res) {
+                if (res.confirm) {
+                  console.log('用户点击确定');
 
-              } else if (res.cancel) {
+                } else if (res.cancel) {
 
-                console.log('用户点击取消');
-              }
-            } });
+                  console.log('用户点击取消');
+                }
+              } });
 
+          }
         }
+
       }
     } },
 
@@ -379,88 +381,97 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
 
     },
     search: function search() {var _this2 = this;
-      var data = {
-        fdbh: uni.getStorageSync('fdbh'),
-        barcode: this.sptm,
-        vipid: '',
-        levelprice: '',
-        disrate: '' };
+      if (this.sptm) {
+        var data = {
+          fdbh: uni.getStorageSync('fdbh'),
+          barcode: this.sptm,
+          vipid: '',
+          levelprice: '',
+          disrate: '' };
 
-      uni.request({
-        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
-        data: data,
-        method: 'POST',
-        header: {
-          'custom-header': 'application/json' //自定义请求头信息
-        },
-        success: function success(res) {
-          console.log('搜索商品', res.data);
+        uni.request({
+          url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
+          data: data,
+          method: 'POST',
+          header: {
+            'custom-header': 'application/json' //自定义请求头信息
+          },
+          success: function success(res) {
+            console.log('搜索商品', res.data);
 
-          if (res.data.result == 'success') {
-            _this2.sp = res.data.goodslist[0];
-            _this2.price = _this2.sp.price;
-            if (_this2.sp.sjprice == '' || _this2.sp.sjprice == '0') {
-              _this2.sjprice = _this2.price * 0.8;
+            if (res.data.result == 'success') {
+              _this2.sp = res.data.goodslist[0];
+              _this2.price = _this2.sp.price;
+              if (_this2.sp.sjprice == '' || _this2.sp.sjprice == '0') {
+                _this2.sjprice = _this2.price * 0.8;
+              } else {
+                _this2.sjprice = _this2.sp.sjprice;
+
+              }
+              if (_this2.sp.incode == 'T') {
+                _this2.isautosetcldsp = true;
+              } else {
+                _this2.isautosetcldsp = false;
+              }
+              switch (res.data.message) {
+                case 'rcyg':
+                  _this2.spzt = 'rcyg';
+                  _this2.ztmc = '蓉城易购模版库';
+                  break;
+                case 'mzsale':
+                  _this2.spzt = 'mzsale';
+                  _this2.ztmc = '麦子易商模版库';
+
+                  break;
+                case 'normal':
+                  _this2.spzt = 'normal';
+                  _this2.ztmc = '已导入商品';
+
+                  break;
+                case 'allnew':
+                  _this2.spzt = 'allnew';
+                  _this2.ztmc = '新增商品';
+
+                  uni.showModal({
+                    title: '未查到商品',
+                    content: '是否新增商品？',
+                    success: function success(res) {
+                      if (res.confirm) {
+                        console.log('用户点击确定');
+                      } else if (res.cancel) {
+                        console.log('用户点击取消');
+                        uni.navigateBack({
+                          delta: 1 });
+
+                      }
+                    } });
+
+                  break;
+                case 'other':
+                  _this2.spzt = 'other';
+                  _this2.ztmc = '其他模版库';
+
+                  break;}
+
             } else {
-              _this2.sjprice = _this2.sp.sjprice;
+              if (res.data.result == 'warning') {
+                uni.showToast({
+                  title: res.data.message,
+                  duration: 2000,
+                  icon: 'none' });
 
+                _this2.sptm = '';
+              }
             }
-            if (_this2.sp.incode == 'T') {
-              _this2.isautosetcldsp = true;
-            } else {
-              _this2.isautosetcldsp = false;
-            }
-            switch (res.data.message) {
-              case 'rcyg':
-                _this2.spzt = 'rcyg';
-                _this2.ztmc = '蓉城易购模版库';
-                break;
-              case 'mzsale':
-                _this2.spzt = 'mzsale';
-                _this2.ztmc = '麦子易商模版库';
+          } });
 
-                break;
-              case 'normal':
-                _this2.spzt = 'normal';
-                _this2.ztmc = '已导入商品';
+      } else {
+        uni.showToast({
+          title: '请输入条码',
+          duration: 2000,
+          icon: 'none' });
 
-                break;
-              case 'allnew':
-                _this2.spzt = 'allnew';
-                _this2.ztmc = '新增商品';
-
-                uni.showModal({
-                  title: '未查到商品',
-                  content: '是否新增商品？',
-                  success: function success(res) {
-                    if (res.confirm) {
-                      console.log('用户点击确定');
-                    } else if (res.cancel) {
-                      console.log('用户点击取消');
-                      uni.navigateBack({
-                        delta: 1 });
-
-                    }
-                  } });
-
-                break;
-              case 'other':
-                _this2.spzt = 'other';
-                _this2.ztmc = '其他模版库';
-
-                break;}
-
-          } else {
-            if (res.data.result == 'warning') {
-              uni.showToast({
-                title: res.data.message,
-                duration: 2000,
-                icon: 'none' });
-
-              _this2.sptm = '';
-            }
-          }
-        } });
+      }
 
     },
     //保存

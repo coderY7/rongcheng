@@ -3,7 +3,7 @@
     <navbar title='新增商品'  @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
-          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="30" @clickIcon="scan()" @custom="search()"></u-search>
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="35" @clickIcon="scan()" @custom="search()"></u-search>
       </view>
 
       <view >
@@ -146,23 +146,25 @@ export default {
     sptm: (newValue, oldValue)=>{
       if(oldValue!=newValue){
         let a=/(^-?[0-9]\d*$)/
-        console.log(newValue);
         console.log(a.test(newValue));
-        if(!a.test(newValue)){
-          uni.showModal({
-            title: '提示',
-            content: '条码只能输入数字',
-            success:  (res)=> {
-              if (res.confirm) {
-                console.log('用户点击确定');
+        if(newValue!=' ' && newValue!=null  && newValue!=undefined && newValue!=''){
+          if(!a.test(newValue)){
+            uni.showModal({
+              title: '提示',
+              content: '条码只能输入数字',
+              success:  (res)=> {
+                if (res.confirm) {
+                  console.log('用户点击确定');
 
-              } else if (res.cancel) {
+                } else if (res.cancel) {
 
-                console.log('用户点击取消');
+                  console.log('用户点击取消');
+                }
               }
-            }
-          });
+            });
+          }
         }
+
       }
     }
   },
@@ -210,89 +212,98 @@ export default {
       });
     },
     search() {
-      let data = {
-        fdbh: uni.getStorageSync('fdbh'),
-        barcode: this.sptm,
-        vipid: '',
-        levelprice: '',
-        disrate: ''
-      }
-      uni.request({
-        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
-        data: data,
-        method: 'POST',
-        header: {
-          'custom-header': 'application/json' //自定义请求头信息
-        },
-        success: (res) => {
-          console.log('搜索商品', res.data);
+      if(this.sptm){
+        let data = {
+          fdbh: uni.getStorageSync('fdbh'),
+          barcode: this.sptm,
+          vipid: '',
+          levelprice: '',
+          disrate: ''
+        }
+        uni.request({
+          url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/search', //仅为示例，并非真实接口地址。
+          data: data,
+          method: 'POST',
+          header: {
+            'custom-header': 'application/json' //自定义请求头信息
+          },
+          success: (res) => {
+            console.log('搜索商品', res.data);
 
-          if (res.data.result == 'success') {
-            this.sp=res.data.goodslist[0]
-            this.price=this.sp.price
-            if(this.sp.sjprice==''|| this.sp.sjprice=='0'){
-              this.sjprice=this.price*0.8
-            }else {
-              this.sjprice=this.sp.sjprice
+            if (res.data.result == 'success') {
+              this.sp=res.data.goodslist[0]
+              this.price=this.sp.price
+              if(this.sp.sjprice==''|| this.sp.sjprice=='0'){
+                this.sjprice=this.price*0.8
+              }else {
+                this.sjprice=this.sp.sjprice
 
-            }
-           if(this.sp.incode=='T'){
-             this.isautosetcldsp=true
-           }else {
-             this.isautosetcldsp=false
-           }
-            switch (res.data.message) {
-              case 'rcyg':
-                this.spzt = 'rcyg'
+              }
+              if(this.sp.incode=='T'){
+                this.isautosetcldsp=true
+              }else {
+                this.isautosetcldsp=false
+              }
+              switch (res.data.message) {
+                case 'rcyg':
+                  this.spzt = 'rcyg'
                   this.ztmc='蓉城易购模版库'
-                break;
-              case 'mzsale':
-                this.spzt = 'mzsale'
-                this.ztmc='麦子易商模版库'
+                  break;
+                case 'mzsale':
+                  this.spzt = 'mzsale'
+                  this.ztmc='麦子易商模版库'
 
-                break;
-              case 'normal':
-                this.spzt = 'normal'
-                this.ztmc='已导入商品'
+                  break;
+                case 'normal':
+                  this.spzt = 'normal'
+                  this.ztmc='已导入商品'
 
-                break;
-              case 'allnew':
-                this.spzt = 'allnew'
-                this.ztmc='新增商品'
+                  break;
+                case 'allnew':
+                  this.spzt = 'allnew'
+                  this.ztmc='新增商品'
 
-                uni.showModal({
-                  title: '未查到商品',
-                  content: '是否新增商品？',
-                  success: function (res) {
-                    if (res.confirm) {
-                      console.log('用户点击确定');
-                    } else if (res.cancel) {
-                      console.log('用户点击取消');
-                      uni.navigateBack({
-                        delta: 1
-                      });
+                  uni.showModal({
+                    title: '未查到商品',
+                    content: '是否新增商品？',
+                    success: function (res) {
+                      if (res.confirm) {
+                        console.log('用户点击确定');
+                      } else if (res.cancel) {
+                        console.log('用户点击取消');
+                        uni.navigateBack({
+                          delta: 1
+                        });
+                      }
                     }
-                  }
-                });
-                break;
-              case 'other':
-                this.spzt = 'other'
-                this.ztmc='其他模版库'
+                  });
+                  break;
+                case 'other':
+                  this.spzt = 'other'
+                  this.ztmc='其他模版库'
 
-                break;
-            }
-          }else {
-            if(res.data.result=='warning'){
-              uni.showToast({
-                title: res.data.message,
-                duration: 2000,
-                icon:'none'
-              });
-              this.sptm=''
+                  break;
+              }
+            }else {
+              if(res.data.result=='warning'){
+                uni.showToast({
+                  title: res.data.message,
+                  duration: 2000,
+                  icon:'none'
+                });
+                this.sptm=''
+              }
             }
           }
-        }
-      });
+        });
+      }else {
+        uni.showToast({
+          title: '请输入条码',
+          duration: 2000,
+          icon:'none'
+        });
+      }
+
     },
     //保存
     save(){
