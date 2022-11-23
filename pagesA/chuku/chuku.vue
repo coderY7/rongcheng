@@ -7,7 +7,7 @@
     </view>
     <view class="unit1">
       <view class="head">
-        <view>退货单:{{thdh}}</view>
+        <view>退库单:{{thdh}}</view>
         <view v-if="detail" class="dhliang" @click="isdetail()">
           明细:{{detaildata.length}}
         </view>
@@ -237,7 +237,7 @@ export default {
     cknew() {
       uni.showModal({
         title: '提示',
-        content: '是否创建新退货单',
+        content: '是否创建新退库单',
         success:(res) =>{
           if (res.confirm) {
             console.log('用户点击确定');
@@ -248,7 +248,7 @@ export default {
               userid: uni.getStorageSync('userid')
             }
             rcOrderNew(data).then((res) => {
-              console.log('退货单创建成功', res)
+              console.log('退库单创建成功', res)
               this.shcg=false
               this.thdh=res.djbh
               let datee=this.thdh.split("TH")[1]
