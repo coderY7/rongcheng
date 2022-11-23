@@ -161,15 +161,25 @@ align-items: center;height: 50rpx;
 
 
 		<view class="box-content" v-show="!ifpage">
+      <view style=" padding:10px 10px 0;
+      color: #fff;
+      height: 80rpx;
+      margin-bottom: 20rpx;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: #358CC9;">
+        {{uFormTitle.djbh}}
+      </view>
 			<edit @byqx="qxby()" @pygb="gbpy()" :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
+      <view style="display: flex;justify-content: center;align-items: center">
+        <view style="width: 60%;margin-bottom:20rpx">
+          <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
+          </u-button>
+        </view>
+      </view>
 		</view>
 
-    <view style="display: flex;justify-content: center;align-items: center">
-      <view style="width: 60%;margin-bottom:20rpx">
-        <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
-        </u-button>
-      </view>
-    </view>
+
 
 		<!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
 		<u-overlay :show="coverShow"></u-overlay>
@@ -1384,6 +1394,13 @@ margin: 20rpx 0;
 		.uni-select__input-box {
 		    width: 100%;
 		}
+    .rkdhtou{
+      padding:10px 10px 0;
+      color: #fff;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: #358CC9;
+    }
 	}
 </style>
 

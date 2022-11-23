@@ -224,7 +224,7 @@
 
     },
     onshow(){
-
+console.log(this.title,this.tableData)
     },
 		methods: {
 			// 查询 特供（供价类型）

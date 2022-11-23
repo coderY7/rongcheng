@@ -652,4 +652,11 @@
 .data-v-65167343 .u-popup .uni-select__input-box {
   width: 100%;
 }
+.data-v-65167343 .u-popup .rkdhtou {
+  padding: 10px 10px 0;
+  color: #fff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  background-color: #358CC9;
+}
 
