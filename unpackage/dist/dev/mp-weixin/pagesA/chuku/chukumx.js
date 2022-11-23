@@ -98,25 +98,25 @@ var components
 try {
   components = {
     uForm: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 496))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form/u-form */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form/u-form")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form/u-form.vue */ 498))
     },
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 415))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 397))
     },
     uFormItem: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 505))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-form-item/u-form-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-form-item/u-form-item")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-form-item/u-form-item.vue */ 507))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 379))
     },
     uniIcons: function() {
-      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 457))
+      return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 459))
     },
     uToast: function() {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 489))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 491))
     }
   }
 } catch (e) {
@@ -174,6 +174,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -435,17 +448,25 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var _default = { data: function data() {return { detaildata: '', thdh: '', thck: '', thlx: '', editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { detaildata: '', thdh: '', thck: '', thlx: '', showbnt: true, editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
-      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, onLoad: function onLoad(option) {this.thdh = option.thdh;this.thck = option.thck;this.thlx = option.thlx;}, onShow: function onShow() {this.getlist();}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.thdh, "djtype": "SPTHD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "F" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({ title: '没有商品明细', duration: 2000, icon: 'none' });setTimeout(function () {uni.navigateBack({ delta: 1 });}, 2000);}});}, // 编辑商品
+      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1, djzt: '' };}, onLoad: function onLoad(option) {this.thdh = option.thdh;this.thck = option.thck;this.thlx = option.thlx;this.djzt = option.djzt;}, onShow: function onShow() {this.getlist();if (this.djzt == '已审核') {this.showbnt = false;} else {this.showbnt = true;}}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.thdh, "djtype": "SPTHD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "F" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({ title: '没有商品明细', duration: 2000, icon: 'none' });setTimeout(function () {uni.navigateBack({ delta: 1 });}, 2000);}});}, // 编辑商品
     toeditDetail: function toeditDetail(row, index) {this.editForm.guid = row.guid;this.editForm.thjg = row.thjg;this.editForm.spmc = row.spmc;this.editForm.spsmm = row.spsmm;this.editForm.spbm = row.spbm;this.editForm.spsl = row.thsl;this.editForm.nsjg = row.nsjg;this.editForm.sppc = row.sppc;this.editForm.splx = row.splx == "T" ? true : false;this.stateDetail = true;this.tableIndex = index;}, cancelDetail: function cancelDetail() {this.editForm.guid = '';this.editForm.thjg = '';this.editForm.spmc = '';this.editForm.spsmm = '';this.editForm.spbm = '';this.editForm.spsl = '';this.editForm.nsjg = '';this.editForm.sppc = '';this.editForm.cxjbz = ""; //供价类型
       this.editForm.splx = false; //赠送商品
-      this.editForm.thsl = "";this.editForm.thjg = "";this.stateDetail = false;this.tableIndex = -1;
-    },
-
-    switChange: function switChange(val) {
-      this.editForm.splx = val;
-    },
+      this.editForm.thsl = "";this.editForm.thjg = "";this.stateDetail = false;this.tableIndex = -1;}, switChange: function switChange(val) {this.editForm.splx = val;},
     // 保存商品
     editDetailSave: function editDetailSave() {var _this2 = this;
       var a = (0, _dayjs.default)(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD");
@@ -539,32 +560,7 @@ var _default = { data: function data() {return { detaildata: '', thdh: '', thck:
           }
         } });
 
-    }
-
-    // serchGoods(val) {
-    //   let dataes={
-    //     "access_token": uni.getStorageSync("access_token"),
-    //     "companyid": uni.getStorageSync("companyid"),
-    //     "condition": val,
-    //     "fdbh": uni.getStorageSync("fdbh"),
-    //     "findtype": "01",
-    //     "goodstype": "SP",
-    //     "userid": uni.getStorageSync("userid"),
-    //   }
-    //   rcsearch(dataes).then((res) => {
-    //     if (res.error_code == 0) {
-    //       this.serchGoodsData = res.data[0]
-    //       this.editForm.spbm=res.data[0].spbm
-    //       this.editForm.spsmm=res.data[0].spsmm
-    //       this.editForm.spmc=res.data[0].spmc
-    //       this.editForm.dw=res.data[0].dw
-    //       this.editForm.gg=res.data[0].gg
-    //     }
-    //   }).catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
-  } };exports.default = _default;
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

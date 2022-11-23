@@ -1,7 +1,9 @@
 <template>
   <view>
-    <view>
+    <view class="nav">
     <view @click="jl()" style="color: #4f99ff;margin:0 0 20rpx 20rpx">历史记录</view>
+      <view @click="cknew()" style="color: #4f99ff;margin:0 0 20rpx 20rpx">创建新单</view>
+
     </view>
     <view class="unit1">
       <view class="head">
@@ -185,9 +187,9 @@ export default {
       remark:'',//备注
     }
   },
-  onLoad() {
-    this.new()
-
+  onLoad(option) {
+    console.log(option);
+    this.thdh=option.thdh
   },
   onReady() {
 
@@ -231,7 +233,7 @@ export default {
   },
   methods: {
     //创建出库单
-    new() {
+    cknew() {
       uni.showModal({
         title: '提示',
         content: '是否创建新退货单',
@@ -411,7 +413,7 @@ if(res.error_code=='0'){
     icon:'none'
   });
   setTimeout(()=>{
-    this.new()
+    this.cknew()
   },2000)
 }
       })
@@ -429,6 +431,10 @@ if(res.error_code=='0'){
 </script>
 
 <style lang="scss" scoped>
+.nav{
+  display: flex;
+  justify-content: space-between;
+}
 .head{
   padding: 10px;
   color: #fff;

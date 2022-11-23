@@ -24,6 +24,10 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
+.nav.data-v-53a38061 {
+  display: flex;
+  justify-content: space-between;
+}
 .head.data-v-53a38061 {
   padding: 10px;
   color: #fff;

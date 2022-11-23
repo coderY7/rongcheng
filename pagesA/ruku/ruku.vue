@@ -319,7 +319,7 @@ export default {
       console.log('j进入编译',item)
       uni.$emit("editTitle",item)
       let states=""
-      if(item.单据状态=="未审核"){
+      if(item['单据状态']=="未审核"){
         states="edit"
       }else{
         states="look"

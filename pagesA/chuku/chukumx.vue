@@ -1,128 +1,141 @@
 <template>
-  <view class="box-com">
-    <!-- 编辑单据 内容 -->
-    <view v-show="stateDetail">
+  <view>
 
-      <u-form class="form-card" labelPosition="left" :model="editForm" :rules="editRules" ref="uForm">
-        <view>
-          <uni-card v-if="editForm.spmc" margin="5px" spacing="0px">
-            <view  class="boxunit">
-              <view class="boxunit1">商品编码:</view>
-              <view class="boxunit2">
-                <u-input border="surround" v-model="editForm.spbm" :disabled="true"></u-input>
-              </view>
-            </view>
-            <view  class="boxunit">
-              <view class="boxunit1">商品名称:</view>
-              <view class="boxunit2">
-                <u-input border="surround" v-model="editForm.spmc" :disabled="true"></u-input>
-              </view>
-            </view>
-            <view  class="boxunit">
-              <view class="boxunit1">商品条码:</view>
-              <view class="boxunit2">
-                <u-input border="surround" v-model="editForm.spsmm"  :disabled="true"></u-input>
-              </view>
-            </view>
-<!--            <view  class="boxunit">-->
-<!--              <view class="boxunit1">商品单位:</view>-->
-<!--              <view class="boxunit2">-->
-<!--                <u-input border="surround" v-model="editForm.dw"  :disabled="true"></u-input>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--            <view  class="boxunit">-->
-<!--              <view class="boxunit1">商品规格:</view>-->
-<!--              <view class="boxunit2">-->
-<!--                <u-input border="surround" v-model="editForm.gg"  :disabled="true"></u-input>-->
-<!--              </view>-->
-<!--            </view>-->
-          </uni-card>
-
-        </view>
-        <view style="margin: 10rpx 0">
-          <u-form-item label="退货数量" :labelWidth="74" prop="rksl">
-            <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.thsl">
-            </u-input>
-          </u-form-item>
-        </view>
-        <view style="margin: 10rpx 0">
-          <u-form-item label="退货价格" :labelWidth="74" prop="rkhsjg">
-            <u-input placeholder="请输入退货价格" type="digit" v-model="editForm.thjg">
-            </u-input>
-          </u-form-item>
-        </view>
-<!--        <view style="margin: 10rpx 0">-->
-<!--          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">-->
-<!--            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>-->
-<!--          </u-form-item>-->
-<!--        </view>-->
-
-      </u-form>
-<!--      <view class="form-card">-->
-<!--        <view style="display:flex;justify-content:space-between;">-->
-<!--          <text>供价类型</text>-->
-<!--        </view>-->
-<!--        <view>-->
-<!--          <view class="radio-view">-->
-<!--            <view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </view>-->
-      <view class="btns" v-if="stateDetail">
-        <u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
-                  @click="cancelDetail"></u-button>
-        <u-button type="primary" class="my-primary-button" text="保存" throttleTime="2000" @click="editDetailSave">
-        </u-button>
-      </view>
+      <view style=" padding:10px 10px 0;
+      color: #fff;
+      height: 80rpx;
+      margin-bottom: 20rpx;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      background-color: #358CC9;">
+        {{thdh}}
     </view>
+    <view class="box-com">
+      <!-- 编辑单据 内容 -->
+      <view v-show="stateDetail">
 
-    <view class="foldGroup" v-if="!stateDetail">
-
-      <view class="fold-content" v-for="(item,index) in detaildata">
-        <view class="card-flex-wrap">
-          <view class="card-row">{{item.spmc}}</view>
+        <u-form class="form-card" labelPosition="left" :model="editForm" :rules="editRules" ref="uForm">
           <view>
-            <uni-icons type="compose" size="20" color="#3183C1" @click="toeditDetail(item,index)"></uni-icons>
-            <uni-icons type="trash" size="20" color="#F13B44" style="margin-left:10px;"  @click="delGoods(item,index)"></uni-icons>
+            <uni-card v-if="editForm.spmc" margin="5px" spacing="0px">
+              <view  class="boxunit">
+                <view class="boxunit1">商品编码:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.spbm" :disabled="true"></u-input>
+                </view>
+              </view>
+              <view  class="boxunit">
+                <view class="boxunit1">商品名称:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.spmc" :disabled="true"></u-input>
+                </view>
+              </view>
+              <view  class="boxunit">
+                <view class="boxunit1">商品条码:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.spsmm"  :disabled="true"></u-input>
+                </view>
+              </view>
+              <!--            <view  class="boxunit">-->
+              <!--              <view class="boxunit1">商品单位:</view>-->
+              <!--              <view class="boxunit2">-->
+              <!--                <u-input border="surround" v-model="editForm.dw"  :disabled="true"></u-input>-->
+              <!--              </view>-->
+              <!--            </view>-->
+              <!--            <view  class="boxunit">-->
+              <!--              <view class="boxunit1">商品规格:</view>-->
+              <!--              <view class="boxunit2">-->
+              <!--                <u-input border="surround" v-model="editForm.gg"  :disabled="true"></u-input>-->
+              <!--              </view>-->
+              <!--            </view>-->
+            </uni-card>
+
           </view>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="退货数量" :labelWidth="74" prop="rksl">
+              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.thsl">
+              </u-input>
+            </u-form-item>
+          </view>
+          <view style="margin: 10rpx 0">
+            <u-form-item label="退货价格" :labelWidth="74" prop="rkhsjg">
+              <u-input placeholder="请输入退货价格" type="digit" v-model="editForm.thjg">
+              </u-input>
+            </u-form-item>
+          </view>
+          <!--        <view style="margin: 10rpx 0">-->
+          <!--          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">-->
+          <!--            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>-->
+          <!--          </u-form-item>-->
+          <!--        </view>-->
+
+        </u-form>
+        <!--      <view class="form-card">-->
+        <!--        <view style="display:flex;justify-content:space-between;">-->
+        <!--          <text>供价类型</text>-->
+        <!--        </view>-->
+        <!--        <view>-->
+        <!--          <view class="radio-view">-->
+        <!--            <view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>-->
+        <!--          </view>-->
+        <!--        </view>-->
+        <!--      </view>-->
+        <view class="btns" v-if="stateDetail">
+          <u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
+                    @click="cancelDetail"></u-button>
+          <u-button type="primary" class="my-primary-button" text="保存" throttleTime="2000" @click="editDetailSave">
+          </u-button>
         </view>
-        <view class="multiples">
-          <view class="multiple-con">
-            <text class="left-con">编码:</text>
-            <text class="right-con">{{item.spbm}}</text>
+      </view>
+
+      <view class="foldGroup" v-if="!stateDetail">
+
+        <view class="fold-content" v-for="(item,index) in detaildata">
+          <view class="card-flex-wrap">
+            <view class="card-row">{{item.spmc}}</view>
+            <view v-if="showbnt">
+              <uni-icons type="compose" size="20" color="#3183C1" @click="toeditDetail(item,index)"></uni-icons>
+              <uni-icons type="trash" size="20" color="#F13B44" style="margin-left:10px;"  @click="delGoods(item,index)"></uni-icons>
+            </view>
           </view>
-          <view class="multiple-con">
-            <text class="left-con">条码:</text>
-            <text class="right-con">{{item.spsmm}}</text>
+          <view class="multiples">
+            <view class="multiple-con">
+              <text class="left-con">编码:</text>
+              <text class="right-con">{{item.spbm}}</text>
+            </view>
+            <view class="multiple-con">
+              <text class="left-con">条码:</text>
+              <text class="right-con">{{item.spsmm}}</text>
+            </view>
           </view>
-        </view>
-        <view class="multiples">
-          <view class="multiple-con view-flex">
-            <text class="left-con">规格:</text>
-            <text class="right-con">{{item.gg}}</text>
+          <view class="multiples">
+            <view class="multiple-con view-flex">
+              <text class="left-con">规格:</text>
+              <text class="right-con">{{item.gg}}</text>
+            </view>
+            <view class="multiple-con view-flex">
+              <text class="left-con">零售价格:</text>
+              <text class="right-con">{{item.nsjg}}</text>
+            </view>
           </view>
-          <view class="multiple-con view-flex">
-            <text class="left-con">零售价格:</text>
-            <text class="right-con">{{item.nsjg}}</text>
-          </view>
-        </view>
-        <view class="multiples">
-          <view class="multiple-con view-flex">
-            <text class="left-con">退货数量:</text>
-            <text class="right-con">{{item.thsl}}</text>
-          </view>
-          <view class="multiple-con view-flex">
-            <text class="left-con">退货价格:</text>
-            <text class="right-con">￥{{item.thjg}}</text>
+          <view class="multiples">
+            <view class="multiple-con view-flex">
+              <text class="left-con">退货数量:</text>
+              <text class="right-con">{{item.thsl}}</text>
+            </view>
+            <view class="multiple-con view-flex">
+              <text class="left-con">退货价格:</text>
+              <text class="right-con">￥{{item.thjg}}</text>
+            </view>
           </view>
         </view>
       </view>
+
+
+      <!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
+      <u-toast ref="uToast"></u-toast>
+
+
     </view>
-
-
-    <!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
-    <u-toast ref="uToast"></u-toast>
-
 
   </view>
 
@@ -145,6 +158,7 @@ export default {
 thdh:'',
       thck:'',
       thlx:'',
+      showbnt:true,
       editForm:{
         spbm: "",
         spsmm: "",
@@ -156,6 +170,7 @@ thdh:'',
         guid:'',
         splx: false,//赠送商品
         cxjbz: "",//供价类型
+
       },
       editRules:{
         "thsl": [{
@@ -197,16 +212,22 @@ thdh:'',
       lxlist:[],
       stateDetail: false,
       tableIndex: -1,
+      djzt:''
     }
   },
   onLoad(option){
     this.thdh=option.thdh
     this.thck=option.thck
     this.thlx=option.thlx
-
+    this.djzt=option.djzt
   },
   onShow(){
 this.getlist()
+    if(this.djzt=='已审核'){
+      this.showbnt=false
+    }else {
+      this.showbnt=true
+    }
   },
   methods:{
     getlist(){
@@ -366,29 +387,7 @@ this.getlist()
       });
     },
 
-    // serchGoods(val) {
-    //   let dataes={
-    //     "access_token": uni.getStorageSync("access_token"),
-    //     "companyid": uni.getStorageSync("companyid"),
-    //     "condition": val,
-    //     "fdbh": uni.getStorageSync("fdbh"),
-    //     "findtype": "01",
-    //     "goodstype": "SP",
-    //     "userid": uni.getStorageSync("userid"),
-    //   }
-    //   rcsearch(dataes).then((res) => {
-    //     if (res.error_code == 0) {
-    //       this.serchGoodsData = res.data[0]
-    //       this.editForm.spbm=res.data[0].spbm
-    //       this.editForm.spsmm=res.data[0].spsmm
-    //       this.editForm.spmc=res.data[0].spmc
-    //       this.editForm.dw=res.data[0].dw
-    //       this.editForm.gg=res.data[0].gg
-    //     }
-    //   }).catch((err) => {
-    //     console.log(err)
-    //   })
-    // },
+
   }
 }
 </script>

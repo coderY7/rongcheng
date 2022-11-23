@@ -98,22 +98,22 @@ var components
 try {
   components = {
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 413))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 415))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 335))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 337))
     },
     uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 449))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 451))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 395))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 397))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 377))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 379))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 481))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 483))
     }
   }
 } catch (e) {
@@ -176,6 +176,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
 
 
 
@@ -479,6 +481,8 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
+//
+//
 var _default = { components: {}, data: function data() {return { spbm: '', sjbh: '', sjbhlist: '', thck: '', //仓库
       thcklist: '', thlx: '', //退回类型
       thlxlist: '', thdh: '', //退货单
@@ -487,17 +491,15 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
       detaildata: [], //明细数据
       from: {}, popupShow: false, searchdata: '', pitchdata: '', //选中
       remark: '' //备注
-    };}, onLoad: function onLoad() {this.new();}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
+    };}, onLoad: function onLoad(option) {console.log(option);this.thdh = option.thdh;}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
     this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value; //处理退货类型下拉框数据
     this.thlxlist = uni.getStorageSync('basic').TKLX;var thlxlist = [];this.thlxlist.forEach(function (item) {var datas = {};datas.value = item.tklxid;datas.text = item.tklxmc;thlxlist.push(datas);});this.thlxlist = thlxlist;this.thlx = this.thlxlist[0].value;this.getlist();}, methods: { //创建出库单
-    new: function _new() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新退货单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPTHD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('退货单创建成功', res);_this.thdh = res.djbh;var datee = _this.thdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.thdh = '';_this.from = {};}} });}, // 扫码 搜索商品
+    cknew: function cknew() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新退货单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPTHD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('退货单创建成功', res);_this.thdh = res.djbh;var datee = _this.thdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.thdh = '';_this.from = {};}} });}, // 扫码 搜索商品
     scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, //商品搜索
     Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0') {_this3.popupShow = true;_this3.searchdata = res.data;}});}, //选中的商品
     ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.spbm = this.pitchdata.spbm, this.from.spsmm = this.pitchdata.spsmm, this.from.spmc = this.pitchdata.spmc, this.from.nsjg = this.pitchdata.nsjg;this.from.sppc = '';this.from.thjg = '';this.from.spsl = '';this.from.guid = '';}, //上传商品
-    added: function added() {var _this4 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), vtype: 'ADD', djbh: this.thdh,
-        fdbh: uni.getStorageSync('fdbh'),
-        ysdh: '',
+    added: function added() {var _this4 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), vtype: 'ADD', djbh: this.thdh, fdbh: uni.getStorageSync('fdbh'), ysdh: '',
         ckid: this.thck,
         sjbh: this.sjbh,
         thlx: this.thlx,
@@ -588,7 +590,7 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
             icon: 'none' });
 
           setTimeout(function () {
-            _this6.new();
+            _this6.cknew();
           }, 2000);
         }
       });
