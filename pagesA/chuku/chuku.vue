@@ -1,9 +1,8 @@
 <template>
   <view>
     <view class="nav">
-    <view @click="jl()" style="color: #4f99ff;margin:0 0 20rpx 20rpx">历史记录</view>
-      <view @click="cknew()" style="color: #4f99ff;margin:0 0 20rpx 20rpx">创建新单</view>
-
+    <view @click="jl()" style="color: #4f99ff">历史记录</view>
+      <view @click="cknew()" style="color: #4f99ff">创建新单</view>
     </view>
     <view class="unit1">
       <view class="head">
@@ -451,6 +450,8 @@ if(res.error_code=='0'){
 .nav{
   display: flex;
   justify-content: space-between;
+  align-content: center;
+  padding: 20rpx;
 }
 .head{
   padding: 10px;
@@ -504,8 +505,12 @@ if(res.error_code=='0'){
   margin-top: 15px;
 }
 .unit2{
-  width: 80%;
-  margin: 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 20rpx;
+
   margin-top: 20px;
 }
 .unit3{

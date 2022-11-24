@@ -1,7 +1,7 @@
 <template>
 <view>
   <view>
-<!--    <uni-card margin="0" padding="0" spaacing="0">-->
+    <uni-card margin="0" padding="0" spaacing="0">
     <view>
       <view v-for="(item,index) in term">
 
@@ -64,7 +64,7 @@
 
       </view>
     </view>
-<!--    </uni-card>-->
+    </uni-card>
 
     <view class="unit2">
 <view>
@@ -222,7 +222,7 @@ this.condition()
   }
 }
 .unit2{
-  margin: 30rpx 0;
+  margin: 30rpx 20rpx;
 }
 .unit3{
   width: 90%;
@@ -240,5 +240,8 @@ border-radius: 10px;
     flex-direction: row;
     padding-bottom:5px;
   }
+}
+/deep/ .uni-card{
+  overflow: inherit;
 }
 </style>

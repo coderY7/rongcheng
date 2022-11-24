@@ -170,7 +170,7 @@
 		  {
 			  "path": "chuku/chukujl",
 			  "style": {
-				  "navigationBarTitleText": "",
+				  "navigationBarTitleText": "退库单记录",
 				  "enablePullDownRefresh": false
 			  }
 		  },

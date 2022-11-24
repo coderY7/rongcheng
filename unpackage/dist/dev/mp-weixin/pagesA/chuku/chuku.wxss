@@ -27,6 +27,8 @@
 .nav.data-v-53a38061 {
   display: flex;
   justify-content: space-between;
+  align-content: center;
+  padding: 20rpx;
 }
 .head.data-v-53a38061 {
   padding: 10px;
@@ -77,8 +79,10 @@
   margin-top: 15px;
 }
 .unit2.data-v-53a38061 {
-  width: 80%;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 20rpx;
   margin-top: 20px;
 }
 .unit3.data-v-53a38061 {
