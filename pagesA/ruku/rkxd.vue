@@ -899,7 +899,7 @@ align-items: center;height: 50rpx;
 						"spmc": this.uFormModel.spmc,
 						"sppc": ""
 					})
-					this.doSave("CHK")
+					this.doSave("ADD")
 
 			},
 			doSave(state) {

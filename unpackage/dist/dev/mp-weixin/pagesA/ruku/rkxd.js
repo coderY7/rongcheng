@@ -1682,7 +1682,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         "spmc": this.uFormModel.spmc,
         "sppc": "" });
 
-      this.doSave("CHK");
+      this.doSave("ADD");
 
     },
     doSave: function doSave(state) {var _this14 = this;
