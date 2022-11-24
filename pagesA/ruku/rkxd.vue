@@ -828,6 +828,7 @@ align-items: center;height: 50rpx;
 				this.focusObj.numFocus=false
 				this.focusObj.priceFocus=false
 			},
+
 			
 			// 编辑商品 保存商品............................................................
 			editSave(arr) {
