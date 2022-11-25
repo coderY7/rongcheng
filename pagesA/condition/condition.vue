@@ -133,7 +133,8 @@
 import {
   getlist,
   getcolumns,
-    query
+    query,
+  condition,
 } from '../../network/api.js';
 	import navbar from '../../components/nav.vue'
 
@@ -195,6 +196,7 @@ export default {
       cxsjht.push(datas)
     })
     this.cxsjht=cxsjht
+
   },
   watch: {
     tj: function (newvalue, oldvalue) {
@@ -202,6 +204,7 @@ export default {
     }
   },
   methods: {
+
     //自定义返回
     left() {
       uni.navigateBack({

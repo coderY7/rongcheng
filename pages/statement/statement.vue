@@ -41,7 +41,7 @@
 		onLoad() {
 			//this.isreportForm()
       //{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}
-this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'},{cxmc:'商品退库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}]
+this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'},{cxmc:'商品退库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'},{cxmc:'商品报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'},{cxmc:'库存报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}]
 		},
 		methods: {
 			//获取报表
@@ -104,8 +104,34 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
             url: '../../pagesA/chuku/chuku'
           })
         }
-			
-			},
+        if(item.cxmc=='商品报表'){
+          let data={
+            access_token:uni.getStorageSync('access_token'),
+            cxbh:'RB007'
+          }
+          condition(data).then((res)=>{
+            console.log('res',res.data)
+            let items = JSON.stringify(res)
+            uni.navigateTo({
+              url: `../../pagesA/condition/condition?cxdj=${items}`
+            })
+          })
+        }
+        if(item.cxmc=='库存报表'){
+          let data={
+            access_token:uni.getStorageSync('access_token'),
+            cxbh:'RB007APP'
+          }
+          condition(data).then((res)=>{
+            console.log('res',res.data)
+            let items = JSON.stringify(res)
+            uni.navigateTo({
+              url: `../../pagesA/condition/condition?cxdj=${items}`
+            })
+          })
+        }
+
+      },
 
       //设置
       left() {
