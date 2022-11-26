@@ -172,6 +172,10 @@ export const rcbasics=(params, config = {}) => http.post("mzsale/web/basic", par
 export const rcgetlist = (params, config = {}) => http.post("/mzsale/web/report/getlist", params, config)
 export const rccondition = (params, config = {}) => http.post("mzsale/web/report/condition", params, config)
 export const rcsearch = (params, config = {}) => http.post("/mzsale/web/goods/search", params, config)
+
+
+
+//入库单
 export const rcRkdCheck = (params, config = {}) => http.post("/mzsale/web/rkd/check", params, config)
 export const rcRkdDelete = (params, config = {}) => http.post("/mzsale/web/rkd/delete", params, config)
 export const rcRkdDosave = (params, config = {}) => http.post("/mzsale/web/rkd/dosave", params, config)

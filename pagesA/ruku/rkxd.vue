@@ -568,6 +568,8 @@ align-items: center;height: 50rpx;
 										message: "审核成功"
 									})
 									this.state = "check"
+                  uni.setStorageSync('djbh','')
+
 //审核后退出
 								} else {
 									this.$refs.uToast.show({
@@ -604,7 +606,9 @@ align-items: center;height: 50rpx;
 										message: "删除成功"
 									})
 									this.uFormTitle.djbh = ""
-									setTimeout(()=>{
+                  uni.setStorageSync('djbh','')
+
+                  setTimeout(()=>{
 										uni.navigateBack({
 											delta: 1
 										});

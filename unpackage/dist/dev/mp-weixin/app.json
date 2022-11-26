@@ -27,7 +27,10 @@
         "chuku/chuku",
         "chuku/chukumx",
         "chuku/chukujl",
-        "trade/trade"
+        "trade/trade",
+        "rcruku/rcruku",
+        "rcruku/rukumx",
+        "rcruku/rukujl"
       ]
     }
   ],

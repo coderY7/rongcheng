@@ -209,22 +209,29 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
           "fdbh": uni.getStorageSync("fdbh"),
           "userid": uni.getStorageSync("userid") };
 
-        (0, _api.rcOrderNew)(dataes).then(function (res) {
-          uni.setStorageSync('djbh', res.djbh);
-          // console.log("orderNew res",res)
-          if (res.error_code == 0) {
-            uni.navigateTo({
-              url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });
+        if (uni.getStorageSync("djbh")) {
+          uni.navigateTo({
+            url: "../../pagesA/ruku/rkxd?djbh=".concat(uni.getStorageSync("djbh"), "&state=add") });
 
-          } else {
-            _this2.$refs.uToast.show({
-              type: "error",
-              message: res.message });
+        } else {
+          (0, _api.rcOrderNew)(dataes).then(function (res) {
+            uni.setStorageSync('djbh', res.djbh);
+            // console.log("orderNew res",res)
+            if (res.error_code == 0) {
+              uni.navigateTo({
+                url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });
 
-          }
-        }).catch(function (err) {
-          console.log(err);
-        });
+            } else {
+              _this2.$refs.uToast.show({
+                type: "error",
+                message: res.message });
+
+            }
+          }).catch(function (err) {
+            console.log(err);
+          });
+        }
+
 
 
       };
@@ -239,6 +246,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
       }
       if (item.cxmc == '商品报表') {
+
         var data = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: 'RB007' };
@@ -246,19 +254,23 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
         (0, _api.condition)(data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
+          uni.setStorageSync('dqbb', { cxmc: '商品报表', cxbh: 'RB007' });
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items) });
 
         });
       }
       if (item.cxmc == '库存报表') {
+        var cxbh = 'RB007APP';
         var _data = {
           access_token: uni.getStorageSync('access_token'),
-          cxbh: 'RB007APP' };
+          cxbh: cxbh };
 
         (0, _api.condition)(_data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
+          uni.setStorageSync('dqbb', { cxmc: '库存报表', cxbh: 'RB007APP' });
+
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items) });
 

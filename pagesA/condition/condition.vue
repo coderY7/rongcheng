@@ -245,7 +245,7 @@ export default {
         this.tj.push({'Convalue': item.defval, 'recordid': item.recordid})
       })
       let data = {
-        djtype: this.dqbb.cxbh,
+        djtype: uni.getStorageSync('dqbb').cxbh,
         access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid'),
         groupid: uni.getStorageSync('groupid'),

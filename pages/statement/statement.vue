@@ -75,22 +75,29 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
               "fdbh": uni.getStorageSync("fdbh"),
               "userid": uni.getStorageSync("userid"),
             }
-            rcOrderNew(dataes).then((res) => {
-              uni.setStorageSync('djbh',res.djbh)
-              // console.log("orderNew res",res)
-              if(res.error_code==0){
-                uni.navigateTo({
-                  url: `../../pagesA/ruku/rkxd?djbh=${res.djbh}&state=add`
-                });
-              }else{
-                this.$refs.uToast.show({
-                  type:"error",
-                  message: res.message
-                })
-              }
-            }).catch((err) => {
-              console.log(err)
-            })
+            if(uni.getStorageSync("djbh")){
+              uni.navigateTo({
+                url: `../../pagesA/ruku/rkxd?djbh=${uni.getStorageSync("djbh")}&state=add`
+              });
+            }else {
+              rcOrderNew(dataes).then((res) => {
+                uni.setStorageSync('djbh',res.djbh)
+                // console.log("orderNew res",res)
+                if(res.error_code==0){
+                  uni.navigateTo({
+                    url: `../../pagesA/ruku/rkxd?djbh=${res.djbh}&state=add`
+                  });
+                }else{
+                  this.$refs.uToast.show({
+                    type:"error",
+                    message: res.message
+                  })
+                }
+              }).catch((err) => {
+                console.log(err)
+              })
+            }
+
 
 
         };
@@ -105,6 +112,7 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
           })
         }
         if(item.cxmc=='商品报表'){
+
           let data={
             access_token:uni.getStorageSync('access_token'),
             cxbh:'RB007'
@@ -112,19 +120,23 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
           condition(data).then((res)=>{
             console.log('res',res.data)
             let items = JSON.stringify(res)
+            uni.setStorageSync('dqbb',{cxmc:'商品报表',cxbh:'RB007'})
             uni.navigateTo({
               url: `../../pagesA/condition/condition?cxdj=${items}`
             })
           })
         }
         if(item.cxmc=='库存报表'){
+          let cxbh='RB007APP'
           let data={
             access_token:uni.getStorageSync('access_token'),
-            cxbh:'RB007APP'
+            cxbh:cxbh
           }
           condition(data).then((res)=>{
             console.log('res',res.data)
             let items = JSON.stringify(res)
+            uni.setStorageSync('dqbb',{cxmc:'库存报表',cxbh:'RB007APP'})
+
             uni.navigateTo({
               url: `../../pagesA/condition/condition?cxdj=${items}`
             })
