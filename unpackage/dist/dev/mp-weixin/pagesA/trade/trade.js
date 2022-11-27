@@ -459,12 +459,14 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           _this3.spbm = '';
         }
         if (res.error_code == '0') {
-          if (res.data.length > '0') {
+          if (res.data.length > '0' && res.data.length != '1') {
             _this3.popupShow = true;
             _this3.searchdata = res.data;
-            if (_this3.searchdata.length == '1') {
-              _this3.spbm = _this3.searchdata[0].spbm;
-            }
+          }
+          if (res.data.length == '1') {
+            _this3.searchdata = res.data;
+            _this3.spbm = _this3.searchdata[0].spbm;
+            _this3.ispitchdata(_this3.searchdata[0]);
           }
         }
       });

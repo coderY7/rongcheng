@@ -282,12 +282,14 @@
             this.spbm=''
 					}
           if(res.error_code == '0'){
-            if(res.data.length>'0'){
+            if(res.data.length>'0'&&res.data.length!='1'){
               this.popupShow=true
               this.searchdata=res.data
-              if(this.searchdata.length=='1'){
-                this.spbm=this.searchdata[0].spbm
-              }
+            }
+            if(res.data.length=='1'){
+              this.searchdata=res.data
+              this.spbm=this.searchdata[0].spbm
+              this.ispitchdata(this.searchdata[0])
             }
 					}
 				})
