@@ -189,7 +189,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
         _this.Alllist = res.data;
       });
     },
-    enter: function enter(item) {var _this2 = this;
+    enter: function enter(item) {
       console.log(item);
       if (item.cxmc == '商品修改') {
         uni.navigateTo({
@@ -202,37 +202,15 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
       };
       if (item.cxmc == '商品入库') {
-        // 创建新单
-        var dataes = {
-          "access_token": uni.getStorageSync("access_token"),
-          "djtype": "SPRKD",
-          "fdbh": uni.getStorageSync("fdbh"),
-          "userid": uni.getStorageSync("userid") };
-
-        if (uni.getStorageSync("djbh")) {
+        if (uni.getStorageSync('xrkdh')) {
           uni.navigateTo({
-            url: "../../pagesA/ruku/rkxd?djbh=".concat(uni.getStorageSync("djbh"), "&state=add") });
+            url: "../../pagesA/rcruku/rcruku" });
 
         } else {
-          (0, _api.rcOrderNew)(dataes).then(function (res) {
-            uni.setStorageSync('djbh', res.djbh);
-            // console.log("orderNew res",res)
-            if (res.error_code == 0) {
-              uni.navigateTo({
-                url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });
+          uni.navigateTo({
+            url: "../../pagesA/rcruku/rcruku" });
 
-            } else {
-              _this2.$refs.uToast.show({
-                type: "error",
-                message: res.message });
-
-            }
-          }).catch(function (err) {
-            console.log(err);
-          });
         }
-
-
 
       };
       if (item.cxmc == '新增商品') {

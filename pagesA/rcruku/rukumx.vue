@@ -8,7 +8,7 @@
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       background-color: #358CC9;">
-        {{thdh}}
+        {{rkdh}}
     </view>
     <view class="box-com">
       <!-- 编辑单据 内容 -->
@@ -52,34 +52,20 @@
 
           </view>
           <view style="margin: 10rpx 0">
-            <u-form-item label="退货数量" :labelWidth="74" prop="rksl">
-              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.thsl">
+            <u-form-item label="入库数量" :labelWidth="74" prop="rksl">
+              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.rksl">
               </u-input>
             </u-form-item>
           </view>
           <view style="margin: 10rpx 0">
-            <u-form-item label="退货价格" :labelWidth="74" prop="rkhsjg">
-              <u-input placeholder="请输入退货价格" type="digit" v-model="editForm.thjg">
+            <u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">
+              <u-input placeholder="请输入入库价格" type="digit" v-model="editForm.rkhsjg">
               </u-input>
             </u-form-item>
           </view>
-          <!--        <view style="margin: 10rpx 0">-->
-          <!--          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">-->
-          <!--            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>-->
-          <!--          </u-form-item>-->
-          <!--        </view>-->
 
         </u-form>
-        <!--      <view class="form-card">-->
-        <!--        <view style="display:flex;justify-content:space-between;">-->
-        <!--          <text>供价类型</text>-->
-        <!--        </view>-->
-        <!--        <view>-->
-        <!--          <view class="radio-view">-->
-        <!--            <view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>-->
-        <!--          </view>-->
-        <!--        </view>-->
-        <!--      </view>-->
+
         <view class="btns" v-if="stateDetail">
           <u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
                     @click="cancelDetail"></u-button>
@@ -120,12 +106,12 @@
           </view>
           <view class="multiples">
             <view class="multiple-con view-flex">
-              <text class="left-con">退货数量:</text>
-              <text class="right-con">{{item.thsl}}</text>
+              <text class="left-con">入库数量:</text>
+              <text class="right-con">{{item.rksl}}</text>
             </view>
             <view class="multiple-con view-flex">
-              <text class="left-con">退货价格:</text>
-              <text class="right-con">￥{{item.thjg}}</text>
+              <text class="left-con">入库价格:</text>
+              <text class="right-con">￥{{item.rkhsjg}}</text>
             </view>
           </view>
         </view>
@@ -150,13 +136,14 @@ import {
   rcckdelete,
   rcckline,
   rcGetlistC,
-  rcsearch
+  rcsearch,
+  rcRkdDosave,
 } from "@/network/api.js";
 export default {
   data(){
     return {
       detaildata:'',
-thdh:'',
+rkdh:'',
       thck:'',
       thlx:'',
       showbnt:true,
@@ -218,7 +205,7 @@ thdh:'',
     }
   },
   onLoad(option){
-    this.thdh=option.thdh
+    this.rkdh=option.rkdh
     this.thck=option.thck
     this.thlx=option.thlx
     this.djzt=option.djzt
@@ -245,11 +232,11 @@ this.getlist()
     getlist(){
       let data={
         "access_token": uni.getStorageSync("access_token"),
-        "djbh": this.thdh,
-        "djtype": "SPTHD",
+        "djbh": this.rkdh,
+        "djtype": "SPRKD",
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid"),
-        "ztbz": "F"
+        "ztbz": "T"
       }
       rcGetlistC(data).then((res)=>{
         console.log('明细列表',res)
@@ -270,22 +257,25 @@ this.getlist()
     },
     // 编辑商品
     toeditDetail(row, index) {
-      this.editForm.guid = row.guid
-      this.editForm.thjg = row.thjg
+      console.log(row)
+      this.editForm.guid = row.recordid
       this.editForm.spmc = row.spmc
       this.editForm.spsmm = row.spsmm
       this.editForm.spbm = row.spbm
       this.editForm.spsl = row.thsl
       this.editForm.nsjg = row.nsjg
       this.editForm.sppc = row.sppc
-
+      this.editForm.rkhsjg=row.rkhsjg,
+      this.editForm.rksl=row.rksl,
+     this.editForm.cxjbz=row.cxjbz,
+      this.serchGoodsData.jjsl=row.jjsl,
       this.editForm.splx = row.splx=="T"?true:false
       this.stateDetail = true
       this.tableIndex = index
     },
     cancelDetail() {
       this.editForm.guid = ''
-      this.editForm.thjg =''
+      //this.editForm.thjg =''
       this.editForm.spmc =''
       this.editForm.spsmm =''
       this.editForm.spbm =''
@@ -293,6 +283,10 @@ this.getlist()
       this.editForm.nsjg =''
       this.editForm.sppc =''
       this.editForm.cxjbz= ""//供价类型
+      this.editForm.rkhsjg='',
+      this.editForm.rksl='',
+      this.editForm.cxjbz='',
+      this.serchGoodsData.jjsl='',
       this.editForm.splx= false//赠送商品
       this.editForm.thsl= ""
       this.editForm.thjg= ""
@@ -309,30 +303,36 @@ this.getlist()
       let a=dayjs(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD")
       let b=dayjs(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD")
       let from={
-        guid:this.editForm.guid,
-        thjg:this.editForm.thjg,
-        spmc:this.editForm.spmc,
-        thsl:this.editForm.thsl,
-        spsmm:this.editForm.spsmm,
-        spsl:this.editForm.spsl,
-        nsjg:this.editForm.nsjg,
-        sppc:'',
-        spbm:this.editForm.spbm
+        "bzjzrq": b,
+        "hsjj": this.editForm.rkhsjg,
+        "rksl": this.editForm.rksl,
+        "cxtype": this.editForm.cxjbz,
+        "guid": this.editForm.guid,
+        "scrq": a,
+        "spbm": this.editForm.spbm,
+        "splx": this.editForm.splx?"T":"F",
+        "jjsl": this.serchGoodsData.jjsl,
+        "spsmm": this.editForm.spsmm,
+        "spmc": this.editForm.spmc,
+        "sppc": ""
       }
       let data={
+
+        sjbh:this.detaildata[this.tableIndex].sjbh,
+        //thlx:this.thlx,
         access_token:uni.getStorageSync('access_token'),
         userid:uni.getStorageSync('userid'),
         vtype:'EDIT',
-        djbh:this.thdh,
-        fdbh:uni.getStorageSync('fdbh'),
-        ysdh:'',
-        ckid:this.thck,
-        sjbh:this.detaildata[this.tableIndex].sjbh,
-        thlx:this.thlx,
+        djbh:this.rkdh,
+        cgy:uni.getStorageSync('userid'),
+        cw:this.thck,
+        rkfd:uni.getStorageSync('fdbh'),
+        sphm:'',
+        ysdj:'',
         remark:'',
         list:[from]
       }
-      rcckdosave(data).then((res)=>{
+      rcRkdDosave(data).then((res)=>{
         console.log('编译保存',res)
         if (res.error_code == 0) {
           uni.showToast({

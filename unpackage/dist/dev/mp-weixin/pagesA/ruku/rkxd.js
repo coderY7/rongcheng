@@ -417,7 +417,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 468));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default2 = { props: { tableData: { type: Array, default: function _default() {return [];} }, title: { type: Object, default: function _default() {return {};} }, state: { type: String, default: function _default() {return "";} } }, components: { xuanSwitch: xuanSwitch }, data: function data() {return { switchList: ["是", "否"], editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
-      }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);}, onshow: function onshow() {console.log(this.title, this.tableData);}, methods: { // 查询 特供（供价类型）
+      }, editRules: { "rksl": [{ type: "number", required: true, message: "请填写入库数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "rkhsjg": [{ type: "number", required: true, message: "请填写入库价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1 };}, mounted: function mounted() {this.formMore("", true);}, onshow: function onshow() {}, methods: { // 查询 特供（供价类型）
     formMore: function formMore(lx, isAll) {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": "DMINFO", "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {if (res.error_code == 0) {if (isAll) {_this.lxlist = res.data;} else {for (var i in res.data) {if (res.data[i].sjcxlxid.indexOf(lx) > -1) {var xx = res.data[i].sjcxlxid;_this.formMoreChange(xx);}}}} else {_this.$refs.uToast.show({ type: "error", message: "查询失败" });}}).catch(function (err) {console.log(err);});}, formMoreChange: function formMoreChange(item) {this.editForm.cxjbz = item;}, // 编辑商品
     toeditDetail: function toeditDetail(row, index) {this.$emit('pygb');
       console.log('edit', this.tableData);
@@ -991,9 +991,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);
 
@@ -1216,23 +1213,16 @@ var _edit = _interopRequireDefault(__webpack_require__(/*! ./edit.vue */ 279));f
 //
 //
 //
-//
-//
-//
-var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 468));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { xuanSwitch: xuanSwitch, // goodsVoice,
-    edit: _edit.default }, data: function data() {return { navber: true, ifpage: true, threean: true, range: [], cxsjbh: '', sjbh: '', cxfdbh: '', fdbh: '', uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
+var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 468));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { xuanSwitch: xuanSwitch, edit: _edit.default }, data: function data() {return { navber: true, ifpage: true, threean: true, range: [], cxsjbh: '', sjbh: '', cxfdbh: '', fdbh: '', xrkdh: uni.getStorageSync('xrkdh') ? uni.getStorageSync('xrkdh') : true, //新入库单
+      uFormTitle: { djbh: "", sjbh: "", rkrq: (0, _dayjs.default)().format('YYYY-MM-DD'), ckbh: "", service: "", ysdh: "", sphm: "", fdbh: "", remarks: "" }, state: "", myCollShow: true, // 表单内容data
       neworderShow: false, uFormModel: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", jgcxbz: "", //供价类型
         splx: false, //赠送商品
         jycgsl: "", jycgjg: "", scrq: (0, _dayjs.default)().format('YYYY-MM-DD') }, contentShow: false, spbmClearShow: false, isSpComplete: false, switchList: ["是", "否"], lxlist: [], ispda: uni.getStorageSync("pda"), focusObj: { spbmFocus: false, numFocus: false, priceFocus: false }, selectId: "", uploadarr: [], serchGoodsData: "", // 第二页面 已上传数据页面 data
       tableData: [], editTitleObj: {}, // 弹窗data
       ifDrawer: "", selectData: [], // 搜索的数据(语音)
-      popupShow: false, coverShow: false, doingId: "", doingindex: 100, yuyinModelArr: [], searchCode: 400, yuyinArr: [], honestshow: false };}, onLoad: function onLoad(option) {var _this = this;console.log(option);if (option.navber == 'false') {this.navber = false;}this.uFormTitle.djbh = option.djbh;this.state = option.state;var sjVal = option.sjbh;var ckVal = option.ckbh;var fdVal = option.fdbh; // if (option.state == "add") {
-    //
-    // }else if (option.state == "edit"||option.state == "look") {
-    this.ifpage = true;var datee = option.djbh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);this.uFormTitle.rkrq = "".concat(y, "-").concat(m, "-").concat(d);this.uFormTitle.ysdh = option.ysdh;this.getList();uni.$on("editTitle", function (data) {uni.setStorageSync('djbh', data['入库单号']);console.log('title', data);_this.editTitleObj = data;}); // }
-    //this.queryHt(true, sjVal, "sjbh")
-    this.queryMore(true, ckVal, "CKINFO", "ckbh"); // this.queryMore(true, fdVal, "FDINFO", "fdbh")
-    this.queryMore(true, "", "USERINFO", "service");this.formMore("", true);if (option.djzt == '已审核') {this.ifpage = false;this.threean = false;this.navber = false;this.honestshow = false;this.contentShow = false;}}, onReady: function onReady() {}, onShow: function onShow() {this.cxsjbh = uni.getStorageSync('basic').SJINFO; //处理商家合同下拉框数据
+      popupShow: false, coverShow: false, //语音data
+      isVoiceMode: false, //是否语音模式
+      doingId: "", doingindex: 100, yuyinModelArr: [], searchCode: 400, yuyinArr: [], honestshow: false };}, onLoad: function onLoad(option) {var _this = this;console.log(option);if (option.navber == 'false') {this.navber = false;}console.log(this.uFormTitle.djbh);if (this.uFormTitle.djbh == undefined || this.uFormTitle.djbh == undefined == '' || this.uFormTitle.djbh == null) {this.newOrders();}if (option.state == "edit" || option.state == "look") {this.uFormTitle.djbh = option.djbh;this.state = option.state;var sjVal = option.sjbh;var _ckVal = option.ckbh;var fdVal = option.fdbh;this.ifpage = true;var datee = option.djbh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);this.uFormTitle.rkrq = "".concat(y, "-").concat(m, "-").concat(d);this.uFormTitle.ysdh = option.ysdh;this.getList();uni.$on("editTitle", function (data) {uni.setStorageSync('djbh', data['入库单号']);console.log('title', data);_this.editTitleObj = data;});}this.queryMore(true, ckVal, "CKINFO", "ckbh");this.queryMore(true, "", "USERINFO", "service");this.formMore("", true);}, onReady: function onReady() {}, onShow: function onShow() {this.cxsjbh = uni.getStorageSync('basic').SJINFO; //处理商家合同下拉框数据
     var cxsjbh = [];this.cxsjbh.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjbh.push(datas);});this.cxsjbh = cxsjbh;this.uFormTitle.sjbh = this.cxsjbh[0].value;this.cxfdbh = uni.getStorageSync('basic').FDINFO; //处理商家合同下拉框数据
     var cxfdbh = [];this.cxfdbh.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.cxfdbh = cxfdbh;this.uFormTitle.fdbh = this.cxfdbh[0].value;}, methods: { //商家编号
     change: function change(e) {console.log(e);}, //取消编译
@@ -1243,12 +1233,8 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     // 查询合同
     queryHt: function queryHt(isauto, value, fixid) {var _this2 = this;if (!isauto) {if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {return;}}this.searchCode = 400;var dataes = { "access_token": uni.getStorageSync("access_token"), "CompanyID": uni.getStorageSync("companyid"), "EndRQ": "", "StartRQ": "", "htlxid": "", "sjbh": "", "sjmc": "" };(0, _api.rcqueryHT)(dataes).then(function (res) {// console.log("queryHt res",res)
         if (res.error_code == 0) {if (value) {for (var i in res.data) {if (res.data[i].SJBH == value) {_this2.uFormTitle[fixid] = "".concat(res.data[i].SJBH, "-").concat(res.data[i].SJMC);}}} else {if (isauto) {//自动填充
-              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);
-      });
-    },
-    // 新增单据
-    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;
-      if (!isauto) {
+              _this2.uFormTitle[fixid] = "".concat(res.data[0].SJBH, "-").concat(res.data[0].SJMC);} else {_this2.selectData = [];_this2.popupShow = true;_this2.ifDrawer = "title";_this2.selectId = fixid;for (var i in res.data) {_this2.selectData.push({ "id": res.data[i].SJBH, "name": res.data[i].SJMC });}}}} else {_this2.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 新增单据
+    queryMore: function queryMore(isauto, value, type, fixid) {var _this3 = this;if (!isauto) {
         if (this.state == "pladd" || this.state == "edit" || this.state == "look" || this.state == "check") {
           return;
         }
@@ -1260,7 +1246,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         "companyid": uni.getStorageSync("companyid") };
 
       (0, _api.rcbasics)(dataes).then(function (res) {
-
+        // console.log(type + " 基本信息basic res", res)
         if (res.error_code == 0) {
           if (value) {
             for (var i in res.data) {
@@ -1351,8 +1337,6 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
                   message: "审核成功" });
 
                 _this4.state = "check";
-                uni.setStorageSync('djbh', '');
-
                 //审核后退出
               } else {
                 _this4.$refs.uToast.show({
@@ -1389,8 +1373,6 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
                   message: "删除成功" });
 
                 _this5.uFormTitle.djbh = "";
-                uni.setStorageSync('djbh', '');
-
                 setTimeout(function () {
                   uni.navigateBack({
                     delta: 1 });
@@ -1420,7 +1402,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       }
       setTimeout(function () {
         if (val != "") {
-          if (val == _this6.uFormModel.spsmm) {
+          if (val == _this6.uFormModel.spbm) {
             _this6.serchGoods(val);
             uni.hideKeyboard();
           }
@@ -1484,18 +1466,28 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       this.popupShow = false;
       this.searchCode = 400;
       this.isSpComplete = true;
-      setTimeout(function () {
-        _this8.focusObj.numFocus = true;
-      }, 300);
+      // console.log("this.serchGoodsData this.serchGoodsData", this.serchGoodsData)
+      if (this.isVoiceMode) {
+        var arrTemp = [];
+        arrTemp.push(data);
+        this.selectData = arrTemp;
+        this.searchCode = 0;
+        if (!isauto) {//语音模式 手动点击调用函数时
 
+        }
+      } else {
+        setTimeout(function () {
+          _this8.focusObj.numFocus = true;
+        }, 300);
+      }
     },
     // 扫码 搜索商品
     scan: function scan() {var _this9 = this;
       uni.scanCode({
         success: function success(res) {
           console.log('扫码内容', res.result);
-          _this9.uFormModel.spsmm = res.result;
-          _this9.serchGoods(_this9.uFormModel.spsmm);
+          _this9.uFormModel.spbm = res.result;
+          _this9.serchGoods(_this9.uFormModel.spbm);
         },
         fail: function fail(err) {
           _this9.$refs.uToast.show({
@@ -1525,19 +1517,25 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
             _this10.lxlist = res.data;
             _this10.uFormModel.jgcxbz = res.data[0].sjcxlxid;
           } else {
-
+            if (_this10.isVoiceMode) {
+              isyuyinBol = true;
+            }
             var tempArr = [];
             for (var i in res.data) {
               if (res.data[i].sjcxlxid.indexOf(lx) > -1) {
-
-                var xx = "".concat(res.data[i].sjcxlxid, "-").concat(res.data[i].lxmc);
-                _this10.formMoreChange(xx, isyuyinBol);
-
+                if (_this10.isVoiceMode) {
+                  tempArr.push(res.data[i]);
+                } else {
+                  var xx = "".concat(res.data[i].sjcxlxid, "-").concat(res.data[i].lxmc);
+                  _this10.formMoreChange(xx, isyuyinBol);
+                }
               } else if (res.data[i].lxmc.indexOf(lx) > -1) {
-
-                var _xx = "".concat(res.data[i].sjcxlxid, "-").concat(res.data[i].lxmc);
-                _this10.formMoreChange(_xx, isyuyinBol);
-
+                if (_this10.isVoiceMode) {
+                  tempArr.push(res.data[i]);
+                } else {
+                  var _xx = "".concat(res.data[i].sjcxlxid, "-").concat(res.data[i].lxmc);
+                  _this10.formMoreChange(_xx, isyuyinBol);
+                }
               }
             }
             _this10.selectData = tempArr;
@@ -1589,7 +1587,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     },
     //查找表格列(新增)。。。
     getcolumns: function getcolumns() {var _this12 = this;
-      //this.myCollShow=false
+      this.myCollShow = false;
       this.contentShow = true;
       setTimeout(function () {
         _this12.focusObj.spbmFocus = true;
@@ -1597,7 +1595,11 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     },
 
     clearAlone: function clearAlone(item) {
-      this.uFormModel[item] = "";
+      if (this.isVoiceMode) {
+
+      } else {
+        this.uFormModel[item] = "";
+      }
     },
     clearForm: function clearForm() {
       this.uFormModel.spbm = "";
@@ -1616,7 +1618,6 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
       this.focusObj.priceFocus = false;
     },
 
-
     // 编辑商品 保存商品............................................................
     editSave: function editSave(arr) {
       this.honestshow = true;
@@ -1629,33 +1630,34 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
     },
 
     newOrders: function newOrders() {var _this13 = this;
-      if (this.state == "add") {
-        return;
-      }
       var dataes = {
         "access_token": uni.getStorageSync("access_token"),
         "djtype": "SPRKD",
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid") };
 
-      (0, _api.rcOrderNew)(dataes).then(function (res) {
-        if (res.error_code == 0) {
-          _this13.uFormTitle.djbh = res.djbh;
-          _this13.state = "add";
-          //this.queryHt(true, "sjbh")
-          _this13.queryMore(true, "CKINFO", "ckbh");
-          _this13.queryMore(true, "FDINFO", "fdbh");
-          _this13.queryMore(true, "USERINFO", "service");
-          _this13.tableData = [];
-        } else {
-          _this13.$refs.uToast.show({
-            type: "error",
-            message: res.message });
+      if (this.state == "add") {
+        return;
+      } else {
+        (0, _api.rcOrderNew)(dataes).then(function (res) {
+          if (res.error_code == 0) {
+            _this13.uFormTitle.djbh = res.djbh;
+            uni.setStorageSync('xrkdh', false);
+            //this.xrkdh=false
+            _this13.queryHt(true, "sjbh");
+            _this13.queryMore(true, "CKINFO", "ckbh");
+            _this13.queryMore(true, "USERINFO", "service");
+            _this13.tableData = [];
+          } else {
+            _this13.$refs.uToast.show({
+              type: "error",
+              message: res.message });
 
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
+          }
+        });
+      }
+
+
     },
 
     // popup弹窗控制...................................................................
@@ -1687,7 +1689,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         "spmc": this.uFormModel.spmc,
         "sppc": "" });
 
-      this.doSave("ADD");
+      this.doSave("CHK");
 
     },
     doSave: function doSave(state) {var _this14 = this;
@@ -1731,11 +1733,16 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
           _this14.clearFocus();
           _this14.clearForm();
           _this14.getList();
-
-          setTimeout(function () {
-            _this14.focusObj.spbmFocus = true;
-          }, 300);
-
+          if (_this14.isVoiceMode) {//语音模式时
+            _this14.yuyinModelArr = [];
+            setTimeout(function () {
+              _this14.yuyinModelArr = _this14.yuyinArr;
+            }, 1500);
+          } else {
+            setTimeout(function () {
+              _this14.focusObj.spbmFocus = true;
+            }, 300);
+          }
         } else if (res.error_code == 2) {
           uni.showModal({
             content: res.error_data[0].message,
@@ -1771,7 +1778,15 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
 
           }
         }
+        if (_this14.isVoiceMode) {
+          if (res.error_code != 0) {
+            _this14.$voice({
+              voiceSet: {
+                tex: "保存失败，请根据提示操作" } });
 
+
+          }
+        }
       }).catch(function (err) {
         console.log(err);
       });
@@ -1779,6 +1794,11 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
 
 
 
+  computed: {
+    // skin() {
+    // 	return this.$store.state.skin;
+    // }
+  },
   watch: {
     state: function state(newv, oldv) {var _this15 = this;
       if (newv == "add") {
@@ -1790,7 +1810,7 @@ var xuanSwitch = function xuanSwitch() {__webpack_require__.e(/*! require.ensure
         this.neworderShow = false;
       }
     },
-    "uFormModel.spsmm": function uFormModelSpsmm(newv, oldv) {
+    "uFormModel.spbm": function uFormModelSpbm(newv, oldv) {
       if (newv.length == 0) {
         this.spbmClearShow = false;
         this.isSpComplete = false;

@@ -68,37 +68,15 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
 					})
 				};
         if(item.cxmc=='商品入库'){
-          // 创建新单
-            let dataes={
-              "access_token": uni.getStorageSync("access_token"),
-              "djtype": "SPRKD",
-              "fdbh": uni.getStorageSync("fdbh"),
-              "userid": uni.getStorageSync("userid"),
-            }
-            if(uni.getStorageSync("djbh")){
-              uni.navigateTo({
-                url: `../../pagesA/ruku/rkxd?djbh=${uni.getStorageSync("djbh")}&state=add`
-              });
-            }else {
-              rcOrderNew(dataes).then((res) => {
-                uni.setStorageSync('djbh',res.djbh)
-                // console.log("orderNew res",res)
-                if(res.error_code==0){
-                  uni.navigateTo({
-                    url: `../../pagesA/ruku/rkxd?djbh=${res.djbh}&state=add`
-                  });
-                }else{
-                  this.$refs.uToast.show({
-                    type:"error",
-                    message: res.message
-                  })
-                }
-              }).catch((err) => {
-                console.log(err)
-              })
-            }
-
-
+          if(uni.getStorageSync('xrkdh')){
+            uni.navigateTo({
+              url: `../../pagesA/rcruku/rcruku`
+            });
+          }else {
+            uni.navigateTo({
+              url: `../../pagesA/rcruku/rcruku`
+            });
+          }
 
         };
         if(item.cxmc=='新增商品'){

@@ -304,20 +304,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -449,25 +435,33 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = { data: function data() {return { detaildata: '', thdh: '', thck: '', thlx: '', showbnt: true, editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
+var _default = { data: function data() {return { detaildata: '', rkdh: '', thck: '', thlx: '', showbnt: true, editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
-      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1, djzt: '', shcg: false };}, onLoad: function onLoad(option) {this.thdh = option.thdh;this.thck = option.thck;this.thlx = option.thlx;this.djzt = option.djzt;this.shcg = option.shcg;console.log(option);}, onShow: function onShow() {this.getlist();if (this.djzt == '已审核') {this.showbnt = false;}if (this.djzt == '未审核') {this.showbnt = true;}console.log(this.shcg);if (this.shcg == 'false') {this.showbnt = true;}if (this.shcg == 'true') {this.showbnt = false;}}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.thdh, "djtype": "SPTHD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "F" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({ title: '没有商品明细', duration: 2000, icon: 'none' });setTimeout(function () {uni.navigateBack({ delta: 1 });}, 2000);}});}, // 编辑商品
-    toeditDetail: function toeditDetail(row, index) {this.editForm.guid = row.guid;this.editForm.thjg = row.thjg;this.editForm.spmc = row.spmc;this.editForm.spsmm = row.spsmm;this.editForm.spbm = row.spbm;this.editForm.spsl = row.thsl;this.editForm.nsjg = row.nsjg;this.editForm.sppc = row.sppc;this.editForm.splx = row.splx == "T" ? true : false;this.stateDetail = true;this.tableIndex = index;}, cancelDetail: function cancelDetail() {this.editForm.guid = '';this.editForm.thjg = '';this.editForm.spmc = '';this.editForm.spsmm = '';this.editForm.spbm = '';this.editForm.spsl = '';this.editForm.nsjg = '';this.editForm.sppc = '';
+      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1, djzt: '', shcg: false };}, onLoad: function onLoad(option) {this.rkdh = option.rkdh;this.thck = option.thck;this.thlx = option.thlx;this.djzt = option.djzt;this.shcg = option.shcg;console.log(option);}, onShow: function onShow() {this.getlist();if (this.djzt == '已审核') {this.showbnt = false;}if (this.djzt == '未审核') {this.showbnt = true;}console.log(this.shcg);if (this.shcg == 'false') {this.showbnt = true;}if (this.shcg == 'true') {this.showbnt = false;}}, methods: { getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.rkdh, "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "T" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({ title: '没有商品明细', duration: 2000, icon: 'none' });setTimeout(function () {uni.navigateBack({ delta: 1 });}, 2000);}});}, // 编辑商品
+    toeditDetail: function toeditDetail(row, index) {console.log(row);this.editForm.guid = row.recordid;this.editForm.spmc = row.spmc;this.editForm.spsmm = row.spsmm;this.editForm.spbm = row.spbm;this.editForm.spsl = row.thsl;this.editForm.nsjg = row.nsjg;
+      this.editForm.sppc = row.sppc;
+      this.editForm.rkhsjg = row.rkhsjg,
+      this.editForm.rksl = row.rksl,
+      this.editForm.cxjbz = row.cxjbz,
+      this.serchGoodsData.jjsl = row.jjsl,
+      this.editForm.splx = row.splx == "T" ? true : false;
+      this.stateDetail = true;
+      this.tableIndex = index;
+    },
+    cancelDetail: function cancelDetail() {
+      this.editForm.guid = '';
+      //this.editForm.thjg =''
+      this.editForm.spmc = '';
+      this.editForm.spsmm = '';
+      this.editForm.spbm = '';
+      this.editForm.spsl = '';
+      this.editForm.nsjg = '';
+      this.editForm.sppc = '';
       this.editForm.cxjbz = ""; //供价类型
+      this.editForm.rkhsjg = '',
+      this.editForm.rksl = '',
+      this.editForm.cxjbz = '',
+      this.serchGoodsData.jjsl = '',
       this.editForm.splx = false; //赠送商品
       this.editForm.thsl = "";
       this.editForm.thjg = "";
@@ -484,30 +478,36 @@ var _default = { data: function data() {return { detaildata: '', thdh: '', thck:
       var a = (0, _dayjs.default)(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD");
       var b = (0, _dayjs.default)(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD");
       var from = {
-        guid: this.editForm.guid,
-        thjg: this.editForm.thjg,
-        spmc: this.editForm.spmc,
-        thsl: this.editForm.thsl,
-        spsmm: this.editForm.spsmm,
-        spsl: this.editForm.spsl,
-        nsjg: this.editForm.nsjg,
-        sppc: '',
-        spbm: this.editForm.spbm };
+        "bzjzrq": b,
+        "hsjj": this.editForm.rkhsjg,
+        "rksl": this.editForm.rksl,
+        "cxtype": this.editForm.cxjbz,
+        "guid": this.editForm.guid,
+        "scrq": a,
+        "spbm": this.editForm.spbm,
+        "splx": this.editForm.splx ? "T" : "F",
+        "jjsl": this.serchGoodsData.jjsl,
+        "spsmm": this.editForm.spsmm,
+        "spmc": this.editForm.spmc,
+        "sppc": "" };
 
       var data = {
+
+        sjbh: this.detaildata[this.tableIndex].sjbh,
+        //thlx:this.thlx,
         access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid'),
         vtype: 'EDIT',
-        djbh: this.thdh,
-        fdbh: uni.getStorageSync('fdbh'),
-        ysdh: '',
-        ckid: this.thck,
-        sjbh: this.detaildata[this.tableIndex].sjbh,
-        thlx: this.thlx,
+        djbh: this.rkdh,
+        cgy: uni.getStorageSync('userid'),
+        cw: this.thck,
+        rkfd: uni.getStorageSync('fdbh'),
+        sphm: '',
+        ysdj: '',
         remark: '',
         list: [from] };
 
-      (0, _api.rcckdosave)(data).then(function (res) {
+      (0, _api.rcRkdDosave)(data).then(function (res) {
         console.log('编译保存', res);
         if (res.error_code == 0) {
           uni.showToast({

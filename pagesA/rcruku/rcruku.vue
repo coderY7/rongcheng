@@ -6,7 +6,7 @@
     </view>
     <view class="unit1">
       <view class="head">
-        <view>入库单:{{thdh}}</view>
+        <view>入库单:{{rkdh}}</view>
         <view v-if="detail" class="dhliang" @click="isdetail()">
           明细:{{detaildata.length}}
         </view>
@@ -163,6 +163,8 @@ import {
   rcckcheck,
   rcckdelete,
   rcRkdDosave,
+  rcRkdCheck,
+  rcRkdDelete,
 } from "@/network/api.js";
 
 export default {
@@ -176,7 +178,7 @@ export default {
       thcklist: '',
       thlx: '',//退回类型
       thlxlist: '',
-      thdh:'',//退货单
+      rkdh:'',//退货单
       thrq:'',//退货日期
       detail:true,//明细
       detaildata:[],//明细数据
@@ -190,7 +192,7 @@ export default {
   },
   onLoad(option) {
     console.log(option);
-    this.thdh=option.thdh
+    this.rkdh=option.rkdh
   },
   onReady() {
 
@@ -250,8 +252,8 @@ export default {
             rcOrderNew(data).then((res) => {
               console.log('入库单创建成功', res)
               this.shcg=false
-              this.thdh=res.djbh
-              let datee=this.thdh.split("TH")[1]
+              this.rkdh=res.djbh
+              let datee=this.rkdh.split("TH")[1]
               let y="20"+datee.slice(0,2)
               let m=datee.slice(2,4)
               let d=datee.slice(4,6)
@@ -259,7 +261,7 @@ export default {
             })
           } else if (res.cancel) {
             console.log('用户点击取消');
-            this.thdh=''
+            this.rkdh=''
             this.from={}
           }
         }
@@ -315,10 +317,11 @@ this.Search()
       this.from.scrq=dayjs().format("YYYY-MM-DD"),
       this.from.bzjzrq=dayjs().date(dayjs().date() + this.pitchdata.bzqts).format("YYYY-MM-DD"),
       this.from.splx='T'
-      this.from.jjsl=''//汇率
+      this.from.jjsl=this.pitchdata.sl//汇率
       this.from.rksl=''
       this.from.cxtype='DM'
       this.from.guid=''
+
     },
     //上传商品
     added(){
@@ -326,8 +329,7 @@ this.Search()
         access_token:uni.getStorageSync('access_token'),
         userid:uni.getStorageSync('userid'),
         vtype:'ADD',
-        djbh:this.thdh,
-        fdbh:uni.getStorageSync('fdbh'),
+        djbh:this.rkdh,
         cgy:uni.getStorageSync('userid'),
         cw:this.thck,
         rkfd:uni.getStorageSync('fdbh'),
@@ -372,11 +374,11 @@ this.Search()
     getlist(){
       let data={
         "access_token": uni.getStorageSync("access_token"),
-        "djbh": this.thdh,
-        "djtype": "SPTHD",
+        "djbh": this.rkdh,
+        "djtype": "SPRKD",
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid"),
-        "ztbz": "F"
+        "ztbz": "T"
       }
       rcGetlistC(data).then((res)=>{
         console.log('明细列表',res)
@@ -386,7 +388,7 @@ this.Search()
     //点击明细
     isdetail(){
       uni.navigateTo({
-        url:`../chuku/chukumx?thdh=${this.thdh}&thck=${this.thck}&thlx=${this.thlx}&shcg=${this.shcg}`
+        url:`../rcruku/rukumx?rkdh=${this.rkdh}&thck=${this.thck}&thlx=${this.thlx}&shcg=${this.shcg}`
       })
     },
     //审核
@@ -395,12 +397,13 @@ this.Search()
         access_token:uni.getStorageSync('access_token'),
         userid:uni.getStorageSync('userid'),
         username:uni.getStorageSync('dlmc'),
-        djbh:this.thdh,
+        djbh:this.rkdh,
         fdbh:uni.getStorageSync('fdbh'),
         remark:this.remark,
-        checkin:'F'
+        "sphm":'',
+        "ysdh": ''
       }
-      rcckcheck(data).then((res)=>{
+      rcRkdCheck(data).then((res)=>{
         console.log('审核',res)
         if(res.error_code=='0'){
           uni.showToast({
@@ -425,9 +428,9 @@ this.Search()
         access_token:uni.getStorageSync('access_token'),
         userid:uni.getStorageSync('userid'),
         username:uni.getStorageSync('dlmc'),
-        djbh:this.thdh,
+        djbh:this.rkdh,
       }
-      rcckdelete(data).then((res)=>{
+      rcRkdDelete(data).then((res)=>{
         console.log('整单删除',res)
 if(res.error_code=='0'){
   uni.showToast({
@@ -444,7 +447,7 @@ if(res.error_code=='0'){
     //记录
     jl(){
       uni.navigateTo({
-        url:`../chuku/chukujl`
+        url:`../rcruku/rukujl`
       });
     }
 

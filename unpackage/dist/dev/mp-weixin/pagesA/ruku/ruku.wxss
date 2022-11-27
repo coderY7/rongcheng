@@ -83,7 +83,7 @@
   margin-top: 10px;
 }
 .box .box-content .foldGroup .fold-title.data-v-60d5534b {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   border-radius: 10px;
   box-sizing: border-box;
   padding: 10px;
@@ -112,7 +112,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 5px 0;
 }
 .box .box-content .foldGroup .fold-title .multiples .multiple-con.data-v-60d5534b {
   width: 50%;
@@ -138,7 +137,6 @@
 }
 .box .box-content .foldGroup .fold-title .right-con.data-v-60d5534b {
   color: #1c1c28;
-  font-size: 14px;
 }
 .box .box-content .foldGroup .fold-title .cu1.data-v-60d5534b {
   color: #3a3a3a;

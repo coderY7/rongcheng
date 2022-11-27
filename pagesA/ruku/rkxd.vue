@@ -57,7 +57,19 @@ align-items: center;height: 50rpx;
               </view>
             </view>
 
+
+<!--            <view class="unitbox" style="margin: 20rpx 0">-->
+<!--              <u-form-item label="入库分店" :labelWidth="76" prop="fdbh" @click="queryMore(false,'FDINFO','fdbh')">-->
+<!--                <u-input placeholder="请选择入库分店" disabled v-model="uFormTitle.fdbh">-->
+<!--                </u-input>-->
+<!--              </u-form-item>-->
+<!--            </view>-->
+
             <view class="unitbox" style="margin: 20rpx 0">
+<!--              <u-form-item label="备注说明" :labelWidth="76" prop="remarks">-->
+<!--                -->
+<!--              </u-form-item>-->
+
 
               <view class="unitbox_l">备注说明:</view>
               <view @ckick="xzfhlist()" class="unitbox_r">
@@ -75,28 +87,29 @@ align-items: center;height: 50rpx;
 				</view>
 			</view>
 			<!-- 新增单据 内容 -->
-			<view v-if="state=='add' ||state=='edit' ||state=='pladd'">
+			<view>
 				<u-form class="form-card" labelPosition="left" :model="uFormModel"  ref="uForm">
           <view style="margin: 10rpx 0">
             <u-form-item label="商品条码:" :labelWidth="74" prop="spbm" class="shoping" v-show="doingindex>=0">
-          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spsmm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
+
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="uFormModel.spbm" height="30" @clickIcon="scan()" @custom="spbmChange()"></u-search>
             </u-form-item>
           </view>
 <!--          搜索到选择的商品条码-->
-
-            <view  class="unitbox" style="margin: 20rpx 0">
-              <view class="unitbox_l">商品名称:</view>
-              <view class="unitbox_r">
+          <uni-card v-if="uFormModel.spmc" margin="5px" spacing="0px">
+            <view  class="boxunit">
+              <view class="boxunit1">商品名称:</view>
+              <view class="boxunit2">
                 <u-input border="surround" v-model="uFormModel.spmc" :disabled="true"></u-input>
               </view>
             </view>
-            <view  class="unitbox">
-              <view class="unitbox_l">商品编码:</view>
-              <view class="unitbox_r">
-                <u-input border="surround" v-model="uFormModel.spbm"  :disabled="true"></u-input>
+            <view  class="boxunit">
+              <view class="boxunit1">商品条码:</view>
+              <view class="boxunit2">
+                <u-input border="surround" v-model="uFormModel.spsmm"  :disabled="true"></u-input>
               </view>
             </view>
-
+          </uni-card>
 
           <view style="margin: 10rpx 0">
             <u-form-item label="入库数量" :labelWidth="74" prop="jycgsl" v-show="doingindex>=1">
@@ -113,12 +126,6 @@ align-items: center;height: 50rpx;
 
             </u-form-item>
           </view>
-<!--          <view style="margin: 10rpx 0">-->
-<!--            <u-form-item label="是否赠品" :labelWidth="74" prop="splx" v-show="doingindex>=3">-->
-<!--              <xuanSwitch :switchList="switchList" :defaultSwitch="uFormModel.splx" @change="switChange"></xuanSwitch>-->
-
-<!--            </u-form-item>-->
-<!--          </view>-->
           <view style="margin: 10rpx 0">
             <u-form-item label="生产日期" :labelWidth="76" prop="scrq" v-show="doingindex>=4">
               <uni-datetime-picker v-model="uFormModel.scrq" type="date" :clear-icon="false"/>
@@ -128,12 +135,12 @@ align-items: center;height: 50rpx;
 				</u-form>
 
 
-<!--					<view class="gjlxbox" v-show="doingindex>=5">-->
-<!--						<view class="gjlxbox_l">供价类型:</view>-->
-<!--            <view class="gjlxbox_r">-->
-<!--              <view class="gjlxbox_rr" v-for="(v, i) in lxlist" :class="{lxactive:uFormModel.jgcxbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid+'-'+v.lxmc,false)">{{v.lxmc}}</view>-->
-<!--            </view>-->
-<!--					</view>-->
+					<view class="gjlxbox" v-show="doingindex>=5">
+						<view class="gjlxbox_l">供价类型:</view>
+            <view class="gjlxbox_r">
+              <view class="gjlxbox_rr" v-for="(v, i) in lxlist" :class="{lxactive:uFormModel.jgcxbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid+'-'+v.lxmc,false)">{{v.lxmc}}</view>
+            </view>
+					</view>
 
 
 			</view>
@@ -147,39 +154,29 @@ align-items: center;height: 50rpx;
 
 
     <view class="flex-btns" v-if="threean">
-      <view style="width: 45%"><u-button type="primary" class="my-primary-button" text="整单审核"
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单审核"
                                          :disabled="state=='look'||state=='check'" throttleTime="2000"
                                          @click="subCheck">
       </u-button></view>
-      <view style="width: 45%"><u-button type="primary" class="my-primary-button" text="整单删除"
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="整单删除"
                                          :disabled="state=='look'" throttleTime="2000" @click="deldh">
       </u-button></view>
-<!--      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"-->
-<!--                                         throttleTime="2000" @click="getcolumns">-->
-<!--      </u-button></view>-->
+      <view style="width: 28%"><u-button type="primary" class="my-primary-button" text="新增明细" :disabled="state=='look'||state=='check'"
+                                         throttleTime="2000" @click="getcolumns">
+      </u-button></view>
     </view>
 
 
 		<view class="box-content" v-show="!ifpage">
-      <view style=" padding:10px 10px 0;
-      color: #fff;
-      height: 80rpx;
-      margin-bottom: 20rpx;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      background-color: #358CC9;">
-        {{uFormTitle.djbh}}
-      </view>
 			<edit @byqx="qxby()" @pygb="gbpy()" :title="editTitleObj" :tableData="tableData" :state="state" @editSave="editSave" ref="editDetail"></edit>
-      <view style="display: flex;justify-content: center;align-items: center">
-        <view style="width: 60%;margin-bottom:20rpx">
-          <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
-          </u-button>
-        </view>
-      </view>
 		</view>
 
-
+    <view style="display: flex;justify-content: center;align-items: center">
+      <view style="width: 60%;margin-bottom:20rpx">
+        <u-button type="primary" class="my-primary-button sticky-bottom" text="关闭明细" throttleTime="2000" v-if="honestshow" @click="tuichu()">
+        </u-button>
+      </view>
+    </view>
 
 		<!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
 		<u-overlay :show="coverShow"></u-overlay>
@@ -223,12 +220,11 @@ align-items: center;height: 50rpx;
 		rcRkdDosave
 	} from "@/network/api.js";
 	import xuanSwitch from "@/components/xuan-switch/xuan-switch.vue";
-	// import goodsVoice from '@/components/goodsVoice/goodsVoice';
+
 	import edit from "./edit.vue"
 	export default {
 		components: {
 			xuanSwitch,
-			// goodsVoice,
 			edit
 		},
 		data() {
@@ -241,7 +237,7 @@ align-items: center;height: 50rpx;
         sjbh:'',
         cxfdbh:'',
         fdbh:'',
-
+        xrkdh:uni.getStorageSync('xrkdh')?uni.getStorageSync('xrkdh'):true,//新入库单
 				uFormTitle: {
 					djbh: "",
 					sjbh: "",
@@ -291,7 +287,8 @@ align-items: center;height: 50rpx;
 				selectData: [],// 搜索的数据(语音)
 				popupShow: false,
 				coverShow: false,
-
+				//语音data
+				isVoiceMode: false,//是否语音模式
 				doingId: "",
 				doingindex: 100,
 				yuyinModelArr:[],
@@ -305,16 +302,16 @@ align-items: center;height: 50rpx;
       if(option.navber=='false'){
         this.navber=false
       }
-
-
-      this.uFormTitle.djbh = option.djbh
-      this.state = option.state
-      let sjVal = option.sjbh
-      let ckVal = option.ckbh
-      let fdVal = option.fdbh
-      // if (option.state == "add") {
-      //
-      // }else if (option.state == "edit"||option.state == "look") {
+      console.log(this.uFormTitle.djbh)
+      if(this.uFormTitle.djbh==undefined||this.uFormTitle.djbh==undefined==''||this.uFormTitle.djbh==null){
+        this.newOrders()
+      }
+      if (option.state == "edit"||option.state == "look") {
+        this.uFormTitle.djbh = option.djbh
+        this.state = option.state
+        let sjVal = option.sjbh
+        let ckVal = option.ckbh
+        let fdVal = option.fdbh
         this.ifpage = true
         let datee=option.djbh.split("RK")[1]
         let y="20"+datee.slice(0,2)
@@ -328,21 +325,10 @@ align-items: center;height: 50rpx;
           console.log('title',data)
           this.editTitleObj=data
         })
-      // }
-      //this.queryHt(true, sjVal, "sjbh")
+      }
        this.queryMore(true, ckVal, "CKINFO", "ckbh")
-      // this.queryMore(true, fdVal, "FDINFO", "fdbh")
        this.queryMore(true, "", "USERINFO", "service")
       this.formMore("",true)
-
-      if(option.djzt=='已审核'){
-        this.ifpage=false
-        this.threean=false
-        this.navber=false
-        this.honestshow=false
-        this.contentShow=false
-      }
-
     },
 		onReady() {
 
@@ -477,7 +463,7 @@ align-items: center;height: 50rpx;
           "companyid": uni.getStorageSync("companyid"),
         }
         rcbasics(dataes).then((res) => {
-
+          // console.log(type + " 基本信息basic res", res)
           if (res.error_code == 0) {
             if(value){
               for (var i in res.data) {
@@ -568,8 +554,6 @@ align-items: center;height: 50rpx;
 										message: "审核成功"
 									})
 									this.state = "check"
-                  uni.setStorageSync('djbh','')
-
 //审核后退出
 								} else {
 									this.$refs.uToast.show({
@@ -606,9 +590,7 @@ align-items: center;height: 50rpx;
 										message: "删除成功"
 									})
 									this.uFormTitle.djbh = ""
-                  uni.setStorageSync('djbh','')
-
-                  setTimeout(()=>{
+									setTimeout(()=>{
 										uni.navigateBack({
 											delta: 1
 										});
@@ -637,7 +619,7 @@ align-items: center;height: 50rpx;
 				}
 				setTimeout(() => {
 					if (val != "") {
-						if (val == this.uFormModel.spsmm) {
+						if (val == this.uFormModel.spbm) {
 							this.serchGoods(val)
 							uni.hideKeyboard()
 						}
@@ -701,18 +683,28 @@ align-items: center;height: 50rpx;
 				this.popupShow=false
 				this.searchCode=400
 				this.isSpComplete = true
+				// console.log("this.serchGoodsData this.serchGoodsData", this.serchGoodsData)
+				if(this.isVoiceMode){
+					let arrTemp=[]
+					arrTemp.push(data)
+					this.selectData = arrTemp
+					this.searchCode=0
+					if(!isauto){//语音模式 手动点击调用函数时
+
+					}
+				}else{
 					setTimeout(()=>{
 						this.focusObj.numFocus=true
 					},300)
-
+				}
 			},
 			// 扫码 搜索商品
 			scan() {
 				uni.scanCode({
 					success: (res) => {
 						console.log('扫码内容', res.result)
-						this.uFormModel.spsmm=res.result
-						this.serchGoods(this.uFormModel.spsmm)
+						this.uFormModel.spbm=res.result
+						this.serchGoods(this.uFormModel.spbm)
 					},
 					fail: (err) => {
 						this.$refs.uToast.show({
@@ -742,19 +734,25 @@ align-items: center;height: 50rpx;
 							this.lxlist = res.data
 							this.uFormModel.jgcxbz=res.data[0].sjcxlxid
 						} else {
-
+							if(this.isVoiceMode){
+								isyuyinBol=true
+							}
 							let tempArr=[]
 							for(var i in res.data){
 								if(res.data[i].sjcxlxid.indexOf(lx)>-1){
-
+									if(this.isVoiceMode){
+										tempArr.push(res.data[i])
+									}else{
 										let xx = `${res.data[i].sjcxlxid}-${res.data[i].lxmc}`
 										this.formMoreChange(xx,isyuyinBol)
-
+									}
 								}else if(res.data[i].lxmc.indexOf(lx)>-1){
-
+									if(this.isVoiceMode){
+										tempArr.push(res.data[i])
+									}else{
 										let xx = `${res.data[i].sjcxlxid}-${res.data[i].lxmc}`
 										this.formMoreChange(xx,isyuyinBol)
-
+									}
 								}
 							}
 							this.selectData=tempArr
@@ -806,7 +804,7 @@ align-items: center;height: 50rpx;
 			},
 			//查找表格列(新增)。。。
 			getcolumns() {
-				//this.myCollShow=false
+				this.myCollShow=false
 				this.contentShow=true
 				setTimeout(()=>{
 					this.focusObj.spbmFocus=true
@@ -814,7 +812,11 @@ align-items: center;height: 50rpx;
 			},
 			
 			clearAlone(item) {
+				if(this.isVoiceMode){
+					
+				}else{
 					this.uFormModel[item]=""
+				}
 			},
 			clearForm() {
 				this.uFormModel.spbm= ""
@@ -832,7 +834,6 @@ align-items: center;height: 50rpx;
 				this.focusObj.numFocus=false
 				this.focusObj.priceFocus=false
 			},
-
 			
 			// 编辑商品 保存商品............................................................
 			editSave(arr) {
@@ -846,33 +847,34 @@ align-items: center;height: 50rpx;
 			},
 			
 			newOrders() {
+        let dataes={
+          "access_token": uni.getStorageSync("access_token"),
+          "djtype": "SPRKD",
+          "fdbh": uni.getStorageSync("fdbh"),
+          "userid": uni.getStorageSync("userid"),
+        }
 				if (this.state == "add") {
 					return
-				}
-				let dataes={
-					"access_token": uni.getStorageSync("access_token"),
-					"djtype": "SPRKD",
-					"fdbh": uni.getStorageSync("fdbh"),
-					"userid": uni.getStorageSync("userid"),
-				}
-				rcOrderNew(dataes).then((res) => {
-					if (res.error_code == 0) {
-						this.uFormTitle.djbh = res.djbh
-						this.state = "add"
-						//this.queryHt(true, "sjbh")
-						this.queryMore(true, "CKINFO", "ckbh")
-						this.queryMore(true, "FDINFO", "fdbh")
-						this.queryMore(true, "USERINFO", "service")
-						this.tableData = []
-					} else {
-						this.$refs.uToast.show({
-							type: "error",
-							message: res.message
-						})
-					}
-				}).catch((err) => {
-					console.log(err)
-				})
+				}else {
+          rcOrderNew(dataes).then((res) => {
+            if (res.error_code == 0) {
+              this.uFormTitle.djbh = res.djbh
+              uni.setStorageSync('xrkdh',false)
+              //this.xrkdh=false
+              this.queryHt(true, "sjbh")
+              this.queryMore(true, "CKINFO", "ckbh")
+              this.queryMore(true, "USERINFO", "service")
+              this.tableData = []
+            } else {
+              this.$refs.uToast.show({
+                type: "error",
+                message: res.message
+              })
+            }
+          })
+        }
+
+
 			},
 
 			// popup弹窗控制...................................................................
@@ -904,7 +906,7 @@ align-items: center;height: 50rpx;
 						"spmc": this.uFormModel.spmc,
 						"sppc": ""
 					})
-					this.doSave("ADD")
+					this.doSave("CHK")
 
 			},
 			doSave(state) {
@@ -948,11 +950,16 @@ console.log('编译保存')
 						this.clearFocus()
 						this.clearForm()
 						this.getList()
-
+						if(this.isVoiceMode){//语音模式时
+							this.yuyinModelArr=[]
+							setTimeout(()=>{
+								this.yuyinModelArr=this.yuyinArr
+							},1500)
+						}else{
 							setTimeout(()=>{
 								this.focusObj.spbmFocus=true
 							},300)
-
+						}
 					} else if (res.error_code == 2) {
 						uni.showModal({
 							content: res.error_data[0].message,
@@ -988,13 +995,26 @@ console.log('编译保存')
 							});
 						}
 					}
-
+					if(this.isVoiceMode){
+						if (res.error_code != 0){
+							this.$voice({
+								voiceSet: {
+									tex: "保存失败，请根据提示操作",
+								}
+							})
+						}
+					}
 				}).catch((err) => {
 					console.log(err)
 				})
 			}
 			
 			
+		},
+		computed: {
+			// skin() {
+			// 	return this.$store.state.skin;
+			// }
 		},
 		watch: {
 			state: function(newv, oldv) {
@@ -1007,7 +1027,7 @@ console.log('编译保存')
 					this.neworderShow=false
 				}
 			},
-			"uFormModel.spsmm": function(newv, oldv) {
+			"uFormModel.spbm": function(newv, oldv) {
 				if(newv.length==0){
 					this.spbmClearShow=false
 					this.isSpComplete=false
@@ -1390,7 +1410,7 @@ margin: 20rpx 0;
         width: 20%;
       }
       .boxunit2{
-        width: 80%;
+        width: 70%;
         margin-left: 10rpx;
         margin-right: 20rpx;
       }
@@ -1399,13 +1419,6 @@ margin: 20rpx 0;
 		.uni-select__input-box {
 		    width: 100%;
 		}
-    .rkdhtou{
-      padding:10px 10px 0;
-      color: #fff;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      background-color: #358CC9;
-    }
 	}
 </style>
 

@@ -51,23 +51,23 @@
             </u-input>
           </u-form-item>
         </view>
-<!--				<view style="margin: 10rpx 0">-->
-<!--          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">-->
-<!--            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>-->
-<!--          </u-form-item>-->
-<!--        </view>-->
+				<view style="margin: 10rpx 0">
+          <u-form-item label="是否赠品" :labelWidth="74" prop="splx">
+            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>
+          </u-form-item>
+        </view>
 
 			</u-form>
-<!--			<view class="form-card">-->
-<!--				<view style="display:flex;justify-content:space-between;">-->
-<!--					<text>供价类型</text>-->
-<!--				</view>-->
-<!--				<view>-->
-<!--					<view class="radio-view">-->
-<!--						<view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>-->
-<!--					</view>-->
-<!--				</view>-->
-<!--			</view>-->
+			<view class="form-card">
+				<view style="display:flex;justify-content:space-between;">
+					<text>供价类型</text>
+				</view>
+				<view>
+					<view class="radio-view">
+						<view class="radio-text" v-for="(v, i) in lxlist" :class="{lxactive:editForm.cxjbz==v.sjcxlxid}" @tap="formMoreChange(v.sjcxlxid)">{{v.lxmc}}</view>
+					</view>
+				</view>
+			</view>
 			<view class="btns" v-if="stateDetail">
 				<u-button type="primary" class="my-primary-button" :plain="true" text="取消" throttleTime="2000"
 					@click="cancelDetail"></u-button>
@@ -122,7 +122,7 @@
 		
 		<!-- 弹窗。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。 -->
 		<u-toast ref="uToast"></u-toast>
-
+		
 		
 	</view>
 </template>
@@ -224,7 +224,7 @@
 
     },
     onshow(){
-console.log(this.title,this.tableData)
+
     },
 		methods: {
 			// 查询 特供（供价类型）

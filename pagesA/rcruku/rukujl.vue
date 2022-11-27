@@ -52,7 +52,7 @@
             </view>
           </view>
 
-          <view  class="box" v-if="item.colname=='退货单号'">
+          <view  class="box" v-if="item.colname=='入库单号'">
             <view class="box_l">{{item.colname}}:</view>
             <view class="box_r">
               <u-input v-model="tkdh"></u-input>
@@ -149,7 +149,7 @@ this.condition()
     condition() {
       let dataes = {
         "access_token": uni.getStorageSync("access_token"),
-        "cxbh": "SPTHD_F",
+        "cxbh": "SPRKD_F",
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid"),
         "username": uni.getStorageSync("dlmc"),
@@ -171,14 +171,15 @@ this.condition()
     },
     //查询
     query(){
-      let test=`'SPTHD','${this.start}','${this.end}','${this.xzfd}','${this.tkdh}','${this.sptm}','${this.ddzt}'`
+      let test=`'SPRKD','${this.start}','${this.end}','','','','',''`
       console.log(test)
       let data={
-        djtype:'SPTHD',
+        djtype:'SPRKD',
         access_token: uni.getStorageSync('access_token'),
         fdbh: this.xzfd,
         userid: uni.getStorageSync('userid'),
         exeStr:test
+
       }
       rcgetlist(data).then((res)=>{
         console.log('res',res)
@@ -192,12 +193,12 @@ this.condition()
       if(item['单据状态']=="未审核"){
         states="edit"
         uni.navigateTo({
-          url: `../chuku/chuku?thdh=${item['退货单号']}`
+          url: `../rcruku/rcruku?rkdh=${item['入库单号']}`
         });
       }else{
         states="look"
         uni.navigateTo({
-          url: `../chuku/chukumx?thdh=${item['退货单号']}&djzt=${item['单据状态']}`
+          url: `../rcruku/rukumx?rkdh=${item['入库单号']}&djzt=${item['单据状态']}`
         });
       }
 

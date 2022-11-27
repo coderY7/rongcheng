@@ -103,6 +103,9 @@ try {
     uniDatetimePicker: function() {
       return Promise.all(/*! import() | uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-datetime-picker/components/uni-datetime-picker/uni-datetime-picker.vue */ 350))
     },
+    uInput: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 421))
+    },
     uniIcons: function() {
       return Promise.all(/*! import() | uni_modules/uni-icons/components/uni-icons/uni-icons */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-icons/components/uni-icons/uni-icons")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 483))
     },
@@ -111,9 +114,6 @@ try {
     },
     uRadio: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-radio/u-radio */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-radio/u-radio")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-radio/u-radio.vue */ 499))
-    },
-    uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 421))
     },
     uButton: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 403))
@@ -189,6 +189,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
 
 
 
@@ -500,31 +502,24 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
+//
+//
 // import xkyGuideStep from '@/components/xky-guideStep/xky-guideStep';
 var _default = { components: {// xkyGuideStep
   }, data: function data() {return { cxsjht: '', sjbh: '', queryData: [], foldMoreShow: true, radiovalue1: "T", selectIndex: -1, ifDrawer: "", popupShow: false, selectData: [], tableData: [] };}, onLoad: function onLoad() {}, onReady: function onReady() {this.condition();}, onShow: function onShow() {}, methods: { //拉取查询条件
     condition: function condition() {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "cxbh": "SPRKD_F", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "username": uni.getStorageSync("dlmc") };(0, _api.rccondition)(dataes).then(function (res) {console.log("condition res", res);if (res.error_code == 0) {_this.queryData = res.data;for (var i in _this.queryData) {var now = (0, _dayjs.default)().format('YYYY-MM-DD');if (_this.queryData[i].type == '开始DATE') {_this.queryData[i].value = now;} else if (_this.queryData[i].type == '结束DATE') {_this.queryData[i].value = now;} else {_this.queryData[i].value = "";}if (_this.queryData[i].tabname) {_this.queryData[i].tabname = JSON.parse(_this.queryData[i].tabname);}if (_this.queryData[i].readonly != "") {_this.queryMore(_this.queryData[i], i, 'select', 'ALL');}}console.log("condition this.queryData", _this.queryData);} else {_this.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 监听所有查询下拉框 变化
     inpChange: function inpChange(val) {var _this2 = this;setTimeout(function () {if (val != "") {for (var i in _this2.queryData) {if (val == _this2.queryData[i].value) {_this2.queryMore(_this2.queryData[i], i, _this2.queryData[i].type, val);uni.hideKeyboard();}}}}, 500);}, // 查询条件中的单个查询.................................
     queryMore: function queryMore(obj, index, state, isAll) {var _this3 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "dtype": obj.tabname.type, "companyid": uni.getStorageSync("companyid") };(0, _api.rcbasics)(dataes).then(function (res) {console.log(obj.tabname.type + " 基本信息basic res", res);_this3.selectIndex = index;if (obj.readonly != "") {//分店编号
-          _this3.$set(_this3.queryData[_this3.selectIndex], "value", "".concat(res.data[0][obj.tabname.id], "-").concat(res.data[0][obj.tabname.name]));_this3.$forceUpdate();return;}_this3.ifDrawer = state;if (res.data[0].result == "没用对应数据源标识！") {_this3.popupShow = false;} else {_this3.popupShow = true;}_this3.selectData = [];for (var i in res.data) {if (isAll == "ALL") {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });} else {if (res.data[i][obj.tabname.id].indexOf(isAll) > -1 || res.data[i][obj.tabname.name].indexOf(isAll) > -1) {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });}}}}).catch(function (err) {console.log(err);});}, // 创建新单
+          _this3.$set(_this3.queryData[_this3.selectIndex], "value", "".concat(res.data[0][obj.tabname.id], "-").concat(res.data[0][obj.tabname.name]));_this3.$forceUpdate();return;}_this3.ifDrawer = state;_this3.popupShow = true;_this3.selectData = [];for (var i in res.data) {if (isAll == "ALL") {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });} else {if (res.data[i][obj.tabname.id].indexOf(isAll) > -1 || res.data[i][obj.tabname.name].indexOf(isAll) > -1) {_this3.selectData.push({ "id": res.data[i][obj.tabname.id], "name": res.data[i][obj.tabname.name] });}}}}).catch(function (err) {console.log(err);});}, // 创建新单
     newOrder: function newOrder() {var _this4 = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid") };(0, _api.rcOrderNew)(dataes).then(function (res) {// console.log("orderNew res",res)
         if (res.error_code == 0) {uni.navigateTo({ url: "../../pagesA/ruku/rkxd?djbh=".concat(res.djbh, "&state=add") });} else {_this4.$refs.uToast.show({ type: "error", message: res.message });}}).catch(function (err) {console.log(err);});}, // 编辑单
-    tolook: function tolook(item) {console.log('j进入编译', item);uni.$emit("editTitle", item);var states = "";if (item['单据状态'] == "未审核") {
-        states = "edit";
-      } else {
-        states = "look";
-      }
-      uni.navigateTo({
-        url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额'], "&navber=false") });
-
-    },
+    tolook: function tolook(item) {uni.$emit("editTitle", item);var states = "";if (item.单据状态 == "未审核") {states = "edit";} else {states = "look";}uni.navigateTo({ url: "../../pagesA/ruku/rkxd?state=".concat(states, "&djbh=").concat(item['入库单号'], "&djzt=").concat(item['单据状态'], "&sjbh=").concat(item['商家合同号'], "&sjmc=").concat(item['商家名称'], "&ckbh=").concat(item['入库仓库'], "&ysdh=").concat(item['原始单号'], "&fdbh=").concat(item['入库分店'], "&rkzl=").concat(item['入库总量'], "&rkze=").concat(item['入库总额'], "&navber=false") });},
 
     //查找表格数据。。。。。。。。。。。。。。。。。。。。。。。。。
     getlist: function getlist() {var _this5 = this;
       var str = "'SPRKD',";
       for (var i in this.queryData) {
         if (this.queryData[i].type == "查询下拉框" || this.queryData[i].type == "下拉框") {
-          console.log(this.queryData[i].value);
           str += "'" + this.queryData[i].value.split("-")[0] + "'";
         } else {
           str += "'" + this.queryData[i].value + "'";
@@ -541,7 +536,6 @@ var _default = { components: {// xkyGuideStep
         "userid": uni.getStorageSync("userid") };
 
       (0, _api.rcgetlist)(dataes).then(function (res) {
-        str = '';
         console.log("！！查询已上传的数据！！ res", res);
         if (res.error_code == 0) {
           _this5.foldMoreShow = false;
