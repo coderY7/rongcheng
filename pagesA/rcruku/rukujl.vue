@@ -21,8 +21,8 @@
           </view>
         </view>
 
-        <view v-if="item.type=='下拉框'" >
-          <view v-if="item.codeid=='FK'" class="box">
+        <view v-if="item.type=='下拉框' || item.type=='查询下拉框'">
+          <view v-if="item.colname=='分店编号'" class="box">
             <view class="box_l">{{item.colname}}:</view>
             <view class="box_r">
               <uni-data-select
@@ -42,6 +42,16 @@
             </view>
           </view>
 
+          <view v-if="item.colname=='商家合同'" class="box">
+            <view class="box_l">{{item.colname}}:</view>
+            <view class="box_r">
+              <uni-data-select
+                  v-model="sjbh"
+                  :localdata="sjbhlist"
+              ></uni-data-select>
+            </view>
+          </view>
+
         </view>
 
         <view v-if="item.type=='字符'">
@@ -55,7 +65,7 @@
           <view  class="box" v-if="item.colname=='入库单号'">
             <view class="box_l">{{item.colname}}:</view>
             <view class="box_r">
-              <u-input v-model="tkdh"></u-input>
+              <u-input v-model="rkdh"></u-input>
             </view>
           </view>
 
@@ -78,20 +88,20 @@
     <view>
       <view v-for="(item,index) in getdata":key="item" class="unit3" @click="getitem(item)">
 <view class="unit3box" style="color: #4f99ff;font-size: 20px">
-  <view>{{item['退货单号']}}</view>
+  <view>{{item['入库单号']}}</view>
   <view>{{item['单据状态']}}</view>
 </view>
         <view class="unit3box">
-          <view>类型:{{item['退换类型']}}</view>
-          <view>分店:{{item['退货分店']}}</view>
+          <view>类型:{{item['入库仓库']}}</view>
+          <view>分店:{{item['入库分店']}}</view>
         </view>
 
         <view class="unit3box">
-          <view>零售金额:{{item['零售金额']}}</view>
-          <view>退货金额:{{item['退货金额']}}</view>
+          <view>数量:{{item['入库总量']}}</view>
+          <view>总额:{{item['入库总额']}}</view>
         </view>
         <view class="unit3box">
-          <view>退货商家:{{item['退货商家']}}</view>
+          <view>商家:{{item['商家名称']}}</view>
         </view>
 
       </view>
@@ -118,13 +128,15 @@ export default {
       end:'',
       sjbh:'',
       sptm:'',
-      tkdh:'',
+      rkdh:'',
       termdata:[,,,,,,],
       fdlist:'',
       xzfd:"",
       ddztlist:'',
       ddzt:'',
       getdata:'',
+      sjbhlist:'',
+
     }
   },
   onShow(){
@@ -141,6 +153,18 @@ export default {
     })
     this.fdlist = cxfdbh
     this.xzfd=this.fdlist[0].value
+    //处理仓库下拉框数据
+    this.sjbhlist = uni.getStorageSync('basic').SJINFO
+    let sjbhlist = [];
+    this.sjbhlist.forEach((item) => {
+      let datas = {}
+      datas.value = item.sjbh;
+      datas.text = item.sjmc
+      sjbhlist.push(datas)
+    })
+    this.sjbhlist = sjbhlist
+    this.sjbh = this.sjbhlist[0].value
+
 this.condition()
   },
   methods:{
@@ -165,13 +189,13 @@ this.condition()
           ddztlist.push(datas)
         })
         this.ddztlist = ddztlist
-        //this.ddzt=this.ddztlist[0].value
+        this.ddzt=this.ddztlist[0].value
         this.term=res.data
       })
     },
     //查询
     query(){
-      let test=`'SPRKD','${this.start}','${this.end}','','','','',''`
+      let test=`'SPRKD','${this.start}','${this.end}','${this.sptm}','${this.rkdh}','${this.sjbh}','${this.ddzt}','${this.xzfd}'`
       console.log(test)
       let data={
         djtype:'SPRKD',

@@ -35,15 +35,15 @@
             </view>
           </view>
 
-          <view class="box">
-            <view class="box_l">退换类型:</view>
-            <view class="box_r">
-              <uni-data-select
-                  v-model="thlx"
-                  :localdata="thlxlist"
-              ></uni-data-select>
-            </view>
-          </view>
+<!--          <view class="box">-->
+<!--            <view class="box_l">退换类型:</view>-->
+<!--            <view class="box_r">-->
+<!--              <uni-data-select-->
+<!--                  v-model="thlx"-->
+<!--                  :localdata="thlxlist"-->
+<!--              ></uni-data-select>-->
+<!--            </view>-->
+<!--          </view>-->
 
           <view class="box">
             <view class="box_l">商品条码:</view>
@@ -221,17 +221,7 @@ export default {
     this.thcklist = thcklist
     this.thck = this.thcklist[0].value
 
-    //处理退货类型下拉框数据
-    this.thlxlist = uni.getStorageSync('basic').TKLX
-    let thlxlist = [];
-    this.thlxlist.forEach((item) => {
-      let datas = {}
-      datas.value = item.tklxid;
-      datas.text = item.tklxmc
-      thlxlist.push(datas)
-    })
-    this.thlxlist = thlxlist
-    this.thlx = this.thlxlist[0].value
+
     this.getlist()
   },
   methods: {

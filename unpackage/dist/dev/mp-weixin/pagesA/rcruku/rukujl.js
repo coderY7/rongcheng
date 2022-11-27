@@ -271,6 +271,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -375,11 +385,21 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var _default = { data: function data() {return { term: '', start: '', end: '', sjbh: '', sptm: '', tkdh: '', termdata: [,,,,,,], fdlist: '', xzfd: "", ddztlist: '', ddzt: '', getdata: '' };}, onShow: function onShow() {this.start = (0, _dayjs.default)().format('YYYY-MM-DD');this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); //处理分店下拉框数据
-    this.fdlist = uni.getStorageSync('basic').FDINFO;var cxfdbh = [];this.fdlist.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.fdlist = cxfdbh;this.xzfd = this.fdlist[0].value;this.condition();}, methods: { startdate: function startdate() {}, //拉取查询条件
-    condition: function condition() {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "cxbh": "SPRKD_F", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "username": uni.getStorageSync("dlmc") };(0, _api.rccondition)(dataes).then(function (res) {console.log('出库单条件', res);_this.ddztlist = JSON.parse(res.data[5].tabname);var ddztlist = [];_this.ddztlist.forEach(function (item) {var datas = {};datas.value = item.id;datas.text = item.name;ddztlist.push(datas);});_this.ddztlist = ddztlist; //this.ddzt=this.ddztlist[0].value
-        _this.term = res.data;});}, //查询
-    query: function query() {var _this2 = this;var test = "'SPRKD','".concat(this.start, "','").concat(this.end, "','','','','',''");console.log(test);var data = { djtype: 'SPRKD', access_token: uni.getStorageSync('access_token'), fdbh: this.xzfd, userid: uni.getStorageSync('userid'), exeStr: test };(0, _api.rcgetlist)(data).then(function (res) {console.log('res', res);_this2.getdata = res.data;});}, //单项
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { term: '', start: '', end: '', sjbh: '', sptm: '', rkdh: '', termdata: [,,,,,,], fdlist: '', xzfd: "", ddztlist: '', ddzt: '', getdata: '', sjbhlist: '' };}, onShow: function onShow() {this.start = (0, _dayjs.default)().format('YYYY-MM-DD');this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); //处理分店下拉框数据
+    this.fdlist = uni.getStorageSync('basic').FDINFO;var cxfdbh = [];this.fdlist.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.fdlist = cxfdbh;this.xzfd = this.fdlist[0].value; //处理仓库下拉框数据
+    this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value;this.condition();}, methods: { startdate: function startdate() {}, //拉取查询条件
+    condition: function condition() {var _this = this;var dataes = { "access_token": uni.getStorageSync("access_token"), "cxbh": "SPRKD_F", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "username": uni.getStorageSync("dlmc") };(0, _api.rccondition)(dataes).then(function (res) {console.log('出库单条件', res);_this.ddztlist = JSON.parse(res.data[5].tabname);var ddztlist = [];_this.ddztlist.forEach(function (item) {var datas = {};datas.value = item.id;datas.text = item.name;ddztlist.push(datas);});_this.ddztlist = ddztlist;_this.ddzt = _this.ddztlist[0].value;_this.term = res.data;});}, //查询
+    query: function query() {var _this2 = this;var test = "'SPRKD','".concat(this.start, "','").concat(this.end, "','").concat(this.sptm, "','").concat(this.rkdh, "','").concat(this.sjbh, "','").concat(this.ddzt, "','").concat(this.xzfd, "'");console.log(test);var data = { djtype: 'SPRKD', access_token: uni.getStorageSync('access_token'), fdbh: this.xzfd, userid: uni.getStorageSync('userid'), exeStr: test };(0, _api.rcgetlist)(data).then(function (res) {console.log('res', res);_this2.getdata = res.data;});}, //单项
     getitem: function getitem(item) {console.log(item);var states = "";if (item['单据状态'] == "未审核") {states = "edit";uni.navigateTo({ url: "../rcruku/rcruku?rkdh=".concat(item['入库单号']) });} else {states = "look";uni.navigateTo({ url: "../rcruku/rukumx?rkdh=".concat(item['入库单号'], "&djzt=").concat(item['单据状态']) });}} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
