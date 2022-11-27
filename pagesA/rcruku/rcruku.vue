@@ -35,15 +35,6 @@
             </view>
           </view>
 
-<!--          <view class="box">-->
-<!--            <view class="box_l">退换类型:</view>-->
-<!--            <view class="box_r">-->
-<!--              <uni-data-select-->
-<!--                  v-model="thlx"-->
-<!--                  :localdata="thlxlist"-->
-<!--              ></uni-data-select>-->
-<!--            </view>-->
-<!--          </view>-->
 
           <view class="box">
             <view class="box_l">商品条码:</view>
@@ -64,19 +55,19 @@
           </view>
 
           <view class="box" v-if="pitchdata">
-            <view class="box_l">零售价格:</view>
+            <view class="box_l">商品编码:</view>
             <view class="box_r">
               <u-input
-                  placeholder="请输入价格"
+                  placeholder=""
                   border="bottom"
-                  v-model="from.nsjg"
+                  v-model="from.spbm"
                   :disabled="true"
               ></u-input>
             </view>
           </view>
 
           <view class="box">
-            <view class="box_l">入货数量:</view>
+            <view class="box_l">入库数量:</view>
             <view class="box_r">
               <u-input
                   placeholder="请输入数量"
@@ -90,7 +81,7 @@
 
 
           <view class="box">
-            <view class="box_l">入货价格:</view>
+            <view class="box_l">入库价格:</view>
             <view class="box_r">
               <u-input
                   placeholder="请输入价格"
@@ -288,9 +279,13 @@ this.Search()
       };
       rcsearch(data).then((res)=>{
       console.log('搜索到的',res)
-        if(res.data.length>'0'){
+        if(res.data.length>'0'&&res.data.length!='1'){
           this.popupShow=true
           this.searchdata=res.data
+        }
+        if(res.data.length=='1'){
+          console.log('只有一个',res.data[0])
+          this.ispitchdata(res.data[0])
         }
       })
     },
@@ -315,65 +310,84 @@ this.Search()
     },
     //上传商品
     added(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        vtype:'ADD',
-        djbh:this.rkdh,
-        cgy:uni.getStorageSync('userid'),
-        cw:this.thck,
-        rkfd:uni.getStorageSync('fdbh'),
-        sjbh:this.sjbh,
-        sphm:'',
-        ysdj:'',
-        remark:'',
-        list:[this.from]
-      }
-      rcRkdDosave(data).then((res)=>{
-        console.log('新增',res)
-        this.getlist()
-        if(res.error_code=='0'){
-          uni.showToast({
-            title: '新增商品成功',
-            duration: 2000,
-            icon:'none'
-          });
-          this.pitchdata=''
-          this.from={}
+      console.log(this.rkdh)
+      if(this.rkdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          vtype:'ADD',
+          djbh:this.rkdh,
+          cgy:uni.getStorageSync('userid'),
+          cw:this.thck,
+          rkfd:uni.getStorageSync('fdbh'),
+          sjbh:this.sjbh,
+          sphm:'',
+          ysdj:'',
+          remark:'',
+          list:[this.from]
         }
-        if(res.error_code=='2'){
-          uni.showToast({
-            title:res.error_data[0].message,
-            duration: 2000,
-            icon:'none'
-          });
-          this.pitchdata=''
-          this.from={}
-        }
-        if(res.error_code=='500'){
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-        }
+        rcRkdDosave(data).then((res)=>{
+          console.log('新增',res)
+          this.getlist()
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '新增商品成功',
+              duration: 2000,
+              icon:'none'
+            });
+            this.pitchdata=''
+            this.from={}
+          }
+          if(res.error_code=='2'){
+            uni.showToast({
+              title:res.error_data[0].message,
+              duration: 2000,
+              icon:'none'
+            });
+            this.pitchdata=''
+            this.from={}
+          }
+          if(res.error_code=='500'){
+            uni.showToast({
+              title: res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
 
-      })
+        })
+      }else {
+        uni.showToast({
+          title: '入库单为空',
+          duration: 2000,
+          icon:'none'
+        });
+      }
+
     },
     //查询上传商品
     getlist(){
-      let data={
-        "access_token": uni.getStorageSync("access_token"),
-        "djbh": this.rkdh,
-        "djtype": "SPRKD",
-        "fdbh": uni.getStorageSync("fdbh"),
-        "userid": uni.getStorageSync("userid"),
-        "ztbz": "T"
+      if(this.rkdh){
+        let data={
+          "access_token": uni.getStorageSync("access_token"),
+          "djbh": this.rkdh,
+          "djtype": "SPRKD",
+          "fdbh": uni.getStorageSync("fdbh"),
+          "userid": uni.getStorageSync("userid"),
+          "ztbz": "T"
+        }
+        rcGetlistC(data).then((res)=>{
+          console.log('明细列表',res)
+          this.detaildata=res.data
+        })
+      }else {
+        uni.showToast({
+          title: '入库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcGetlistC(data).then((res)=>{
-        console.log('明细列表',res)
-        this.detaildata=res.data
-      })
+
     },
     //点击明细
     isdetail(){
@@ -383,56 +397,75 @@ this.Search()
     },
     //审核
     ischeck(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        username:uni.getStorageSync('dlmc'),
-        djbh:this.rkdh,
-        fdbh:uni.getStorageSync('fdbh'),
-        remark:this.remark,
-        "sphm":'',
-        "ysdh": ''
+      if(this.rkdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          username:uni.getStorageSync('dlmc'),
+          djbh:this.rkdh,
+          fdbh:uni.getStorageSync('fdbh'),
+          remark:this.remark,
+          "sphm":'',
+          "ysdh": ''
+        }
+        rcRkdCheck(data).then((res)=>{
+          console.log('审核',res)
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '整单审核成功',
+              duration: 2000,
+              icon:'none'
+            });
+            this.shcg=true
+          }
+          if(res.error_code=='500'){
+            uni.showToast({
+              title: res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
+        })
+      }else {
+        uni.showToast({
+          title: '入库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcRkdCheck(data).then((res)=>{
-        console.log('审核',res)
-        if(res.error_code=='0'){
-          uni.showToast({
-            title: '整单审核成功',
-            duration: 2000,
-            icon:'none'
-          });
-          this.shcg=true
-        }
-        if(res.error_code=='500'){
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-        }
-      })
+
     },
     //整单删除
     isdelete(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        username:uni.getStorageSync('dlmc'),
-        djbh:this.rkdh,
+      if(this.rkdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          username:uni.getStorageSync('dlmc'),
+          djbh:this.rkdh,
+        }
+        rcRkdDelete(data).then((res)=>{
+          console.log('整单删除',res)
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '整单删除成功',
+              duration: 2000,
+              icon:'none'
+            });
+            this.rkdh=''
+            setTimeout(()=>{
+              this.cknew()
+            },2000)
+          }
+        })
+      }else {
+        uni.showToast({
+          title: '入库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcRkdDelete(data).then((res)=>{
-        console.log('整单删除',res)
-if(res.error_code=='0'){
-  uni.showToast({
-    title: '整单删除成功',
-    duration: 2000,
-    icon:'none'
-  });
-  setTimeout(()=>{
-    this.cknew()
-  },2000)
-}
-      })
+
     },
     //记录
     jl(){

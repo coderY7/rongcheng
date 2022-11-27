@@ -295,9 +295,13 @@ this.Search()
       };
       rcsearch(data).then((res)=>{
       console.log('搜索到的',res)
-        if(res.data.length>'0'){
+        if(res.data.length>'0'&&res.data.length!='1'){
           this.popupShow=true
           this.searchdata=res.data
+        }
+        if(res.data.length=='1'){
+          console.log('只有一个',res.data[0])
+          this.ispitchdata(res.data[0])
         }
       })
     },
@@ -317,64 +321,82 @@ this.Search()
     },
     //上传商品
     added(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        vtype:'ADD',
-        djbh:this.thdh,
-        fdbh:uni.getStorageSync('fdbh'),
-        ysdh:'',
-        ckid:this.thck,
-        sjbh:this.sjbh,
-        thlx:this.thlx,
-        remark:'',
-        list:[this.from]
-      }
-      rcckdosave(data).then((res)=>{
-        console.log('新增',res)
-        this.getlist()
-        if(res.error_code=='0'){
-          uni.showToast({
-            title: '新增商品成功',
-            duration: 2000,
-            icon:'none'
-          });
-          this.pitchdata=''
-          this.from={}
+      if(this.thdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          vtype:'ADD',
+          djbh:this.thdh,
+          fdbh:uni.getStorageSync('fdbh'),
+          ysdh:'',
+          ckid:this.thck,
+          sjbh:this.sjbh,
+          thlx:this.thlx,
+          remark:'',
+          list:[this.from]
         }
-        if(res.error_code=='2'){
-          uni.showToast({
-            title:res.error_data[0].message,
-            duration: 2000,
-            icon:'none'
-          });
-          this.pitchdata=''
-          this.from={}
-        }
-        if(res.error_code=='500'){
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-        }
+        rcckdosave(data).then((res)=>{
+          console.log('新增',res)
+          this.getlist()
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '新增商品成功',
+              duration: 2000,
+              icon:'none'
+            });
+            this.pitchdata=''
+            this.from={}
+          }
+          if(res.error_code=='2'){
+            uni.showToast({
+              title:res.error_data[0].message,
+              duration: 2000,
+              icon:'none'
+            });
+            this.pitchdata=''
+            this.from={}
+          }
+          if(res.error_code=='500'){
+            uni.showToast({
+              title: res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
 
-      })
+        })
+      }else {
+        uni.showToast({
+          title: '退库单为空',
+          duration: 2000,
+          icon:'none'
+        });
+      }
+
     },
     //查询上传商品
     getlist(){
-      let data={
-        "access_token": uni.getStorageSync("access_token"),
-        "djbh": this.thdh,
-        "djtype": "SPTHD",
-        "fdbh": uni.getStorageSync("fdbh"),
-        "userid": uni.getStorageSync("userid"),
-        "ztbz": "F"
+      if(this.thdh){
+        let data={
+          "access_token": uni.getStorageSync("access_token"),
+          "djbh": this.thdh,
+          "djtype": "SPTHD",
+          "fdbh": uni.getStorageSync("fdbh"),
+          "userid": uni.getStorageSync("userid"),
+          "ztbz": "F"
+        }
+        rcGetlistC(data).then((res)=>{
+          console.log('明细列表',res)
+          this.detaildata=res.data
+        })
+      }else {
+        uni.showToast({
+          title: '退库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcGetlistC(data).then((res)=>{
-        console.log('明细列表',res)
-        this.detaildata=res.data
-      })
+
     },
     //点击明细
     isdetail(){
@@ -384,55 +406,73 @@ this.Search()
     },
     //审核
     ischeck(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        username:uni.getStorageSync('dlmc'),
-        djbh:this.thdh,
-        fdbh:uni.getStorageSync('fdbh'),
-        remark:this.remark,
-        checkin:'F'
+      if(this.thdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          username:uni.getStorageSync('dlmc'),
+          djbh:this.thdh,
+          fdbh:uni.getStorageSync('fdbh'),
+          remark:this.remark,
+          checkin:'F'
+        }
+        rcckcheck(data).then((res)=>{
+          console.log('审核',res)
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '整单审核成功',
+              duration: 2000,
+              icon:'none'
+            });
+            this.shcg=true
+          }
+          if(res.error_code=='500'){
+            uni.showToast({
+              title: res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
+        })
+      }else {
+        uni.showToast({
+          title: '退库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcckcheck(data).then((res)=>{
-        console.log('审核',res)
-        if(res.error_code=='0'){
-          uni.showToast({
-            title: '整单审核成功',
-            duration: 2000,
-            icon:'none'
-          });
-          this.shcg=true
-        }
-        if(res.error_code=='500'){
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-        }
-      })
+
     },
     //整单删除
     isdelete(){
-      let data={
-        access_token:uni.getStorageSync('access_token'),
-        userid:uni.getStorageSync('userid'),
-        username:uni.getStorageSync('dlmc'),
-        djbh:this.thdh,
+      if(this.thdh){
+        let data={
+          access_token:uni.getStorageSync('access_token'),
+          userid:uni.getStorageSync('userid'),
+          username:uni.getStorageSync('dlmc'),
+          djbh:this.thdh,
+        }
+        rcckdelete(data).then((res)=>{
+          console.log('整单删除',res)
+          if(res.error_code=='0'){
+            uni.showToast({
+              title: '整单删除成功',
+              duration: 2000,
+              icon:'none'
+            });
+            setTimeout(()=>{
+              this.cknew()
+            },2000)
+          }
+        })
+      }else {
+        uni.showToast({
+          title: '退库单为空',
+          duration: 2000,
+          icon:'none'
+        });
       }
-      rcckdelete(data).then((res)=>{
-        console.log('整单删除',res)
-if(res.error_code=='0'){
-  uni.showToast({
-    title: '整单删除成功',
-    duration: 2000,
-    icon:'none'
-  });
-  setTimeout(()=>{
-    this.cknew()
-  },2000)
-}
-      })
+
     },
     //记录
     jl(){

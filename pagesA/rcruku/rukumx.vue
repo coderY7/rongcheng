@@ -138,6 +138,7 @@ import {
   rcGetlistC,
   rcsearch,
   rcRkdDosave,
+  rcrkddelLine
 } from "@/network/api.js";
 export default {
   data(){
@@ -362,18 +363,19 @@ this.getlist()
           if (resm.confirm) {
             let dataes={
               "access_token": uni.getStorageSync("access_token"),
-              "djbh": row.thdbh,
+              "djbh": row.rkdbh,
               "fdbh": uni.getStorageSync("fdbh"),
               "userid": uni.getStorageSync("userid"),
               "username": uni.getStorageSync("dlmc"),
               "list": [{
-                "guid": row.guid,
+                "guid": row.recordid,
                 "spbm": row.spbm,
                 "spmc": row.spmc,
-                "spsmm": row.spsmm
+                "spsmm": row.spsmm,
+                "rkdbh":row.rkdbh
               }]
             }
-            rcckline(dataes).then((res) => {
+            rcrkddelLine(dataes).then((res) => {
               console.log("删除商品 res",res)
               if (res.error_code == 0) {
                 uni.showToast({
