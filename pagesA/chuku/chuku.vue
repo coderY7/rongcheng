@@ -450,6 +450,8 @@ this.Search()
               icon:'none'
             });
             this.shcg=true
+            this.thdh=''
+            uni.setStorageSync('thdh','')
           }
           if(res.error_code=='500'){
             uni.showToast({

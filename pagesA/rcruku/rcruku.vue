@@ -442,6 +442,8 @@ this.Search()
               icon:'none'
             });
             this.shcg=true
+            uni.rkdh=''
+            uni.setStorageSync('rkdh','')
           }
           if(res.error_code=='500'){
             uni.showToast({
