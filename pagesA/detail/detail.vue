@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<navbar title='结果详情' @lefts=left() leftname="<"></navbar>
+		<navbar title='结果详情' @lefts=left()></navbar>
     <view class="container">
       <view>
         <view class="name">商品详细:</view>

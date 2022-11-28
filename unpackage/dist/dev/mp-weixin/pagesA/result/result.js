@@ -198,9 +198,11 @@ __webpack_require__.r(__webpack_exports__);
     navbar: navbar },
 
   onLoad: function onLoad(option) {
-    console.log(option);
+
     this.bdt = JSON.parse(option.bdt);
-    this.result = JSON.parse(option.result);
+    this.result = JSON.parse(uni.getStorageSync('result'));
+    //this.result=uni.getStorageSync('result')
+
     this.sumdata = JSON.parse(option.sumdata);
 
     this.tableData = this.result;

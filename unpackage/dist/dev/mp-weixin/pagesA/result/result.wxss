@@ -87,7 +87,7 @@ page {
   margin: 20rpx;
 }
 .unit4_box .unit4_box_item .unit4_box_value {
-  font-size: 45rpx;
+  font-size: 30rpx;
   color: #52c8f1;
 }
 .unit4_box .unit4_box_item .unit4_box_key {
@@ -110,5 +110,8 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+ .u-scroll-list__indicator.data-v-e2a26316 {
+  margin-top: 0;
 }
 

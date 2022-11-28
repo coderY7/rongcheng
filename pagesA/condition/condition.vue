@@ -3,12 +3,10 @@
 	<navbar :title='dqbb.cxmc' @lefts=left()></navbar>
     <view id="pages">
       <view class="container">
-
-        <view class="list">
           <view v-for="(item,index) in cxtj">
             <view v-if="item.type=='字符'" class="box">
-              <view class="boxname">{{ item.colname }}:</view>
-              <view class="boxinput">
+              <view class="box_l">{{ item.colname }}:</view>
+              <view class="box_r">
                 <u-input
                     placeholder="请输入查询内容"
                     border="surround"
@@ -18,24 +16,24 @@
               </view>
             </view>
 
-            <view v-if="item.type=='开始日期'">
-              <view class="boxname">{{ item.colname }}</view>
-              <view class="boxinput">
+            <view v-if="item.type=='开始日期'" class="box">
+              <view class="box_l">{{ item.colname }}</view>
+              <view class="box_r">
                 <uni-datetime-picker
                     type="date"
-                    :value="single"
+                    :value="start"
                     v-model="item.defval"
                     @change="startdate()"
                 />
               </view>
             </view>
 
-            <view v-if="item.type=='结束日期'">
-              <view class="boxname">{{ item.colname }}</view>
-              <view class="boxinput">
+            <view v-if="item.type=='结束日期'" class="box">
+              <view class="box_l">{{ item.colname }}</view>
+              <view class="box_r">
                 <uni-datetime-picker
                     type="date"
-                    :value="single"
+                    :value="end"
                     v-model="item.defval"
                     @change="enddate()"
                 />
@@ -43,9 +41,9 @@
             </view>
 
             <view v-if="item.type=='多选下拉框'">
-              <view v-if="item.colname=='分店编号'">
-                <view>{{ item.colname }}</view>
-                <view class="boxinput">
+              <view v-if="item.colname=='分店编号'" class="box">
+                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_r">
                  
                     <uni-data-select
                         v-model="item.defval"
@@ -59,9 +57,9 @@
 
             <view v-if="item.type=='下拉框'">
 
-              <view v-if="item.colname=='分店编号'">
-                <view>{{ item.colname }}</view>
-                <view class="boxinput">
+              <view v-if="item.colname=='分店编号'" class="box">
+                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_r">
                  
                     <uni-data-select
                         v-model="item.defval"
@@ -72,9 +70,9 @@
                 </view>
               </view>
 
-              <view v-if="item.colname=='商品品牌'">
-                <view class="boxname">{{ item.colname }}</view>
-                <view class="boxinput">
+              <view v-if="item.colname=='商品品牌'" class="box">
+                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_r">
                   
                     <uni-data-select
                         v-model="item.defval"
@@ -89,9 +87,9 @@
 
             <view v-if="item.type=='查询下拉框'">
 
-              <view v-if="item.colname=='商家合同'">
-                <view class="boxname">{{ item.colname }}</view>
-                <view class="boxinput">
+              <view v-if="item.colname=='商家合同'" class="box">
+                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_r">
                  
                     <uni-data-select
                         v-model="item.defval"
@@ -106,17 +104,15 @@
 
             <view v-if="item.type=='选择'">
 
-              <view v-if="item.colname=='数据安全'">
-                <view class="boxname">{{ item.colname }}</view>
-                <view class="boxinput">
+              <view v-if="item.colname=='数据安全'" class="box">
+                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_r">
                   <view>{{item.defval}}</view>
                 </view>
               </view>
 
             </view>
           </view>
-        </view>
-
       </view>
 
 <view class="unit3" v-if="cxtj.length!=0">
@@ -137,6 +133,8 @@ import {
   condition,
 } from '../../network/api.js';
 	import navbar from '../../components/nav.vue'
+import dayjs from 'dayjs'; // ES 2015
+
 
 export default {
   data() {
@@ -164,9 +162,12 @@ export default {
     this.dqbb = uni.getStorageSync('dqbb') //当前报表
   },
   onShow() {
-   this.cxfdbh=uni.getStorageSync('basic').FDINFO
+    this.start = dayjs().format('YYYY-MM-DD') // 获取当前时间
+    this.end = dayjs().format('YYYY-MM-DD') // 获取当前时间
+
+    this.cxfdbh=uni.getStorageSync('basic').FDINFO
     this.cxsppp=uni.getStorageSync('basic').PPINFO
-    this.cxsjht=uni.getStorageSync('basic').SJHTTYPE
+    this.cxsjht=uni.getStorageSync('basic').SJINFO
 
     //处理分店下拉框数据
     let cxfdbh=[];
@@ -191,8 +192,8 @@ export default {
     let cxsjht=[];
     this.cxsjht.forEach((item)=>{
       let datas={}
-      datas.value=item.htlxid;
-      datas.text=item.htlxmc
+      datas.value=item.sjbh;
+      datas.text=item.sjmc
       cxsjht.push(datas)
     })
     this.cxsjht=cxsjht
@@ -272,6 +273,7 @@ export default {
         let bdt = JSON.stringify(this.bdt)
         let result = JSON.stringify(this.result)
         let sumdata = JSON.stringify(this.sumdata)
+        uni.setStorageSync('result',result)
         uni.navigateTo({
           url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}`
         });
@@ -290,18 +292,16 @@ export default {
   padding: 20rpx;
 }
 .box{
+  width: 100%;
   display: flex;
+  padding: 10rpx;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  width: 90%;
-  margin-bottom: 20rpx;
-  .boxname{
-    font-size: 30rpx;
-    flex:1;
+  .box_l{
+    width:20%;
   }
-  .boxinput{
-  margin: 0 20rpx;
-  flex:3;
+  .box_r{
+    width: 80%;
   }
 }
 

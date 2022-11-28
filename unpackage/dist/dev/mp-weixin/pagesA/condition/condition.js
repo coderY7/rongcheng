@@ -292,11 +292,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _api = __webpack_require__(/*! ../../network/api.js */ 143);
 
 
 
 
-var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
+
+
+var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -423,11 +426,8 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 //
 //
 //
-//
-//
-//
-//
-var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', //当前报表
+var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);}; // ES 2015
+var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', //当前报表
       start: '', //开始时间
       end: '', //结束时间
       cxtj: '', //查询条件
@@ -439,10 +439,12 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       sumdata: '' //查询到的汇总
     };}, components: { navbar: navbar }, onLoad: function onLoad(option) {this.cxtj = JSON.parse(option.cxdj).data; //查询条件
     this.dqbb = uni.getStorageSync('dqbb'); //当前报表
-  }, onShow: function onShow() {this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJHTTYPE; //处理分店下拉框数据
+  }, onShow: function onShow() {this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
+    this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
+    this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
     var cxfdbh = [];this.cxfdbh.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.cxfdbh = cxfdbh; //处理商品品牌下拉框数据
     var cxsppp = [];this.cxsppp.forEach(function (item) {var datas = {};datas.value = item.ppbmid;datas.text = item.ppmc;cxsppp.push(datas);});this.cxsppp = cxsppp; //处理商家合同下拉框数据
-    var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.htlxid;datas.text = item.htlxmc;cxsjht.push(datas);});this.cxsjht = cxsjht;}, watch: { tj: function tj(newvalue, oldvalue) {} }, methods: { //自定义返回
+    var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjht.push(datas);});this.cxsjht = cxsjht;}, watch: { tj: function tj(newvalue, oldvalue) {} }, methods: { //自定义返回
     left: function left() {uni.navigateBack({ delta: 1 });}, //开始日期
     startdate: function startdate(e) {console.log(e);this.start = e;}, //结束日期
     enddate: function enddate(e) {console.log(e);this.end = e;}, maskClick: function maskClick(e) {console.log('----maskClick事件:', e);}, //列表头
@@ -451,7 +453,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       this.cxtj.forEach(function (item) {_this2.tj.push({ 'Convalue': item.defval, 'recordid': item.recordid });});var data = { djtype: uni.getStorageSync('dqbb').cxbh, access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), groupid: uni.getStorageSync('groupid'), username: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), condition: this.tj };uni.showLoading({ title: '加载中' });(0, _api.getlist)(data).then(function (res) {uni.hideLoading();_this2.result = res.data;_this2.sumdata = res.sumdata; //this.bdt=Object.keys(this.result[0])
         //表单头处理
         var cl = res.columns;var a = [];cl.forEach(function (item) {a.push(item.title);});_this2.bdt = a; //跳转新页面
-        var bdt = JSON.stringify(_this2.bdt);var result = JSON.stringify(_this2.result);var sumdata = JSON.stringify(_this2.sumdata);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
+        var bdt = JSON.stringify(_this2.bdt);var result = JSON.stringify(_this2.result);var sumdata = JSON.stringify(_this2.sumdata);uni.setStorageSync('result', result);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

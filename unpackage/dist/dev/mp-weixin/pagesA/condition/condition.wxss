@@ -31,19 +31,17 @@
   padding: 20rpx;
 }
 .box {
+  width: 100%;
   display: flex;
+  padding: 10rpx;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  width: 90%;
-  margin-bottom: 20rpx;
 }
-.box .boxname {
-  font-size: 30rpx;
-  flex: 1;
+.box .box_l {
+  width: 20%;
 }
-.box .boxinput {
-  margin: 0 20rpx;
-  flex: 3;
+.box .box_r {
+  width: 80%;
 }
 .unit3 {
   width: 100%;
