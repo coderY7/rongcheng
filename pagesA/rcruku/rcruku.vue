@@ -240,12 +240,7 @@ if(uni.getStorageSync('rkdh')){
     },
     //创建出库单
     cknew() {
-      uni.showModal({
-        title: '提示',
-        content: '是否创建新入库单',
-        success:(res) =>{
-          if (res.confirm) {
-            console.log('用户点击确定');
+
             let data = {
               access_token: uni.getStorageSync('access_token'),
               djtype: 'SPRKD',
@@ -263,15 +258,7 @@ if(uni.getStorageSync('rkdh')){
               let d=datee.slice(4,6)
               this.thrq=`${y}-${m}-${d}`
             })
-          } else if (res.cancel) {
-            console.log('用户点击取消');
-            // this.rkdh=''
-            // uni.setStorageSync('rkdh','')
 
-            this.from={}
-          }
-        }
-      });
 
 
     },
@@ -293,26 +280,46 @@ this.Search()
     },
     //商品搜索
     Search(){
-      let data={
-        access_token: uni.getStorageSync('access_token'),
-        companyid:uni.getStorageSync('companyid'),
-        condition:this.spbm,
-        fdbh:uni.getStorageSync('fdbh'),
-        findtype:'01',
-        goodstype:'SP',
-        userid:uni.getStorageSync('userid')
-      };
-      rcsearch(data).then((res)=>{
-      console.log('搜索到的',res)
-        if(res.data.length>'0'&&res.data.length!='1'){
-          this.popupShow=true
-          this.searchdata=res.data
-        }
-        if(res.data.length=='1'){
-          console.log('只有一个',res.data[0])
-          this.ispitchdata(res.data[0])
-        }
-      })
+      if(this.rkdh){
+        let data={
+          access_token: uni.getStorageSync('access_token'),
+          companyid:uni.getStorageSync('companyid'),
+          condition:this.spbm,
+          fdbh:uni.getStorageSync('fdbh'),
+          findtype:'01',
+          goodstype:'SP',
+          userid:uni.getStorageSync('userid')
+        };
+        rcsearch(data).then((res)=>{
+          console.log(res);
+          if(res.error_code=='0'){
+            console.log('搜索到的',res)
+            if(res.data.length>'0'&&res.data.length!='1'){
+              this.popupShow=true
+              this.searchdata=res.data
+            }
+            if(res.data.length=='1'){
+              console.log('只有一个',res.data[0])
+              this.ispitchdata(res.data[0])
+            }
+          }
+          if(res.error_code=='500'){
+            this.searchdata=[]
+            this.pitchdata=''
+            this.from={}
+            uni.showToast({
+              title: '未搜索到商品',
+              duration: 2000,
+              icon:'none'
+            });
+          }
+
+        })
+      }else {
+        this.cknew()
+
+      }
+
     },
     //选中的商品
     ispitchdata(item) {
@@ -444,6 +451,8 @@ this.Search()
             this.shcg=true
             this.rkdh=''
             uni.setStorageSync('rkdh','')
+            this.detaildata=''
+            this.spbm=''
           }
           if(res.error_code=='500'){
             uni.showToast({
@@ -480,12 +489,13 @@ this.Search()
               icon:'none'
             });
             this.rkdh=''
+            this.spbm=''
             this.detaildata=''
             uni.setStorageSync('rkdh','')
 
-            setTimeout(()=>{
-              this.cknew()
-            },2000)
+            // setTimeout(()=>{
+            //   this.cknew()
+            // },2000)
           }
         })
       }else {
