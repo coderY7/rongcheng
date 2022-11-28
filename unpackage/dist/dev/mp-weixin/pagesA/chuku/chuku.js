@@ -627,6 +627,8 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
               icon: 'none' });
 
             _this6.shcg = true;
+            _this6.thdh = '';
+            uni.setStorageSync('thdh', '');
           }
           if (res.error_code == '500') {
             uni.showToast({
