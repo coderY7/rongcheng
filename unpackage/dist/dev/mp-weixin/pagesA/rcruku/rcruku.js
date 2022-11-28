@@ -319,6 +319,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -463,21 +465,40 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-var _default = { components: {}, data: function data() {return { spbm: '', sjbh: '', sjbhlist: '', thck: '', //仓库
+//
+//
+var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { navbar: navbar }, data: function data() {return { spbm: '', sjbh: '', sjbhlist: '', thck: '', //仓库
       thcklist: '', thlx: '', //退回类型
-      thlxlist: '', rkdh: '', //退货单
+      thlxlist: '', rkdh: uni.getStorageSync('rkdh'), //入货单
       thrq: '', //退货日期
       detail: true, //明细
       detaildata: [], //明细数据
       from: {}, popupShow: false, searchdata: '', pitchdata: '', //选中
       remark: '', //备注
-      shcg: false };}, onLoad: function onLoad(option) {console.log(option);this.rkdh = option.rkdh;}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
+      shcg: false };}, onLoad: function onLoad(option) {console.log(option);if (option.rkdh) {uni.setStorageSync('rkdh', option.rkdh);this.rkdh = option.rkdh;}}, onReady: function onReady() {}, onShow: function onShow() {//处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
-    this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value;this.getlist();}, methods: { //创建出库单
-    cknew: function cknew() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新入库单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPRKD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('入库单创建成功', res);_this.shcg = false;_this.rkdh = res.djbh;var datee = _this.rkdh.split("TH")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.rkdh = '';_this.from = {};}} });}, // 扫码 搜索商品
+    this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value;if (uni.getStorageSync('rkdh')) {} else {this.cknew();}this.getlist();}, methods: { //退出
+    back: function back() {uni.switchTab({ url: '../../pages/statement/statement' });}, //创建出库单
+    cknew: function cknew() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新入库单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPRKD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('入库单创建成功', res);_this.shcg = false;_this.rkdh = res.djbh;uni.setStorageSync('rkdh', _this.rkdh);var datee = _this.rkdh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.rkdh = '';uni.setStorageSync('rkdh', '');_this.from = {};}} });}, // 扫码 搜索商品
     scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, //商品搜索
-    Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0' && res.data.length != '1') {_this3.popupShow = true;_this3.searchdata = res.data;}if (res.data.length == '1') {console.log('只有一个', res.data[0]);_this3.ispitchdata(res.data[0]);}});}, //选中的商品
-    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.spbm = this.pitchdata.spbm, this.from.spmc = this.pitchdata.spmc, this.from.spsmm = this.pitchdata.spsmm, this.from.sppc = '';this.from.hsjj = '';this.from.scrq = (0, _dayjs.default)().format("YYYY-MM-DD"), this.from.bzjzrq = (0, _dayjs.default)().date((0, _dayjs.default)().date() + this.pitchdata.bzqts).format("YYYY-MM-DD"),
+    Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0' && res.data.length != '1') {_this3.popupShow = true;_this3.searchdata = res.data;}if (res.data.length == '1') {
+          console.log('只有一个', res.data[0]);
+          _this3.ispitchdata(res.data[0]);
+        }
+      });
+    },
+    //选中的商品
+    ispitchdata: function ispitchdata(item) {
+      this.pitchdata = item;
+      this.popupShow = false;
+      console.log('选中的商品', this.pitchdata);
+      this.from.spbm = this.pitchdata.spbm,
+      this.from.spmc = this.pitchdata.spmc,
+      this.from.spsmm = this.pitchdata.spsmm,
+      this.from.sppc = '';
+      this.from.hsjj = '';
+      this.from.scrq = (0, _dayjs.default)().format("YYYY-MM-DD"),
+      this.from.bzjzrq = (0, _dayjs.default)().date((0, _dayjs.default)().date() + this.pitchdata.bzqts).format("YYYY-MM-DD"),
       this.from.splx = 'T';
       this.from.jjsl = this.pitchdata.sl; //汇率
       this.from.rksl = '';
@@ -630,6 +651,8 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
               icon: 'none' });
 
             _this7.rkdh = '';
+            uni.setStorageSync('rkdh', '');
+
             setTimeout(function () {
               _this7.cknew();
             }, 2000);
@@ -646,7 +669,7 @@ var _default = { components: {}, data: function data() {return { spbm: '', sjbh:
     },
     //记录
     jl: function jl() {
-      uni.navigateTo({
+      uni.redirectTo({
         url: "../rcruku/rukujl" });
 
     } } };exports.default = _default;

@@ -180,7 +180,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
       Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {//this.isreportForm()
     //{cxmc:'商品出库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'}
-    this.Alllist = [{ cxmc: '新增商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }, { cxmc: '商品退库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '商品报表', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '库存报表', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }];}, methods: { //获取报表
+    this.Alllist = [{ cxmc: '新增商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }, { cxmc: '商品退库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '销售财务日报表', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '商品正常库存量分析', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }];}, methods: { //获取报表
     isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid') };
 
@@ -223,23 +223,23 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
           url: '../../pagesA/chuku/chuku' });
 
       }
-      if (item.cxmc == '商品报表') {
+      if (item.cxmc == '销售财务日报表') {
 
         var data = {
           access_token: uni.getStorageSync('access_token'),
-          cxbh: 'RB007' };
+          cxbh: 'RB007APP' };
 
         (0, _api.condition)(data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
-          uni.setStorageSync('dqbb', { cxmc: '商品报表', cxbh: 'RB007' });
+          uni.setStorageSync('dqbb', { cxmc: '商品报表', cxbh: 'RB007APP' });
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items) });
 
         });
       }
-      if (item.cxmc == '库存报表') {
-        var cxbh = 'RB007APP';
+      if (item.cxmc == '商品正常库存量分析') {
+        var cxbh = 'KF011APP';
         var _data = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: cxbh };
@@ -247,7 +247,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
         (0, _api.condition)(_data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
-          uni.setStorageSync('dqbb', { cxmc: '库存报表', cxbh: 'RB007APP' });
+          uni.setStorageSync('dqbb', { cxmc: '商品正常库存量分析', cxbh: 'KF011APP' });
 
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items) });

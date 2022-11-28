@@ -180,14 +180,16 @@
 				"path": "rcruku/rcruku",
 				"style": {
 					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
 				}
 
 			}, {
 				"path": "rcruku/rukumx",
 				"style": {
 					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
 				}
 
 			},{

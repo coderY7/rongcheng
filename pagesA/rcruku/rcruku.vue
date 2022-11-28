@@ -1,5 +1,7 @@
 <template>
   <view>
+    <navbar title='入库' @back="back()"></navbar>
+
     <view class="nav">
     <view @click="jl()" style="color: #4f99ff">历史记录</view>
       <view @click="cknew()" style="color: #4f99ff">创建新单</view>
@@ -157,9 +159,12 @@ import {
   rcRkdCheck,
   rcRkdDelete,
 } from "@/network/api.js";
+import navbar from '../../components/nav.vue'
 
 export default {
-  components: {},
+  components: {
+    navbar
+  },
   data() {
     return {
       spbm:'',
@@ -169,7 +174,7 @@ export default {
       thcklist: '',
       thlx: '',//退回类型
       thlxlist: '',
-      rkdh:'',//退货单
+      rkdh:uni.getStorageSync('rkdh'),//入货单
       thrq:'',//退货日期
       detail:true,//明细
       detaildata:[],//明细数据
@@ -183,7 +188,10 @@ export default {
   },
   onLoad(option) {
     console.log(option);
-    this.rkdh=option.rkdh
+    if(option.rkdh){
+      uni.setStorageSync('rkdh',option.rkdh)
+      this.rkdh=option.rkdh
+    }
   },
   onReady() {
 
@@ -211,11 +219,21 @@ export default {
     })
     this.thcklist = thcklist
     this.thck = this.thcklist[0].value
+if(uni.getStorageSync('rkdh')){
 
+}else {
+  this.cknew()
+}
 
     this.getlist()
   },
   methods: {
+    //退出
+    back(){
+      uni.switchTab({
+        url: '../../pages/statement/statement'
+      });
+    },
     //创建出库单
     cknew() {
       uni.showModal({
@@ -234,7 +252,8 @@ export default {
               console.log('入库单创建成功', res)
               this.shcg=false
               this.rkdh=res.djbh
-              let datee=this.rkdh.split("TH")[1]
+              uni.setStorageSync('rkdh',this.rkdh)
+              let datee=this.rkdh.split("RK")[1]
               let y="20"+datee.slice(0,2)
               let m=datee.slice(2,4)
               let d=datee.slice(4,6)
@@ -243,6 +262,8 @@ export default {
           } else if (res.cancel) {
             console.log('用户点击取消');
             this.rkdh=''
+            uni.setStorageSync('rkdh','')
+
             this.from={}
           }
         }
@@ -453,6 +474,8 @@ this.Search()
               icon:'none'
             });
             this.rkdh=''
+            uni.setStorageSync('rkdh','')
+
             setTimeout(()=>{
               this.cknew()
             },2000)
@@ -469,7 +492,7 @@ this.Search()
     },
     //记录
     jl(){
-      uni.navigateTo({
+      uni.redirectTo({
         url:`../rcruku/rukujl`
       });
     }
