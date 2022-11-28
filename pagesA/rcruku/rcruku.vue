@@ -265,8 +265,8 @@ if(uni.getStorageSync('rkdh')){
             })
           } else if (res.cancel) {
             console.log('用户点击取消');
-            this.rkdh=''
-            uni.setStorageSync('rkdh','')
+            // this.rkdh=''
+            // uni.setStorageSync('rkdh','')
 
             this.from={}
           }
@@ -480,6 +480,7 @@ this.Search()
               icon:'none'
             });
             this.rkdh=''
+            this.detaildata=''
             uni.setStorageSync('rkdh','')
 
             setTimeout(()=>{
@@ -498,7 +499,7 @@ this.Search()
     },
     //记录
     jl(){
-      uni.redirectTo({
+      uni.navigateTo({
         url:`../rcruku/rukujl`
       });
     }

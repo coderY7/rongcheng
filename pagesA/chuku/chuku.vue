@@ -282,8 +282,8 @@ export default {
             })
           } else if (res.cancel) {
             console.log('用户点击取消');
-            this.thdh=''
-            uni.setStorageSync('thdh','')
+            // this.thdh=''
+            // uni.setStorageSync('thdh','')
             this.from={}
           }
         }
@@ -488,6 +488,7 @@ this.Search()
               icon:'none'
             });
             uni.setStorageSync('thdh','')
+            this.detaildata=''
             setTimeout(()=>{
               this.cknew()
             },2000)
@@ -504,7 +505,7 @@ this.Search()
     },
     //记录
     jl(){
-      uni.redirectTo({
+      uni.navigateTo({
         url:`../chuku/chukujl`
       });
     }

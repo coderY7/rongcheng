@@ -487,11 +487,11 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
     this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value;if (uni.getStorageSync('rkdh')) {} else {this.cknew();}this.getlist();}, methods: { //退出
     back: function back() {uni.switchTab({ url: '../../pages/statement/statement' });}, //创建出库单
-    cknew: function cknew() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新入库单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPRKD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('入库单创建成功', res);_this.shcg = false;_this.rkdh = res.djbh;uni.setStorageSync('rkdh', _this.rkdh);var datee = _this.rkdh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消');_this.rkdh = '';uni.setStorageSync('rkdh', '');_this.from = {};}} });}, // 扫码 搜索商品
+    cknew: function cknew() {var _this = this;uni.showModal({ title: '提示', content: '是否创建新入库单', success: function success(res) {if (res.confirm) {console.log('用户点击确定');var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPRKD', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('入库单创建成功', res);_this.shcg = false;_this.rkdh = res.djbh;uni.setStorageSync('rkdh', _this.rkdh);var datee = _this.rkdh.split("RK")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.thrq = "".concat(y, "-").concat(m, "-").concat(d);});} else if (res.cancel) {console.log('用户点击取消'); // this.rkdh=''
+            // uni.setStorageSync('rkdh','')
+            _this.from = {};}} });}, // 扫码 搜索商品
     scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, //商品搜索
-    Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0' && res.data.length != '1') {_this3.popupShow = true;_this3.searchdata = res.data;}if (res.data.length == '1') {console.log('只有一个', res.data[0]);_this3.ispitchdata(res.data[0]);}});
-    },
-    //选中的商品
+    Search: function Search() {var _this3 = this;var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log('搜索到的', res);if (res.data.length > '0' && res.data.length != '1') {_this3.popupShow = true;_this3.searchdata = res.data;}if (res.data.length == '1') {console.log('只有一个', res.data[0]);_this3.ispitchdata(res.data[0]);}});}, //选中的商品
     ispitchdata: function ispitchdata(item) {
       this.pitchdata = item;
       this.popupShow = false;
@@ -657,6 +657,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
               icon: 'none' });
 
             _this7.rkdh = '';
+            _this7.detaildata = '';
             uni.setStorageSync('rkdh', '');
 
             setTimeout(function () {
@@ -675,7 +676,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     },
     //记录
     jl: function jl() {
-      uni.redirectTo({
+      uni.navigateTo({
         url: "../rcruku/rukujl" });
 
     } } };exports.default = _default;
