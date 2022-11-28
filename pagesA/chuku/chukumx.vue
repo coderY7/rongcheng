@@ -1,5 +1,6 @@
 <template>
   <view>
+    <navbar title='商品明细' @back="back()"></navbar>
 
       <view style=" padding:10px 10px 0;
       color: #fff;
@@ -152,7 +153,12 @@ import {
   rcGetlistC,
   rcsearch
 } from "@/network/api.js";
+import navbar from '../../components/nav.vue'
+
 export default {
+  components: {
+    navbar
+  },
   data(){
     return {
       detaildata:'',
@@ -242,6 +248,12 @@ this.getlist()
     }
   },
   methods:{
+    //退出
+    back(){
+      uni.navigateBack({
+        delta: 1
+      });
+    },
     getlist(){
       let data={
         "access_token": uni.getStorageSync("access_token"),

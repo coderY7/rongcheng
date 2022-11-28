@@ -152,14 +152,16 @@
 				"path": "chuku/chuku",
 				"style": {
 					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
 				}
 			},
 			{
 				"path": "chuku/chukumx",
 				"style": {
 					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
 				}
 			},
 			{

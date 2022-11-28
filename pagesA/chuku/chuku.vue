@@ -1,5 +1,7 @@
 <template>
   <view>
+    <navbar title='出库' @back="back()"></navbar>
+
     <view class="nav">
     <view @click="jl()" style="color: #4f99ff">历史记录</view>
       <view @click="cknew()" style="color: #4f99ff">创建新单</view>
@@ -163,9 +165,12 @@ import {
   rcckcheck,
   rcckdelete,
 } from "@/network/api.js";
+import navbar from '../../components/nav.vue'
 
 export default {
-  components: {},
+  components: {
+    navbar
+  },
   data() {
     return {
       spbm:'',
@@ -175,7 +180,7 @@ export default {
       thcklist: '',
       thlx: '',//退回类型
       thlxlist: '',
-      thdh:'',//退货单
+      thdh:uni.getStorageSync('thdh'),//退货单
       thrq:'',//退货日期
       detail:true,//明细
       detaildata:[],//明细数据
@@ -189,7 +194,10 @@ export default {
   },
   onLoad(option) {
     console.log(option);
-    this.thdh=option.thdh
+    if(option.thdh){
+      uni.setStorageSync('thdh',option.thdh)
+      this.thdh=option.thdh
+    }
   },
   onReady() {
 
@@ -232,6 +240,12 @@ export default {
     this.getlist()
   },
   methods: {
+    //退出
+    back(){
+      uni.switchTab({
+        url: '../../pages/statement/statement'
+      });
+    },
     //创建出库单
     cknew() {
       uni.showModal({
@@ -250,6 +264,7 @@ export default {
               console.log('退库单创建成功', res)
               this.shcg=false
               this.thdh=res.djbh
+              uni.setStorageSync('thdh',this.thdh)
               let datee=this.thdh.split("TH")[1]
               let y="20"+datee.slice(0,2)
               let m=datee.slice(2,4)
@@ -259,6 +274,7 @@ export default {
           } else if (res.cancel) {
             console.log('用户点击取消');
             this.thdh=''
+            uni.setStorageSync('thdh','')
             this.from={}
           }
         }
@@ -460,6 +476,7 @@ this.Search()
               duration: 2000,
               icon:'none'
             });
+            uni.setStorageSync('thdh','')
             setTimeout(()=>{
               this.cknew()
             },2000)
@@ -476,7 +493,7 @@ this.Search()
     },
     //记录
     jl(){
-      uni.navigateTo({
+      uni.redirectTo({
         url:`../chuku/chukujl`
       });
     }
