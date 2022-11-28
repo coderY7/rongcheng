@@ -237,6 +237,11 @@ export default {
     })
     this.thlxlist = thlxlist
     this.thlx = this.thlxlist[0].value
+    if(uni.getStorageSync('thdh')){
+
+    }else {
+      this.cknew()
+    }
     this.getlist()
   },
   methods: {

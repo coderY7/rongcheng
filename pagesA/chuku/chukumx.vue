@@ -53,14 +53,14 @@
 
           </view>
           <view style="margin: 10rpx 0">
-            <u-form-item label="退货数量" :labelWidth="74" prop="rksl">
-              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.thsl">
+            <u-form-item label="出库数量" :labelWidth="74" prop="rksl">
+              <u-input placeholder="请输入出库数量" type="digit" v-model="editForm.spsl">
               </u-input>
             </u-form-item>
           </view>
           <view style="margin: 10rpx 0">
-            <u-form-item label="退货价格" :labelWidth="74" prop="rkhsjg">
-              <u-input placeholder="请输入退货价格" type="digit" v-model="editForm.thjg">
+            <u-form-item label="出库价格" :labelWidth="74" prop="rkhsjg">
+              <u-input placeholder="请输入出库价格" type="digit" v-model="editForm.thjg">
               </u-input>
             </u-form-item>
           </view>
@@ -121,11 +121,11 @@
           </view>
           <view class="multiples">
             <view class="multiple-con view-flex">
-              <text class="left-con">退货数量:</text>
+              <text class="left-con">出库数量:</text>
               <text class="right-con">{{item.thsl}}</text>
             </view>
             <view class="multiple-con view-flex">
-              <text class="left-con">退货价格:</text>
+              <text class="left-con">出库价格:</text>
               <text class="right-con">￥{{item.thjg}}</text>
             </view>
           </view>
