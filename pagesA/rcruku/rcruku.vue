@@ -3,8 +3,12 @@
     <navbar title='入库' @back="back()"></navbar>
 
     <view class="nav">
-    <view @click="jl()" style="color: #4f99ff">历史记录</view>
-      <view @click="cknew()" style="color: #4f99ff">创建新单</view>
+    <view @click="jl()">
+      <u-button text="历史记录" type="primary" size="small"></u-button>
+    </view>
+      <view @click="cknew()">
+        <u-button text="创建新单" type="primary" size="small"></u-button>
+      </view>
     </view>
     <view class="unit1">
       <view class="head">
