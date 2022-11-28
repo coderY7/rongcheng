@@ -39,6 +39,7 @@ image {
   height: 161rpx;
   border-radius: 50%;
   margin-top: 60rpx;
+  margin-bottom: 100rpx;
   margin-left: auto;
   margin-right: auto;
 }

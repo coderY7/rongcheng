@@ -202,9 +202,9 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
 		}
 	}
   page{
-    background: url('../../static/shilu-login/logobj.png') no-repeat;
-    background-position: center center;
-    background-attachment: fixed;
+    //background: url('../../static/shilu-login/logobj.png') no-repeat;
+    //background-position: center center;
+    //background-attachment: fixed;
   }
   image{
     height: 100%;
