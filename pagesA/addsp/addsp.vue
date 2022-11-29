@@ -3,7 +3,7 @@
     <navbar title='新增商品'  @back="back()"></navbar>
     <view class="container">
       <view class="unit1">
-          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="35" @clickIcon="scan()" @custom="search()"></u-search>
+          <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="35" @clickIcon="scan()" @custom="search()" @search="search()"></u-search>
       </view>
 
       <view >

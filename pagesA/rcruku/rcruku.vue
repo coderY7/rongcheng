@@ -45,7 +45,7 @@
           <view class="box">
             <view class="box_l">商品条码:</view>
             <view class="box_r">
-              <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spbm" height="30" @clickIcon="scan()" @custom="Search()"></u-search>
+              <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="spbm" height="30" @clickIcon="scan()" @custom="Search()" @search="Search()"></u-search>
             </view>
           </view>
 
@@ -68,6 +68,7 @@
                   border="bottom"
                   v-model="from.spbm"
                   :disabled="true"
+
               ></u-input>
             </view>
           </view>
@@ -76,6 +77,7 @@
             <view class="box_l">入库数量:</view>
             <view class="box_r">
               <u-input
+                  type="digit"
                   placeholder="请输入数量"
                   v-model="from.rksl"
                   border="bottom"
@@ -90,6 +92,7 @@
             <view class="box_l">入库价格:</view>
             <view class="box_r">
               <u-input
+                  type="digit"
                   placeholder="请输入价格"
                   border="bottom"
                   v-model="from.hsjj"

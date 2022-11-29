@@ -69,7 +69,6 @@
           <!--            <xuanSwitch :switchList="switchList" :defaultSwitch="editForm.splx" @change="switChange"></xuanSwitch>-->
           <!--          </u-form-item>-->
           <!--        </view>-->
-
         </u-form>
         <!--      <view class="form-card">-->
         <!--        <view style="display:flex;justify-content:space-between;">-->
