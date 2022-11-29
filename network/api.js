@@ -173,6 +173,8 @@ export const rcgetlist = (params, config = {}) => http.post("/mzsale/web/report/
 export const rccondition = (params, config = {}) => http.post("mzsale/web/report/condition", params, config)
 export const rcsearch = (params, config = {}) => http.post("/mzsale/web/goods/search", params, config)
 
+//token
+export const token = (params, config = {}) => http.post("/mzsale/web/token", params, config)
 
 
 //入库单

@@ -3,6 +3,7 @@
 	<navbar :title='dqbb.cxmc' @lefts=left()></navbar>
     <view id="pages">
       <view class="container">
+<!--        <uni-card margin="0px" spacing="0px" padding="0px 10px">-->
           <view v-for="(item,index) in cxtj">
             <view v-if="item.type=='字符'" class="box">
               <view class="box_l">{{ item.colname }}:</view>
@@ -44,13 +45,13 @@
               <view v-if="item.colname=='分店编号'" class="box">
                 <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
-                 
-                    <uni-data-select
-                        v-model="item.defval"
-                        :localdata="cxfdbh"
-                        @change="change"
-                    ></uni-data-select>
-                  
+
+                  <uni-data-select
+                      v-model="item.defval"
+                      :localdata="cxfdbh"
+                      @change="change"
+                  ></uni-data-select>
+
                 </view>
               </view>
             </view>
@@ -60,26 +61,26 @@
               <view v-if="item.colname=='分店编号'" class="box">
                 <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
-                 
-                    <uni-data-select
-                        v-model="item.defval"
-                        :localdata="cxfdbh"
-                        @change="change"
-                    ></uni-data-select>
-                  
+
+                  <uni-data-select
+                      v-model="item.defval"
+                      :localdata="cxfdbh"
+                      @change="change"
+                  ></uni-data-select>
+
                 </view>
               </view>
 
               <view v-if="item.colname=='商品品牌'" class="box">
                 <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
-                  
-                    <uni-data-select
-                        v-model="item.defval"
-                        :localdata="cxsppp"
-                        @change="change"
-                    ></uni-data-select>
-                 
+
+                  <uni-data-select
+                      v-model="item.defval"
+                      :localdata="cxsppp"
+                      @change="change"
+                  ></uni-data-select>
+
                 </view>
               </view>
 
@@ -90,13 +91,13 @@
               <view v-if="item.colname=='商家合同'" class="box">
                 <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
-                 
-                    <uni-data-select
-                        v-model="item.defval"
-                        :localdata="cxsjht"
-                        @change="change"
-                    ></uni-data-select>
-                  
+
+                  <uni-data-select
+                      v-model="item.defval"
+                      :localdata="cxsjht"
+                      @change="change"
+                  ></uni-data-select>
+
                 </view>
               </view>
 
@@ -112,6 +113,8 @@
               </view>
             </view>
           </view>
+<!--        </uni-card>-->
+
       </view>
 
 <view class="unit3" v-if="cxtj.length!=0">
@@ -287,19 +290,19 @@ export default {
 #pages{
   margin:20rpx;
 }
-.container{
-  padding: 20rpx;
-}
-.box{
+
+.box {
   width: 100%;
   display: flex;
-  padding: 10rpx;
   justify-content: center;
   align-items: center;
-  .box_l{
-    width:20%;
+  margin-bottom: 20rpx;
+
+  .box_l {
+    font-size: 26rpx;
+    width: 20%;
   }
-  .box_r{
+  .box_r {
     width: 80%;
   }
 }

@@ -10,30 +10,24 @@
 <!--					</view>-->
 <!--				</view>-->
 				<!-- 选择时间-->
-				<view class="xzbox">
-					<view class="xz">
-						<view class="boxname">日期:</view>
-						<view class="boxinput">
+				<view class="boxunit">
+						<view class="box_l">日期:</view>
+						<view class="box_r">
 							<uni-datetime-picker type="date" :value="sdate" v-model="sdate"
 								@change="startdate()" />
-						</view>
-					</view>
-					<view style="font-size: 18rpx">(默认当天)</view>
+<!--              <view style="font-size: 18rpx">(默认当天)</view>-->
+
+            </view>
 				</view>
 
 				<!-- 选择门店 -->
-				<view class="xzbox">
-					<view class="xz">
-						<view class="boxname">分店:</view>
-						<view class="boxinput">
-							<view>
-								
+				<view class="boxunit">
+						<view class="box_l">分店:</view>
+						<view class="box_r">
 									<uni-data-select v-model="xzfd" :localdata="fdlist"></uni-data-select>
-								
-							</view>
-						</view>
+<!--                <view style="font-size: 18rpx">(默认全部分店)</view>-->
+
 					</view>
-					<view style="font-size: 18rpx">(默认全部分店)</view>
 				</view>
 			</view>
 
@@ -525,13 +519,7 @@
         rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
 					//console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
 					console.log('仪表盘数据', res.data)
-          // if(res.error_code=='40002'){
-          //   uni.navigateTo({
-          //     url: '../../pages/login/login'
-          //   });
-          // }
 											let data = res.data
-					
 											this.ybpdata = data
 											this.manage()
                       this.percent()
@@ -845,7 +833,7 @@ console.log(res)
 
 <style lang="scss">
 	u-navbar {
-		background-color: #4f99ff;
+		background-color: #3c9cff;
 	}
 
 	.container {
@@ -864,6 +852,23 @@ console.log(res)
   margin: 20rpx 0;
   font-size: 30rpx;
 }
+  .boxunit {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20rpx;
+
+    .box_l {
+      font-size: 26rpx;
+      width:15%;
+    }
+    .box_r {
+      width: 80%;
+      //display: flex;
+      //align-items: center;
+    }
+  }
 	.box {
 		.boxitem {
 			width: 40%;
@@ -880,7 +885,7 @@ console.log(res)
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background-color: #4f99ff;
+			background-color: #3c9cff;
 			margin-right: 50rpx;
 
 			image {
@@ -935,7 +940,7 @@ console.log(res)
 		width: 80%;
 
 		.boxname {
-			font-size: 30rpx;
+			font-size: 26rpx;
 			flex: 1;
 		}
 

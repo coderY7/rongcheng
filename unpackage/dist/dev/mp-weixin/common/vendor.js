@@ -18364,7 +18364,6 @@ module.exports = function (vm) {
     }
     return config;
   });
-
   // 请求拦截
   uni.$u.http.interceptors.request.use(function (config) {// 可使用async await 做异步操作
     // 初始化请求拦截器时，会执行此方法，此时data为undefined，赋予默认{}
@@ -18385,16 +18384,17 @@ module.exports = function (vm) {
     var data = response.data;
     //console.log('响应数据',data)
     if (data.error_code == '40002') {
-      uni.showToast({
-        title: '登录失效，请重新登录',
-        duration: 2000,
-        icon: 'none' });
+      uni.request({
+        url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
+        data: {
+          userid: uni.getStorageSync('userid'),
+          refresh_token: uni.getStorageSync('refresh_token') },
 
-      setTimeout(function () {
-        uni.navigateTo({
-          url: '../../pages/login/login' });
-
-      }, 2000);
+        method: 'POST',
+        success: function success(res) {
+          console.log('token', res);
+          uni.setStorageSync('access_token', res.data.access_token);
+        } });
 
     }
     //自定义参数
@@ -18435,7 +18435,7 @@ module.exports = function (vm) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.rcckline = exports.rcckdelete = exports.rcckcheck = exports.rcckdosave = exports.rcserct = exports.rcip = exports.rcqueryHT = exports.rcOrderNew = exports.rcGetlistC = exports.rcrkddelLine = exports.rcRkdDosave = exports.rcRkdDelete = exports.rcRkdCheck = exports.rcsearch = exports.rccondition = exports.rcgetlist = exports.rcbasics = exports.rcadd = exports.rcspsearch = exports.rcgetpctodayssale = exports.rcdosave = exports.queryall = exports.rclogin = exports.rcinfos = exports.rcsearchs = exports.rcusercheck = exports.eCAppBaseData = exports.upload = exports.uploadLabelList = exports.uploadCheckList = exports.getPickArea = exports.getGoodsStock = exports.uploadstorage = exports.getCheckStorage = exports.getYXBHData = exports.uploadList = exports.getToDaySale = exports.getCGDdataCK = exports.getCGDdata = exports.getAPPSaleReport = exports.querySPSalebb = exports.query002 = exports.custombb = exports.qySpkcinfo = exports.spkcinfo = exports.cwsjjxcInfo = exports.fdSPTypeAnalyze = exports.fdSaleAnalyze = exports.fdSuperSale = exports.queryBMSalebb = exports.saleCWbb = exports.getQuerySyySaleJK = exports.checkSjSale = exports.getSupplier = exports.basic = exports.query = exports.getlist = exports.getcolumns = exports.condition = exports.reportForm = exports.getfendians = exports.getDepart = exports.getSupplyType = exports.searchSupplier = exports.searchGoods = exports.uploadgoshoping = exports.getFenDian = exports.getpcadmindaysale = exports.getother = exports.oaNoticeCk = exports.getDJdata = exports.appCheckVersion = exports.oaNoticeRey = exports.getnotice = exports.oaWorkFlowWCk = exports.getappsalereport = exports.oaWorkFlow = exports.oaNoticec = exports.getQuestion = exports.getlogin = exports.userfast = exports.getopenid = exports.sendCheck = exports.logintype = exports.usercheckapp = exports.ckonlinefd = exports.usercheck = exports.bindphone = exports.commonMain = exports.sendmessage = exports.businessprepay = void 0;var http = uni.$u.http;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.rcckline = exports.rcckdelete = exports.rcckcheck = exports.rcckdosave = exports.rcserct = exports.rcip = exports.rcqueryHT = exports.rcOrderNew = exports.rcGetlistC = exports.rcrkddelLine = exports.rcRkdDosave = exports.rcRkdDelete = exports.rcRkdCheck = exports.token = exports.rcsearch = exports.rccondition = exports.rcgetlist = exports.rcbasics = exports.rcadd = exports.rcspsearch = exports.rcgetpctodayssale = exports.rcdosave = exports.queryall = exports.rclogin = exports.rcinfos = exports.rcsearchs = exports.rcusercheck = exports.eCAppBaseData = exports.upload = exports.uploadLabelList = exports.uploadCheckList = exports.getPickArea = exports.getGoodsStock = exports.uploadstorage = exports.getCheckStorage = exports.getYXBHData = exports.uploadList = exports.getToDaySale = exports.getCGDdataCK = exports.getCGDdata = exports.getAPPSaleReport = exports.querySPSalebb = exports.query002 = exports.custombb = exports.qySpkcinfo = exports.spkcinfo = exports.cwsjjxcInfo = exports.fdSPTypeAnalyze = exports.fdSaleAnalyze = exports.fdSuperSale = exports.queryBMSalebb = exports.saleCWbb = exports.getQuerySyySaleJK = exports.checkSjSale = exports.getSupplier = exports.basic = exports.query = exports.getlist = exports.getcolumns = exports.condition = exports.reportForm = exports.getfendians = exports.getDepart = exports.getSupplyType = exports.searchSupplier = exports.searchGoods = exports.uploadgoshoping = exports.getFenDian = exports.getpcadmindaysale = exports.getother = exports.oaNoticeCk = exports.getDJdata = exports.appCheckVersion = exports.oaNoticeRey = exports.getnotice = exports.oaWorkFlowWCk = exports.getappsalereport = exports.oaWorkFlow = exports.oaNoticec = exports.getQuestion = exports.getlogin = exports.userfast = exports.getopenid = exports.sendCheck = exports.logintype = exports.usercheckapp = exports.ckonlinefd = exports.usercheck = exports.bindphone = exports.commonMain = exports.sendmessage = exports.businessprepay = void 0;var http = uni.$u.http;
 
 
 // post请求，获取菜单
@@ -18610,10 +18610,12 @@ var rcgetlist = function rcgetlist(params) {var config = arguments.length > 1 &&
 var rccondition = function rccondition(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("mzsale/web/report/condition", params, config);};exports.rccondition = rccondition;
 var rcsearch = function rcsearch(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/goods/search", params, config);};
 
+//token
+exports.rcsearch = rcsearch;var token = function token(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/token", params, config);};
 
 
 //入库单
-exports.rcsearch = rcsearch;var rcRkdCheck = function rcRkdCheck(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/rkd/check", params, config);};exports.rcRkdCheck = rcRkdCheck;
+exports.token = token;var rcRkdCheck = function rcRkdCheck(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/rkd/check", params, config);};exports.rcRkdCheck = rcRkdCheck;
 var rcRkdDelete = function rcRkdDelete(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/rkd/delete", params, config);};exports.rcRkdDelete = rcRkdDelete;
 var rcRkdDosave = function rcRkdDosave(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/rkd/dosave", params, config);};exports.rcRkdDosave = rcRkdDosave;
 var rcrkddelLine = function rcrkddelLine(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/rkd/delete/line", params, config);};exports.rcrkddelLine = rcrkddelLine;
