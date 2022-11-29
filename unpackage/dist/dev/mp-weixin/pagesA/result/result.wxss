@@ -66,7 +66,6 @@ page {
 }
 .tablebox {
   margin-top: 30rpx;
-  margin-left: 20rpx;
 }
 .box1 {
   margin: 20rpx auto;
@@ -75,16 +74,15 @@ page {
   width: 700rpx;
 }
 .unit4_box {
-  margin-top: 10rpx;
+  margin-top: 30rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 20rpx;
-  width: 200px;
+  justify-content: center;
+  width: 300px;
 }
 .unit4_box .unit4_box_item {
   font-size: 30rpx;
-  margin: 20rpx;
 }
 .unit4_box .unit4_box_item .unit4_box_value {
   font-size: 30rpx;
@@ -94,9 +92,7 @@ page {
   font-size: 26rpx;
 }
 .unit4_box .unit4_box_item1 {
-  font-size: 40rpx;
   margin-bottom: 20rpx;
-  width: 150rpx;
 }
 .fixation {
   position: -webkit-sticky;
@@ -113,5 +109,11 @@ page {
 }
  .u-scroll-list__indicator.data-v-e2a26316 {
   margin-top: 0;
+}
+.msj {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
