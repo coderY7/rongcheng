@@ -59,6 +59,7 @@
 <style lang="scss">
 .navbar{
 		background:linear-gradient(-90deg,#52c8f1, #85d8f3);
+  //background-color: #3c9cff;
 		font-size: 16px;
 		position: sticky;
 		z-index: 99999999999999;
