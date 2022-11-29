@@ -221,10 +221,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
     },
 
-    //自定义导航左面按钮
-    left: function left(data) {
-      console.log('点击左面按钮', data);
-    },
     change: function change(e) {
       console.log(e);
       uni.setStorageSync("fdbh", e);

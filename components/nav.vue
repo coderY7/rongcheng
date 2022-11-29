@@ -4,7 +4,7 @@
 				<view class="navicon" @click="isleft()">
           <view v-if="leftname">{{leftname}}</view>
           <view v-else @click="back()">
-            <view v-if="title!='功能'">
+            <view v-if="title!='功能'&& title!='登录'">
               <u-icon name="arrow-left" size="30"></u-icon>
             </view>
           </view>

@@ -17,7 +17,7 @@
             </view>
 
             <view v-if="item.type=='开始日期'" class="box">
-              <view class="box_l">{{ item.colname }}</view>
+              <view class="box_l">{{ item.colname }}:</view>
               <view class="box_r">
                 <uni-datetime-picker
                     type="date"
@@ -29,7 +29,7 @@
             </view>
 
             <view v-if="item.type=='结束日期'" class="box">
-              <view class="box_l">{{ item.colname }}</view>
+              <view class="box_l">{{ item.colname }}:</view>
               <view class="box_r">
                 <uni-datetime-picker
                     type="date"
@@ -42,7 +42,7 @@
 
             <view v-if="item.type=='多选下拉框'">
               <view v-if="item.colname=='分店编号'" class="box">
-                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
                  
                     <uni-data-select
@@ -58,7 +58,7 @@
             <view v-if="item.type=='下拉框'">
 
               <view v-if="item.colname=='分店编号'" class="box">
-                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
                  
                     <uni-data-select
@@ -71,7 +71,7 @@
               </view>
 
               <view v-if="item.colname=='商品品牌'" class="box">
-                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
                   
                     <uni-data-select
@@ -88,7 +88,7 @@
             <view v-if="item.type=='查询下拉框'">
 
               <view v-if="item.colname=='商家合同'" class="box">
-                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
                  
                     <uni-data-select
@@ -105,12 +105,11 @@
             <view v-if="item.type=='选择'">
 
               <view v-if="item.colname=='数据安全'" class="box">
-                <view class="box_l">{{ item.colname }}</view>
+                <view class="box_l">{{ item.colname }}:</view>
                 <view class="box_r">
                   <view>{{item.defval}}</view>
                 </view>
               </view>
-
             </view>
           </view>
       </view>
