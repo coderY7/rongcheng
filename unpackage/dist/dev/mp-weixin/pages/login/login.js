@@ -205,7 +205,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
   onShow: function onShow() {
     this.ip();
-
   },
   methods: {
     ip: function ip() {

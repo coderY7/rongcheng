@@ -6,12 +6,9 @@
       uni.setStorageSync('computerid', '47bb955c');
       uni.setStorageSync('model', 'Test');
 			uni.setStorageSync('sn', 'MOPMPI-MLKKNG-KFOLNF-QINPHH');
-			uni.setStorageSync('appid', 'wxbce91b6b8e662b44');
+			uni.setStorageSync('appid', 'wx59bb9c5e21b4d3c4');
     },
 		onShow: function() {
-
-      
-      
 		},
 		onHide: function() {
 			console.log('App Hide')

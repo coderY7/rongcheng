@@ -18383,6 +18383,20 @@ module.exports = function (vm) {
   uni.$u.http.interceptors.response.use(function (response) {
     /* 对响应成功做点什么 可使用async await 做异步操作*/
     var data = response.data;
+    //console.log('响应数据',data)
+    if (data.error_code == '40002') {
+      uni.showToast({
+        title: '登录失效，请重新登录',
+        duration: 2000,
+        icon: 'none' });
+
+      setTimeout(function () {
+        uni.navigateTo({
+          url: '../../pages/login/login' });
+
+      }, 2000);
+
+    }
     //自定义参数
     // const custom = response.config?.custom
     // if (data.err_code !== 0) {

@@ -691,11 +691,11 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));funct
       (0, _api.rcgetpctodayssale)(getpcadmindaysaledata).then(function (res) {
         //console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
         console.log('仪表盘数据', res.data);
-        if (res.error_code == '40002') {
-          uni.navigateTo({
-            url: '../../pages/login/login' });
-
-        }
+        // if(res.error_code=='40002'){
+        //   uni.navigateTo({
+        //     url: '../../pages/login/login'
+        //   });
+        // }
         var data = res.data;
 
         _this3.ybpdata = data;
