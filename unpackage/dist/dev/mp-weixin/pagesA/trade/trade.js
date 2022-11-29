@@ -434,8 +434,11 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     },
 
     change: function change(e) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
-                console.log(e.split('-')[0]);_context.next = 3;return (
-                  _this2.issearch(e.split('-')[0]));case 3:case "end":return _context.stop();}}}, _callee);}))();
+                console.log(e.split('-')[0]);if (!(
+
+                e.split('-')[0].length >= 6)) {_context.next = 4;break;}_context.next = 4;return (
+                  _this2.issearch(e.split('-')[0]));case 4:case "end":return _context.stop();}}}, _callee);}))();
+
 
     },
     //商品查询

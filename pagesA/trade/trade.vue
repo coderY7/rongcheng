@@ -257,8 +257,11 @@
 			},
 
 			async change(e) {
-				 console.log(e.split('-')[0])
-				 await this.issearch(e.split('-')[0])
+        console.log(e.split('-')[0])
+
+        if(e.split('-')[0].length>=6){
+          await this.issearch(e.split('-')[0])
+        }
 
 			},
 			//商品查询
