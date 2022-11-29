@@ -2,7 +2,7 @@
 		<view class="navbar" :style="{'height':titleHeight + 'px'}">
 			<view class="nav" :style="{'height':(titleHeight-statusBarHeight)+'px', 'padding-top':statusBarHeight + 'px',}">
 				<view class="navicon" @click="isleft()">
-          <view v-if="leftname">{{leftname}}</view>
+          <view v-if="leftname" style="color: red">{{leftname}}</view>
           <view v-else @click="back()">
             <view v-if="title!='功能'&& title!='登录'">
               <u-icon name="arrow-left" size="30"></u-icon>

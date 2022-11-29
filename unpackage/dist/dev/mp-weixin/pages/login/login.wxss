@@ -135,4 +135,21 @@ image {
   justify-content: center;
   align-items: center;
 }
+.quit {
+  height: 100rpx;
+  margin-top: 50px;
+}
+.quit .btn {
+  background: linear-gradient(-90deg, #52c8f1, #85d8f3);
+  border-radius: 30px;
+  width: 80%;
+  color: white;
+  font-size: 1.2em;
+  height: 100%;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 

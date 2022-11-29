@@ -131,7 +131,7 @@
     <view>
       <u-popup :show="popupShow" @close="close" @open="open" mode="center" :round="10">
         <view>
-          <scroll-view style="max-height: 80vh; margin-top: 30rpx" scroll-y="true">
+          <scroll-view style="max-height: 60vh; margin-top: 30rpx" scroll-y="true">
             <view  class="">
               <view class="" v-for="(v, i) in searchdata" class="" @click="ispitchdata(v)">
                 <view style="display: flex;justify-content: center;padding: 10px 20px;border-bottom: #6a6a6a solid 1px">

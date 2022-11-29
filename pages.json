@@ -58,8 +58,7 @@
 			"path": "pages/myset/component/jianyi",
 			"style": {
 				"navigationBarTitleText": "",
-				"enablePullDownRefresh": false,
-				"navigationStyle": "custom"
+				"enablePullDownRefresh": false
 			}
 		},
 		{

@@ -308,16 +308,18 @@ export default {
 }
 
 .unit3{
-  width: 100%;
-  margin:30rpx 0;
-  display: flex;
-  justify-content:content;
-  align-items: center;
+  //width: 100%;
+  //margin:30rpx 0;
+  //display: flex;
+  //justify-content:content;
+  //align-items: center;
 }
 .unit3_box{
-height: 100%;
-  width: 100px;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 0 20rpx;
+  margin-top: 20px;
 }
 .unit4_box{
   display: flex;

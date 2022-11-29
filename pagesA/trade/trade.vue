@@ -258,8 +258,7 @@
 
 			async change(e) {
         console.log(e.split('-')[0])
-
-        if(e.split('-')[0].length>=6){
+        if(e.split('-')[0].length>=5){
           await this.issearch(e.split('-')[0])
         }
 

@@ -38,11 +38,17 @@ module.exports = (vm) => {
 				},
 				method:'POST',
 				success: (res) => {
-					console.log('token',res)
-					uni.setStorageSync('access_token',res.data.access_token)
+					if(res.data.error_code=='40004'){
+						uni.navigateTo({
+							url:'../../pages/login/login'
+						})
+					}else {
+						uni.setStorageSync('access_token',res.data.access_token)
+					}
 				}
 			});
 		}
+		
 		//自定义参数
 		// const custom = response.config?.custom
 		// if (data.err_code !== 0) {
