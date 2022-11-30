@@ -1,8 +1,8 @@
 <script>
 	
 	export default {
-		onLaunch: function() {
-			console.log('App Launch')
+		onLaunch: function(option) {
+			console.log('App Launch',option)
       uni.setStorageSync('computerid', '47bb955c');
       uni.setStorageSync('model', 'Test');
 			uni.setStorageSync('sn', 'MOPMPI-MLKKNG-KFOLNF-QINPHH');

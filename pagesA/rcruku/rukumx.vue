@@ -4,12 +4,13 @@
 
       <view style=" padding:10px 10px 0;
       color: #fff;
-      height: 80rpx;
-      margin-bottom: 20rpx;
+      padding: 30rpx 0;
       border-top-left-radius: 10px;
       border-top-right-radius: 10px;
       background-color: #358CC9;">
-        {{rkdh}}
+        <view style="display: flex;
+justify-content: center">入库单号:{{rkdh}}</view>
+
     </view>
     <view class="box-com">
       <!-- 编辑单据 内容 -->
@@ -48,22 +49,34 @@
               <!--                <u-input border="surround" v-model="editForm.gg"  :disabled="true"></u-input>-->
               <!--              </view>-->
               <!--            </view>-->
+
+              <view  class="boxunit">
+                <view class="boxunit1">入库数量:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.rksl" type="digit"></u-input>
+                </view>
+              </view>
+              <view  class="boxunit">
+                <view class="boxunit1">入库价格:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.rkhsjg" type="digit"></u-input>
+                </view>
+              </view>
+
             </uni-card>
-
-
           </view>
-          <view style="margin: 10rpx 0">
-            <u-form-item label="入库数量" :labelWidth="74" prop="rksl">
-              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.rksl">
-              </u-input>
-            </u-form-item>
-          </view>
-          <view style="margin: 10rpx 0">
-            <u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">
-              <u-input placeholder="请输入入库价格" type="digit" v-model="editForm.rkhsjg">
-              </u-input>
-            </u-form-item>
-          </view>
+<!--          <view style="margin: 10rpx 0">-->
+<!--            <u-form-item label="入库数量" :labelWidth="74" prop="rksl">-->
+<!--              <u-input placeholder="请输入入库数量" type="digit" v-model="editForm.rksl">-->
+<!--              </u-input>-->
+<!--            </u-form-item>-->
+<!--          </view>-->
+<!--          <view style="margin: 10rpx 0">-->
+<!--            <u-form-item label="入库价格" :labelWidth="74" prop="rkhsjg">-->
+<!--              <u-input placeholder="请输入入库价格" type="digit" v-model="editForm.rkhsjg">-->
+<!--              </u-input>-->
+<!--            </u-form-item>-->
+<!--          </view>-->
 
         </u-form>
 
@@ -108,11 +121,11 @@
           <view class="multiples">
             <view class="multiple-con view-flex">
               <text class="left-con">入库数量:</text>
-              <text class="right-con">{{item.rksl}}</text>
+              <text class="right-con" style="color: red">{{item.rksl}}</text>
             </view>
             <view class="multiple-con view-flex">
               <text class="left-con">入库价格:</text>
-              <text class="right-con">￥{{item.rkhsjg}}</text>
+              <text class="right-con" style="color: red">￥{{item.rkhsjg}}</text>
             </view>
           </view>
         </view>

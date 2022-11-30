@@ -96,7 +96,7 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
           condition(data).then((res)=>{
             console.log('res',res.data)
             let items = JSON.stringify(res)
-            uni.setStorageSync('dqbb',{cxmc:'商品报表',cxbh:'RB007APP'})
+            uni.setStorageSync('dqbb',{cxmc:'销售财务日报表',cxbh:'RB007APP'})
             uni.navigateTo({
               url: `../../pagesA/condition/condition?cxdj=${items}`
             })

@@ -345,7 +345,7 @@ this.Search()
           this.from.nsjg = this.pitchdata.nsjg
       this.from.sppc =''
       this.from.thjg=this.pitchdata.pjjj
-      this.from.spsl=''
+      this.from.spsl='1'
       this.from.guid=''
     },
     //上传商品
@@ -436,37 +436,49 @@ this.Search()
     //审核
     ischeck(){
       if(this.thdh){
-        let data={
-          access_token:uni.getStorageSync('access_token'),
-          userid:uni.getStorageSync('userid'),
-          username:uni.getStorageSync('dlmc'),
-          djbh:this.thdh,
-          fdbh:uni.getStorageSync('fdbh'),
-          remark:this.remark,
-          checkin:'F'
-        }
-        rcckcheck(data).then((res)=>{
-          console.log('审核',res)
-          if(res.error_code=='0'){
-            uni.showToast({
-              title: '整单审核成功',
-              duration: 2000,
-              icon:'none'
-            });
-            this.shcg=true
-            this.thdh=''
-            this.spbm=''
-            this.detaildata=''
-            uni.setStorageSync('thdh','')
+        uni.showModal({
+          title: '提示',
+          content: '是否整单审核',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              let data={
+                access_token:uni.getStorageSync('access_token'),
+                userid:uni.getStorageSync('userid'),
+                username:uni.getStorageSync('dlmc'),
+                djbh:this.thdh,
+                fdbh:uni.getStorageSync('fdbh'),
+                remark:this.remark,
+                checkin:'F'
+              }
+              rcckcheck(data).then((res)=>{
+                console.log('审核',res)
+                if(res.error_code=='0'){
+                  uni.showToast({
+                    title: '整单审核成功',
+                    duration: 2000,
+                    icon:'none'
+                  });
+                  this.shcg=true
+                  this.thdh=''
+                  this.spbm=''
+                  this.detaildata=''
+                  uni.setStorageSync('thdh','')
+                }
+                if(res.error_code=='500'){
+                  uni.showToast({
+                    title: res.message,
+                    duration: 2000,
+                    icon:'none'
+                  });
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
           }
-          if(res.error_code=='500'){
-            uni.showToast({
-              title: res.message,
-              duration: 2000,
-              icon:'none'
-            });
-          }
-        })
+        });
+
       }else {
         uni.showToast({
           title: '退库单为空',
@@ -479,29 +491,41 @@ this.Search()
     //整单删除
     isdelete(){
       if(this.thdh){
-        let data={
-          access_token:uni.getStorageSync('access_token'),
-          userid:uni.getStorageSync('userid'),
-          username:uni.getStorageSync('dlmc'),
-          djbh:this.thdh,
-        }
-        rcckdelete(data).then((res)=>{
-          console.log('整单删除',res)
-          if(res.error_code=='0'){
-            uni.showToast({
-              title: '整单删除成功',
-              duration: 2000,
-              icon:'none'
-            });
-            this.spbm=''
-            this.thdh=''
-            uni.setStorageSync('thdh','')
-            this.detaildata=''
-            // setTimeout(()=>{
-            //   this.cknew()
-            // },2000)
+        uni.showModal({
+          title: '提示',
+          content: '是否整单删除',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定');
+              let data={
+                access_token:uni.getStorageSync('access_token'),
+                userid:uni.getStorageSync('userid'),
+                username:uni.getStorageSync('dlmc'),
+                djbh:this.thdh,
+              }
+              rcckdelete(data).then((res)=>{
+                console.log('整单删除',res)
+                if(res.error_code=='0'){
+                  uni.showToast({
+                    title: '整单删除成功',
+                    duration: 2000,
+                    icon:'none'
+                  });
+                  this.spbm=''
+                  this.thdh=''
+                  uni.setStorageSync('thdh','')
+                  this.detaildata=''
+                  // setTimeout(()=>{
+                  //   this.cknew()
+                  // },2000)
+                }
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
           }
-        })
+        });
+
       }else {
         uni.showToast({
           title: '退库单为空',

@@ -98,8 +98,8 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
 {
-  onLaunch: function onLaunch() {
-    console.log('App Launch');
+  onLaunch: function onLaunch(option) {
+    console.log('App Launch', option);
     uni.setStorageSync('computerid', '47bb955c');
     uni.setStorageSync('model', 'Test');
     uni.setStorageSync('sn', 'MOPMPI-MLKKNG-KFOLNF-QINPHH');

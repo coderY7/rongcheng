@@ -510,12 +510,12 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       this.from.spmc = this.pitchdata.spmc,
       this.from.spsmm = this.pitchdata.spsmm,
       this.from.sppc = '';
-      this.from.hsjj = '';
+      this.from.hsjj = this.pitchdata.pjjj;
       this.from.scrq = (0, _dayjs.default)().format("YYYY-MM-DD"),
       this.from.bzjzrq = (0, _dayjs.default)().date((0, _dayjs.default)().date() + this.pitchdata.bzqts).format("YYYY-MM-DD"),
       this.from.splx = 'T';
       this.from.jjsl = this.pitchdata.sl; //汇率
-      this.from.rksl = '';
+      this.from.rksl = '1';
       this.from.cxtype = 'DM';
       this.from.guid = '';
 
@@ -608,40 +608,53 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
     },
     //审核
-    ischeck: function ischeck() {var _this6 = this;
+    ischeck: function ischeck() {
+
       if (this.rkdh) {
-        var data = {
-          access_token: uni.getStorageSync('access_token'),
-          userid: uni.getStorageSync('userid'),
-          username: uni.getStorageSync('dlmc'),
-          djbh: this.rkdh,
-          fdbh: uni.getStorageSync('fdbh'),
-          remark: this.remark,
-          "sphm": '',
-          "ysdh": '' };
+        uni.showModal({
+          title: '提示',
+          content: '是否整单审核',
+          success: function success(res) {var _this6 = this;
+            if (res.confirm) {
+              console.log('用户点击确定');
+              var data = {
+                access_token: uni.getStorageSync('access_token'),
+                userid: uni.getStorageSync('userid'),
+                username: uni.getStorageSync('dlmc'),
+                djbh: this.rkdh,
+                fdbh: uni.getStorageSync('fdbh'),
+                remark: this.remark,
+                "sphm": '',
+                "ysdh": '' };
 
-        (0, _api.rcRkdCheck)(data).then(function (res) {
-          console.log('审核', res);
-          if (res.error_code == '0') {
-            uni.showToast({
-              title: '整单审核成功',
-              duration: 2000,
-              icon: 'none' });
+              (0, _api.rcRkdCheck)(data).then(function (res) {
+                console.log('审核', res);
+                if (res.error_code == '0') {
+                  uni.showToast({
+                    title: '整单审核成功',
+                    duration: 2000,
+                    icon: 'none' });
 
-            _this6.shcg = true;
-            _this6.rkdh = '';
-            uni.setStorageSync('rkdh', '');
-            _this6.detaildata = '';
-            _this6.spbm = '';
-          }
-          if (res.error_code == '500') {
-            uni.showToast({
-              title: res.message,
-              duration: 2000,
-              icon: 'none' });
+                  _this6.shcg = true;
+                  _this6.rkdh = '';
+                  uni.setStorageSync('rkdh', '');
+                  _this6.detaildata = '';
+                  _this6.spbm = '';
+                }
+                if (res.error_code == '500') {
+                  uni.showToast({
+                    title: res.message,
+                    duration: 2000,
+                    icon: 'none' });
 
-          }
-        });
+                }
+              });
+
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
+
       } else {
         uni.showToast({
           title: '入库单为空',
@@ -652,32 +665,41 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
     },
     //整单删除
-    isdelete: function isdelete() {var _this7 = this;
+    isdelete: function isdelete() {
       if (this.rkdh) {
-        var data = {
-          access_token: uni.getStorageSync('access_token'),
-          userid: uni.getStorageSync('userid'),
-          username: uni.getStorageSync('dlmc'),
-          djbh: this.rkdh };
+        uni.showModal({
+          title: '提示',
+          content: '是否整单删除',
+          success: function success(res) {var _this7 = this;
+            if (res.confirm) {
+              console.log('用户点击确定');
+              var data = {
+                access_token: uni.getStorageSync('access_token'),
+                userid: uni.getStorageSync('userid'),
+                username: uni.getStorageSync('dlmc'),
+                djbh: this.rkdh };
 
-        (0, _api.rcRkdDelete)(data).then(function (res) {
-          console.log('整单删除', res);
-          if (res.error_code == '0') {
-            uni.showToast({
-              title: '整单删除成功',
-              duration: 2000,
-              icon: 'none' });
+              (0, _api.rcRkdDelete)(data).then(function (res) {
+                console.log('整单删除', res);
+                if (res.error_code == '0') {
+                  uni.showToast({
+                    title: '整单删除成功',
+                    duration: 2000,
+                    icon: 'none' });
 
-            _this7.rkdh = '';
-            _this7.spbm = '';
-            _this7.detaildata = '';
-            uni.setStorageSync('rkdh', '');
+                  _this7.rkdh = '';
+                  _this7.spbm = '';
+                  _this7.detaildata = '';
+                  uni.setStorageSync('rkdh', '');
+                }
+              });
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          } });
 
-            // setTimeout(()=>{
-            //   this.cknew()
-            // },2000)
-          }
-        });
+
+
       } else {
         uni.showToast({
           title: '入库单为空',
