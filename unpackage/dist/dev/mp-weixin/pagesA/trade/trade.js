@@ -442,6 +442,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
     },
     //商品查询
     issearch: function issearch(e) {var _this3 = this;
+
       var data = {
         access_token: uni.getStorageSync('access_token'), //token
         companyid: uni.getStorageSync('companyid'),
@@ -474,15 +475,11 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       });
     },
     //选中的商品
-    ispitchdata: function ispitchdata(item) {
+    ispitchdata: function ispitchdata(item) {var _this4 = this;
       console.log(item);
       this.pitchdata = item;
       this.popupShow = false;
       this.spbm = this.pitchdata.spbm;
-      this.isinfo();
-    },
-    //基本信息
-    isinfo: function isinfo() {var _this4 = this;
       var data = {
         access_token: uni.getStorageSync('access_token'),
         fdbh: uni.getStorageSync('fdbh'),
@@ -524,8 +521,52 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         }
       });
     },
+    //基本信息
+    isinfo: function isinfo() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var data;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this5.issearch(_this5.spsmm));case 2:
+                data = {
+                  access_token: uni.getStorageSync('access_token'),
+                  fdbh: uni.getStorageSync('fdbh'),
+                  spbm: _this5.spbm };
+
+                (0, _api.rcinfos)(data).then(function (res) {
+                  if (res.error_code == '0') {
+                    console.log(res);
+                    //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
+                    _this5.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
+                    _this5.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
+                    _this5.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+                    _this5.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+                    _this5.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+                    _this5.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
+                    _this5.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+                    _this5.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+                    _this5.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
+                    _this5.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
+                    _this5.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+                    _this5.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+                    _this5.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+                    if (_this5.testdata[8].value == "T") {
+                      _this5.testdata[8].value = true;
+                    } else {
+                      _this5.testdata[8].value = false;
+                    }
+                    _this5.iszgys(res.list.Table3);
+                  }
+                  if (res.error_code == '500') {
+                    _this5.testdata.forEach(function (item) {
+                      item.value = '';
+                    });
+                    uni.showToast({
+                      title: res.message,
+                      duration: 2000,
+                      icon: 'none' });
+
+                  }
+                });case 4:case "end":return _context2.stop();}}}, _callee2);}))();
+    },
     //保存
-    save: function save() {var _this5 = this;
+    save: function save() {var _this6 = this;
       var kczt = '';
       if (this.testdata[8].value) {
         kczt = "T";
@@ -552,10 +593,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         "fdbh": uni.getStorageSync('fdbh') };
 
       (0, _api.rcdosave)(data).then(function (res) {
-        _this5.spbm = '';
-        _this5.spmc = '';
-        _this5.spsmm = '';
-        _this5.testdata.forEach(function (item) {
+        _this6.spbm = '';
+        _this6.spmc = '';
+        _this6.spsmm = '';
+        _this6.testdata.forEach(function (item) {
           item.value = '';
         });
         console.log(res);
@@ -568,7 +609,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
     },
     //小类编码
-    isqueryall: function isqueryall(datas) {var _this6 = this;
+    isqueryall: function isqueryall(datas) {var _this7 = this;
       console.log(datas.value);
       var data = {
         "access_token": uni.getStorageSync('access_token'),
@@ -580,7 +621,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
       (0, _api.queryall)(data).then(function (res) {
         console.log('小类', res);
-        _this6.column = [{
+        _this7.column = [{
           name: '小类编码',
           label: '小类编码',
           width: 150,
@@ -615,9 +656,9 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
             result.push(a);
           });
           console.log(result);
-          _this6.result = result;
-          var column = JSON.stringify(_this6.column);
-          var results = JSON.stringify(_this6.result);
+          _this7.result = result;
+          var column = JSON.stringify(_this7.column);
+          var results = JSON.stringify(_this7.result);
           uni.navigateTo({
             url: "../../pagesA/table/table?result=".concat(results, "&column=").concat(column) });
 

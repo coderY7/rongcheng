@@ -77,7 +77,7 @@
     <view>
       <u-popup :show="popupShow" @close="close" @open="open" mode="center" :round="10">
         <view>
-          <scroll-view style="max-height: 80vh; margin-top: 30rpx" scroll-y="true">
+          <scroll-view style="max-height: 60vh; margin-top: 30rpx" scroll-y="true">
             <view  class="">
               <view class="" v-for="(v, i) in searchdata" class="" @click="ispitchdata(v)">
                 <view style="display: flex;justify-content: center;padding: 10px 20px;border-bottom: #6a6a6a solid 1px">
@@ -265,6 +265,7 @@
 			},
 			//商品查询
 			issearch(e) {
+
 				let data = {
 					access_token: uni.getStorageSync('access_token'), //token
 					companyid: uni.getStorageSync('companyid'),
@@ -302,11 +303,51 @@
         this.pitchdata=item
         this.popupShow=false
         this.spbm=this.pitchdata.spbm
-this.isinfo()
+        let data = {
+          access_token: uni.getStorageSync('access_token'),
+          fdbh: uni.getStorageSync('fdbh'),
+          spbm: this.spbm,
+        };
+        rcinfos(data).then((res)=>{
+          if(res.error_code=='0'){
+            console.log(res)
+            //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
+            this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
+            this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['商品名称']:''
+            this.testdata[11].value=res.list.Table[0]?res.list.Table[0]['主供商家']:''
+            this.testdata[5].value=res.list.Table[0]?res.list.Table[0]['会员价格']:''
+            this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['单位']:''
+            this.testdata[0].value=res.list.Table[0]?res.list.Table[0]['小类编码']:''
+            this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
+            this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
+            this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
+            this.testdata[6].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
+            this.testdata[8].value=res.list.Table[0]?res.list.Table[0]['管理库存']:''
+            this.testdata[2].value=res.list.Table[0]?res.list.Table[0]['规格']:''
+            this.testdata[4].value=res.list.Table[0]?res.list.Table[0]['零售价格']:''
+            if (this.testdata[8].value=="T") {
+              this.testdata[8].value=true
+            } else {
+              this.testdata[8].value=false
+            }
+            this.iszgys(res.list.Table3)
+          }
+          if(res.error_code=='500'){
+            this.testdata.forEach((item)=>{
+              item.value=''
+            })
+            uni.showToast({
+              title:res.message,
+              duration: 2000,
+              icon:'none'
+            });
+          }
+        })
       },
 			//基本信息
-			isinfo() {
-				let data = {
+			async isinfo() {
+        await this.issearch(this.spsmm)
+        let data = {
 					access_token: uni.getStorageSync('access_token'),
 					fdbh: uni.getStorageSync('fdbh'),
 					spbm: this.spbm,
