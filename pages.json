@@ -196,7 +196,7 @@
 			},{
 				"path": "rcruku/rukujl",
 				"style": {
-					"navigationBarTitleText": "",
+					"navigationBarTitleText": "入库单记录",
 					"enablePullDownRefresh": false
 				}
 
