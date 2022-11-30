@@ -167,6 +167,16 @@ export default {
     this.start = dayjs().format('YYYY-MM-DD') // 获取当前时间
     this.end = dayjs().format('YYYY-MM-DD') // 获取当前时间
 
+
+    this.cxtj.forEach((item) => {
+      if(item.type=='开始日期'){
+        item.defval=this.start
+      }
+      if(item.type=='结束日期'){
+        item.defval=this.end
+      }
+    })
+
     this.cxfdbh=uni.getStorageSync('basic').FDINFO
     this.cxsppp=uni.getStorageSync('basic').PPINFO
     this.cxsjht=uni.getStorageSync('basic').SJINFO

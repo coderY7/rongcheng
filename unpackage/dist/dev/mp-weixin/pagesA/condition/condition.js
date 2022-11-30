@@ -443,21 +443,21 @@ var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', /
       sumdata: '' //查询到的汇总
     };}, components: { navbar: navbar }, onLoad: function onLoad(option) {this.cxtj = JSON.parse(option.cxdj).data; //查询条件
     this.dqbb = uni.getStorageSync('dqbb'); //当前报表
-  }, onShow: function onShow() {this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
+  }, onShow: function onShow() {var _this = this;this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
     this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
-    this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
+    this.cxtj.forEach(function (item) {if (item.type == '开始日期') {item.defval = _this.start;}if (item.type == '结束日期') {item.defval = _this.end;}});this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
     var cxfdbh = [];this.cxfdbh.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.cxfdbh = cxfdbh; //处理商品品牌下拉框数据
     var cxsppp = [];this.cxsppp.forEach(function (item) {var datas = {};datas.value = item.ppbmid;datas.text = item.ppmc;cxsppp.push(datas);});this.cxsppp = cxsppp; //处理商家合同下拉框数据
     var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjht.push(datas);});this.cxsjht = cxsjht;}, watch: { tj: function tj(newvalue, oldvalue) {} }, methods: { //自定义返回
     left: function left() {uni.navigateBack({ delta: 1 });}, //开始日期
     startdate: function startdate(e) {console.log(e);this.start = e;}, //结束日期
     enddate: function enddate(e) {console.log(e);this.end = e;}, maskClick: function maskClick(e) {console.log('----maskClick事件:', e);}, //列表头
-    getcol: function getcol() {var _this = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), djtype: uni.getStorageSync('dqbb').cxbh, fdbh: uni.getStorageSync('fdbh') };(0, _api.getcolumns)(data).then(function (res) {console.log('表单头', res);_this.bdt = res.data;});}, //查询
-    isquery: function isquery() {var _this2 = this;this.tj = []; //清空之前填写
-      this.cxtj.forEach(function (item) {_this2.tj.push({ 'Convalue': item.defval, 'recordid': item.recordid });});var data = { djtype: uni.getStorageSync('dqbb').cxbh, access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), groupid: uni.getStorageSync('groupid'), username: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), condition: this.tj };uni.showLoading({ title: '加载中' });(0, _api.getlist)(data).then(function (res) {uni.hideLoading();_this2.result = res.data;_this2.sumdata = res.sumdata; //this.bdt=Object.keys(this.result[0])
+    getcol: function getcol() {var _this2 = this;var data = { access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), djtype: uni.getStorageSync('dqbb').cxbh, fdbh: uni.getStorageSync('fdbh') };(0, _api.getcolumns)(data).then(function (res) {console.log('表单头', res);_this2.bdt = res.data;});}, //查询
+    isquery: function isquery() {var _this3 = this;this.tj = []; //清空之前填写
+      this.cxtj.forEach(function (item) {_this3.tj.push({ 'Convalue': item.defval, 'recordid': item.recordid });});var data = { djtype: uni.getStorageSync('dqbb').cxbh, access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), groupid: uni.getStorageSync('groupid'), username: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), condition: this.tj };uni.showLoading({ title: '加载中' });(0, _api.getlist)(data).then(function (res) {uni.hideLoading();_this3.result = res.data;_this3.sumdata = res.sumdata; //this.bdt=Object.keys(this.result[0])
         //表单头处理
-        var cl = res.columns;var a = [];cl.forEach(function (item) {a.push(item.title);});_this2.bdt = a; //跳转新页面
-        var bdt = JSON.stringify(_this2.bdt);var result = JSON.stringify(_this2.result);var sumdata = JSON.stringify(_this2.sumdata);uni.setStorageSync('result', result);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
+        var cl = res.columns;var a = [];cl.forEach(function (item) {a.push(item.title);});_this3.bdt = a; //跳转新页面
+        var bdt = JSON.stringify(_this3.bdt);var result = JSON.stringify(_this3.result);var sumdata = JSON.stringify(_this3.sumdata);uni.setStorageSync('result', result);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
