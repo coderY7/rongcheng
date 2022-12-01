@@ -439,7 +439,7 @@ this.Search()
         uni.showModal({
           title: '提示',
           content: '是否整单审核',
-          success: function (res) {
+          success:  (res)=> {
             if (res.confirm) {
               console.log('用户点击确定');
               let data={
@@ -494,7 +494,7 @@ this.Search()
         uni.showModal({
           title: '提示',
           content: '是否整单删除',
-          success: function (res) {
+          success: (res)=> {
             if (res.confirm) {
               console.log('用户点击确定');
               let data={
