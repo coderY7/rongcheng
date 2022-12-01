@@ -131,7 +131,18 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.result.length != 0 ? Object.entries(_vm.sumdata[0]) : null
+  var l0 =
+    _vm.result.length != 0
+      ? _vm.__map(Object.entries(_vm.sumdata[0]), function(item, index) {
+          var $orig = _vm.__get_orig(item)
+
+          var g0 = Number(item[1]).toFixed(2)
+          return {
+            $orig: $orig,
+            g0: g0
+          }
+        })
+      : null
   _vm.$mp.data = Object.assign(
     {},
     {
