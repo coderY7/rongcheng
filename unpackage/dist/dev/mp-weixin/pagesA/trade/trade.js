@@ -297,6 +297,8 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       zgys: '', //主供应商
       spsmm: '',
       xzzgys: '',
+      cxsjht: '',
+      sjht: '',
       testdata: {
         小类编码: '',
         商品名称: '',
@@ -337,6 +339,18 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
   },
   onShow: function onShow() {
     this.testdata[0].value = uni.getStorageSync('xzxlbm');
+
+    this.cxsjht = uni.getStorageSync('basic').SJINFO;
+    //处理商家合同下拉框数据
+    var cxsjht = [];
+    this.cxsjht.forEach(function (item) {
+      var datas = {};
+      datas.value = item.sjbh;
+      datas.text = item.sjmc;
+      cxsjht.push(datas);
+    });
+    this.cxsjht = cxsjht;
+    this.sjht = this.cxsjht[0].value;
   },
   methods: {
     // 扫码 搜索商品
@@ -588,7 +602,9 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
               "spmc": _this6.testdata[1].value,
               "gg": _this6.testdata[2].value, //规格
               "dw": _this6.testdata[3].value, //单位
-              "sjbh": _this6.xzzgys.split('-')[1], //主供应商
+              // "sjbh": this.xzzgys.split('-')[1], //主供应商
+              "sjbh": _this6.sjht, //主供应商
+
               "zlbmid": _this6.testdata[0].value, //小类
               "nsjg": _this6.testdata[4].value, //零售价
               "hyjg": _this6.testdata[5].value, //会员价

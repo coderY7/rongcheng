@@ -55,7 +55,7 @@
 					<view v-else-if="item.combox" class="box">
 						<view class="boxname">{{item.key}}:</view>
 						<view style="width: 80%">
-								<uni-data-select v-model="xzzgys" :localdata="zgys">
+								<uni-data-select v-model="sjht" :localdata="cxsjht">
 								</uni-data-select>
 							
 						</view>
@@ -120,6 +120,8 @@
 				zgys: '', //主供应商
 				spsmm:'',
 				xzzgys: '',
+        cxsjht:'',
+        sjht:'',
 				testdata: {
 					小类编码: '',
           商品名称:'',
@@ -160,6 +162,18 @@
 		},
 		onShow() {
 			this.testdata[0].value = uni.getStorageSync('xzxlbm')
+
+      this.cxsjht=uni.getStorageSync('basic').SJINFO
+      //处理商家合同下拉框数据
+      let cxsjht=[];
+      this.cxsjht.forEach((item)=>{
+        let datas={}
+        datas.value=item.sjbh;
+        datas.text=item.sjmc
+        cxsjht.push(datas)
+      })
+      this.cxsjht=cxsjht
+      this.sjht=this.cxsjht[0].value
 		},
 		methods: {
       // 扫码 搜索商品
@@ -411,7 +425,9 @@ console.log(res)
                 "spmc": this.testdata[1].value,
                 "gg": this.testdata[2].value, //规格
                 "dw": this.testdata[3].value, //单位
-                "sjbh": this.xzzgys.split('-')[1], //主供应商
+               // "sjbh": this.xzzgys.split('-')[1], //主供应商
+                "sjbh": this.sjht, //主供应商
+
                 "zlbmid": this.testdata[0].value, //小类
                 "nsjg": this.testdata[4].value, //零售价
                 "hyjg": this.testdata[5].value, //会员价

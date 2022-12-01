@@ -52,4 +52,7 @@
   display: flex;
   justify-content: space-around;
 }
+.uni-select__input-box {
+  width: 100%;
+}
 

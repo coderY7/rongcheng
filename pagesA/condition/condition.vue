@@ -213,6 +213,9 @@ export default {
       if(item.colname=='分店编号'){
         item.defval=this.cxfdbh[0].value
       }
+      if(item.colname=='商家合同'){
+        item.defval=this.cxsjht[0].value
+      }
 
     })
   },
@@ -343,5 +346,7 @@ export default {
 .bottom{
 
 }
-
+.uni-select__input-box{
+  width: 100%;
+}
 </style>
