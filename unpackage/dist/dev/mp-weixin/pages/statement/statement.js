@@ -230,7 +230,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
         (0, _api.condition)(data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
-          uni.setStorageSync('dqbb', { cxmc: '商品报表', cxbh: 'RB007APP' });
+          uni.setStorageSync('dqbb', { cxmc: '销售财务日报表', cxbh: 'RB007APP' });
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items) });
 

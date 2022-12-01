@@ -170,8 +170,8 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 {
   data: function data() {
     return {
-      companyid: '',
-      company: true,
+      companyid: uni.getStorageSync('companyid') == '' ? '' : uni.getStorageSync('companyid'),
+      company: uni.getStorageSync('companyid') == '' ? true : false,
       bgColor: '#4f99ff', //动态背景
       userid: '',
       password: '',

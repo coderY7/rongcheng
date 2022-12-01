@@ -445,10 +445,10 @@ var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', /
     this.dqbb = uni.getStorageSync('dqbb'); //当前报表
   }, onShow: function onShow() {var _this = this;this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
     this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
-    this.cxtj.forEach(function (item) {if (item.type == '开始日期') {item.defval = _this.start;}if (item.type == '结束日期') {item.defval = _this.end;}});this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
+    this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
     var cxfdbh = [];this.cxfdbh.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.cxfdbh = cxfdbh; //处理商品品牌下拉框数据
     var cxsppp = [];this.cxsppp.forEach(function (item) {var datas = {};datas.value = item.ppbmid;datas.text = item.ppmc;cxsppp.push(datas);});this.cxsppp = cxsppp; //处理商家合同下拉框数据
-    var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjht.push(datas);});this.cxsjht = cxsjht;}, watch: { tj: function tj(newvalue, oldvalue) {} }, methods: { //自定义返回
+    var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjht.push(datas);});this.cxsjht = cxsjht;this.cxtj.forEach(function (item) {if (item.colname == '开始日期') {item.defval = _this.start;}if (item.colname == '结束日期') {item.defval = _this.end;}if (item.colname == '分店编号') {item.defval = _this.cxfdbh[0].value;}});}, watch: { tj: function tj(newvalue, oldvalue) {} }, methods: { //自定义返回
     left: function left() {uni.navigateBack({ delta: 1 });}, //开始日期
     startdate: function startdate(e) {console.log(e);this.start = e;}, //结束日期
     enddate: function enddate(e) {console.log(e);this.end = e;}, maskClick: function maskClick(e) {console.log('----maskClick事件:', e);}, //列表头
@@ -457,7 +457,12 @@ var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', /
       this.cxtj.forEach(function (item) {_this3.tj.push({ 'Convalue': item.defval, 'recordid': item.recordid });});var data = { djtype: uni.getStorageSync('dqbb').cxbh, access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), groupid: uni.getStorageSync('groupid'), username: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), condition: this.tj };uni.showLoading({ title: '加载中' });(0, _api.getlist)(data).then(function (res) {uni.hideLoading();_this3.result = res.data;_this3.sumdata = res.sumdata; //this.bdt=Object.keys(this.result[0])
         //表单头处理
         var cl = res.columns;var a = [];cl.forEach(function (item) {a.push(item.title);});_this3.bdt = a; //跳转新页面
-        var bdt = JSON.stringify(_this3.bdt);var result = JSON.stringify(_this3.result);var sumdata = JSON.stringify(_this3.sumdata);uni.setStorageSync('result', result);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
+        var bdt = JSON.stringify(_this3.bdt);var result = JSON.stringify(_this3.result);var sumdata = JSON.stringify(_this3.sumdata);uni.setStorageSync('result', result);uni.navigateTo({
+          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });
+
+      });
+
+    } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

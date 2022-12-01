@@ -168,14 +168,7 @@ export default {
     this.end = dayjs().format('YYYY-MM-DD') // 获取当前时间
 
 
-    this.cxtj.forEach((item) => {
-      if(item.type=='开始日期'){
-        item.defval=this.start
-      }
-      if(item.type=='结束日期'){
-        item.defval=this.end
-      }
-    })
+
 
     this.cxfdbh=uni.getStorageSync('basic').FDINFO
     this.cxsppp=uni.getStorageSync('basic').PPINFO
@@ -210,6 +203,18 @@ export default {
     })
     this.cxsjht=cxsjht
 
+    this.cxtj.forEach((item) => {
+      if(item.colname=='开始日期'){
+        item.defval=this.start
+      }
+      if(item.colname=='结束日期'){
+        item.defval=this.end
+      }
+      if(item.colname=='分店编号'){
+        item.defval=this.cxfdbh[0].value
+      }
+
+    })
   },
   watch: {
     tj: function (newvalue, oldvalue) {
