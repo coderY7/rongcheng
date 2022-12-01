@@ -89,7 +89,7 @@
 
 
 <view v-if="spzt!='normal'">
-  <u-button @click="save()" text="导入" type="primary"></u-button>
+  <u-button @click="save()" text="新增商品" type="primary"></u-button>
 </view>
 
       </view>
@@ -256,7 +256,7 @@ export default {
                   break;
                 case 'normal':
                   this.spzt = 'normal'
-                  this.ztmc='已导入商品'
+                  this.ztmc='已新增商品'
 
                   break;
                 case 'allnew':
@@ -266,7 +266,7 @@ export default {
                   uni.showModal({
                     title: '未查到商品',
                     content: '是否新增商品？',
-                    success: function (res) {
+                    success:  (res)=> {
                       if (res.confirm) {
                         console.log('用户点击确定');
                       } else if (res.cancel) {
@@ -307,59 +307,73 @@ export default {
     },
     //保存
     save(){
-      let data={
-        fdbh: uni.getStorageSync('fdbh'),
-      spsmm:this.sptm,
-        spmc:this.sp.name,
-        nsjg:this.price,
-        pjjj:this.sjprice,
-        sjbh:this.sjbh,
-        modeltype:this.spzt,
-        userid:uni.getStorageSync('userid'),
-        autosetcldsp:this.autosetcldspvalue
-      }
-      
-      uni.request({
-        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
-        data: data,
-        method: 'POST',
-        header: {
-          'custom-header': 'application/json' //自定义请求头信息
-        },
-        success: (res) => {
-          console.log('保存商品', res.data);
-          if(res.data.result=='success'){
-            uni.showToast({
-              title: '商品保存成功',
-              duration: 2000,
-              icon:'none'
-            });
-            this.sp=''
-            this.sptm=''
-            this.spzt=''
-            this.ztmc=''
-            this.price=''
-            this.sjprice=''
-          }
-          if(res.data.result=='warning'){
-            uni.showToast({
-              title: res.data.message,
-              duration: 2000,
-              icon:'none'
-            });
-            this.sp=''
-          }
-          if(res.data.result=='error') {
-            uni.showToast({
-              title: '商品保存失败',
-              duration: 2000,
-              icon:'none'
-            });
-            this.sp=''
+      uni.showModal({
+        title: '提示',
+        content: '是否确认新增商品？',
+        success: (res)=> {
+          if (res.confirm) {
+            console.log('用户点击确定');
+            let data={
+              fdbh: uni.getStorageSync('fdbh'),
+              spsmm:this.sptm,
+              spmc:this.sp.name,
+              nsjg:this.price,
+              pjjj:this.sjprice,
+              sjbh:this.sjbh,
+              modeltype:this.spzt,
+              userid:uni.getStorageSync('userid'),
+              autosetcldsp:this.autosetcldspvalue
+            }
+
+            uni.request({
+              url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
+              data: data,
+              method: 'POST',
+              header: {
+                'custom-header': 'application/json' //自定义请求头信息
+              },
+              success: (res) => {
+                console.log('保存商品', res.data);
+                if(res.data.result=='success'){
+                  uni.showToast({
+                    title: '商品保存成功',
+                    duration: 2000,
+                    icon:'none'
+                  });
+                  this.sp=''
+                  this.sptm=''
+                  this.spzt=''
+                  this.ztmc=''
+                  this.price=''
+                  this.sjprice=''
+                }
+                if(res.data.result=='warning'){
+                  uni.showToast({
+                    title: res.data.message,
+                    duration: 2000,
+                    icon:'none'
+                  });
+                  this.sp=''
+                }
+                if(res.data.result=='error') {
+                  uni.showToast({
+                    title: '商品保存失败',
+                    duration: 2000,
+                    icon:'none'
+                  });
+                  this.sp=''
+                }
+              }
+            })
+          } else if (res.cancel) {
+            console.log('用户点击取消');
           }
         }
-      })
+      });
+
+
         },
+
         back(){
           uni.navigateBack({
             delta: 1

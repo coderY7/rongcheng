@@ -425,7 +425,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
                   break;
                 case 'normal':
                   _this2.spzt = 'normal';
-                  _this2.ztmc = '已导入商品';
+                  _this2.ztmc = '已新增商品';
 
                   break;
                 case 'allnew':
@@ -476,59 +476,73 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);var navbar = fun
     },
     //保存
     save: function save() {var _this3 = this;
-      var data = {
-        fdbh: uni.getStorageSync('fdbh'),
-        spsmm: this.sptm,
-        spmc: this.sp.name,
-        nsjg: this.price,
-        pjjj: this.sjprice,
-        sjbh: this.sjbh,
-        modeltype: this.spzt,
-        userid: uni.getStorageSync('userid'),
-        autosetcldsp: this.autosetcldspvalue };
-
-
-      uni.request({
-        url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
-        data: data,
-        method: 'POST',
-        header: {
-          'custom-header': 'application/json' //自定义请求头信息
-        },
+      uni.showModal({
+        title: '提示',
+        content: '是否确认新增商品？',
         success: function success(res) {
-          console.log('保存商品', res.data);
-          if (res.data.result == 'success') {
-            uni.showToast({
-              title: '商品保存成功',
-              duration: 2000,
-              icon: 'none' });
+          if (res.confirm) {
+            console.log('用户点击确定');
+            var data = {
+              fdbh: uni.getStorageSync('fdbh'),
+              spsmm: _this3.sptm,
+              spmc: _this3.sp.name,
+              nsjg: _this3.price,
+              pjjj: _this3.sjprice,
+              sjbh: _this3.sjbh,
+              modeltype: _this3.spzt,
+              userid: uni.getStorageSync('userid'),
+              autosetcldsp: _this3.autosetcldspvalue };
 
-            _this3.sp = '';
-            _this3.sptm = '';
-            _this3.spzt = '';
-            _this3.ztmc = '';
-            _this3.price = '';
-            _this3.sjprice = '';
-          }
-          if (res.data.result == 'warning') {
-            uni.showToast({
-              title: res.data.message,
-              duration: 2000,
-              icon: 'none' });
 
-            _this3.sp = '';
-          }
-          if (res.data.result == 'error') {
-            uni.showToast({
-              title: '商品保存失败',
-              duration: 2000,
-              icon: 'none' });
+            uni.request({
+              url: 'https://rcygpos.mzsale.cn/api/goods/rcyg/add', //仅为示例，并非真实接口地址。
+              data: data,
+              method: 'POST',
+              header: {
+                'custom-header': 'application/json' //自定义请求头信息
+              },
+              success: function success(res) {
+                console.log('保存商品', res.data);
+                if (res.data.result == 'success') {
+                  uni.showToast({
+                    title: '商品保存成功',
+                    duration: 2000,
+                    icon: 'none' });
 
-            _this3.sp = '';
+                  _this3.sp = '';
+                  _this3.sptm = '';
+                  _this3.spzt = '';
+                  _this3.ztmc = '';
+                  _this3.price = '';
+                  _this3.sjprice = '';
+                }
+                if (res.data.result == 'warning') {
+                  uni.showToast({
+                    title: res.data.message,
+                    duration: 2000,
+                    icon: 'none' });
+
+                  _this3.sp = '';
+                }
+                if (res.data.result == 'error') {
+                  uni.showToast({
+                    title: '商品保存失败',
+                    duration: 2000,
+                    icon: 'none' });
+
+                  _this3.sp = '';
+                }
+              } });
+
+          } else if (res.cancel) {
+            console.log('用户点击取消');
           }
         } });
 
+
+
     },
+
     back: function back() {
       uni.navigateBack({
         delta: 1 });

@@ -611,21 +611,21 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
     },
     //审核
-    ischeck: function ischeck() {
+    ischeck: function ischeck() {var _this6 = this;
       if (this.thdh) {
         uni.showModal({
           title: '提示',
           content: '是否整单审核',
-          success: function success(res) {var _this6 = this;
+          success: function success(res) {
             if (res.confirm) {
               console.log('用户点击确定');
               var data = {
                 access_token: uni.getStorageSync('access_token'),
                 userid: uni.getStorageSync('userid'),
                 username: uni.getStorageSync('dlmc'),
-                djbh: this.thdh,
+                djbh: _this6.thdh,
                 fdbh: uni.getStorageSync('fdbh'),
-                remark: this.remark,
+                remark: _this6.remark,
                 checkin: 'F' };
 
               (0, _api.rcckcheck)(data).then(function (res) {
@@ -666,19 +666,19 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
     },
     //整单删除
-    isdelete: function isdelete() {
+    isdelete: function isdelete() {var _this7 = this;
       if (this.thdh) {
         uni.showModal({
           title: '提示',
           content: '是否整单删除',
-          success: function success(res) {var _this7 = this;
+          success: function success(res) {
             if (res.confirm) {
               console.log('用户点击确定');
               var data = {
                 access_token: uni.getStorageSync('access_token'),
                 userid: uni.getStorageSync('userid'),
                 username: uni.getStorageSync('dlmc'),
-                djbh: this.thdh };
+                djbh: _this7.thdh };
 
               (0, _api.rcckdelete)(data).then(function (res) {
                 console.log('整单删除', res);

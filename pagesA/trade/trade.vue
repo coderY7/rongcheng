@@ -390,45 +390,60 @@ console.log(res)
 			},
 			//保存
 			save() {
-				let kczt = '';
-				if (this.testdata[8].value) {
-					kczt = "T"
-				} else {
-					kczt = "F"
-				}
-				let data = {
-					"access_token": uni.getStorageSync('access_token'),
-					"spbm": this.spbm,
-					"spsmm": this.spsmm, //商品条码
-					"spmc": this.testdata[1].value,
-					"gg": this.testdata[2].value, //规格
-					"dw": this.testdata[3].value, //单位
-					"sjbh": this.xzzgys.split('-')[1], //主供应商
-					"zlbmid": this.testdata[0].value, //小类
-					"nsjg": this.testdata[4].value, //零售价
-					"hyjg": this.testdata[5].value, //会员价
-					"pjjj": this.testdata[6].value, //最近价
-					"needkcbz": kczt,
-					"dqkcl": this.testdata[7].value, //当前库存量 -1 代表不修正
-					"zdkcl": this.testdata[9].value, //最大陈列量
-					"zxkcl": this.testdata[10].value, //最小陈列量
-					"userid": uni.getStorageSync('userid'),
-					"fdbh": uni.getStorageSync('fdbh'),
-				}
-        rcdosave(data).then((res)=>{
-          this.spbm=''
-          this.spmc=''
-          this.spsmm=''
-          this.testdata.forEach((item)=>{
-            item.value=''
-          })
-          console.log(res)
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-        })
+
+        uni.showModal({
+          title: '提示',
+          content: '是否确认保存？',
+          success:  (res)=> {
+            if (res.confirm) {
+              console.log('用户点击确定');
+
+              let kczt = '';
+              if (this.testdata[8].value) {
+                kczt = "T"
+              } else {
+                kczt = "F"
+              }
+              let data = {
+                "access_token": uni.getStorageSync('access_token'),
+                "spbm": this.spbm,
+                "spsmm": this.spsmm, //商品条码
+                "spmc": this.testdata[1].value,
+                "gg": this.testdata[2].value, //规格
+                "dw": this.testdata[3].value, //单位
+                "sjbh": this.xzzgys.split('-')[1], //主供应商
+                "zlbmid": this.testdata[0].value, //小类
+                "nsjg": this.testdata[4].value, //零售价
+                "hyjg": this.testdata[5].value, //会员价
+                "pjjj": this.testdata[6].value, //最近价
+                "needkcbz": kczt,
+                "dqkcl": this.testdata[7].value, //当前库存量 -1 代表不修正
+                "zdkcl": this.testdata[9].value, //最大陈列量
+                "zxkcl": this.testdata[10].value, //最小陈列量
+                "userid": uni.getStorageSync('userid'),
+                "fdbh": uni.getStorageSync('fdbh'),
+              }
+              rcdosave(data).then((res)=>{
+                this.spbm=''
+                this.spmc=''
+                this.spsmm=''
+                this.testdata.forEach((item)=>{
+                  item.value=''
+                })
+                console.log(res)
+                uni.showToast({
+                  title: res.message,
+                  duration: 2000,
+                  icon:'none'
+                });
+              })
+            } else if (res.cancel) {
+              console.log('用户点击取消');
+            }
+          }
+        });
+
+
 
 			},
 			//小类编码
