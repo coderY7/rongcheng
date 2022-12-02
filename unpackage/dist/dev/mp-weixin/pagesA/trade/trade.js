@@ -302,16 +302,16 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       testdata: {
         小类编码: '',
         商品名称: '',
-        商品规格: '',
-        销售单位: '',
         零售价格: '',
-        会员价格: '',
         最近进价: '',
         当前库存: '',
         库存状态: '',
-        最大陈列: '',
+        商品规格: '',
+        销售单位: '',
+        会员价格: '',
+        主供应商: '',
         最小陈列: '',
-        主供应商: ''
+        最大陈列: ''
         // 商品进价:''
       },
       kucunzt: '',
@@ -324,7 +324,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       handler: function handler(newValue, oldValue) {
         console.log("新值: ", newValue.value, "旧值", oldValue.value);
         if (oldValue.value == newValue.value) {
-          this.testdata[8].value = true;
+          this.testdata[5].value = true;
         }
         if (newValue.value == this.dqkcl) {
           this.dqkclchang = true;
@@ -400,7 +400,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         zgys.push(datas);
       });
       this.zgys = zgys;
-      this.xzzgys = this.testdata[11].value;
+      this.xzzgys = this.testdata[9].value;
     },
     //数据处理
     datachuli: function datachuli(data) {
@@ -452,7 +452,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 
       }
       this.testdata = test;
-      this.kucunzt = this.testdata[7];
+      this.kucunzt = this.testdata[4];
 
     },
 
@@ -514,22 +514,21 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
           _this4.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
           _this4.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
-          _this4.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
-          _this4.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
-          _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+          _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+          _this4.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+          _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
           _this4.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
-          _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
-          _this4.dqkcl = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
-          _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+          _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+          _this4.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
           _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
-          _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
-          _this4.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
-          _this4.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
-          _this4.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
-          if (_this4.testdata[8].value == "T") {
-            _this4.testdata[8].value = true;
+          _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
+          _this4.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+          _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+          _this4.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+          if (_this4.testdata[5].value == "T") {
+            _this4.testdata[5].value = true;
           } else {
-            _this4.testdata[8].value = false;
+            _this4.testdata[5].value = false;
           }
           _this4.iszgys(res.list.Table3);
         }
@@ -559,21 +558,21 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
                     //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
                     _this5.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
                     _this5.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
-                    _this5.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
-                    _this5.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
-                    _this5.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
+                    _this5.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['主供商家'] : '';
+                    _this5.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['会员价格'] : '';
+                    _this5.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
                     _this5.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
-                    _this5.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
-                    _this5.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
+                    _this5.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+                    _this5.testdata[11].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
                     _this5.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
-                    _this5.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
-                    _this5.testdata[8].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
-                    _this5.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
-                    _this5.testdata[4].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
-                    if (_this5.testdata[8].value == "T") {
-                      _this5.testdata[8].value = true;
+                    _this5.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
+                    _this5.testdata[5].value = res.list.Table[0] ? res.list.Table[0]['管理库存'] : '';
+                    _this5.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['规格'] : '';
+                    _this5.testdata[2].value = res.list.Table[0] ? res.list.Table[0]['零售价格'] : '';
+                    if (_this5.testdata[5].value == "T") {
+                      _this5.testdata[5].value = true;
                     } else {
-                      _this5.testdata[8].value = false;
+                      _this5.testdata[5].value = false;
                     }
                     _this5.iszgys(res.list.Table3);
                   }
@@ -600,7 +599,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
             console.log('用户点击确定');
 
             var kczt = '';
-            if (_this6.testdata[8].value) {
+            if (_this6.testdata[5].value) {
               kczt = "T";
             } else {
               kczt = "F";
@@ -610,19 +609,19 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
               "spbm": _this6.spbm,
               "spsmm": _this6.spsmm, //商品条码
               "spmc": _this6.testdata[1].value,
-              "gg": _this6.testdata[2].value, //规格
-              "dw": _this6.testdata[3].value, //单位
+              "gg": _this6.testdata[6].value, //规格
+              "dw": _this6.testdata[7].value, //单位
               // "sjbh": this.xzzgys.split('-')[1], //主供应商
               "sjbh": _this6.xzzgys, //主供应商
 
               "zlbmid": _this6.testdata[0].value, //小类
-              "nsjg": _this6.testdata[4].value, //零售价
-              "hyjg": _this6.testdata[5].value, //会员价
-              "pjjj": _this6.testdata[6].value, //最近价
+              "nsjg": _this6.testdata[2].value, //零售价
+              "hyjg": _this6.testdata[8].value, //会员价
+              "pjjj": _this6.testdata[3].value, //最近价
               "needkcbz": kczt,
-              "dqkcl": _this6.dqkclchang ? '-1' : _this6.testdata[7].value, //当前库存量 -1 代表不修正
-              "zdkcl": _this6.testdata[9].value, //最大陈列量
+              "dqkcl": _this6.dqkclchang ? '-1' : _this6.testdata[4].value, //当前库存量 -1 代表不修正
               "zxkcl": _this6.testdata[10].value, //最小陈列量
+              "zdkcl": _this6.testdata[11].value, //最大陈列量
               "userid": uni.getStorageSync('userid'),
               "fdbh": uni.getStorageSync('fdbh') };
 
