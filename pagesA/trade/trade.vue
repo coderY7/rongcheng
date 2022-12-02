@@ -100,9 +100,49 @@
         </view>
       </u-popup>
     </view>
-<!--表格-->
-    <view>
 
+    <view v-for="(item,index) in bblist" @click="dqbb(index)" class="bblist">
+      <view :class="{dqbbys:dqindex==index}">{{item}}</view>
+    </view>
+
+<!--表格-->
+    <view v-if="dqindex=='0'">
+      <view style="height: 500px">
+        <zb-table
+            :columns="tjt"
+            :stripe="true"
+            @rowClick="rowClick"
+            @toggleRowSelection="toggleRowSelection"
+            @toggleAllSelection="toggleAllSelection"
+            :border="true"
+            :data="tjdata"></zb-table>
+      </view>
+    </view>
+
+    <view v-if="dqindex=='1'">
+      <view style="height: 500px">
+        <zb-table
+            :columns="kct"
+            :stripe="true"
+            @rowClick="rowClick"
+            @toggleRowSelection="toggleRowSelection"
+            @toggleAllSelection="toggleAllSelection"
+            :border="true"
+            :data="kcdata"></zb-table>
+      </view>
+    </view>
+
+    <view v-if="dqindex=='2'">
+      <view style="height: 500px">
+        <zb-table
+            :columns="pdt"
+            :stripe="true"
+            @rowClick="rowClick"
+            @toggleRowSelection="toggleRowSelection"
+            @toggleAllSelection="toggleAllSelection"
+            :border="true"
+            :data="pddata"></zb-table>
+      </view>
     </view>
 
 	</view>
@@ -119,11 +159,13 @@
 	export default {
 		data() {
 			return {
+        dqindex:'0',
+        bblist:['历史调价信息','库存批次信息','历史盘点信息'],
         iszhankai:false,
         popupShow:false,
         searchdata:'',
         pitchdata:'',
-				columndata: '',
+				tjdata: '',
 				column: '',
 				result: '',
 				spbm: '', //商品编码
@@ -152,7 +194,12 @@
 				},
         kucunzt:'',
         dqkcl:'',
-        dqkclchang:false
+        dqkclchang:false,
+        tjt:'',//调价头
+kct:'',
+        kcdata:'',
+        pdt:'',
+        pddata:''
       };
 		},
 		watch: {
@@ -179,24 +226,65 @@
 		},
 		onLoad() {
 			this.datachuli(this.testdata)
+      this.pagination()
 		},
 		onShow() {
 			this.testdata[0].value = uni.getStorageSync('xzxlbm')
-
-      // this.cxsjht=uni.getStorageSync('basic').SJINFO
-      // //处理商家合同下拉框数据
-      // let cxsjht=[];
-      // this.cxsjht.forEach((item)=>{
-      //   let datas={}
-      //   datas.value=item.sjbh;
-      //   datas.text=item.sjmc
-      //   cxsjht.push(datas)
-      // })
-      // this.cxsjht=cxsjht
-      // this.sjht=this.cxsjht[0].value
       this.zhankai()
 		},
 		methods: {
+dqbb(index){
+  this.dqindex=index
+},
+      //调价报表
+      tjbb(data){
+        console.log(data)
+let tjt=Object.keys(data[0])
+        console.log(tjt)
+        let column=[]
+        tjt.forEach((item)=>{
+          column.push({
+            name:item,
+            label:item
+          })
+        })
+        this.tjt=column
+        this.tjdata=data
+      },
+
+      //库存报表
+      kcbb(data){
+        console.log(data)
+        let tjt=Object.keys(data[0])
+        console.log(tjt)
+        let column=[]
+        tjt.forEach((item)=>{
+          column.push({
+            name:item,
+            label:item
+          })
+        })
+        this.kct=column
+        this.kcdata=data
+      },
+
+      //盘点报表
+      pdbb(data){
+        console.log(data)
+        let tjt=Object.keys(data[0])
+        console.log(tjt)
+        let column=[]
+        tjt.forEach((item)=>{
+          column.push({
+            name:item,
+            label:item
+          })
+        })
+        this.pdt=column
+        this.pddata=data
+      },
+
+      //展开
       zhankai(){
         console.log('123')
         this.iszhankai=!this.iszhankai
@@ -372,6 +460,9 @@
               this.testdata[5].value=false
             }
             this.iszgys(res.list.Table3)
+            this.tjbb(res.list.Table2)
+            this.pdbb(res.list.Table4)
+            this.kcbb(res.list.Table1)
           }
           if(res.error_code=='500'){
             this.testdata.forEach((item)=>{
@@ -416,6 +507,10 @@ console.log(res)
               this.testdata[5].value=false
             }
             this.iszgys(res.list.Table3)
+            this.tjbb(res.list.Table2)
+            this.pdbb(res.list.Table4)
+            this.kcbb(res.list.Table1)
+
           }
 					if(res.error_code=='500'){
             this.testdata.forEach((item)=>{
@@ -632,5 +727,15 @@ console.log(res)
     justify-content: center;
     height: 80rpx;
     align-items: center;
+  }
+  .bblist{
+    width: 30%;
+    display: inline-flex;
+    justify-content: center;
+    height: 80rpx;
+    align-items: center;
+  }
+  .dqbbys{
+    color: #4f99ff;
   }
 </style>

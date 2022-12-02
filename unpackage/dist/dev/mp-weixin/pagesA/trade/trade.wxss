@@ -96,4 +96,14 @@
   height: 80rpx;
   align-items: center;
 }
+.bblist {
+  width: 30%;
+  display: inline-flex;
+  justify-content: center;
+  height: 80rpx;
+  align-items: center;
+}
+.dqbbys {
+  color: #4f99ff;
+}
 
