@@ -98,16 +98,16 @@ var components
 try {
   components = {
     uniCard: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 439))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 447))
     },
     uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 475))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 483))
     },
     zbTable: function() {
-      return __webpack_require__.e(/*! import() | uni_modules/zb-table/components/zb-table/zb-table */ "uni_modules/zb-table/components/zb-table/zb-table").then(__webpack_require__.bind(null, /*! @/uni_modules/zb-table/components/zb-table/zb-table.vue */ 446))
+      return __webpack_require__.e(/*! import() | uni_modules/zb-table/components/zb-table/zb-table */ "uni_modules/zb-table/components/zb-table/zb-table").then(__webpack_require__.bind(null, /*! @/uni_modules/zb-table/components/zb-table/zb-table.vue */ 454))
     },
     uniPagination: function() {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 455))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 463))
     }
   }
 } catch (e) {
@@ -191,7 +191,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 var _api = __webpack_require__(/*! ../../network/api */ 143); //
+//
+//
 //
 //
 //
@@ -222,9 +226,7 @@ var _default = { name: "table", components: {}, data: function data() {return { 
       total: '', //数据总量
       spbm: '', //商品编码
       xlbh: '' //小类编号
-    };}, onLoad: function onLoad(option) {console.log(option);this.result = JSON.parse(option.result);this.column = JSON.parse(option.column);}, onShow: function onShow() {this.pagination();}, methods: { dj: function dj(e) {console.log(e);this.showdata = this.result[e.current - 1];this.columndata = this.showdata;
-    },
-    //点击分页
+    };}, onLoad: function onLoad(option) {console.log(option);this.result = JSON.parse(option.result);this.column = JSON.parse(option.column);}, onShow: function onShow() {this.pagination();}, methods: { dj: function dj(e) {console.log(e);this.showdata = this.result[e.current - 1];this.columndata = this.showdata;}, //点击分页
     pagination: function pagination() {
       this.total = this.result.length;
       var pageCount = Math.ceil(this.total / this.pageSize);

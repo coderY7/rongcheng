@@ -11,7 +11,9 @@
 				<view style="height: 500px">
 					<zb-table :columns="column" :stripe="true" @rowClick="rowClick"
 						@toggleRowSelection="toggleRowSelection" @toggleAllSelection="toggleAllSelection" :border="true"
-						:data="columndata"></zb-table>
+						:data="columndata">
+
+          </zb-table>
 				</view>
 			</uni-card>
 			<!--          分页器-->

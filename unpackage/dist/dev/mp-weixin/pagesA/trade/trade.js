@@ -98,22 +98,22 @@ var components
 try {
   components = {
     uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 475))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 483))
     },
     uInput: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 421))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 429))
     },
     uSwitch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 413))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-switch/u-switch */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-switch/u-switch")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-switch/u-switch.vue */ 421))
     },
     uniDataSelect: function() {
-      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 361))
+      return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 369))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 403))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 411))
     },
     uPopup: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 507))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 515))
     }
   }
 } catch (e) {
@@ -314,16 +314,23 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         主供应商: ''
         // 商品进价:''
       },
-      kucunzt: '' };
+      kucunzt: '',
+      dqkcl: '',
+      dqkclchang: false };
 
   },
   watch: {
     kucunzt: {
       handler: function handler(newValue, oldValue) {
-        deep: true;
         console.log("新值: ", newValue.value, "旧值", oldValue.value);
         if (oldValue.value == newValue.value) {
           this.testdata[8].value = true;
+        }
+        if (newValue.value == this.dqkcl) {
+          this.dqkclchang = true;
+        } else {
+          this.dqkclchang = false;
+
         }
       },
       deep: true // 深度侦听
@@ -388,11 +395,12 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       this.zgys.forEach(function (item) {
         console.log(item);
         var datas = {};
-        datas.value = item;
-        datas.text = item;
+        datas.value = item.split('-')[1];
+        datas.text = item.split('-')[0];
         zgys.push(datas);
       });
       this.zgys = zgys;
+      this.xzzgys = this.testdata[11].value;
     },
     //数据处理
     datachuli: function datachuli(data) {
@@ -445,6 +453,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       }
       this.testdata = test;
       this.kucunzt = this.testdata[7];
+
     },
 
     change: function change(e) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
@@ -510,6 +519,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           _this4.testdata[3].value = res.list.Table[0] ? res.list.Table[0]['单位'] : '';
           _this4.testdata[0].value = res.list.Table[0] ? res.list.Table[0]['小类编码'] : '';
           _this4.testdata[7].value = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
+          _this4.dqkcl = res.list.Table[0] ? res.list.Table[0]['当前库存量'] : '';
           _this4.testdata[9].value = res.list.Table[0] ? res.list.Table[0]['最大陈列量'] : '';
           _this4.testdata[10].value = res.list.Table[0] ? res.list.Table[0]['最小陈列量'] : '';
           _this4.testdata[6].value = res.list.Table[0] ? res.list.Table[0]['最近进价'] : '';
@@ -603,14 +613,14 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
               "gg": _this6.testdata[2].value, //规格
               "dw": _this6.testdata[3].value, //单位
               // "sjbh": this.xzzgys.split('-')[1], //主供应商
-              "sjbh": _this6.sjht, //主供应商
+              "sjbh": _this6.xzzgys, //主供应商
 
               "zlbmid": _this6.testdata[0].value, //小类
               "nsjg": _this6.testdata[4].value, //零售价
               "hyjg": _this6.testdata[5].value, //会员价
               "pjjj": _this6.testdata[6].value, //最近价
               "needkcbz": kczt,
-              "dqkcl": _this6.testdata[7].value, //当前库存量 -1 代表不修正
+              "dqkcl": _this6.dqkclchang ? '-1' : _this6.testdata[7].value, //当前库存量 -1 代表不修正
               "zdkcl": _this6.testdata[9].value, //最大陈列量
               "zxkcl": _this6.testdata[10].value, //最小陈列量
               "userid": uni.getStorageSync('userid'),

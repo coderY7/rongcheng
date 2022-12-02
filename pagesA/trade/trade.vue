@@ -55,7 +55,7 @@
 					<view v-else-if="item.combox" class="box">
 						<view class="boxname">{{item.key}}:</view>
 						<view style="width: 80%">
-								<uni-data-select v-model="sjht" :localdata="cxsjht">
+								<uni-data-select v-model="xzzgys" :localdata="zgys">
 								</uni-data-select>
 							
 						</view>
@@ -137,16 +137,23 @@
 					主供应商: ''
 					// 商品进价:''
 				},
-        kucunzt:''
-			};
+        kucunzt:'',
+        dqkcl:'',
+        dqkclchang:false
+      };
 		},
 		watch: {
       kucunzt: {
         handler: function(newValue, oldValue) {
-          deep:true
           console.log("新值: ", newValue.value, "旧值", oldValue.value);
           if(oldValue.value==newValue.value){
             this.testdata[8].value=true
+          }
+          if(newValue.value==this.dqkcl){
+           this.dqkclchang=true
+          }else {
+            this.dqkclchang=false
+
           }
         },
         deep: true, // 深度侦听
@@ -211,11 +218,12 @@
 				this.zgys.forEach((item) => {
 					console.log(item)
 					let datas = {}
-					datas.value = item;
-					datas.text = item
+					datas.value = item.split('-')[1];
+					datas.text = item.split('-')[0]
 					zgys.push(datas)
 				})
 				this.zgys = zgys
+        this.xzzgys=this.testdata[11].value
 			},
 			//数据处理
 			datachuli(data) {
@@ -268,6 +276,7 @@
 				}
 				this.testdata = test
         this.kucunzt=this.testdata[7]
+
 			},
 
 			async change(e) {
@@ -333,6 +342,7 @@
             this.testdata[3].value=res.list.Table[0]?res.list.Table[0]['单位']:''
             this.testdata[0].value=res.list.Table[0]?res.list.Table[0]['小类编码']:''
             this.testdata[7].value=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
+            this.dqkcl=res.list.Table[0]?res.list.Table[0]['当前库存量']:''
             this.testdata[9].value=res.list.Table[0]?res.list.Table[0]['最大陈列量']:''
             this.testdata[10].value=res.list.Table[0]?res.list.Table[0]['最小陈列量']:''
             this.testdata[6].value=res.list.Table[0]?res.list.Table[0]['最近进价']:''
@@ -426,14 +436,14 @@ console.log(res)
                 "gg": this.testdata[2].value, //规格
                 "dw": this.testdata[3].value, //单位
                // "sjbh": this.xzzgys.split('-')[1], //主供应商
-                "sjbh": this.sjht, //主供应商
+                "sjbh": this.xzzgys, //主供应商
 
                 "zlbmid": this.testdata[0].value, //小类
                 "nsjg": this.testdata[4].value, //零售价
                 "hyjg": this.testdata[5].value, //会员价
                 "pjjj": this.testdata[6].value, //最近价
                 "needkcbz": kczt,
-                "dqkcl": this.testdata[7].value, //当前库存量 -1 代表不修正
+                "dqkcl": this.dqkclchang?'-1':this.testdata[7].value, //当前库存量 -1 代表不修正
                 "zdkcl": this.testdata[9].value, //最大陈列量
                 "zxkcl": this.testdata[10].value, //最小陈列量
                 "userid": uni.getStorageSync('userid'),
