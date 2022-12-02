@@ -112,13 +112,13 @@ __webpack_require__.r(__webpack_exports__);
     uni.setStorageSync('codetest', name); //存储二维码数据
     var now = name.split("-");
     var codeparam = [];
-    now.forEach(function (item) {
-      codeparam.push(parseInt(item, 16).toString(10));
-    });
-    console.log('从二维码中取的数据', codeparam);
-    uni.setStorageSync('userid', codeparam[0]);
-    uni.setStorageSync('fdbh', codeparam[1]);
-    uni.setStorageSync('companyid', codeparam[2]);
+    // now.forEach(item => {
+    //   codeparam.push(parseInt(item, 16).toString(10))
+    // })
+    console.log('从二维码中取的数据', now);
+    uni.setStorageSync('userid', now[0]);
+    uni.setStorageSync('fdbh', now[1]);
+    uni.setStorageSync('companyid', now[2]);
 
 
     var updateManager = wx.getUpdateManager();

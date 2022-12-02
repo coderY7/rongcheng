@@ -39,7 +39,7 @@
         {
           "name": "",
           "pathName": "pages/home/home",
-          "query": "",
+          "query": "scene=42F0F8B-2BD-A",
           "launchMode": "default",
           "scene": null
         },
@@ -53,7 +53,7 @@
         {
           "name": "",
           "pathName": "pages/login/login",
-          "query": "",
+          "query": "scene=42F0F8B-2BD-A",
           "launchMode": "default",
           "scene": null
         },
