@@ -33,7 +33,7 @@ module.exports = (vm) => {
 			uni.request({
 				url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
 				data: {
-					userid:uni.getStorageSync('userid'),
+					userid:`a${uni.getStorageSync('userid')}`,
 					refresh_token:uni.getStorageSync('refresh_token')
 				},
 				method:'POST',

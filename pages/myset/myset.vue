@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import {logintype,usercheck} from "../../network/api";
+import {logintype,usercheck,rclogin} from "../../network/api";
 
 export default {
 		data() {
@@ -85,18 +85,19 @@ dlmc:uni.getStorageSync('dlmc'),
                 url:'/pages/login/login'
               })
 							 uni.clearStorageSync();
-              // let data={
-              //   vtype:'logout',
-              //   access_token:uni.getStorageSync('access_token'),
-              //   companyid:uni.getStorageSync('companyid'),
-              //   userid:uni.getStorageSync('userid'),
-              //   fdbh:uni.getStorageSync('fdbh'),
-              //   computerid:uni.getStorageSync('openid')
-              // }
-              // console.log('退出登录成功',res)
-              // usercheck(data).then((res)=> {
-              //   console.log(res)
-              // })
+              let data={
+                vtype:'logout',
+                access_token:uni.getStorageSync('access_token'),
+                companyid:uni.getStorageSync('companyid'),
+                userid:uni.getStorageSync('userid'),
+                "password": "",
+                fdbh:uni.getStorageSync('fdbh'),
+                computerid:uni.getStorageSync('openid')
+              }
+              console.log('退出登录成功',res)
+              rclogin(data).then((res)=> {
+                console.log(res)
+              })
 						} else if (res.cancel) {
 							console.log('用户点击取消');
 						}

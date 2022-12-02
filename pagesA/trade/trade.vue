@@ -23,54 +23,62 @@
             <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
 
         </view>
-
-
-				<view v-for="(item, index) in testdata" :key="item">
-					<view v-if="item.table" class="box">
-						<view class="boxname">{{item.key}}:</view>
-						<view class="boxinput">
-							<u-input border="surround" v-model="item.value" ></u-input>
-						</view>
-						<view class="">
-							<button @click="isqueryall(item)" class="search">查询</button>
-						</view>
-					</view>		
-					<view v-else-if="item.number" class="box">
-						<view class="boxname">{{item.key}}:</view>
-						<u-input border="surround" v-model="item.value" type="digit"></u-input>
-					</view>
-					<view v-else-if="item.Boolean" style="
+      <view  :class="{'active': iszhankai}">
+        <view v-for="(item, index) in testdata" :key="item">
+          <view v-if="item.table" class="box">
+            <view class="boxname">{{item.key}}:</view>
+            <view class="boxinput">
+              <u-input border="surround" v-model="item.value" ></u-input>
+            </view>
+            <view class="">
+              <button @click="isqueryall(item)" class="search">查询</button>
+            </view>
+          </view>
+          <view v-else-if="item.number" class="box">
+            <view class="boxname">{{item.key}}:</view>
+            <u-input border="surround" v-model="item.value" type="digit"></u-input>
+          </view>
+          <view v-else-if="item.Boolean" style="
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 20rpx 0;
 ">
-						<view class="boxname ">{{item.key}}:</view>
+            <view class="boxname ">{{item.key}}:</view>
 
             <view style="display: flex;align-items: center">
               <text style="font-size: 12px; color: red">(是否管理库存)</text>
               <u-switch v-model="item.value" @change="switchs()"></u-switch>
             </view>
-					</view>
-					<view v-else-if="item.combox" class="box">
-						<view class="boxname">{{item.key}}:</view>
-						<view style="width: 80%">
-								<uni-data-select v-model="xzzgys" :localdata="zgys">
-								</uni-data-select>
-							
-						</view>
-					</view>
-					<view v-else class="box">
-						<view class="boxname">{{item.key}}:</view>
-						<u-input border="surround" v-model="item.value" ></u-input>
-					</view>
-				</view>
+          </view>
+          <view v-else-if="item.combox" class="box">
+            <view class="boxname">{{item.key}}:</view>
+            <view style="width: 80%">
+              <uni-data-select v-model="xzzgys" :localdata="zgys">
+              </uni-data-select>
+
+            </view>
+          </view>
+          <view v-else class="box">
+            <view class="boxname">{{item.key}}:</view>
+            <u-input border="surround" v-model="item.value" ></u-input>
+          </view>
+        </view>
+      </view>
 
 
+<!--展开收回-->
+      <view @click="zhankai()" class="zk">
+        <view v-if="iszhankai">展开</view>
+        <view v-else>收起</view>
+      </view>
 			<view class="">
 <!--				<button @click="save()" class="search">保存</button>-->
         <u-button @click="save()" text="保存" type="primary"></u-button>
 			</view>
+
+
+
 		</view>
 
     <!--    弹出框-->
@@ -92,6 +100,10 @@
         </view>
       </u-popup>
     </view>
+<!--表格-->
+    <view>
+
+    </view>
 
 	</view>
 </template>
@@ -107,6 +119,7 @@
 	export default {
 		data() {
 			return {
+        iszhankai:false,
         popupShow:false,
         searchdata:'',
         pitchdata:'',
@@ -170,19 +183,24 @@
 		onShow() {
 			this.testdata[0].value = uni.getStorageSync('xzxlbm')
 
-      this.cxsjht=uni.getStorageSync('basic').SJINFO
-      //处理商家合同下拉框数据
-      let cxsjht=[];
-      this.cxsjht.forEach((item)=>{
-        let datas={}
-        datas.value=item.sjbh;
-        datas.text=item.sjmc
-        cxsjht.push(datas)
-      })
-      this.cxsjht=cxsjht
-      this.sjht=this.cxsjht[0].value
+      // this.cxsjht=uni.getStorageSync('basic').SJINFO
+      // //处理商家合同下拉框数据
+      // let cxsjht=[];
+      // this.cxsjht.forEach((item)=>{
+      //   let datas={}
+      //   datas.value=item.sjbh;
+      //   datas.text=item.sjmc
+      //   cxsjht.push(datas)
+      // })
+      // this.cxsjht=cxsjht
+      // this.sjht=this.cxsjht[0].value
+      this.zhankai()
 		},
 		methods: {
+      zhankai(){
+        console.log('123')
+        this.iszhankai=!this.iszhankai
+      },
       // 扫码 搜索商品
       scan() {
         uni.scanCode({
@@ -413,7 +431,6 @@ console.log(res)
 			},
 			//保存
 			save() {
-
         uni.showModal({
           title: '提示',
           content: '是否确认保存？',
@@ -605,5 +622,15 @@ console.log(res)
     color: #358CC9;
     font-size: 18px;
     margin-top: 15px;
+  }
+  .active{
+    height: 500rpx;
+    overflow: hidden;
+  }
+  .zk{
+    display: flex;
+    justify-content: center;
+    height: 80rpx;
+    align-items: center;
   }
 </style>

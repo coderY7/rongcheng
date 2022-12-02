@@ -86,4 +86,14 @@
   font-size: 18px;
   margin-top: 15px;
 }
+.active {
+  height: 500rpx;
+  overflow: hidden;
+}
+.zk {
+  display: flex;
+  justify-content: center;
+  height: 80rpx;
+  align-items: center;
+}
 

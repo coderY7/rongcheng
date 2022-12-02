@@ -283,7 +283,8 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
           "fdbh": this.fdbh,
           "companyid": uni.getStorageSync("companyid"),
           "computerid": uni.getStorageSync("computerid"), //设备唯一标识
-          "ipaddress": uni.getStorageSync("ip") };
+          "ipaddress": uni.getStorageSync("ip"),
+          "apptype": 'app' };
 
         (0, _api.rclogin)(logindata).then(function (res) {
           console.log(res);
