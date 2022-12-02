@@ -207,6 +207,12 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     this.ip();
   },
   methods: {
+    czxx: function czxx() {
+      this.company = true;
+      this.companyid = '';
+      this.userid = '';
+      this.password = '';
+    },
     ip: function ip() {
       console.log('123');
       (0, _api.rcip)().then(function (res) {

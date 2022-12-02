@@ -87,7 +87,7 @@
   margin-top: 15px;
 }
 .active {
-  height: 500rpx;
+  height: 450rpx;
   overflow: hidden;
 }
 .zk {
@@ -95,6 +95,7 @@
   justify-content: center;
   height: 80rpx;
   align-items: center;
+  margin-bottom: 20rpx;
 }
 .bblist {
   width: 30%;

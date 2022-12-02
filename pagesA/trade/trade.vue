@@ -69,8 +69,15 @@
 
 <!--展开收回-->
       <view @click="zhankai()" class="zk">
-        <view v-if="iszhankai">展开</view>
-        <view v-else>收起</view>
+        <view v-if="iszhankai" style="display: inline-flex;justify-content: center;align-items: center">
+          <view>展开</view>
+          <view><u-icon name="arrow-down" color="#2979ff" size="20"></u-icon></view>
+        </view>
+        <view v-else style="display: inline-flex;justify-content: center;align-items: center">
+          <view>收起</view>
+          <view><u-icon name="arrow-up" color="#2979ff" size="20"></u-icon>
+          </view>
+        </view>
       </view>
 			<view class="">
 <!--				<button @click="save()" class="search">保存</button>-->
@@ -245,7 +252,8 @@ let tjt=Object.keys(data[0])
         tjt.forEach((item)=>{
           column.push({
             name:item,
-            label:item
+            label:item,
+            width:220
           })
         })
         this.tjt=column
@@ -261,7 +269,9 @@ let tjt=Object.keys(data[0])
         tjt.forEach((item)=>{
           column.push({
             name:item,
-            label:item
+            label:item,
+            width:220
+
           })
         })
         this.kct=column
@@ -277,7 +287,9 @@ let tjt=Object.keys(data[0])
         tjt.forEach((item)=>{
           column.push({
             name:item,
-            label:item
+            label:item,
+            width:220
+
           })
         })
         this.pdt=column
@@ -719,7 +731,7 @@ console.log(res)
     margin-top: 15px;
   }
   .active{
-    height: 500rpx;
+    height: 450rpx;
     overflow: hidden;
   }
   .zk{
@@ -727,6 +739,7 @@ console.log(res)
     justify-content: center;
     height: 80rpx;
     align-items: center;
+    margin-bottom: 20rpx;
   }
   .bblist{
     width: 30%;
