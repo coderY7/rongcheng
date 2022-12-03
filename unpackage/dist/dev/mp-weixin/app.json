@@ -31,7 +31,10 @@
         "rcruku/rcruku",
         "rcruku/rukumx",
         "rcruku/rukujl",
-        "type/type"
+        "type/type",
+        "pandian/pandian",
+        "pandian/pandianmx",
+        "pandian/pandianjl"
       ]
     }
   ],

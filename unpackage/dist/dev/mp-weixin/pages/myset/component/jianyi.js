@@ -98,10 +98,10 @@ var components
 try {
   components = {
     mkUpload: function() {
-      return __webpack_require__.e(/*! import() | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then(__webpack_require__.bind(null, /*! @/components/mk-upload/mk-upload.vue */ 404))
+      return __webpack_require__.e(/*! import() | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then(__webpack_require__.bind(null, /*! @/components/mk-upload/mk-upload.vue */ 428))
     },
     uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 411))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 435))
     }
   }
 } catch (e) {
@@ -191,7 +191,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _api = __webpack_require__(/*! ../../../network/api.js */ 143);
 
-var _nav = _interopRequireDefault(__webpack_require__(/*! ../../../components/nav.vue */ 197));var _components$data$comp;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var mkupload = function mkupload() {__webpack_require__.e(/*! require.ensure | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then((function () {return resolve(__webpack_require__(/*! @/components/mk-upload/mk-upload.vue */ 404));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_components$data$comp = {
+var _nav = _interopRequireDefault(__webpack_require__(/*! ../../../components/nav.vue */ 197));var _components$data$comp;function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var mkupload = function mkupload() {__webpack_require__.e(/*! require.ensure | components/mk-upload/mk-upload */ "components/mk-upload/mk-upload").then((function () {return resolve(__webpack_require__(/*! @/components/mk-upload/mk-upload.vue */ 428));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = (_components$data$comp = {
 
   components: {
     mkupload: mkupload },
@@ -334,7 +334,7 @@ var components
 try {
   components = {
     uIcon: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 395))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-icon/u-icon")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 419))
     }
   }
 } catch (e) {

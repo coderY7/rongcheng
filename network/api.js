@@ -192,3 +192,8 @@ export const rcckdosave = (params, config = {}) => http.post("/mzsale/web/thd/do
 export const rcckcheck = (params, config = {}) => http.post("/mzsale/web/thd/check", params, config)
 export const rcckdelete = (params, config = {}) => http.post("/mzsale/web/thd/delete", params, config)
 export const rcckline = (params, config = {}) => http.post("/mzsale/web/thd/delete/line", params, config)
+//盘点
+export const rcpddosave = (params, config = {}) => http.post("/mzsale/web/pdd/dosave", params, config)
+export const rcpdcheck = (params, config = {}) => http.post("/mzsale/web/pdd/check", params, config)
+export const rcpddelete = (params, config = {}) => http.post("/mzsale/web/pdd/delete", params, config)
+export const rcpdline = (params, config = {}) => http.post("/mzsale/web/pdd/delete/line", params, config)

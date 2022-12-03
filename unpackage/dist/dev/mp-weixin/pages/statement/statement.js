@@ -178,7 +178,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143); //
 //
 //
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { data: function data() {return { bgColor: '#4f99ff', //动态背景
-      Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {this.Alllist = [{ cxmc: '新增商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }, { cxmc: '商品退库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '销售财务日报表', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg' }, { cxmc: '商品正常库存量分析', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg' }, { cxmc: '入库单按单据汇总', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg' }, { cxmc: '退货单按单据汇总', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg' }];}, methods: { //获取报表
+      Alllist: [], title: '报表查询' };}, components: { navbar: navbar }, onLoad: function onLoad() {this.Alllist = [{ cxmc: '新增商品', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg' }, { cxmc: '商品修改', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' }, { cxmc: '商品入库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' }, { cxmc: '商品退库', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '商品盘点', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' }, { cxmc: '销售财务日报表', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg' }, { cxmc: '商品正常库存量分析', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg' }, { cxmc: '入库单按单据汇总', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg' }, { cxmc: '退货单按单据汇总', url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg' }];}, methods: { //获取报表
     isreportForm: function isreportForm() {var _this = this;var reportFormdata = { access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid') };
 
@@ -219,6 +219,11 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       if (item.cxmc == '商品退库') {
         uni.navigateTo({
           url: '../../pagesA/chuku/chuku' });
+
+      }
+      if (item.cxmc == '商品盘点') {
+        uni.navigateTo({
+          url: '../../pagesA/pandian/pandian' });
 
       }
       if (item.cxmc == '销售财务日报表') {

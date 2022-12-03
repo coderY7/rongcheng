@@ -210,6 +210,37 @@
                 }
                 
                 }
+                ,{
+                    "path" : "pandian/pandian",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+
+				}
+                
+                }
+		,{
+				"path" : "pandian/pandianmx",
+				"style" :
+				{
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false,
+					"navigationStyle": "custom"
+
+				}
+
+			}
+		,{
+				"path" : "pandian/pandianjl",
+				"style" :
+				{
+					"navigationBarTitleText": "",
+					"enablePullDownRefresh": false
+				}
+
+			}
             ]
 	}],
 	"tabBar": {
