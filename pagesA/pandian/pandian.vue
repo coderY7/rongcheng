@@ -225,12 +225,12 @@ export default {
     this.thcklist = thcklist
     this.thck = this.thcklist[0].value
 if(uni.getStorageSync('pddh')){
-
+  this.getlist()
 }else {
   this.cknew()
 }
 
-    this.getlist()
+
   },
   methods: {
     //退出
@@ -505,6 +505,7 @@ this.Search()
                   this.pddh=''
                   this.spbm=''
                   this.detaildata=''
+                  this.pitchdata=''
                   uni.setStorageSync('pddh','')
                 }
               })

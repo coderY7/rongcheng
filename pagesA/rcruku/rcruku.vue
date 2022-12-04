@@ -227,12 +227,12 @@ export default {
     this.thcklist = thcklist
     this.thck = this.thcklist[0].value
 if(uni.getStorageSync('rkdh')){
+  this.getlist()
 
 }else {
   this.cknew()
 }
 
-    this.getlist()
   },
   methods: {
     //退出
@@ -320,7 +320,6 @@ this.Search()
         })
       }else {
         this.cknew()
-
       }
 
     },
@@ -515,6 +514,7 @@ this.Search()
                   this.rkdh=''
                   this.spbm=''
                   this.detaildata=''
+                  this.pitchdata=''
                   uni.setStorageSync('rkdh','')
                 }
               })
