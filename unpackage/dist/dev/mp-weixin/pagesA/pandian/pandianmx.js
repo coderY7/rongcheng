@@ -291,7 +291,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));
 var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
@@ -413,11 +412,16 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
-//
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { navbar: navbar }, data: function data() {return { detaildata: '', pddh: '', thck: '', thlx: '', showbnt: true, editForm: { spbm: "", spsmm: "", spmc: "", dw: "", gg: "", rksl: "", rkhsjg: "", guid: '', splx: false, //赠送商品
         cxjbz: "" //供价类型
-      }, editRules: { "thsl": [{ type: "number", required: true, message: "请填写退货数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1, djzt: '', shcg: false };}, onLoad: function onLoad(option) {this.pddh = option.pddh;this.thck = option.thck;this.thlx = option.thlx;this.djzt = option.djzt;this.shcg = option.shcg;console.log(option);}, onShow: function onShow() {this.getlist();if (this.djzt == '已审核') {this.showbnt = false;}if (this.djzt == '未审核') {this.showbnt = true;}console.log(this.shcg);if (this.shcg == 'false') {this.showbnt = true;}if (this.shcg == 'true') {this.showbnt = false;}}, methods: { //退出
-    back: function back() {uni.navigateBack({ delta: 1 });}, getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.pddh, "djtype": "SPRKD", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "T" };(0, _api.rcGetlistC)(data).then(function (res) {console.log('明细列表', res);_this.detaildata = res.data;if (_this.detaildata.length == '0') {uni.showToast({
+      }, from: {}, editRules: { "spsl": [{ type: "number", required: true, message: "请填写盘点数量", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }], "thjg": [{ type: "number", required: true, message: "请填写退货价格", trigger: ["blur", "change"] }, { asyncValidator: function asyncValidator(rule, value, callback) {var reg = /^\d+(\.\d+)?$/;if (reg.test(value)) {callback();} else {callback(new Error('请输入非负数'));}} }] }, serchGoodsData: [], lxlist: [], stateDetail: false, tableIndex: -1, djzt: '', shcg: false };}, onLoad: function onLoad(option) {this.pddh = option.pddh;this.thck = option.thck;this.thlx = option.thlx;this.djzt = option.djzt;this.shcg = option.shcg;console.log(option);}, onShow: function onShow() {this.getlist();if (this.djzt == '已审核') {this.showbnt = false;}if (this.djzt == '未审核') {this.showbnt = true;}console.log(this.shcg);if (this.shcg == 'false') {this.showbnt = true;}if (this.shcg == 'true') {this.showbnt = false;}}, methods: { //退出
+    back: function back() {uni.navigateBack({ delta: 1 });}, getlist: function getlist() {var _this = this;var data = { "access_token": uni.getStorageSync("access_token"), "djbh": this.pddh, "djtype": "SPPDB", "fdbh": uni.getStorageSync("fdbh"), "userid": uni.getStorageSync("userid"), "ztbz": "" };
+
+      (0, _api.rcGetlistC)(data).then(function (res) {
+        console.log('明细列表', res);
+        _this.detaildata = res.data;
+        if (_this.detaildata.length == '0') {
+          uni.showToast({
             title: '没有商品明细',
             duration: 2000,
             icon: 'none' });
@@ -433,15 +437,16 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     // 编辑商品
     toeditDetail: function toeditDetail(row, index) {
       console.log(row);
+      this.editForm.cbjg = row.cbjg;
       this.editForm.guid = row.recordid;
       this.editForm.spmc = row.spmc;
       this.editForm.spsmm = row.spsmm;
       this.editForm.spbm = row.spbm;
-      this.editForm.spsl = row.thsl;
+      //this.editForm.spsl = row.thsl
       this.editForm.nsjg = row.nsjg;
       this.editForm.sppc = row.sppc;
       this.editForm.rkhsjg = row.rkhsjg,
-      this.editForm.rksl = row.rksl,
+      this.editForm.spsl = row.spsl,
       this.editForm.cxjbz = row.cxjbz,
       this.serchGoodsData.jjsl = row.jjsl,
       this.editForm.splx = row.splx == "T" ? true : false;
@@ -449,6 +454,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       this.tableIndex = index;
     },
     cancelDetail: function cancelDetail() {
+      this.editForm.cbjg = '';
       this.editForm.guid = '';
       //this.editForm.thjg =''
       this.editForm.spmc = '';
@@ -477,35 +483,29 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     editDetailSave: function editDetailSave() {var _this2 = this;
       var a = (0, _dayjs.default)(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD");
       var b = (0, _dayjs.default)(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD");
-      var from = {
-        "bzjzrq": b,
-        "hsjj": this.editForm.rkhsjg,
-        "rksl": this.editForm.rksl,
-        "cxtype": this.editForm.cxjbz,
-        "guid": this.editForm.guid,
-        "scrq": a,
-        "spbm": this.editForm.spbm,
-        "splx": this.editForm.splx ? "T" : "F",
-        "jjsl": this.serchGoodsData.jjsl,
-        "spsmm": this.editForm.spsmm,
-        "spmc": this.editForm.spmc,
-        "sppc": "" };
+
+      this.from.cbjg = this.editForm.cbjg,
+      this.from.guid = this.editForm.guid,
+      this.from.jcl = this.editForm.jcl ? this.editForm.jcl : '0',
+      this.from.nsjg = this.editForm.nsjg,
+      this.from.spbm = this.editForm.spbm,
+      this.from.spmc = this.editForm.spmc,
+      this.from.spsl = this.editForm.spsl,
+      this.from.spsmm = this.editForm.spsmm;
 
       var data = {
-        sjbh: this.detaildata[this.tableIndex].sjbh,
         access_token: uni.getStorageSync('access_token'),
         userid: uni.getStorageSync('userid'),
         vtype: 'EDIT',
         djbh: this.pddh,
-        cgy: uni.getStorageSync('userid'),
-        cw: this.thck,
-        rkfd: uni.getStorageSync('fdbh'),
-        sphm: '',
-        ysdj: '',
+        ck: this.thck,
+        fdbh: uni.getStorageSync('fdbh'),
         remark: '',
-        list: [from] };
+        pdlx: 'HAND',
+        pdmd: uni.getStorageSync('fdbh'),
+        list: [this.from] };
 
-      (0, _api.rcRkdDosave)(data).then(function (res) {
+      (0, _api.rcpddosave)(data).then(function (res) {
         console.log('编译保存', res);
         if (res.error_code == 0) {
           uni.showToast({
@@ -535,7 +535,8 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
           if (resm.confirm) {
             var dataes = {
               "access_token": uni.getStorageSync("access_token"),
-              "djbh": row.rkdbh,
+              "djbh": row.pddbh,
+              "pdmd": uni.getStorageSync("fdbh"),
               "fdbh": uni.getStorageSync("fdbh"),
               "userid": uni.getStorageSync("userid"),
               "username": uni.getStorageSync("dlmc"),
@@ -543,11 +544,10 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
                 "guid": row.recordid,
                 "spbm": row.spbm,
                 "spmc": row.spmc,
-                "spsmm": row.spsmm,
-                "rkdbh": row.rkdbh }] };
+                "spsmm": row.spsmm }] };
 
 
-            (0, _api.rcrkddelLine)(dataes).then(function (res) {
+            (0, _api.rcpdline)(dataes).then(function (res) {
               console.log("删除商品 res", res);
               if (res.error_code == 0) {
                 uni.showToast({

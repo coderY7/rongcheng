@@ -98,4 +98,13 @@
 .unit3 .unit3_r.data-v-53a38061 {
   width: 45%;
 }
+.data-v-53a38061 .uni-select__input-box {
+  height: 35px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
 

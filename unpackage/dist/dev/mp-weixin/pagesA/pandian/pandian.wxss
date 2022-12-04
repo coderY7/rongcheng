@@ -98,4 +98,13 @@
 .unit3 .unit3_r.data-v-d727f6ea {
   width: 45%;
 }
+.data-v-d727f6ea .uni-select__input-box {
+  height: 35px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
 

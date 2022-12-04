@@ -509,7 +509,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       this.from.nsjg = this.pitchdata.nsjg,
       this.from.spbm = this.pitchdata.spbm,
       this.from.spmc = this.pitchdata.spmc,
-      this.from.spsl = this.from.spsl,
+      this.from.spsl = '',
       this.from.spsmm = this.pitchdata.spsmm;
     },
     //上传商品
@@ -539,6 +539,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
             _this4.pitchdata = '';
             _this4.from = {};
+            _this4.spbm = '';
           }
           if (res.error_code == '2') {
             uni.showToast({
@@ -573,7 +574,7 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
         var data = {
           "access_token": uni.getStorageSync("access_token"),
           "djbh": this.pddh,
-          "djtype": "SPPDD",
+          "djtype": "SPPDB",
           "fdbh": uni.getStorageSync("fdbh"),
           "userid": uni.getStorageSync("userid"),
           "ztbz": "T" };
@@ -608,14 +609,15 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
             if (res.confirm) {
               console.log('用户点击确定');
               var data = {
+                ckbmid: _this6.thck,
+                pdlx: 'HAND',
+                pdmd: uni.getStorageSync('fdbh'),
                 access_token: uni.getStorageSync('access_token'),
                 userid: uni.getStorageSync('userid'),
                 username: uni.getStorageSync('dlmc'),
                 djbh: _this6.pddh,
                 fdbh: uni.getStorageSync('fdbh'),
-                remark: _this6.remark,
-                "sphm": '',
-                "ysdh": '' };
+                remark: _this6.remark };
 
               (0, _api.rcpdcheck)(data).then(function (res) {
                 console.log('审核', res);

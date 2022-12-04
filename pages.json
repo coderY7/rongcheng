@@ -236,7 +236,7 @@
 				"path" : "pandian/pandianjl",
 				"style" :
 				{
-					"navigationBarTitleText": "",
+					"navigationBarTitleText": "盘点单记录",
 					"enablePullDownRefresh": false
 				}
 

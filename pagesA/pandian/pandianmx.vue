@@ -9,7 +9,7 @@
       border-top-right-radius: 10px;
       background-color: #358CC9;">
         <view style="display: flex;
-justify-content: center">入库单号:{{pddh}}</view>
+justify-content: center">盘点单号:{{pddh}}</view>
 
     </view>
     <view class="box-com">
@@ -39,17 +39,17 @@ justify-content: center">入库单号:{{pddh}}</view>
               </view>
 
               <view  class="boxunit">
-                <view class="boxunit1">入库数量:</view>
+                <view class="boxunit1">盘点数量:</view>
                 <view class="boxunit2">
-                  <u-input border="surround" v-model="editForm.rksl" type="digit"></u-input>
+                  <u-input border="surround" v-model="editForm.spsl" type="digit"></u-input>
                 </view>
               </view>
-              <view  class="boxunit">
-                <view class="boxunit1">入库价格:</view>
-                <view class="boxunit2">
-                  <u-input border="surround" v-model="editForm.rkhsjg" type="digit"></u-input>
-                </view>
-              </view>
+<!--              <view  class="boxunit">-->
+<!--                <view class="boxunit1">入库价格:</view>-->
+<!--                <view class="boxunit2">-->
+<!--                  <u-input border="surround" v-model="editForm.rkhsjg" type="digit"></u-input>-->
+<!--                </view>-->
+<!--              </view>-->
 
             </uni-card>
           </view>
@@ -96,13 +96,13 @@ justify-content: center">入库单号:{{pddh}}</view>
           </view>
           <view class="multiples">
             <view class="multiple-con view-flex">
-              <text class="left-con">入库数量:</text>
-              <text class="right-con" style="color: red">{{item.rksl}}</text>
+              <text class="left-con">盘点数量:</text>
+              <text class="right-con" style="color: red">{{item.spsl}}</text>
             </view>
-            <view class="multiple-con view-flex">
-              <text class="left-con">入库价格:</text>
-              <text class="right-con" style="color: red">￥{{item.rkhsjg}}</text>
-            </view>
+<!--            <view class="multiple-con view-flex">-->
+<!--              <text class="left-con">入库价格:</text>-->
+<!--              <text class="right-con" style="color: red">￥{{item.rkhsjg}}</text>-->
+<!--            </view>-->
           </view>
         </view>
       </view>
@@ -128,7 +128,11 @@ import {
   rcGetlistC,
   rcsearch,
   rcRkdDosave,
-  rcrkddelLine
+  rcrkddelLine,
+  rcpddosave,
+  rcpdcheck,
+  rcpddelete,
+  rcpdline,
 } from "@/network/api.js";
 import navbar from '../../components/nav.vue'
 export default {
@@ -155,11 +159,12 @@ pddh:'',
         cxjbz: "",//供价类型
 
       },
+      from:{},
       editRules:{
-        "thsl": [{
+        "spsl": [{
           type: "number",
           required: true,
-          message: "请填写退货数量",
+          message: "请填写盘点数量",
           trigger: ["blur", "change"]
         },
           {
@@ -235,10 +240,10 @@ this.getlist()
       let data={
         "access_token": uni.getStorageSync("access_token"),
         "djbh": this.pddh,
-        "djtype": "SPRKD",
+        "djtype": "SPPDB",
         "fdbh": uni.getStorageSync("fdbh"),
         "userid": uni.getStorageSync("userid"),
-        "ztbz": "T"
+        "ztbz": ""
       }
       rcGetlistC(data).then((res)=>{
         console.log('明细列表',res)
@@ -260,15 +265,16 @@ this.getlist()
     // 编辑商品
     toeditDetail(row, index) {
       console.log(row)
+      this.editForm.cbjg = row.cbjg
       this.editForm.guid = row.recordid
       this.editForm.spmc = row.spmc
       this.editForm.spsmm = row.spsmm
       this.editForm.spbm = row.spbm
-      this.editForm.spsl = row.thsl
+      //this.editForm.spsl = row.thsl
       this.editForm.nsjg = row.nsjg
       this.editForm.sppc = row.sppc
       this.editForm.rkhsjg=row.rkhsjg,
-      this.editForm.rksl=row.rksl,
+      this.editForm.spsl=row.spsl,
      this.editForm.cxjbz=row.cxjbz,
       this.serchGoodsData.jjsl=row.jjsl,
       this.editForm.splx = row.splx=="T"?true:false
@@ -276,6 +282,7 @@ this.getlist()
       this.tableIndex = index
     },
     cancelDetail() {
+      this.editForm.cbjg=''
       this.editForm.guid = ''
       //this.editForm.thjg =''
       this.editForm.spmc =''
@@ -304,37 +311,29 @@ this.getlist()
     editDetailSave() {
       let a=dayjs(this.detaildata[this.tableIndex].scrq).format("YYYY-MM-DD")
       let b=dayjs(this.detaildata[this.tableIndex].bzjzrq).format("YYYY-MM-DD")
-      let from={
-        "bzjzrq": b,
-        "hsjj": this.editForm.rkhsjg,
-        "rksl": this.editForm.rksl,
-        "cxtype": this.editForm.cxjbz,
-        "guid": this.editForm.guid,
-        "scrq": a,
-        "spbm": this.editForm.spbm,
-        "splx": this.editForm.splx?"T":"F",
-        "jjsl": this.serchGoodsData.jjsl,
-        "spsmm": this.editForm.spsmm,
-        "spmc": this.editForm.spmc,
-        "sppc": ""
-      }
-      let data={
 
-        sjbh:this.detaildata[this.tableIndex].sjbh,
-        //thlx:this.thlx,
+        this.from.cbjg=this.editForm.cbjg,
+        this.from.guid=this.editForm.guid,
+        this.from.jcl=this.editForm.jcl?this.editForm.jcl:'0',
+        this.from.nsjg=this.editForm.nsjg,
+        this.from.spbm=this.editForm.spbm,
+        this.from.spmc=this.editForm.spmc,
+        this.from.spsl=this.editForm.spsl,
+        this.from.spsmm=this.editForm.spsmm
+
+      let data={
         access_token:uni.getStorageSync('access_token'),
         userid:uni.getStorageSync('userid'),
         vtype:'EDIT',
         djbh:this.pddh,
-        cgy:uni.getStorageSync('userid'),
-        cw:this.thck,
-        rkfd:uni.getStorageSync('fdbh'),
-        sphm:'',
-        ysdj:'',
+        ck:this.thck,
+        fdbh:uni.getStorageSync('fdbh'),
         remark:'',
-        list:[from]
+        pdlx:'HAND',
+        pdmd:uni.getStorageSync('fdbh'),
+        list:[this.from]
       }
-      rcRkdDosave(data).then((res)=>{
+      rcpddosave(data).then((res)=>{
         console.log('编译保存',res)
         if (res.error_code == 0) {
           uni.showToast({
@@ -364,7 +363,8 @@ this.getlist()
           if (resm.confirm) {
             let dataes={
               "access_token": uni.getStorageSync("access_token"),
-              "djbh": row.rkdbh,
+              "djbh": row.pddbh,
+              "pdmd":uni.getStorageSync("fdbh"),
               "fdbh": uni.getStorageSync("fdbh"),
               "userid": uni.getStorageSync("userid"),
               "username": uni.getStorageSync("dlmc"),
@@ -373,10 +373,9 @@ this.getlist()
                 "spbm": row.spbm,
                 "spmc": row.spmc,
                 "spsmm": row.spsmm,
-                "rkdbh":row.rkdbh
               }]
             }
-            rcrkddelLine(dataes).then((res) => {
+            rcpdline(dataes).then((res) => {
               console.log("删除商品 res",res)
               if (res.error_code == 0) {
                 uni.showToast({

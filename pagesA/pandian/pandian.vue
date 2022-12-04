@@ -332,7 +332,7 @@ this.Search()
       this.from.nsjg=this.pitchdata.nsjg,
       this.from.spbm=this.pitchdata.spbm,
       this.from.spmc=this.pitchdata.spmc,
-      this.from.spsl=this.from.spsl,
+      this.from.spsl='',
       this.from.spsmm=this.pitchdata.spsmm
     },
     //上传商品
@@ -362,6 +362,7 @@ this.Search()
             });
             this.pitchdata=''
             this.from={}
+            this.spbm=''
           }
           if(res.error_code=='2'){
             uni.showToast({
@@ -396,7 +397,7 @@ this.Search()
         let data={
           "access_token": uni.getStorageSync("access_token"),
           "djbh": this.pddh,
-          "djtype": "SPPDD",
+          "djtype": "SPPDB",
           "fdbh": uni.getStorageSync("fdbh"),
           "userid": uni.getStorageSync("userid"),
           "ztbz": "T"
@@ -431,14 +432,15 @@ this.Search()
             if (res.confirm) {
               console.log('用户点击确定');
               let data={
+                ckbmid:this.thck,
+                pdlx:'HAND',
+                pdmd:uni.getStorageSync('fdbh'),
                 access_token:uni.getStorageSync('access_token'),
                 userid:uni.getStorageSync('userid'),
                 username:uni.getStorageSync('dlmc'),
                 djbh:this.pddh,
                 fdbh:uni.getStorageSync('fdbh'),
                 remark:this.remark,
-                "sphm":'',
-                "ysdh": ''
               }
               rcpdcheck(data).then((res)=>{
                 console.log('审核',res)
@@ -614,6 +616,15 @@ this.Search()
     width: 45%;
 
   }
+}
+/deep/.uni-select__input-box {
+  height: 35px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 </style>
 

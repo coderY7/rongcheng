@@ -372,6 +372,8 @@ this.Search()
             });
             this.pitchdata=''
             this.from={}
+            this.spbm=''
+
           }
           if(res.error_code=='2'){
             uni.showToast({
@@ -624,6 +626,15 @@ this.Search()
     width: 45%;
 
   }
+}
+/deep/.uni-select__input-box {
+  height: 35px;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
 }
 </style>
 

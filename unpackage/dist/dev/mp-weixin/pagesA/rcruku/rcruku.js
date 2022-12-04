@@ -549,6 +549,8 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
 
             _this4.pitchdata = '';
             _this4.from = {};
+            _this4.spbm = '';
+
           }
           if (res.error_code == '2') {
             uni.showToast({
