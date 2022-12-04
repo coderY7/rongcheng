@@ -53,7 +53,7 @@
         {
           "name": "",
           "pathName": "pages/login/login",
-          "query": "scene=42F0F8B-2BD-A",
+          "query": "",
           "launchMode": "default",
           "scene": null
         },

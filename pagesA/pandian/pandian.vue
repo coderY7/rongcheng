@@ -73,6 +73,19 @@
             </view>
           </view>
 
+                    <view class="box" v-if="pitchdata">
+                      <view class="box_l">零售价格:</view>
+                      <view class="box_r">
+                        <u-input
+                            type="digit"
+                            placeholder=""
+                            border="bottom"
+                            v-model="from.nsjg"
+                            :disabled="true"
+                        ></u-input>
+                      </view>
+                    </view>
+
           <view class="box">
             <view class="box_l">盘点数量:</view>
             <view class="box_r">
@@ -88,18 +101,7 @@
 
 
 
-<!--          <view class="box">-->
-<!--            <view class="box_l">盘点价格:</view>-->
-<!--            <view class="box_r">-->
-<!--              <u-input-->
-<!--                  type="digit"-->
-<!--                  placeholder="请输入价格"-->
-<!--                  border="bottom"-->
-<!--                  v-model="from.hsjj"-->
-<!--                  clearable-->
-<!--              ></u-input>-->
-<!--            </view>-->
-<!--          </view>-->
+
 
           <view class="box">
             <view class="box_l">备注信息:</view>

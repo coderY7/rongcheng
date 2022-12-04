@@ -187,24 +187,24 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     navbar: navbar },
 
   onLoad: function onLoad() {
-    // if(uni.getStorageSync('companyid')){
-    //   this.company=false
-    // }
-    console.log(wx.getMenuButtonBoundingClientRect());
     this.iswx = uni.getStorageSync('iswx'); //判断微信绑定
-    this.userid = uni.getStorageSync('scandata').userid;
+    //this.userid = uni.getStorageSync('scandata').userid
   },
   watch: {
-    userid: function userid(newValue, oldValue) {
-      if (newValue) {
-        if (newValue.length == '5') {
+    userid: {
+      handler: function handler(newValue, oldValue) {
+        console.log(oldValue, newValue);
+        if (newValue.length == 5) {
           this.useryz();
-        } else {}
-      }
+        }
+      },
+      deep: true, // 深度侦听
+      immediate: true // 立即执行
     } },
 
   onShow: function onShow() {
     this.ip();
+
   },
   methods: {
     czxx: function czxx() {
@@ -232,6 +232,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     },
     //用户验证
     useryz: function useryz() {var _this = this;
+      console.log('999');
       var user = {
         userid: this.userid };
 
