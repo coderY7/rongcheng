@@ -627,8 +627,6 @@ console.log(res)
 							name: '小类编码',
 							label: '小类编码',
 							width: 150,
-
-
 						},
 						{
 							name: '中类编码',
