@@ -809,8 +809,8 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
         _this7.column = [{
           name: '小类编码',
           label: '小类编码',
-          width: 150,
-          fixed: true },
+          width: 150 },
+
 
 
         {
