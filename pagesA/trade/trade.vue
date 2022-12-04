@@ -108,49 +108,56 @@
       </u-popup>
     </view>
 
-    <view v-for="(item,index) in bblist" @click="dqbb(index)" class="bblist">
-      <view :class="{dqbbys:dqindex==index}">{{item}}</view>
-    </view>
+
 
 <!--表格-->
-    <view v-if="dqindex=='0'">
-      <view style="height: 500px">
-        <zb-table
-            :columns="tjt"
-            :stripe="true"
-            @rowClick="rowClick"
-            @toggleRowSelection="toggleRowSelection"
-            @toggleAllSelection="toggleAllSelection"
-            :border="true"
-            :data="tjdata"></zb-table>
+    <view v-if="spsmm">
+      <view class="bblist">
+        <view v-for="(item,index) in bblist" @click="dqbb(index)"  :class="{dqbbys:dqindex==index}">
+         {{item}}
+        </view>
+      </view>
+
+      <view v-if="dqindex=='0'">
+        <view style="height: 500px">
+          <zb-table
+              :columns="tjt"
+              :stripe="true"
+              @rowClick="rowClick"
+              @toggleRowSelection="toggleRowSelection"
+              @toggleAllSelection="toggleAllSelection"
+              :border="true"
+              :data="tjdata"></zb-table>
+        </view>
+      </view>
+
+      <view v-if="dqindex=='1'">
+        <view style="height: 500px">
+          <zb-table
+              :columns="kct"
+              :stripe="true"
+              @rowClick="rowClick"
+              @toggleRowSelection="toggleRowSelection"
+              @toggleAllSelection="toggleAllSelection"
+              :border="true"
+              :data="kcdata"></zb-table>
+        </view>
+      </view>
+
+      <view v-if="dqindex=='2'">
+        <view style="height: 500px">
+          <zb-table
+              :columns="pdt"
+              :stripe="true"
+              @rowClick="rowClick"
+              @toggleRowSelection="toggleRowSelection"
+              @toggleAllSelection="toggleAllSelection"
+              :border="true"
+              :data="pddata"></zb-table>
+        </view>
       </view>
     </view>
 
-    <view v-if="dqindex=='1'">
-      <view style="height: 500px">
-        <zb-table
-            :columns="kct"
-            :stripe="true"
-            @rowClick="rowClick"
-            @toggleRowSelection="toggleRowSelection"
-            @toggleAllSelection="toggleAllSelection"
-            :border="true"
-            :data="kcdata"></zb-table>
-      </view>
-    </view>
-
-    <view v-if="dqindex=='2'">
-      <view style="height: 500px">
-        <zb-table
-            :columns="pdt"
-            :stripe="true"
-            @rowClick="rowClick"
-            @toggleRowSelection="toggleRowSelection"
-            @toggleAllSelection="toggleAllSelection"
-            :border="true"
-            :data="pddata"></zb-table>
-      </view>
-    </view>
 
 	</view>
 </template>
@@ -245,55 +252,63 @@ dqbb(index){
 },
       //调价报表
       tjbb(data){
-        console.log(data)
-let tjt=Object.keys(data[0])
-        console.log(tjt)
-        let column=[]
-        tjt.forEach((item)=>{
-          column.push({
-            name:item,
-            label:item,
-            width:220
-          })
-        })
-        this.tjt=column
-        this.tjdata=data
+  if(data.length!=0){
+    console.log(data)
+    let tjt=Object.keys(data[0])
+    console.log(tjt)
+    let column=[]
+    tjt.forEach((item)=>{
+      column.push({
+        name:item,
+        label:item,
+        width:200
+      })
+    })
+    this.tjt=column
+    this.tjdata=data
+  }
+
       },
 
       //库存报表
       kcbb(data){
-        console.log(data)
-        let tjt=Object.keys(data[0])
-        console.log(tjt)
-        let column=[]
-        tjt.forEach((item)=>{
-          column.push({
-            name:item,
-            label:item,
-            width:220
+  if(data.length!=0){
+    console.log(data)
+    let tjt=Object.keys(data[0])
+    console.log(tjt)
+    let column=[]
+    tjt.forEach((item)=>{
+      column.push({
+        name:item,
+        label:item,
+        width:200
 
-          })
-        })
-        this.kct=column
-        this.kcdata=data
+      })
+    })
+    this.kct=column
+    this.kcdata=data
+  }
       },
 
       //盘点报表
       pdbb(data){
-        console.log(data)
-        let tjt=Object.keys(data[0])
-        console.log(tjt)
-        let column=[]
-        tjt.forEach((item)=>{
-          column.push({
-            name:item,
-            label:item,
-            width:220
+  if(data.length!=0){
+    console.log(data)
+    let tjt=Object.keys(data[0])
+    console.log(tjt)
+    let column=[]
+    tjt.forEach((item)=>{
+      column.push({
+        name:item,
+        label:item,
+        width:200
 
-          })
-        })
-        this.pdt=column
-        this.pddata=data
+      })
+    })
+    this.pdt=column
+    this.pddata=data
+  }
+
       },
 
       //展开
@@ -742,9 +757,9 @@ console.log(res)
     margin-bottom: 20rpx;
   }
   .bblist{
-    width: 30%;
+    width: 100%;
     display: inline-flex;
-    justify-content: center;
+    justify-content: space-around;
     height: 80rpx;
     align-items: center;
   }

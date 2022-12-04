@@ -98,9 +98,9 @@
   margin-bottom: 20rpx;
 }
 .bblist {
-  width: 30%;
+  width: 100%;
   display: inline-flex;
-  justify-content: center;
+  justify-content: space-around;
   height: 80rpx;
   align-items: center;
 }
