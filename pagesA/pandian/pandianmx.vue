@@ -37,6 +37,12 @@ justify-content: center">盘点单号:{{pddh}}</view>
                   <u-input border="surround" v-model="editForm.spsmm"  :disabled="true"></u-input>
                 </view>
               </view>
+              <view  class="boxunit">
+                <view class="boxunit1">最近进价:</view>
+                <view class="boxunit2">
+                  <u-input border="surround" v-model="editForm.cbjg"  :disabled="true"></u-input>
+                </view>
+              </view>
 
               <view  class="boxunit">
                 <view class="boxunit1">盘点数量:</view>
@@ -95,6 +101,10 @@ justify-content: center">盘点单号:{{pddh}}</view>
             </view>
           </view>
           <view class="multiples">
+            <view class="multiple-con view-flex">
+              <text class="left-con">最近进价:</text>
+              <text class="right-con">{{item.pjjj}}</text>
+            </view>
             <view class="multiple-con view-flex">
               <text class="left-con">盘点数量:</text>
               <text class="right-con" style="color: red">{{item.spsl}}</text>

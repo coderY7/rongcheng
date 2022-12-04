@@ -86,6 +86,19 @@
                       </view>
                     </view>
 
+          <view class="box" v-if="pitchdata">
+            <view class="box_l">最近进价:</view>
+            <view class="box_r">
+              <u-input
+                  type="digit"
+                  placeholder=""
+                  border="bottom"
+                  v-model="from.cbjg"
+                  :disabled="true"
+              ></u-input>
+            </view>
+          </view>
+
           <view class="box">
             <view class="box_l">盘点数量:</view>
             <view class="box_r">
