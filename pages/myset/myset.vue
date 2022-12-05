@@ -90,7 +90,7 @@ dlmc:uni.getStorageSync('dlmc'),
                 access_token:uni.getStorageSync('access_token'),
                 companyid:uni.getStorageSync('companyid'),
                 userid:uni.getStorageSync('userid'),
-                "password": "",
+                password: "",
                 fdbh:uni.getStorageSync('fdbh'),
                 computerid:uni.getStorageSync('openid')
               }
