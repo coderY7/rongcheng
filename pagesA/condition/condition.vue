@@ -41,6 +41,30 @@
               </view>
             </view>
 
+            <view v-if="item.type=='开始DATE'" class="box">
+              <view class="box_l">{{ item.colname }}:</view>
+              <view class="box_r">
+                <uni-datetime-picker
+                    type="date"
+                    :value="start"
+                    v-model="item.defval"
+                    @change="startdate()"
+                />
+              </view>
+            </view>
+
+            <view v-if="item.type=='结束DATE'" class="box">
+              <view class="box_l">{{ item.colname }}:</view>
+              <view class="box_r">
+                <uni-datetime-picker
+                    type="date"
+                    :value="end"
+                    v-model="item.defval"
+                    @change="enddate()"
+                />
+              </view>
+            </view>
+
             <view v-if="item.type=='多选下拉框'">
               <view v-if="item.colname=='分店编号'" class="box">
                 <view class="box_l">{{ item.colname }}:</view>

@@ -41,6 +41,16 @@
             </view>
           </view>
 
+          <view class="box">
+            <view class="box_l">盘点类型:</view>
+            <view class="box_r">
+              <uni-data-select
+                  v-model="pdlx"
+                  :localdata="pdlxlist"
+              ></uni-data-select>
+            </view>
+          </view>
+
 
           <view class="box">
             <view class="box_l">商品条码:</view>
@@ -133,7 +143,7 @@
       </view>
     </view>
     <view class="unit2">
-      <u-button text="新增明细" @click="added()" type="primary" :disabled="shcg"></u-button>
+      <u-button text="保存商品" @click="added()" type="primary" :disabled="shcg"></u-button>
     </view>
 
     <view class="unit3">
@@ -187,6 +197,8 @@ export default {
   },
   data() {
     return {
+      pdlxlist:'',
+      pdlx:'',
       spbm:'',
       sjbh: '',
       sjbhlist: '',
@@ -217,6 +229,17 @@ export default {
 
   },
   onShow() {
+    //盘点类型
+    this.pdlxlist = uni.getStorageSync('pdlxlist')
+    let pdlxlist = [];
+    this.pdlxlist.forEach((item) => {
+      let datas = {}
+      datas.value = item.id;
+      datas.text = item.name
+      pdlxlist.push(datas)
+    })
+    this.pdlxlist = pdlxlist
+    this.pdlx = this.pdlxlist[0].value
     //处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO
     let sjbhlist = [];
@@ -362,7 +385,7 @@ this.Search()
           ck:this.thck,
           fdbh:uni.getStorageSync('fdbh'),
           remark:'',
-          pdlx:'HAND',
+          pdlx:this.pdlx,
           pdmd:uni.getStorageSync('fdbh'),
           list:[this.from]
         }
@@ -448,7 +471,7 @@ this.Search()
               console.log('用户点击确定');
               let data={
                 ckbmid:this.thck,
-                pdlx:'HAND',
+                pdlx:this.pdlx,
                 pdmd:uni.getStorageSync('fdbh'),
                 access_token:uni.getStorageSync('access_token'),
                 userid:uni.getStorageSync('userid'),

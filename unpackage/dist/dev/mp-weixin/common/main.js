@@ -106,6 +106,30 @@ __webpack_require__.r(__webpack_exports__);
     uni.setStorageSync('appid', 'wx59bb9c5e21b4d3c4');
   },
   onShow: function onShow(options) {
+    var pdlxlist = [
+    {
+      "id": "HAND",
+      "name": "手工录入" },
+
+    {
+      "id": "POS",
+      "name": "前台盘点" },
+
+    {
+      "id": "HWB",
+      "name": "货位盘点" },
+
+    {
+      "id": "PDJ",
+      "name": "手持盘点机" },
+
+    {
+      "id": "DYPD",
+      "name": "动态手工盘点" }];
+
+
+    uni.setStorageSync('pdlxlist', pdlxlist); //存储二维码数据
+
     //console.log('从二维码中取的数据', options)
     var name = options.query.scene;
     console.log(name);

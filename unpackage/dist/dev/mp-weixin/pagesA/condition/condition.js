@@ -294,6 +294,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! ../../network/api.js */ 143);
 
 
@@ -302,6 +326,30 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);
 
 
 var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -457,15 +505,7 @@ var _default = { data: function data() {return { bgColor: '#4f99ff', dqbb: '', /
       this.cxtj.forEach(function (item) {_this3.tj.push({ 'Convalue': item.defval, 'recordid': item.recordid });});var data = { djtype: uni.getStorageSync('dqbb').cxbh, access_token: uni.getStorageSync('access_token'), userid: uni.getStorageSync('userid'), groupid: uni.getStorageSync('groupid'), username: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), condition: this.tj };uni.showLoading({ title: '加载中' });(0, _api.getlist)(data).then(function (res) {uni.hideLoading();_this3.result = res.data;_this3.sumdata = res.sumdata; //this.bdt=Object.keys(this.result[0])
         //表单头处理
         var cl = res.columns;var a = [];cl.forEach(function (item) {a.push(item.title);});_this3.bdt = a; //跳转新页面
-        var bdt = JSON.stringify(_this3.bdt);var result = JSON.stringify(_this3.result);
-        var sumdata = JSON.stringify(_this3.sumdata);
-        uni.setStorageSync('result', result);
-        uni.navigateTo({
-          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });
-
-      });
-
-    } } };exports.default = _default;
+        var bdt = JSON.stringify(_this3.bdt);var result = JSON.stringify(_this3.result);var sumdata = JSON.stringify(_this3.sumdata);uni.setStorageSync('result', result);uni.navigateTo({ url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata) });});} } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
