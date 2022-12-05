@@ -31,7 +31,7 @@
           "name":"动态手工盘点"
         }
       ]
-      uni.setStorageSync('pdlxlist',pdlxlist) //存储二维码数据
+      uni.setStorageSync('pdlxlist',pdlxlist)
 
       //console.log('从二维码中取的数据', options)
       let name = options.query.scene

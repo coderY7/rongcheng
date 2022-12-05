@@ -128,7 +128,7 @@ __webpack_require__.r(__webpack_exports__);
       "name": "动态手工盘点" }];
 
 
-    uni.setStorageSync('pdlxlist', pdlxlist); //存储二维码数据
+    uni.setStorageSync('pdlxlist', pdlxlist);
 
     //console.log('从二维码中取的数据', options)
     var name = options.query.scene;
