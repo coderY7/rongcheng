@@ -1,6 +1,6 @@
 <template>
   <view>
-    <navbar title='出库' @back="back()"></navbar>
+    <navbar title='退库' @back="back()"></navbar>
 
     <view class="nav">
     <view @click="jl()">
