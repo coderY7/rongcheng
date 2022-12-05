@@ -62,7 +62,7 @@
             </view>
           </view>
 
-          <view  class="box" v-if="item.colname=='入库单号'">
+          <view  class="box" v-if="item.colname=='盘点单号'">
             <view class="box_l">{{item.colname}}:</view>
             <view class="box_r">
               <u-input v-model="pddh"></u-input>
