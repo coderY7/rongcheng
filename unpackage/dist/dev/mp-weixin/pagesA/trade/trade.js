@@ -347,6 +347,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function _slicedToArray(arr, i) {return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();}function _nonIterableRest() {throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");}function _unsupportedIterableToArray(o, minLen) {if (!o) return;if (typeof o === "string") return _arrayLikeToArray(o, minLen);var n = Object.prototype.toString.call(o).slice(8, -1);if (n === "Object" && o.constructor) n = o.constructor.name;if (n === "Map" || n === "Set") return Array.from(o);if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);}function _arrayLikeToArray(arr, len) {if (len == null || len > arr.length) len = arr.length;for (var i = 0, arr2 = new Array(len); i < len; i++) {arr2[i] = arr[i];}return arr2;}function _iterableToArrayLimit(arr, i) {if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return;var _arr = [];var _n = true;var _d = false;var _e = undefined;try {for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {_arr.push(_s.value);if (i && _arr.length === i) break;}} catch (err) {_d = true;_e = err;} finally {try {if (!_n && _i["return"] != null) _i["return"]();} finally {if (_d) throw _e;}}return _arr;}function _arrayWithHoles(arr) {if (Array.isArray(arr)) return arr;}var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
@@ -356,6 +385,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
 {
   data: function data() {
     return {
+      cxdsj: false,
+      sjkcl: '',
+      sxsl: '',
+      fkcgyl: '',
       dqindex: '0',
       bblist: ['历史调价信息', '库存批次信息', '历史盘点信息'],
       iszhankai: false,
@@ -650,6 +683,11 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       (0, _api.rcinfos)(data).then(function (res) {
         if (res.error_code == '0') {
           console.log(res);
+          _this4.cxdsj = true;
+          _this4.sjkcl = res.list.Table[0] ? res.list.Table[0]['实际库存量'] : '';
+          _this4.sxsl = res.list.Table[0] ? res.list.Table[0]['实销数量'] : '';
+          _this4.fkcgyl = res.list.Table[0] ? res.list.Table[0]['负库存挂溢量'] : '';
+
           //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
           _this4.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
           _this4.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
@@ -697,6 +735,10 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
                 (0, _api.rcinfos)(data).then(function (res) {
                   if (res.error_code == '0') {
                     console.log(res);
+                    _this5.cxdsj = true;
+                    _this5.sjkcl = res.list.Table[0] ? res.list.Table[0]['实际库存量'] : '';
+                    _this5.sxsl = res.list.Table[0] ? res.list.Table[0]['实销数量'] : '';
+                    _this5.fkcgyl = res.list.Table[0] ? res.list.Table[0]['负库存挂溢量'] : '';
                     //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
                     _this5.spmc = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
                     _this5.testdata[1].value = res.list.Table[0] ? res.list.Table[0]['商品名称'] : '';
@@ -774,6 +816,8 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
               _this6.spbm = '';
               _this6.spmc = '';
               _this6.spsmm = '';
+              _this6.cxdsj = false;
+              uni.setStorageSync('xzxlbm', '');
               _this6.testdata.forEach(function (item) {
                 item.value = '';
               });
@@ -810,8 +854,6 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
           name: '小类编码',
           label: '小类编码',
           width: 150 },
-
-
 
         {
           name: '中类编码',

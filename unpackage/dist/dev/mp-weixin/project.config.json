@@ -18,29 +18,12 @@
     }
   },
   "compileType": "miniprogram",
-  "libVersion": "",
+  "libVersion": "2.28.0",
   "appid": "wx59bb9c5e21b4d3c4",
   "projectname": "蓉城易购",
-  "condition": {
-    "search": {
-      "current": -1,
-      "list": []
-    },
-    "conversation": {
-      "current": -1,
-      "list": []
-    },
-    "game": {
-      "current": -1,
-      "list": []
-    },
-    "miniprogram": {
-      "current": -1,
-      "list": []
-    }
-  },
+  "condition": {},
   "editorSetting": {
-    "tabIndent": "auto",
+    "tabIndent": "insertSpaces",
     "tabSize": 2
   }
 }

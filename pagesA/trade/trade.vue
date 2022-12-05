@@ -17,11 +17,24 @@
 <!--            <u-input border="surround" v-model="spmc" :disabled="true"></u-input>-->
 <!--          </view>-->
 <!--        </view>-->
-        <view  class="box">
+      <view class="spkczt" v-if="cxdsj">
+        <view class="spkczt_box">
+          <view>实际库存量</view>
+          <view style="color: #ff0000">{{sjkcl}}</view>
+        </view>
+        <view class="spkczt_box">
+          <view>实销数量</view>
+          <view style="color: #ff0000">{{sxsl}}</view>
+        </view>
+        <view class="spkczt_box">
+          <view>负库存挂溢量</view>
+          <view style="color: #ff0000">{{fkcgyl}}</view>
+        </view>
+      </view>
+
+        <view  class="box" v-if="spsmm">
           <view class="boxname">商品编号:</view>
-
             <u-input border="surround" v-model="spbm" type="digit" :disabled="true"></u-input>
-
         </view>
       <view  :class="{'active': iszhankai}">
         <view v-for="(item, index) in testdata" :key="item">
@@ -34,9 +47,24 @@
               <button @click="isqueryall(item)" class="search">查询</button>
             </view>
           </view>
-          <view v-else-if="item.number" class="box">
-            <view class="boxname">{{item.key}}:</view>
-            <u-input border="surround" v-model="item.value" type="digit"></u-input>
+		  <view v-if="item.key=='零售价格'" style="display: inline-flex;justify-content: space-between;
+    margin-bottom: 20rpx;">
+		    <view class='jg'>
+		      <view style="margin-right: 6px;">{{item.key}}:</view>
+		      <u-input border="surround" v-model="item.value" type="digit"></u-input>
+		    </view>
+			<view class="jg">
+			  <view style="margin-right: 6px;">最近进价:</view>
+			  <u-input border="surround" v-model="testdata[3].value" type="digit"></u-input>
+			</view>
+		  </view>
+          <view v-else-if="item.number">
+            
+            <view class="box" v-if="item.key!='零售价格' && item.key!='最近进价' && item.key!='小类编码'">
+              <view class="boxname">{{item.key}}:</view>
+              <u-input border="surround" v-model="item.value" type="digit"></u-input>
+            </view>
+
           </view>
           <view v-else-if="item.Boolean" style="
   display: flex;
@@ -56,12 +84,13 @@
             <view style="width: 80%">
               <uni-data-select v-model="xzzgys" :localdata="zgys">
               </uni-data-select>
-
             </view>
           </view>
-          <view v-else class="box">
-            <view class="boxname">{{item.key}}:</view>
-            <u-input border="surround" v-model="item.value" ></u-input>
+          <view v-else >
+            <view class="box" v-if="item.key!='小类编码'">
+              <view class="boxname">{{item.key}}:</view>
+              <u-input border="surround" v-model="item.value" ></u-input>
+            </view>
           </view>
         </view>
       </view>
@@ -173,6 +202,10 @@
 	export default {
 		data() {
 			return {
+        cxdsj:false,
+        sjkcl:'',
+        sxsl:'',
+        fkcgyl:'',
         dqindex:'0',
         bblist:['历史调价信息','库存批次信息','历史盘点信息'],
         iszhankai:false,
@@ -467,6 +500,11 @@ dqbb(index){
         rcinfos(data).then((res)=>{
           if(res.error_code=='0'){
             console.log(res)
+            this.cxdsj=true
+            this.sjkcl=res.list.Table[0]?res.list.Table[0]['实际库存量']:''
+            this.sxsl=res.list.Table[0]?res.list.Table[0]['实销数量']:''
+            this.fkcgyl=res.list.Table[0]?res.list.Table[0]['负库存挂溢量']:''
+
             //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
             this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
             this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['商品名称']:''
@@ -514,6 +552,10 @@ dqbb(index){
 				rcinfos(data).then((res)=>{
           if(res.error_code=='0'){
 console.log(res)
+            this.cxdsj=true
+            this.sjkcl=res.list.Table[0]?res.list.Table[0]['实际库存量']:''
+            this.sxsl=res.list.Table[0]?res.list.Table[0]['实销数量']:''
+            this.fkcgyl=res.list.Table[0]?res.list.Table[0]['负库存挂溢量']:''
             //this.spsmm=res.list.Table[0]?res.list.Table[0]['商品条码']:''
             this.spmc=res.list.Table[0]?res.list.Table[0]['商品名称']:''
             this.testdata[1].value=res.list.Table[0]?res.list.Table[0]['商品名称']:''
@@ -591,6 +633,8 @@ console.log(res)
                 this.spbm=''
                 this.spmc=''
                 this.spsmm=''
+                this.cxdsj=false
+                uni.setStorageSync('xzxlbm','')
                 this.testdata.forEach((item)=>{
                   item.value=''
                 })
@@ -763,5 +807,23 @@ console.log(res)
   }
   .dqbbys{
     color: #4f99ff;
+  }
+  .jg{
+	  display: flex;
+	      justify-content: center;
+	      align-items: center;
+	      width: 45%;
+  }
+  .spkczt{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20rpx 0;
+    .spkczt_box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 </style>
