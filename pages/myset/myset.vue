@@ -84,19 +84,28 @@ dlmc:uni.getStorageSync('dlmc'),
               uni.navigateTo({
                 url:'/pages/login/login'
               })
-							 uni.clearStorageSync();
+
               let data={
                 vtype:'logout',
                 access_token:uni.getStorageSync('access_token'),
                 companyid:uni.getStorageSync('companyid'),
                 userid:uni.getStorageSync('userid'),
                 password: "",
+                apptype:'app',
                 fdbh:uni.getStorageSync('fdbh'),
                 computerid:uni.getStorageSync('openid')
               }
               console.log('退出登录成功',res)
               rclogin(data).then((res)=> {
                 console.log(res)
+                uni.setStorageSync('groupid', '') //token
+                uni.setStorageSync('userid', '') //token
+                uni.setStorageSync('access_token', '') //token
+                uni.setStorageSync('refresh_token', '') //刷新
+                uni.setStorageSync('dlmc', '') //名称
+                uni.setStorageSync('loginaccess', '') //登录成功返回的数据
+                uni.setStorageSync('fdtype','') //分店类型
+                uni.setStorageSync('login', false)
               })
 						} else if (res.cancel) {
 							console.log('用户点击取消');

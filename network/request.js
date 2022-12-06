@@ -29,24 +29,31 @@ module.exports = (vm) => {
 		/* 对响应成功做点什么 可使用async await 做异步操作*/
 		const data = response.data
 		//console.log('响应数据',data)
-		if(data.error_code=='40002'){
-			uni.request({
-				url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
-				data: {
-					userid:`a${uni.getStorageSync('userid')}`,
-					refresh_token:uni.getStorageSync('refresh_token')
-				},
-				method:'POST',
-				success: (res) => {
-					if(res.data.error_code=='40004'){
-						uni.redirectTo({
-							url:'../../pages/login/login'
-						})
-					}else {
-						uni.setStorageSync('access_token',res.data.access_token)
+		if(uni.getStorageSync('refresh_token')){
+			if(data.error_code=='40002'){
+				uni.request({
+					url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
+					data: {
+						userid:`a${uni.getStorageSync('userid')}`,
+						refresh_token:uni.getStorageSync('refresh_token')
+					},
+					method:'POST',
+					success: (res) => {
+						if(res.data.error_code=='40004'){
+							uni.redirectTo({
+								url:'../../pages/login/login'
+							})
+						}else {
+							uni.setStorageSync('access_token',res.data.access_token)
+						}
 					}
-				}
-			});
+				});
+			}
+			
+		}else {
+			uni.redirectTo({
+				url:'../../pages/login/login'
+			})
 		}
 		
 		//自定义参数

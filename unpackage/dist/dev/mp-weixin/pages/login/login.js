@@ -188,6 +188,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
   onLoad: function onLoad() {
     this.iswx = uni.getStorageSync('iswx'); //判断微信绑定
+    this.ip();
     //this.userid = uni.getStorageSync('scandata').userid
   },
   watch: {
@@ -203,8 +204,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     } },
 
   onShow: function onShow() {
-    this.ip();
-
   },
   methods: {
     czxx: function czxx() {
@@ -214,13 +213,10 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
       this.password = '';
     },
     ip: function ip() {
-      console.log('123');
       (0, _api.rcip)().then(function (res) {
-        //console.log('rcip',res)
         uni.setStorageSync("ip", res.ip);
       });
       (0, _api.rcserct)().then(function (res) {
-        console.log('333');
         uni.setStorageSync("secret", res.data[0].secret_id);
       });
 
@@ -232,7 +228,6 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
     },
     //用户验证
     useryz: function useryz() {var _this = this;
-      console.log('999');
       var user = {
         userid: this.userid };
 
