@@ -98,6 +98,9 @@ dlmc:uni.getStorageSync('dlmc'),
               console.log('退出登录成功',res)
               rclogin(data).then((res)=> {
                 console.log(res)
+                uni.setStorageSync("rkdh", '')
+                uni.setStorageSync("thdk", '')
+                uni.setStorageSync("pddh", '')
                 uni.setStorageSync('groupid', '') //token
                 uni.setStorageSync('userid', '') //token
                 uni.setStorageSync('access_token', '') //token

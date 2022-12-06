@@ -286,7 +286,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143); //
 //
 var _default = { data: function data() {return { dlmc: uni.getStorageSync('dlmc'), fdbh: uni.getStorageSync('fdbh'), //分店编号
       companyid: uni.getStorageSync('companyid') //商家ID
-    };}, methods: { quits: function quits() {uni.showModal({ title: '提示', content: '确认退出,清除缓存', success: function success(res) {if (res.confirm) {console.log('用户点击确定');uni.navigateTo({ url: '/pages/login/login' });var data = { vtype: 'logout', access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), userid: uni.getStorageSync('userid'), password: "", apptype: 'app', fdbh: uni.getStorageSync('fdbh'), computerid: uni.getStorageSync('openid') };console.log('退出登录成功', res);(0, _api.rclogin)(data).then(function (res) {console.log(res);uni.setStorageSync('groupid', ''); //token
+    };}, methods: { quits: function quits() {uni.showModal({ title: '提示', content: '确认退出,清除缓存', success: function success(res) {if (res.confirm) {console.log('用户点击确定');uni.navigateTo({ url: '/pages/login/login' });var data = { vtype: 'logout', access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), userid: uni.getStorageSync('userid'), password: "", apptype: 'app', fdbh: uni.getStorageSync('fdbh'), computerid: uni.getStorageSync('openid') };console.log('退出登录成功', res);(0, _api.rclogin)(data).then(function (res) {console.log(res);uni.setStorageSync("rkdh", '');uni.setStorageSync("thdk", '');uni.setStorageSync("pddh", '');uni.setStorageSync('groupid', ''); //token
               uni.setStorageSync('userid', ''); //token
               uni.setStorageSync('access_token', ''); //token
               uni.setStorageSync('refresh_token', ''); //刷新

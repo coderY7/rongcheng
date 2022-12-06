@@ -211,6 +211,10 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
       this.companyid = '';
       this.userid = '';
       this.password = '';
+      uni.setStorageSync("rkdh", '');
+      uni.setStorageSync("thdk", '');
+      uni.setStorageSync("pddh", '');
+
     },
     ip: function ip() {
       (0, _api.rcip)().then(function (res) {
