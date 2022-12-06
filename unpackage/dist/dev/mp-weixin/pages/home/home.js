@@ -932,6 +932,7 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));funct
         _this10.chartDataD = JSON.parse(JSON.stringify(res));
       }, 500);
     },
+
     getdata2: function getdata2(item, index) {var _this11 = this;
       this.xzindex = index;
       var getpcadmindaysaledata = {
@@ -943,8 +944,8 @@ var _dayjs = _interopRequireDefault(__webpack_require__(/*! dayjs */ 144));funct
 
       //实际方法
       (0, _api.rcgetpctodayssale)(getpcadmindaysaledata).then(function (res) {
-        console.log('数据', JSON.parse(res.data));
-        var data = JSON.parse(res.data);
+        console.log('数据', res.data);
+        var data = res.data;
         _this11.sdays = data;
         //默认显示数据
         _this11.xzshu = _this11.sdays.table0[0];

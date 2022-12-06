@@ -766,6 +766,7 @@ console.log(res)
           this.chartDataD = JSON.parse(JSON.stringify(res));
         }, 500);
       },
+
       getdata2(item, index) {
         this.xzindex = index
         let getpcadmindaysaledata = {
@@ -777,8 +778,8 @@ console.log(res)
 
         //实际方法
         rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
-        	console.log('数据', JSON.parse(res.data))
-        	            let data = JSON.parse(res.data)
+        	console.log('数据', res.data)
+        	            let data = res.data
         	            this.sdays = data
         	            //默认显示数据
         	            this.xzshu=this.sdays.table0[0]

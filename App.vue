@@ -34,18 +34,20 @@
       uni.setStorageSync('pdlxlist',pdlxlist)
 
       //console.log('从二维码中取的数据', options)
-      let name = options.query.scene
-      console.log(name)
-      uni.setStorageSync('codetest',name) //存储二维码数据
-      let now = name.split("-")
-      let codeparam = []
-      // now.forEach(item => {
-      //   codeparam.push(parseInt(item, 16).toString(10))
-      // })
-      console.log('从二维码中取的数据',now)
-      uni.setStorageSync('userid', now[0]);
-      uni.setStorageSync('fdbh', now[1]);
-      uni.setStorageSync('companyid', now[2]);
+      if(options.query.scene){
+        let name = options.query.scene
+        uni.setStorageSync('codetest',name) //存储二维码数据
+        let now = name.split("-")
+        let codeparam = []
+        // now.forEach(item => {
+        //   codeparam.push(parseInt(item, 16).toString(10))
+        // })
+        console.log('从二维码中取的数据',now)
+        uni.setStorageSync('userid', now[0]);
+        uni.setStorageSync('fdbh', now[1]);
+        uni.setStorageSync('companyid', now[2]);
+      }
+
 
 
       const updateManager = wx.getUpdateManager()
