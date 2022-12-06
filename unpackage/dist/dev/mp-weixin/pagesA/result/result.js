@@ -233,7 +233,7 @@ __webpack_require__.r(__webpack_exports__);
 
     });
     // column[0].fixed=true
-    // column[0].width=80
+    column[0].width = 120;
     // column[1].fixed=true
     this.column = column;
     this.columndata = this.showdata;
