@@ -19,16 +19,16 @@
       </view>
       <view class="container">
         <uni-card margin="0px" spacing="0px" padding="0px 10px">
-          <view class="box">
-            <view class="box_l">商家编号:</view>
-            <view class="box_r">
-              <uni-data-select
-                  v-model="sjbh"
-                  :localdata="sjbhlist"
+<!--          <view class="box">-->
+<!--            <view class="box_l">商家编号:</view>-->
+<!--            <view class="box_r">-->
+<!--              <uni-data-select-->
+<!--                  v-model="sjbh"-->
+<!--                  :localdata="sjbhlist"-->
 
-              ></uni-data-select>
-            </view>
-          </view>
+<!--              ></uni-data-select>-->
+<!--            </view>-->
+<!--          </view>-->
 
           <view class="box">
             <view class="box_l">盘点仓库:</view>

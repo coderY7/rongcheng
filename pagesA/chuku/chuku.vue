@@ -25,7 +25,6 @@
               <uni-data-select
                   v-model="sjbh"
                   :localdata="sjbhlist"
-
               ></uni-data-select>
             </view>
           </view>
