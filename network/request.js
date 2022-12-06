@@ -29,7 +29,7 @@ module.exports = (vm) => {
 		/* 对响应成功做点什么 可使用async await 做异步操作*/
 		const data = response.data
 		//console.log('响应数据',data)
-		if(uni.getStorageSync('refresh_token')){
+		
 			if(data.error_code=='40002'){
 				uni.request({
 					url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
@@ -50,11 +50,6 @@ module.exports = (vm) => {
 				});
 			}
 			
-		}else {
-			uni.redirectTo({
-				url:'../../pages/login/login'
-			})
-		}
 		
 		//自定义参数
 		// const custom = response.config?.custom
