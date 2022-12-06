@@ -612,6 +612,14 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     },
     //审核
     ischeck: function ischeck() {var _this6 = this;
+      if (this.detaildata.length == 0) {
+        uni.showToast({
+          title: '未添加出库商品',
+          duration: 2000,
+          icon: 'none' });
+
+        return;
+      }
       if (this.thdh) {
         uni.showModal({
           title: '提示',

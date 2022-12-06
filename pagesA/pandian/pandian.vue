@@ -44,10 +44,15 @@
           <view class="box">
             <view class="box_l">盘点类型:</view>
             <view class="box_r">
-              <uni-data-select
-                  v-model="pdlx"
-                  :localdata="pdlxlist"
-              ></uni-data-select>
+<!--              <uni-data-select-->
+<!--                  v-model="pdlx"-->
+<!--                  :localdata="pdlxlist"-->
+<!--              ></uni-data-select>-->
+              <u-input
+                  v-model="pdlxlist[3].text"
+                  border="bottom"
+                  :disabled="true"
+              ></u-input>
             </view>
           </view>
 
@@ -239,7 +244,8 @@ export default {
       pdlxlist.push(datas)
     })
     this.pdlxlist = pdlxlist
-    this.pdlx = this.pdlxlist[0].value
+    this.pdlx = this.pdlxlist[3].value
+
     //处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO
     let sjbhlist = [];
@@ -461,7 +467,14 @@ this.Search()
     },
     //审核
     ischeck(){
-
+if(this.detaildata.length==0){
+  uni.showToast({
+    title: '未添加盘点商品',
+    duration: 2000,
+    icon:'none'
+  });
+  return
+}
       if(this.pddh){
         uni.showModal({
           title: '提示',

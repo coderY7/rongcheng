@@ -435,6 +435,14 @@ this.Search()
     },
     //审核
     ischeck(){
+      if(this.detaildata.length==0){
+        uni.showToast({
+          title: '未添加出库商品',
+          duration: 2000,
+          icon:'none'
+        });
+        return
+      }
       if(this.thdh){
         uni.showModal({
           title: '提示',

@@ -106,11 +106,11 @@ try {
     uniDataSelect: function() {
       return Promise.all(/*! import() | uni_modules/uni-data-select/components/uni-data-select/uni-data-select */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-data-select/components/uni-data-select/uni-data-select")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-data-select/components/uni-data-select/uni-data-select.vue */ 393))
     },
-    uSearch: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 507))
-    },
     uInput: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 453))
+    },
+    uSearch: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-search/u-search */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-search/u-search")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-search/u-search.vue */ 507))
     },
     uPopup: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-popup/u-popup */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-popup/u-popup")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-popup/u-popup.vue */ 539))
@@ -176,6 +176,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+
+
+
+
+
 
 
 
@@ -531,6 +536,11 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);function _interopReq
 //
 //
 //
+//
+//
+//
+//
+//
 var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default = { components: { navbar: navbar }, data: function data() {return { pdlxlist: '', pdlx: '', spbm: '', sjbh: '', sjbhlist: '', thck: '', //仓库
       thcklist: '', thlx: '', //退回类型
       thlxlist: '', pddh: uni.getStorageSync('pddh'), //盘点单
@@ -540,19 +550,15 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
       from: {}, popupShow: false, searchdata: '', pitchdata: '', //选中
       remark: '', //备注
       shcg: false };}, onLoad: function onLoad(option) {console.log(option);if (option.pddh) {uni.setStorageSync('pddh', option.pddh);this.pddh = option.pddh;}}, onReady: function onReady() {}, onShow: function onShow() {//盘点类型
-    this.pdlxlist = uni.getStorageSync('pdlxlist');var pdlxlist = [];this.pdlxlist.forEach(function (item) {var datas = {};datas.value = item.id;datas.text = item.name;pdlxlist.push(datas);});this.pdlxlist = pdlxlist;this.pdlx = this.pdlxlist[0].value; //处理仓库下拉框数据
+    this.pdlxlist = uni.getStorageSync('pdlxlist');var pdlxlist = [];this.pdlxlist.forEach(function (item) {var datas = {};datas.value = item.id;datas.text = item.name;pdlxlist.push(datas);});this.pdlxlist = pdlxlist;this.pdlx = this.pdlxlist[3].value; //处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;var sjbhlist = [];this.sjbhlist.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;sjbhlist.push(datas);});this.sjbhlist = sjbhlist;this.sjbh = this.sjbhlist[0].value; //处理仓库下拉框数据
     this.thcklist = uni.getStorageSync('basic').CKINFO;var thcklist = [];this.thcklist.forEach(function (item) {var datas = {};datas.value = item.ckbmid;datas.text = item.ckmc;thcklist.push(datas);});this.thcklist = thcklist;this.thck = this.thcklist[0].value;if (uni.getStorageSync('pddh')) {this.getlist();} else {this.cknew();}}, methods: { //退出
     back: function back() {uni.switchTab({ url: '../../pages/statement/statement' });}, //创建盘点单
     cknew: function cknew() {var _this = this;var data = { access_token: uni.getStorageSync('access_token'), djtype: 'SPPDB', fdbh: uni.getStorageSync('fdbh'), userid: uni.getStorageSync('userid') };(0, _api.rcOrderNew)(data).then(function (res) {console.log('盘点单创建成功', res);_this.shcg = false;_this.pddh = res.djbh;uni.setStorageSync('pddh', _this.pddh);var datee = _this.pddh.split("PZ")[1];var y = "20" + datee.slice(0, 2);var m = datee.slice(2, 4);var d = datee.slice(4, 6);_this.pdrq = "".concat(y, "-").concat(m, "-").concat(d);});}, // 扫码 搜索商品
     scan: function scan() {var _this2 = this;uni.scanCode({ success: function success(res) {console.log('扫码内容', res.result);_this2.spbm = res.result;_this2.Search();}, fail: function fail(err) {_this2.$refs.uToast.show({ type: "error", message: "识别失败" });} });}, //商品搜索
     Search: function Search() {var _this3 = this;if (this.pddh) {var data = { access_token: uni.getStorageSync('access_token'), companyid: uni.getStorageSync('companyid'), condition: this.spbm, fdbh: uni.getStorageSync('fdbh'), findtype: '01', goodstype: 'SP', userid: uni.getStorageSync('userid') };(0, _api.rcsearch)(data).then(function (res) {console.log(res);if (res.error_code == '0') {console.log('搜索到的', res);if (res.data.length > '0' && res.data.length != '1') {_this3.popupShow = true;_this3.searchdata = res.data;}if (res.data.length == '1') {console.log('只有一个', res.data[0]);_this3.ispitchdata(res.data[0]);}}if (res.error_code == '500') {_this3.searchdata = [];_this3.pitchdata = '';_this3.from = {};uni.showToast({ title: '未搜索到商品', duration: 2000, icon: 'none' });}});} else {this.cknew();}}, //选中的商品
-    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.cbjg = this.pitchdata.pjjj, this.from.guid = "", this.from.jcl = this.pitchdata.jcl ? this.pitchdata.jcl : '0', this.from.nsjg = this.pitchdata.nsjg, this.from.spbm = this.pitchdata.spbm, this.from.spmc = this.pitchdata.spmc, this.from.spsl = '',
-      this.from.spsmm = this.pitchdata.spsmm;
-    },
-    //上传商品
-    added: function added() {var _this4 = this;
-      console.log(this.pddh);
+    ispitchdata: function ispitchdata(item) {this.pitchdata = item;this.popupShow = false;console.log('选中的商品', this.pitchdata);this.from.cbjg = this.pitchdata.pjjj, this.from.guid = "", this.from.jcl = this.pitchdata.jcl ? this.pitchdata.jcl : '0', this.from.nsjg = this.pitchdata.nsjg, this.from.spbm = this.pitchdata.spbm, this.from.spmc = this.pitchdata.spmc, this.from.spsl = '', this.from.spsmm = this.pitchdata.spsmm;}, //上传商品
+    added: function added() {var _this4 = this;console.log(this.pddh);
       if (this.pddh) {
         var data = {
           access_token: uni.getStorageSync('access_token'),
@@ -638,7 +644,14 @@ var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | compo
     },
     //审核
     ischeck: function ischeck() {var _this6 = this;
+      if (this.detaildata.length == 0) {
+        uni.showToast({
+          title: '未添加盘点商品',
+          duration: 2000,
+          icon: 'none' });
 
+        return;
+      }
       if (this.pddh) {
         uni.showModal({
           title: '提示',
