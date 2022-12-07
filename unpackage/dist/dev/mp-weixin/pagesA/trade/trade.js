@@ -391,7 +391,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
       fkcgyl: '',
       dqindex: '0',
       bblist: ['历史调价信息', '库存批次信息', '历史盘点信息'],
-      iszhankai: false,
+      iszhankai: true,
       popupShow: false,
       searchdata: '',
       pitchdata: '',
@@ -460,7 +460,7 @@ var _api = __webpack_require__(/*! ../../network/api.js */ 143);function _intero
   },
   onShow: function onShow() {
     this.testdata[0].value = uni.getStorageSync('xzxlbm');
-    this.zhankai();
+    //this.zhankai()
   },
   methods: {
     dqbb: function dqbb(index) {

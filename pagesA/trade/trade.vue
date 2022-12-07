@@ -208,7 +208,7 @@
         fkcgyl:'',
         dqindex:'0',
         bblist:['历史调价信息','库存批次信息','历史盘点信息'],
-        iszhankai:false,
+        iszhankai:true,
         popupShow:false,
         searchdata:'',
         pitchdata:'',
@@ -277,7 +277,7 @@ kct:'',
 		},
 		onShow() {
 			this.testdata[0].value = uni.getStorageSync('xzxlbm')
-      this.zhankai()
+      //this.zhankai()
 		},
 		methods: {
 dqbb(index){
@@ -788,7 +788,7 @@ console.log(res)
     margin-top: 15px;
   }
   .active{
-    height: 450rpx;
+    height: 500rpx;
     overflow: hidden;
   }
   .zk{

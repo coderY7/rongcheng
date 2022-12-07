@@ -228,12 +228,14 @@ __webpack_require__.r(__webpack_exports__);
     var column = [];
     this.bdt.forEach(function (item) {
       column.push({
-        name: item,
-        label: item });
+        name: item.name,
+        label: item.lable,
+        width: item.width * 2,
+        align: 'center' });
 
     });
     // column[0].fixed=true
-    column[0].width = 120;
+    //column[0].width=120
     // column[1].fixed=true
     this.column = column;
     this.columndata = this.showdata;

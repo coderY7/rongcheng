@@ -5,17 +5,40 @@
       <view class="container">
 <!--        <uni-card margin="0px" spacing="0px" padding="0px 10px">-->
           <view v-for="(item,index) in cxtj">
-            <view v-if="item.type=='字符'" class="box">
-              <view class="box_l">{{ item.colname }}:</view>
-              <view class="box_r">
-                <u-input
-                    placeholder="请输入查询内容"
-                    border="surround"
-                    v-model="item.defval"
-                    clearable
-                ></u-input>
+            <view v-if="item.type=='字符'">
+              <view v-if="item.colname=='商品条码'" class="box">
+                <view class="box_l">{{ item.colname }}:</view>
+                <view class="box_r">
+                  <u-search  placeholder="请输入商品条码" searchIcon="scan" searchIconSize="30" v-model="sptm" height="30" @clickIcon="scan()" @custom="Search()" @search="Search()"></u-search>
+                </view>
               </view>
+              <view v-if="item.colname=='商品编码'" class="box">
+<!--                <view class="box_l">{{ item.colname }}:</view>-->
+<!--                <view class="box_r">-->
+<!--                                    <u-input-->
+<!--                                        placeholder="请输入查询内容"-->
+<!--                                        border="surround"-->
+<!--                                        v-model="item.defval"-->
+<!--                                        clearable-->
+<!--                                    ></u-input>-->
+<!--                </view>-->
+              </view>
+
+              <view v-if="item.colname=='商品名称'" class="box">
+                <view class="box_l">{{ item.colname }}:</view>
+                <view class="box_r">
+                                    <u-input
+                                        placeholder="请输入查询内容"
+                                        border="surround"
+                                        v-model="item.defval"
+                                        clearable
+                                    ></u-input>
+                </view>
+              </view>
+
+
             </view>
+
 
             <view v-if="item.type=='开始日期'" class="box">
               <view class="box_l">{{ item.colname }}:</view>
@@ -148,6 +171,28 @@
 </view>
 
   </view>
+
+
+    <!--    弹出框-->
+    <view>
+      <u-popup :show="popupShow" @close="close" @open="open" mode="center" :round="10">
+        <view>
+          <scroll-view style="max-height: 60vh; margin-top: 30rpx" scroll-y="true">
+            <view  class="">
+              <view class="" v-for="(v, i) in searchdata" class="" @click="ispitchdata(v)">
+                <view style="display: flex;justify-content: center;padding: 10px 20px;border-bottom: #6a6a6a solid 1px">
+                  <view>{{v.spmc}}---</view>
+                  <view>{{v.spsmm}}</view>
+                  <view></view>
+                </view>
+              </view>
+            </view>
+          </scroll-view>
+          <view class="closebtn" @click="popupShow=false">取消</view>
+        </view>
+      </u-popup>
+    </view>
+
   </view>
 </template>
 
@@ -157,6 +202,7 @@ import {
   getcolumns,
     query,
   condition,
+  rcsearch,
 } from '../../network/api.js';
 	import navbar from '../../components/nav.vue'
 import dayjs from 'dayjs'; // ES 2015
@@ -165,6 +211,7 @@ import dayjs from 'dayjs'; // ES 2015
 export default {
   data() {
     return {
+      sptm:'',
       bgColor:'#4f99ff',
       dqbb: '', //当前报表
       start: '', //开始时间
@@ -178,6 +225,24 @@ export default {
       cxsppp:'',//查询商品品牌
       cxsjht:'',//查询商家合同
       sumdata:'',//查询到的汇总
+
+      spbm:'',
+      sjbh: '',
+      sjbhlist: '',
+      thck: '',//仓库
+      thcklist: '',
+      thlx: '',//退回类型
+      thlxlist: '',
+      thdh:uni.getStorageSync('thdh'),//退货单
+      thrq:'',//退货日期
+      detail:true,//明细
+      detaildata:[],//明细数据
+      from:{},
+      popupShow:false,
+      searchdata:'',
+      pitchdata:'',//选中
+      remark:'',//备注
+      shcg:false
     };
   },
   components: {
@@ -190,10 +255,6 @@ export default {
   onShow() {
     this.start = dayjs().format('YYYY-MM-DD') // 获取当前时间
     this.end = dayjs().format('YYYY-MM-DD') // 获取当前时间
-
-
-
-
     this.cxfdbh=uni.getStorageSync('basic').FDINFO
     this.cxsppp=uni.getStorageSync('basic').PPINFO
     this.cxsjht=uni.getStorageSync('basic').SJINFO
@@ -244,12 +305,84 @@ export default {
     })
   },
   watch: {
-    tj: function (newvalue, oldvalue) {
-
+    sptm:{
+      handler:function (newValue,oldValue){
+        console.log(oldValue,newValue,this)
+        this.cxtj.forEach((item) => {
+          if (item.colname == '商品条码') {
+            item.defval=newValue
+          }
+        })
+      },
+      deep:true
     }
   },
   methods: {
+// 扫码 搜索商品
+    scan() {
+      uni.scanCode({
+        success: (res) => {
+          console.log('扫码内容', res.result)
+          this.sptm=res.result
+          this.cxtj.forEach((item) => {
+            if(item.colname=='商品条码'){
+              //item.defval=this.sptm
+            }
+          })
+          this.Search()
+        },
+        fail: (err) => {
 
+        }
+      });
+    },
+    //商品搜索
+    Search(){
+          let data={
+            access_token: uni.getStorageSync('access_token'),
+            companyid:uni.getStorageSync('companyid'),
+            condition:this.sptm,
+            fdbh:uni.getStorageSync('fdbh'),
+            findtype:'01',
+            goodstype:'SP',
+            userid:uni.getStorageSync('userid')
+          };
+          rcsearch(data).then((res)=>{
+            if(res.error_code=='0'){
+              console.log('搜索到的',res)
+              if(res.data.length>'0'){
+                this.popupShow=true
+                this.searchdata=res.data
+              }
+              // if(res.data.length=='1'){
+              //   console.log('只有一个',res.data[0])
+              //   this.ispitchdata(res.data[0])
+              // }
+            }
+            if(res.error_code=='500'){
+              this.searchdata=[]
+              this.pitchdata=''
+              this.from={}
+              uni.showToast({
+                title: '未搜索到商品',
+                duration: 2000,
+                icon:'none'
+              });
+            }
+
+          })
+
+
+
+
+    },
+    //选中的商品
+    ispitchdata(item) {
+      this.pitchdata=item
+      this.sptm=item.spsmm
+      this.popupShow=false
+      console.log('选中的商品', this.pitchdata);
+    },
     //自定义返回
     left() {
       uni.navigateBack({
@@ -310,11 +443,12 @@ export default {
         let cl=res.columns
         let a=[];
         cl.forEach((item)=>{
-          a.push(item.title)
+          a.push({name:item.title,lable:item.title,width:item.width})
         })
         this.bdt=a
         //跳转新页面
         let bdt = JSON.stringify(this.bdt)
+        console.log(bdt)
         let result = JSON.stringify(this.result)
         let sumdata = JSON.stringify(this.sumdata)
         uni.setStorageSync('result',result)
@@ -369,6 +503,14 @@ export default {
 }
 .bottom{
 
+}
+.closebtn {
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  color: #358CC9;
+  font-size: 18px;
+  margin-top: 15px;
 }
 .uni-select__input-box{
   width: 100%;
