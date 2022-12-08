@@ -99,7 +99,7 @@ dlmc:uni.getStorageSync('dlmc'),
               rclogin(data).then((res)=> {
                 console.log(res)
                 uni.setStorageSync("rkdh", '')
-                uni.setStorageSync("thdk", '')
+                uni.setStorageSync("thdh", '')
                 uni.setStorageSync("pddh", '')
                 uni.setStorageSync('groupid', '') //token
                 uni.setStorageSync('userid', '') //token

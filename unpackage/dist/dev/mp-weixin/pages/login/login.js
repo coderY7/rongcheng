@@ -212,7 +212,7 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
       this.userid = '';
       this.password = '';
       uni.setStorageSync("rkdh", '');
-      uni.setStorageSync("thdk", '');
+      uni.setStorageSync("thdh", '');
       uni.setStorageSync("pddh", '');
 
     },

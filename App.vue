@@ -7,6 +7,9 @@
       uni.setStorageSync('model', 'Test');
 			uni.setStorageSync('sn', 'MOPMPI-MLKKNG-KFOLNF-QINPHH');
 			uni.setStorageSync('appid', 'wx59bb9c5e21b4d3c4');
+      uni.setStorageSync("rkdh", '')
+      uni.setStorageSync("thdh", '')
+      uni.setStorageSync("pddh", '')
     },
 		onShow: function(options) {
       let pdlxlist=[
