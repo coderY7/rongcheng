@@ -104,7 +104,7 @@ dlmc:uni.getStorageSync('dlmc'),
                 uni.setStorageSync('groupid', '') //token
                 uni.setStorageSync('userid', '') //token
                 uni.setStorageSync('access_token', '') //token
-                uni.setStorageSync('refresh_token', '') //刷新
+                //uni.setStorageSync('refresh_token', '') //刷新
                 uni.setStorageSync('dlmc', '') //名称
                 uni.setStorageSync('loginaccess', '') //登录成功返回的数据
                 uni.setStorageSync('fdtype','') //分店类型

@@ -18386,7 +18386,7 @@ module.exports = function (vm) {
 
     if (data.error_code == '40002') {
       uni.request({
-        url: 'https://rcygweb.mzsale.cn/mzsale/web/token', //仅为示例，并非真实接口地址。
+        url: 'https://rcygweb.mzsale.cn/mzsale/web/token',
         data: {
           userid: "a".concat(uni.getStorageSync('userid')),
           refresh_token: uni.getStorageSync('refresh_token') },
