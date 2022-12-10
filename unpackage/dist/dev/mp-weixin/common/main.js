@@ -133,6 +133,21 @@ __webpack_require__.r(__webpack_exports__);
       // 新的版本下载失败
     });
 
+    //console.log('从二维码中取的数据', options)
+    if (option.query.scene) {
+      var name = option.query.scene;
+      uni.setStorageSync('codetest', name); //存储二维码数据
+      var now = name.split("-");
+      var codeparam = [];
+      // now.forEach(item => {
+      //   codeparam.push(parseInt(item, 16).toString(10))
+      // })
+      console.log('从二维码中取的数据', now);
+      uni.setStorageSync('userid', now[0]);
+      uni.setStorageSync('fdbh', now[1]);
+      uni.setStorageSync('companyid', now[2]);
+    }
+
   },
   onShow: function onShow(options) {
     var pdlxlist = [
@@ -159,20 +174,6 @@ __webpack_require__.r(__webpack_exports__);
 
     uni.setStorageSync('pdlxlist', pdlxlist);
 
-    //console.log('从二维码中取的数据', options)
-    if (options.query.scene) {
-      var name = options.query.scene;
-      uni.setStorageSync('codetest', name); //存储二维码数据
-      var now = name.split("-");
-      var codeparam = [];
-      // now.forEach(item => {
-      //   codeparam.push(parseInt(item, 16).toString(10))
-      // })
-      console.log('从二维码中取的数据', now);
-      uni.setStorageSync('userid', now[0]);
-      uni.setStorageSync('fdbh', now[1]);
-      uni.setStorageSync('companyid', now[2]);
-    }
 
 
 

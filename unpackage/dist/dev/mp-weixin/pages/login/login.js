@@ -352,66 +352,66 @@ var _api = __webpack_require__(/*! @/network/api.js */ 143);var navbar = functio
 
     },
     //微信登录
-    wxLogin: function wxLogin() {var _this3 = this;
-      // 获取用户信息
-      uni.login({
-        provider: 'weixin',
-        success: function success(res) {
-          //获取code,换取openid
-          console.log(res);
-          var getopeniddata = {
-            appid: uni.getStorageSync('appid'),
-            secret: uni.getStorageSync('secret'),
-            js_code: res.code };
-
-          console.log(getopeniddata);
-          (0, _api.getopenid)(getopeniddata).then(function (res) {
-            console.log('获取到openid', res);
-            //存储openid
-            uni.setStorageSync('openid', res.openid);
-            uni.setStorageSync('session_key', res.session_key);
-            _this3.openid = res.openid;
-
-            var data = {
-              openid: uni.getStorageSync('openid') };
-
-            (0, _api.userfast)(data).then(function (res) {
-              console.log(JSON.stringify(res));
-              var resdata = JSON.parse(JSON.stringify(res));
-              _this3.resdata = resdata;
-              console.log(resdata['error_code'], resdata['userinfos']);
-              if (resdata.error_code == '500') {
-                uni.showToast({
-                  icon: 'none',
-                  title: resdata.message });
-
-              } else {
-
-                uni.setStorageSync('access_token', resdata.access_token.
-                access_token);
-                uni.setStorageSync('dlmc', _this3.resdata['userinfos'].dlmc);
-                uni.setStorageSync('companyid', _this3.resdata['userinfos'].
-                CompanyID);
-                uni.setStorageSync('userid', _this3.resdata['userinfos'].
-                USERID);
-                uni.setStorageSync('fdbh', resdata.userinfos.fdbh);
-                uni.setStorageSync('fdmc', resdata.userinfos.fdmc);
-                uni.setStorageSync('groupid', _this3.resdata['userinfos'].
-                GROUPID);
-                _this3.basics();
-                uni.switchTab({
-                  url: '/pages/home/home' });
-
-
-              }
-            });
-
-          });
-        } });
-
-
-
-    },
+    // wxLogin() {
+    // 	// 获取用户信息
+    // 	uni.login({
+    // 		provider: 'weixin',
+    // 		success: (res) => {
+    // 			//获取code,换取openid
+    // 			console.log(res);
+    // 			let getopeniddata = {
+    // 				appid: uni.getStorageSync('appid'),
+    // 				secret: uni.getStorageSync('secret'),
+    // 				js_code: res.code
+    // 			}
+    // 			console.log(getopeniddata)
+    // 			getopenid(getopeniddata).then((res) => {
+    // 				console.log('获取到openid', res)
+    // 				//存储openid
+    // 				uni.setStorageSync('openid', res.openid)
+    // 				uni.setStorageSync('session_key', res.session_key)
+    // 				this.openid = res.openid
+    //
+    // 				let data = {
+    // 					openid: uni.getStorageSync('openid')
+    // 				}
+    // 				userfast(data).then((res) => {
+    // 					console.log(JSON.stringify(res))
+    // 					let resdata = JSON.parse(JSON.stringify(res))
+    // 					this.resdata = resdata
+    // 					console.log(resdata['error_code'], resdata['userinfos'])
+    // 					if (resdata.error_code == '500') {
+    // 						uni.showToast({
+    // 							icon: 'none',
+    // 							title: resdata.message
+    // 						});
+    // 					} else {
+    //
+    // 						uni.setStorageSync('access_token', resdata.access_token
+    // 							.access_token)
+    // 						uni.setStorageSync('dlmc', this.resdata['userinfos'].dlmc)
+    // 						uni.setStorageSync('companyid', this.resdata['userinfos']
+    // 							.CompanyID)
+    // 						uni.setStorageSync('userid', this.resdata['userinfos']
+    // 							.USERID)
+    // 						uni.setStorageSync('fdbh', resdata.userinfos.fdbh)
+    // 							uni.setStorageSync('fdmc', resdata.userinfos.fdmc)
+    // 						uni.setStorageSync('groupid', this.resdata['userinfos']
+    // 							.GROUPID)
+    // 						this.basics()
+    // 						uni.switchTab({
+    // 							url: '/pages/home/home'
+    // 						});
+    //
+    // 					}
+    // 				})
+    //
+    // 			})
+    // 		}
+    // 	});
+    //
+    //
+    // },
 
     basics: function basics() {
       var data = {
