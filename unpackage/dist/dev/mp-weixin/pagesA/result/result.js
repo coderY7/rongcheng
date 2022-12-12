@@ -236,8 +236,9 @@ var _default = {
     this.bdt = JSON.parse(option.bdt);
     this.result = JSON.parse(uni.getStorageSync('result'));
     //this.result=uni.getStorageSync('result')
-
-    this.sumdata = JSON.parse(option.sumdata);
+    if (option.sumdata) {
+      this.sumdata = JSON.parse(option.sumdata);
+    }
     this.tableData = this.result;
     this.resultcard = this.result;
     this.pagination();

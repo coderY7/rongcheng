@@ -11,8 +11,13 @@
                                 :class="{'checked':checkedArr.includes(JSON.stringify(item))}"></checkbox>
 <!--                            <image class="left"  :src="item.img" mode=""></image>-->
                             <view class="right" @click="itemdata(item)">
-                                <view class="title">{{item['盘点单号']}}</view>
-                                <view class="dengjiimg">{{item['实盘总数量']}}</view>
+                                <view class="title">盘点单号:{{item['盘点单号']}}</view>
+                                <view class="title">实盘总数量:{{item['实盘总数量']}}</view>
+                              <view class="title">盘点开始日:{{item['盘点开始日']}}</view>
+                              <view class="title">盘点结束日:{{item['盘点结束日']}}</view>
+                              <view class="title">预损溢数量:{{item['预损溢数量']}}</view>
+                              <view class="title">预损溢金额:{{item['预损溢金额']}}</view>
+
                             </view>
                         </view>
                     </block>
@@ -48,6 +53,9 @@ import {rcjz} from '../../../network/api'
 
         data() {
             return {
+              result:'',
+              bdt:'',
+              sumdata:'',
                 edit: true,
                 datalist: [],
                 checkedArr: [], //复选框选中的值
@@ -105,21 +113,42 @@ import {rcjz} from '../../../network/api'
               access_token: uni.getStorageSync('access_token'),
               vtype: 'pddetail',
               fdbh: uni.getStorageSync('fdbh'),
-              pdbh:item['盘点单号']
+              pddh:item['盘点单号']
             }
             rcjz(datas).then((res) => {
               console.log(res.data)
-              let data = JSON.stringify(res.data)
+              this.result=res.data
+              this.bdt=Object.keys(this.result[0])
+              //表单头处理
+              let cl=this.bdt
+              let a=[];
+              cl.forEach((item)=>{
+                a.push({name:item,lable:item})
+              })
+              this.bdt=a
+              //跳转新页面
+              let bdt = JSON.stringify(this.bdt)
+              console.log(bdt)
+              let result = JSON.stringify(this.result)
+              let sumdata = JSON.stringify(this.sumdata)
+              uni.setStorageSync('result',result)
               uni.navigateTo({
-                url: `../../pagesA/detail/detail?list=${data}`
+                url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}`
               });
             })
-              console.log(item)
 
           },
             // 审核
           shenhe() {
-
+            let datas = {
+              access_token: uni.getStorageSync('access_token'),
+              vtype: 'pddetail',
+              fdbh: uni.getStorageSync('fdbh'),
+              pddh:item['盘点单号']
+            }
+            rcjz(datas).then((res) => {
+              console.log(res.data)
+            })
             }
 
         }
@@ -169,7 +198,6 @@ import {rcjz} from '../../../network/api'
 
     .collshop-cen-item {
         width: 100%;
-        height: 142rpx;
         padding: 28rpx 22rpx 0;
         box-sizing: border-box;
         background-color: #fff;
