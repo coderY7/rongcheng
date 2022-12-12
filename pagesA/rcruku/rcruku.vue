@@ -283,9 +283,9 @@ this.Search()
     },
     //商品搜索
     Search(){
-      if(this.spbm.length<4){
+      if(this.spbm.length<5){
         uni.showToast({
-          title: '商品条码至少输入四位',
+          title: '商品条码至少输入五位',
           duration: 2000,
           icon:'none'
         });
