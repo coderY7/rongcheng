@@ -33,10 +33,19 @@
 </template>
 
 <script>
+import {rcjz} from '../../../network/api'
+
     export default {
         props:{
-            list:[]
+            // list:[],
+          list: {
+            type: Array,
+            default() {
+              return
+            }
+          },
         },
+
         data() {
             return {
                 edit: true,
@@ -45,13 +54,11 @@
                 allChecked: false //是否全选
             }
         },
-        created() {
-          console.log(this.list)
+      mounted() {
+          console.log(this,this.list)
              this.datalist = this.list
         },
-      onShow() {
-        console.log(this.list)
-      },
+
         methods: {
             // 多选复选框改变事件
             changeCheckbox(e) {
@@ -94,11 +101,21 @@
             },
             //跳转
           itemdata(item){
+            let datas = {
+              access_token: uni.getStorageSync('access_token'),
+              vtype: 'pddetail',
+              fdbh: uni.getStorageSync('fdbh'),
+              pdbh:item['盘点单号']
+            }
+            rcjz(datas).then((res) => {
+              console.log(res.data)
+              let data = JSON.stringify(res.data)
+              uni.navigateTo({
+                url: `../../pagesA/detail/detail?list=${data}`
+              });
+            })
               console.log(item)
-            let data = JSON.stringify(item)
-            uni.navigateTo({
-              url: `../../pagesA/detail/detail?list=${data}`
-            });
+
           },
             // 审核
           shenhe() {

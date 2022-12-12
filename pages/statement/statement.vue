@@ -24,7 +24,8 @@
 	import {
 		reportForm,
 		condition,
-      rcOrderNew
+      rcOrderNew,
+    rcjz,
 	} from "../../network/api.js";
 	import navbar from '../../components/nav.vue'
 	export default {
@@ -93,6 +94,15 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
 		  })
 		}
 		if(item.cxmc=='记账审核'){
+      let data = {
+        access_token: uni.getStorageSync('access_token'),
+        vtype: 'pdlist',
+        fdbh: uni.getStorageSync('fdbh')
+      }
+      rcjz(data).then((res) => {
+        console.log(res.data)
+        uni.setStorageSync('jzlist',res.data)
+      })
 		  uni.navigateTo({
 		    url: '../../pagesA/jizhang/jizhang'
 		  })
