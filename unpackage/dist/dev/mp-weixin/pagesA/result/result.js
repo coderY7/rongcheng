@@ -101,16 +101,16 @@ var components
 try {
   components = {
     uScrollList: function () {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 501))
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 507))
     },
     uniCard: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 511))
+      return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 517))
     },
     zbTable: function () {
-      return __webpack_require__.e(/*! import() | uni_modules/zb-table/components/zb-table/zb-table */ "uni_modules/zb-table/components/zb-table/zb-table").then(__webpack_require__.bind(null, /*! @/uni_modules/zb-table/components/zb-table/zb-table.vue */ 518))
+      return __webpack_require__.e(/*! import() | uni_modules/zb-table/components/zb-table/zb-table */ "uni_modules/zb-table/components/zb-table/zb-table").then(__webpack_require__.bind(null, /*! @/uni_modules/zb-table/components/zb-table/zb-table.vue */ 524))
     },
     uniPagination: function () {
-      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 527))
+      return Promise.all(/*! import() | uni_modules/uni-pagination/components/uni-pagination/uni-pagination */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-pagination/components/uni-pagination/uni-pagination")]).then(__webpack_require__.bind(null, /*! @/uni_modules/uni-pagination/components/uni-pagination/uni-pagination.vue */ 533))
     },
   }
 } catch (e) {
@@ -194,7 +194,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var selectSwitch = function selectSwitch() {
   __webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {
-    return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 540));
+    return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 546));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var navbar = function navbar() {

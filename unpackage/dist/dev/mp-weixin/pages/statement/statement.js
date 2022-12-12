@@ -198,6 +198,9 @@ var _default = {
       cxmc: '商品盘点',
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg'
     }, {
+      cxmc: '记账审核',
+      url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg'
+    }, {
       cxmc: '销售财务日报表',
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg'
     }, {
@@ -263,6 +266,11 @@ var _default = {
       if (item.cxmc == '商品盘点') {
         uni.navigateTo({
           url: '../../pagesA/pandian/pandian'
+        });
+      }
+      if (item.cxmc == '记账审核') {
+        uni.navigateTo({
+          url: '../../pagesA/jizhang/jizhang'
         });
       }
       if (item.cxmc == '销售财务日报表') {

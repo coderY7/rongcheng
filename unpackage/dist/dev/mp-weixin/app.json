@@ -34,7 +34,8 @@
         "type/type",
         "pandian/pandian",
         "pandian/pandianmx",
-        "pandian/pandianjl"
+        "pandian/pandianjl",
+        "jizhang/jizhang"
       ]
     }
   ],

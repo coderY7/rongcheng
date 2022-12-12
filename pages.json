@@ -241,6 +241,15 @@
 				}
 
 			}
+                ,{
+                    "path" : "jizhang/jizhang",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
 	}],
 	"tabBar": {
