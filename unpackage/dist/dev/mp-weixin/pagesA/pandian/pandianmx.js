@@ -396,6 +396,9 @@ var _default = {
     if (this.djzt == '已审核') {
       this.showbnt = false;
     }
+    if (this.djzt == '已过账') {
+      this.showbnt = false;
+    }
     if (this.djzt == '未审核') {
       this.showbnt = true;
     }
