@@ -39,7 +39,7 @@ module.exports = (vm) => {
 					},
 					method:'POST',
 					success: (res) => {
-						if(res.data.error_code=='40004'){
+						if(res.data.error_code=='40004'|| res.data.error_code=='40005'){
 							uni.redirectTo({
 								url:'../../pages/login/login'
 							})

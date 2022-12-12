@@ -324,6 +324,14 @@ this.Search()
     },
     //商品搜索
     Search(){
+      if(this.spbm.length<4){
+        uni.showToast({
+          title: '商品条码至少输入四位',
+          duration: 2000,
+          icon:'none'
+        });
+        return
+      }
       if(this.pddh){
         let data={
           access_token: uni.getStorageSync('access_token'),
