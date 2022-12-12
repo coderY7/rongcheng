@@ -123,7 +123,7 @@ import {rcjz} from '../../../network/api'
               let cl=this.bdt
               let a=[];
               cl.forEach((item)=>{
-                a.push({name:item,lable:item})
+                a.push({name:item,lable:item,width:80})
               })
               this.bdt=a
               //跳转新页面
