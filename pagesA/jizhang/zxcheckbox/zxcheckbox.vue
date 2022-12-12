@@ -4,15 +4,15 @@
 <!--            <view class="collshop-top" @click="isedit">{{edit?'完成':'编辑'}}</view>-->
             <view class="collshop-cen">
                 <checkbox-group class="block" @change="changeCheckbox">
-                    <block v-for="item in datalist" :key="item.value">
+                    <block v-for="item in datalist" :key="item['盘点单号']">
                         <view class="collshop-cen-item">
                             <checkbox v-if="edit" :value="JSON.stringify(item)"
                                 :checked="checkedArr.includes(JSON.stringify(item))"
                                 :class="{'checked':checkedArr.includes(JSON.stringify(item))}"></checkbox>
-                            <image class="left"  :src="item.img" mode=""></image>
+<!--                            <image class="left"  :src="item.img" mode=""></image>-->
                             <view class="right" @click="itemdata(item)">
-                                <view class="title">{{item.name}}</view>
-                                <view class="dengjiimg">{{item.value}}</view>
+                                <view class="title">{{item['盘点单号']}}</view>
+                                <view class="dengjiimg">{{item['实盘总数量']}}</view>
                             </view>
                         </view>
                     </block>
@@ -46,8 +46,12 @@
             }
         },
         created() {
+          console.log(this.list)
              this.datalist = this.list
         },
+      onShow() {
+        console.log(this.list)
+      },
         methods: {
             // 多选复选框改变事件
             changeCheckbox(e) {

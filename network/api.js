@@ -197,3 +197,5 @@ export const rcpddosave = (params, config = {}) => http.post("/mzsale/web/pdd/do
 export const rcpdcheck = (params, config = {}) => http.post("/mzsale/web/pdd/check", params, config)
 export const rcpddelete = (params, config = {}) => http.post("/mzsale/web/pdd/delete", params, config)
 export const rcpdline = (params, config = {}) => http.post("/mzsale/web/pdd/delete/line", params, config)
+//记账
+export const rcjz = (params, config = {}) => http.post("/mzsale/web/pdd/app/fastset", params, config)
