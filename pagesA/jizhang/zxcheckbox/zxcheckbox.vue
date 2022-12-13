@@ -12,13 +12,19 @@
 <!--                            <image class="left"  :src="item.img" mode=""></image>-->
                             <view class="right unit3" @click="itemdata(item)">
 
-                              <view class="unit3box" style="color: #4f99ff;font-size: 20px">
-                                <view class="title">盘点单号:{{item['盘点单号']}}</view>
-                                <view class="title">实盘总数量:{{item['实盘总数量']}}</view>
+                              <view class="unit3box" >
+                                <view class="title"> <span style="color: #4f99ff;font-size: 18px">{{item['盘点单号']}}</span></view>
+                                <view class="title">实盘总数量:
+                                  <span style="color: red;">{{item['实盘总数量']}}</span>
+                                  </view>
                               </view>
                               <view class="unit3box">
-                                <view class="title">预损溢数量:{{item['预损溢数量']}}</view>
-                                <view class="title">预损溢金额:{{item['预损溢金额']}}</view>
+                                <view class="title">预损溢数量:
+                                  <span style="color: red;">{{item['预损溢数量']}}</span>
+                                  </view>
+                                <view class="title">预损溢金额:
+                                  <span style="color: red;">{{item['预损溢金额']}}</span>
+                                </view>
                               </view>
 
                               <view class="unit3box">
@@ -254,7 +260,7 @@ import {rcjz} from '../../../network/api'
         left: 0;
         bottom: 0;
         width: 100%;
-        height: 92rpx;
+        height: 100rpx;
         line-height: 92rpx;
         overflow: hidden;
         padding: 0 22rpx;
