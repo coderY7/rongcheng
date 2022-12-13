@@ -229,27 +229,27 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 var TableCheckbox = function TableCheckbox() {
   __webpack_require__.e(/*! require.ensure | uni_modules/zb-table/components/zb-table/components/table-checkbox */ "uni_modules/zb-table/components/zb-table/components/table-checkbox").then((function () {
-    return resolve(__webpack_require__(/*! ./components/table-checkbox.vue */ 670));
+    return resolve(__webpack_require__(/*! ./components/table-checkbox.vue */ 677));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var TableSummary = function TableSummary() {
   Promise.all(/*! require.ensure | uni_modules/zb-table/components/zb-table/components/table-summary */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/zb-table/components/zb-table/components/table-summary")]).then((function () {
-    return resolve(__webpack_require__(/*! ./components/table-summary.vue */ 677));
+    return resolve(__webpack_require__(/*! ./components/table-summary.vue */ 684));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var TableSideSummary = function TableSideSummary() {
   Promise.all(/*! require.ensure | uni_modules/zb-table/components/zb-table/components/table-side-summary */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/zb-table/components/zb-table/components/table-side-summary")]).then((function () {
-    return resolve(__webpack_require__(/*! ./components/table-side-summary.vue */ 685));
+    return resolve(__webpack_require__(/*! ./components/table-side-summary.vue */ 692));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var TableH5Summary = function TableH5Summary() {
   Promise.all(/*! require.ensure | uni_modules/zb-table/components/zb-table/components/table-h5-summary */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/zb-table/components/zb-table/components/table-h5-summary")]).then((function () {
-    return resolve(__webpack_require__(/*! ./components/table-h5-summary */ 692));
+    return resolve(__webpack_require__(/*! ./components/table-h5-summary */ 699));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var ZbLoadMore = function ZbLoadMore() {
   __webpack_require__.e(/*! require.ensure | uni_modules/zb-table/components/zb-table/components/zb-load-more */ "uni_modules/zb-table/components/zb-table/components/zb-load-more").then((function () {
-    return resolve(__webpack_require__(/*! ./components/zb-load-more */ 699));
+    return resolve(__webpack_require__(/*! ./components/zb-load-more */ 706));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default2 = {

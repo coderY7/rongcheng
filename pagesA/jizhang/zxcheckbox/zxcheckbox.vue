@@ -6,17 +6,27 @@
                 <checkbox-group class="block" @change="changeCheckbox">
                     <block v-for="item in datalist" :key="item['盘点单号']">
                         <view class="collshop-cen-item">
-                            <checkbox v-if="edit" :value="JSON.stringify(item)"
+                            <checkbox  style="margin: auto 0" v-if="edit" :value="JSON.stringify(item)"
                                 :checked="checkedArr.includes(JSON.stringify(item))"
                                 :class="{'checked':checkedArr.includes(JSON.stringify(item))}"></checkbox>
 <!--                            <image class="left"  :src="item.img" mode=""></image>-->
-                            <view class="right" @click="itemdata(item)">
+                            <view class="right unit3" @click="itemdata(item)">
+
+                              <view class="unit3box" style="color: #4f99ff;font-size: 20px">
                                 <view class="title">盘点单号:{{item['盘点单号']}}</view>
                                 <view class="title">实盘总数量:{{item['实盘总数量']}}</view>
-                              <view class="title">盘点开始日:{{item['盘点开始日']}}</view>
-                              <view class="title">盘点结束日:{{item['盘点结束日']}}</view>
-                              <view class="title">预损溢数量:{{item['预损溢数量']}}</view>
-                              <view class="title">预损溢金额:{{item['预损溢金额']}}</view>
+                              </view>
+                              <view class="unit3box">
+                                <view class="title">预损溢数量:{{item['预损溢数量']}}</view>
+                                <view class="title">预损溢金额:{{item['预损溢金额']}}</view>
+                              </view>
+
+                              <view class="unit3box">
+                                <view class="title">盘点开始日:{{item['盘点开始日']}}</view>
+                              </view>
+                              <view class="unit3box">
+                                <view class="title">盘点结束日:{{item['盘点结束日']}}</view>
+                              </view>
 
                             </view>
                         </view>
@@ -154,7 +164,7 @@ import {rcjz} from '../../../network/api'
         }
     }
 </script>
-<style>
+<style lang="scss">
      checkbox .wx-checkbox-input {
     	 border-radius: 50% !important;
     	  color: #ffffff !important;
@@ -197,6 +207,8 @@ import {rcjz} from '../../../network/api'
     }
 
     .collshop-cen-item {
+      display: flex;
+    align-items: center;
         width: 100%;
         padding: 28rpx 22rpx 0;
         box-sizing: border-box;
@@ -268,4 +280,21 @@ import {rcjz} from '../../../network/api'
         border-radius: 6rpx;
         margin-top: 20rpx;
     }
+     .unit3{
+       width: 90%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       margin: 30rpx auto;
+       //padding: 20rpx;
+       //border: silver solid 1px;
+       //border-radius: 10px;
+     .unit3box{
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex-direction: row;
+       padding-bottom:5px;
+     }
+     }
 </style>

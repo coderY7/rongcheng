@@ -149,12 +149,12 @@ var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 21);
 var _index = _interopRequireDefault(__webpack_require__(/*! ./i18n/index.js */ 411));
 var calendar = function calendar() {
   Promise.all(/*! require.ensure | uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("uni_modules/uni-datetime-picker/components/uni-datetime-picker/calendar")]).then((function () {
-    return resolve(__webpack_require__(/*! ./calendar.vue */ 609));
+    return resolve(__webpack_require__(/*! ./calendar.vue */ 616));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var timePicker = function timePicker() {
   __webpack_require__.e(/*! require.ensure | uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker */ "uni_modules/uni-datetime-picker/components/uni-datetime-picker/time-picker").then((function () {
-    return resolve(__webpack_require__(/*! ./time-picker.vue */ 617));
+    return resolve(__webpack_require__(/*! ./time-picker.vue */ 624));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _initVueI18n = (0, _uniI18n.initVueI18n)(_index.default),

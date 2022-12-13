@@ -101,6 +101,7 @@ this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-cheng
       }
       rcjz(data).then((res) => {
         console.log(res.data)
+
         uni.setStorageSync('jzlist',res.data)
       })
 		  uni.navigateTo({
