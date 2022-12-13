@@ -2,7 +2,7 @@
   <view>
     <navbar title='记账审核' @back="back()"></navbar>
 
-    <zxcheckbox :list="checkboxData" @send="value"></zxcheckbox>
+    <zxcheckbox :list="checkboxData" @send="value" v-if="show"></zxcheckbox>
   </view>
 </template>
 
@@ -19,11 +19,24 @@ navbar
   onLoad() {
   },
   onShow() {
-    this.checkboxData=uni.getStorageSync('jzlist')
+
+  },
+   created(){
+    let data = {
+      access_token: uni.getStorageSync('access_token'),
+      vtype: 'pdlist',
+      fdbh: uni.getStorageSync('fdbh')
+    }
+  rcjz(data).then((res) => {
+    this.show=true
+      uni.setStorageSync('jzlist',res.data)
+      this.checkboxData=res.data
+    })
   },
   data() {
     return {
-       checkboxData:uni.getStorageSync('jzlist'),
+       checkboxData:[],
+      show:false
     }
   },
   methods: {

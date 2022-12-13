@@ -269,25 +269,16 @@ var _default = {
         });
       }
       if (item.cxmc == '记账审核') {
-        var data = {
-          access_token: uni.getStorageSync('access_token'),
-          vtype: 'pdlist',
-          fdbh: uni.getStorageSync('fdbh')
-        };
-        (0, _api.rcjz)(data).then(function (res) {
-          console.log(res.data);
-          uni.setStorageSync('jzlist', res.data);
-        });
         uni.navigateTo({
           url: '../../pagesA/jizhang/jizhang'
         });
       }
       if (item.cxmc == '销售财务日报表') {
-        var _data = {
+        var data = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: 'RB007APP'
         };
-        (0, _api.condition)(_data).then(function (res) {
+        (0, _api.condition)(data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
           uni.setStorageSync('dqbb', {
@@ -301,11 +292,11 @@ var _default = {
       }
       if (item.cxmc == '商品正常库存量分析') {
         var cxbh = 'KF011APP';
-        var _data2 = {
+        var _data = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: cxbh
         };
-        (0, _api.condition)(_data2).then(function (res) {
+        (0, _api.condition)(_data).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
           uni.setStorageSync('dqbb', {
@@ -319,11 +310,11 @@ var _default = {
       }
       if (item.cxmc == '入库单按单据汇总') {
         var _cxbh = 'PS059APP';
-        var _data3 = {
+        var _data2 = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: _cxbh
         };
-        (0, _api.condition)(_data3).then(function (res) {
+        (0, _api.condition)(_data2).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
           uni.setStorageSync('dqbb', {
@@ -337,11 +328,11 @@ var _default = {
       }
       if (item.cxmc == '退货单按单据汇总') {
         var _cxbh2 = 'HZ012APP';
-        var _data4 = {
+        var _data3 = {
           access_token: uni.getStorageSync('access_token'),
           cxbh: _cxbh2
         };
-        (0, _api.condition)(_data4).then(function (res) {
+        (0, _api.condition)(_data3).then(function (res) {
           console.log('res', res.data);
           var items = JSON.stringify(res);
           uni.setStorageSync('dqbb', {
