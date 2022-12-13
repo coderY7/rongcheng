@@ -29,7 +29,6 @@ navbar
     }
   rcjz(data).then((res) => {
     this.show=true
-      uni.setStorageSync('jzlist',res.data)
       this.checkboxData=res.data
     })
   },
