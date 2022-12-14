@@ -76,7 +76,6 @@ import {rcjz} from '../../../network/api'
 
         data() {
             return {
-              hz:true,
               hzlist:'',
               gztype:'',
               result:'',
