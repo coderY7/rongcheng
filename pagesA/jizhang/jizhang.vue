@@ -1,8 +1,13 @@
 <template>
   <view>
     <navbar title='记账审核' @back="back()"></navbar>
-
-    <zxcheckbox :list="checkboxData"  :hz="hz" @send="value" @ishz="list" @issh="list" v-if="show"></zxcheckbox>
+    <zxcheckbox :list="checkboxData"  :hz="hz" :mydata="mydata" @send="value" @ishz="list" @issh="list" v-if="show"></zxcheckbox>
+    <view v-if="mydata" class="msj">
+      <view>
+        <image src="https://integral-1256268364.cos.ap-chengdu.myqcloud.com/c5b9ec0862a57c4cee9d7373806b93cab8013b3c.jpg"></image>
+      </view>
+      <view>未查询到数据</view>
+    </view>
   </view>
 </template>
 
@@ -28,7 +33,8 @@ navbar
     return {
        checkboxData:[],
       show:false,
-      hz:true
+      hz:true,
+      mydata:false
     }
   },
   methods: {
@@ -43,6 +49,7 @@ navbar
     //列表
     list() {
       this.show=false
+      this.mydata=false
       let data = {
         access_token: uni.getStorageSync('access_token'),
         vtype: 'pdlist',
@@ -58,14 +65,7 @@ navbar
           }
         }
         if(res.error_code=='500'){
-          uni.showToast({
-            title: res.message,
-            duration: 2000,
-            icon:'none'
-          });
-          setTimeout(()=>{
-            this.back()
-          },2000)
+          this.mydata=true
         }
         if(res.error_code=='0'){
           if(res.data[0]['过账类型']=='UNION'){
@@ -83,5 +83,11 @@ navbar
 </script>
 
 <style>
-
+.msj{
+  margin-top: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 </style>

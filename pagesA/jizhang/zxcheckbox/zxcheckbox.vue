@@ -1,8 +1,8 @@
 <template>
     <view class="content">
       <view v-if="edit" class="hz_type">
-        <u-radio-group v-model="gztype" @change="ispdlx" size="26">
-          <u-radio shape="square" label="部分盘点" name="PA"></u-radio>
+        <u-radio-group  @change="ispdlx" size="26" v-model="radiovalue">
+          <u-radio shape="square" label="部分盘点" name="PA" :customStyle="{marginRight: '20px'}"></u-radio>
           <u-radio shape="square" label="全部盘点" name="AL"></u-radio>
         </u-radio-group>
       </view>
@@ -58,6 +58,8 @@
               <view class="right" @click="shenhe" v-if="!edit">审核</view>
             </view>
         </view>
+
+
     </view>
 
 </template>
@@ -84,6 +86,7 @@ import {rcjz} from '../../../network/api'
 
         data() {
             return {
+              radiovalue:'PA',
               hzlist:'',
               gztype:'',
               result:'',
@@ -97,7 +100,7 @@ import {rcjz} from '../../../network/api'
         },
       mounted() {
           console.log(this.hz,this.list)
-             this.datalist = this.list
+             this.datalist=this.list
              this.edit=this.hz
         },
 
