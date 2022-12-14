@@ -5,15 +5,15 @@
 
     <view class="unit1">
 			<ul>
-				<li v-for="(item,index) in Alllist" :key="index">
-					<view class="unit1_box" @click="enter(item)">
-						<view class="boxs">
-							<view class="boxsimg">
-                <image :src="item.url"></image>
-							</view>
-							<view class="boxsname">{{item.cxmc}}</view>
-						</view>
-					</view>
+				<li v-for="(item,index) in showlist" :key="index">
+            <view class="unit1_box" @click="enter(item)">
+              <view class="boxs">
+                <view class="boxsimg">
+                  <image :src="item.url"></image>
+                </view>
+                <view class="boxsname">{{item.cxmc}}</view>
+              </view>
+            </view>
 				</li>
 			</ul>
 		</view>
@@ -33,6 +33,7 @@
 			return {
 				bgColor: '#4f99ff', //动态背景
 				Alllist: [],
+        showlist:[],
 				title: '报表查询',
 			};
 		},
@@ -40,8 +41,26 @@
 		    navbar
 		  },
 		onLoad() {
-this.Alllist=[{cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg'},{cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg'},{cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg'},{cxmc:'商品退库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg'},{cxmc:'商品盘点',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg'},{cxmc:'记账审核',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg'},{cxmc:'销售财务日报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg'},{cxmc:'商品正常库存量分析',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg'},{cxmc:'入库单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg'},{cxmc:'退货单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg'}]
+this.Alllist=[
+    {cxmc:'新增商品',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/d265a362ce490577e179dfaac3406aa83e2b72ca.jpg',show:false},
+  {cxmc:'商品修改',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/191e07a5f11667613274308cbc78a1c8080ce79e.jpg' ,show:false},
+  {cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' ,show:false},
+  {cxmc:'商品退库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' ,show:false},
+  {cxmc:'商品盘点',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg' ,show:false},
+  {cxmc:'记账审核',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg' ,show:false},
+  {cxmc:'销售财务日报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg' ,show:false},
+  {cxmc:'商品正常库存量分析',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg' ,show:false},
+  {cxmc:'入库单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg' ,show:false},
+  {cxmc:'退货单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg' ,show:false}]
 		},
+    onShow(){
+      this.showlist=[]
+      this.Alllist.forEach((item)=>{
+        if(item.show){
+          this.showlist.push(item)
+        }
+      })
+    },
 		methods: {
 			//获取报表
 			isreportForm() {
