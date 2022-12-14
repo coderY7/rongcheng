@@ -194,12 +194,21 @@ import {rcjz} from '../../../network/api'
 
           //合帐
           hezhang() {
+            if(this.hzlist==''){
+              uni.showToast({
+                title:'请勾选盘点单号',
+                duration: 2000,
+                icon:'none'
+              });
+              return
+            }
             let hzlist=[]
             this.hzlist.forEach((item)=>{
               hzlist.push((item['盘点单号']))
             })
             this.hzlist=hzlist
             this.hzlist=this.hzlist.join(',')
+
             let datas = {
               access_token: uni.getStorageSync('access_token'),
               vtype: 'pdhdbz',

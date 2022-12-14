@@ -7,6 +7,7 @@
         <image src="https://integral-1256268364.cos.ap-chengdu.myqcloud.com/c5b9ec0862a57c4cee9d7373806b93cab8013b3c.jpg"></image>
       </view>
       <view>未查询到数据</view>
+      <view @click="list" style="margin-top: 10px;color: red;font-size: 20px">刷新</view>
     </view>
   </view>
 </template>
