@@ -350,6 +350,7 @@ var _default = {
   },
   data: function data() {
     return {
+      authority: true,
       spbm: '',
       sjbh: '',
       sjbhlist: '',
@@ -386,6 +387,11 @@ var _default = {
   },
   onReady: function onReady() {},
   onShow: function onShow() {
+    var authority = uni.getStorageSync('authority').split(';');
+    if (authority.indexOf('999921') != '-1') {
+      this.authority = false;
+    }
+
     //处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO;
     var sjbhlist = [];

@@ -122,7 +122,7 @@
     </view>
 
     <view class="unit3">
-      <view class="unit3_l"><u-button type="primary" text="整单审核" @click="ischeck()"></u-button></view>
+      <view class="unit3_l"><u-button type="primary" :disabled="authority" text="整单审核" @click="ischeck()"></u-button></view>
       <view class="unit3_r"><u-button type="primary" text="整单删除" @click="isdelete()"></u-button></view>
     </view>
 
@@ -174,6 +174,7 @@ export default {
   },
   data() {
     return {
+      authority:true,
       spbm:'',
       sjbh: '',
       sjbhlist: '',
@@ -204,6 +205,11 @@ export default {
 
   },
   onShow() {
+    let authority=uni.getStorageSync('authority').split(';')
+    if(authority.indexOf('999921')!='-1'){
+      this.authority=false
+    }
+
     //处理仓库下拉框数据
     this.sjbhlist = uni.getStorageSync('basic').SJINFO
     let sjbhlist = [];
