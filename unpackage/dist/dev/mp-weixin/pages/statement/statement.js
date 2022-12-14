@@ -229,10 +229,10 @@ var _default = {
   onShow: function onShow() {
     var _this = this;
     this.authority = uni.getStorageSync('authority').split(';');
-    if (this.authority.indexOf('Base08') != '-1') {
+    if (this.authority.indexOf('999998') != '-1') {
       this.Alllist[0].show = true;
     }
-    if (this.authority.indexOf('Base09') != '-1') {
+    if (this.authority.indexOf('999998') != '-1') {
       this.Alllist[1].show = true;
     }
     if (this.authority.indexOf('SPKF07') != '-1') {
@@ -246,6 +246,18 @@ var _default = {
     }
     if (this.authority.indexOf('PPD06') != '-1') {
       this.Alllist[5].show = true;
+    }
+    if (this.authority.indexOf('RB007APP') != '-1') {
+      this.Alllist[6].show = true;
+    }
+    if (this.authority.indexOf('KF011APP') != '-1') {
+      this.Alllist[7].show = true;
+    }
+    if (this.authority.indexOf('PS059APP') != '-1') {
+      this.Alllist[8].show = true;
+    }
+    if (this.authority.indexOf('HZ012APP') != '-1') {
+      this.Alllist[9].show = true;
     }
     this.showlist = [];
     this.Alllist.forEach(function (item) {
