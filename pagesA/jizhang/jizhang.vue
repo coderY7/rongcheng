@@ -2,7 +2,7 @@
   <view>
     <navbar title='记账审核' @back="back()"></navbar>
 
-    <zxcheckbox :list="checkboxData" @send="value" v-if="show"></zxcheckbox>
+    <zxcheckbox :list="checkboxData"  :hz="hz" @send="value" @ishz="list" @issh="list" v-if="show"></zxcheckbox>
   </view>
 </template>
 
@@ -22,20 +22,13 @@ navbar
 
   },
    created(){
-    let data = {
-      access_token: uni.getStorageSync('access_token'),
-      vtype: 'pdlist',
-      fdbh: uni.getStorageSync('fdbh')
-    }
-  rcjz(data).then((res) => {
-    this.show=true
-      this.checkboxData=res.data
-    })
+   this.list()
   },
   data() {
     return {
        checkboxData:[],
-      show:false
+      show:false,
+      hz:true
     }
   },
   methods: {
@@ -49,7 +42,41 @@ navbar
     },
     //列表
     list() {
+      this.show=false
+      let data = {
+        access_token: uni.getStorageSync('access_token'),
+        vtype: 'pdlist',
+        fdbh: uni.getStorageSync('fdbh')
+      }
+      rcjz(data).then((res) => {
+        //判断是否记账
+        if(res.error_code=='0'){
+          if(res.data[0]['过账类型']=='CHECK'){
+            this.hz=false
+            this.show=true
+            this.checkboxData=res.data
+          }
+        }
+        if(res.error_code=='500'){
+          uni.showToast({
+            title: res.message,
+            duration: 2000,
+            icon:'none'
+          });
+          setTimeout(()=>{
+            this.back()
+          },2000)
+        }
+        if(res.error_code=='0'){
+          if(res.data[0]['过账类型']=='UNION'){
+            this.hz=true
+            this.show=true
+            this.checkboxData=res.data
 
+          }
+        }
+
+      })
     }
   }
 }

@@ -39,14 +39,15 @@
                     </block>
                 </checkbox-group>
             </view>
-            <view v-if="edit" class="collshop-bot">
-                <checkbox-group @change="allChoose">
+            <view  class="collshop-bot">
+                <checkbox-group @change="allChoose" v-if="edit">
                     <label>
                         <checkbox value="all" :class="{'checked':allChecked}" :checked="allChecked?true:false">
                         </checkbox> 全选
                     </label>
                 </checkbox-group>
-                <view class="right" @click="shenhe">审核</view>
+              <view class="right" @click="hezhang" v-if="edit">合帐</view>
+              <view class="right" @click="shenhe" v-if="!edit">审核</view>
             </view>
         </view>
     </view>
@@ -58,17 +59,26 @@ import {rcjz} from '../../../network/api'
 
     export default {
         props:{
-            // list:[],
           list: {
             type: Array,
             default() {
               return
             }
           },
+          hz:{
+            type:Boolean,
+            default() {
+              return
+            }
+          }
         },
+
 
         data() {
             return {
+              hz:true,
+              hzlist:'',
+              gztype:'',
               result:'',
               bdt:'',
               sumdata:'',
@@ -79,14 +89,21 @@ import {rcjz} from '../../../network/api'
             }
         },
       mounted() {
-          console.log(this,this.list)
+          console.log(this.hz,this.list)
              this.datalist = this.list
+             this.edit=this.hz
         },
 
         methods: {
             // 多选复选框改变事件
             changeCheckbox(e) {
               this.checkedArr = e.detail.value;
+              let hzlist=[]
+              e.detail.value.forEach((item)=>{
+                hzlist.push(JSON.parse(item))
+              })
+              this.hzlist=hzlist
+
               let datalist=[]
               e.detail.value.forEach((item)=>{
                 datalist.push(JSON.parse(item))
@@ -154,19 +171,56 @@ import {rcjz} from '../../../network/api'
             })
 
           },
-            // 审核
-          shenhe() {
+
+          //合帐
+          hezhang() {
+            let hzlist=[]
+            this.hzlist.forEach((item)=>{
+              hzlist.push((item['盘点单号']))
+            })
+            this.hzlist=hzlist
+            this.hzlist=this.hzlist.join(',')
             let datas = {
               access_token: uni.getStorageSync('access_token'),
-              vtype: 'pddetail',
+              vtype: 'pdhdbz',
               fdbh: uni.getStorageSync('fdbh'),
-              pddh:item['盘点单号']
+              pddh:this.hzlist,
+              gztype:this.gztype==''?"PA":this.gztype,
+              userid:uni.getStorageSync('userid')
             }
             rcjz(datas).then((res) => {
-              console.log(res.data)
+              if(res.error_code=='0'){
+                uni.showToast({
+                  title: res.message,
+                  duration: 2000,
+                  icon:'none'
+                });
+                this.$emit("ishz")
+              }
             })
-            }
+          },
+// 审核
+shenhe() {
+  let datas = {
+    access_token: uni.getStorageSync('access_token'),
+    vtype: 'pdgzsh',
+    fdbh: uni.getStorageSync('fdbh'),
+    pddh:this.datalist[0]['盘点单号'],
+    pdjzno:this.datalist[0]['记账标号'],
+    userid:uni.getStorageSync('userid')
+  }
+  rcjz(datas).then((res) => {
+    if(res.error_code=='0'){
+      uni.showToast({
+        title: res.message,
+        duration: 2000,
+        icon:'none'
+      });
+      this.$emit("issh")
+    }
+  })
 
+},
         }
     }
 </script>
