@@ -176,7 +176,8 @@ var _default = {
       //动态背景
       Alllist: [],
       showlist: [],
-      title: '报表查询'
+      title: '报表查询',
+      authority: ''
     };
   },
   components: {
@@ -204,7 +205,7 @@ var _default = {
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg',
       show: false
     }, {
-      cxmc: '记账审核',
+      cxmc: '过账审核',
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg',
       show: false
     }, {
@@ -227,6 +228,25 @@ var _default = {
   },
   onShow: function onShow() {
     var _this = this;
+    this.authority = uni.getStorageSync('authority').split(';');
+    if (this.authority.indexOf('Base08') != '-1') {
+      this.Alllist[0].show = true;
+    }
+    if (this.authority.indexOf('Base09') != '-1') {
+      this.Alllist[1].show = true;
+    }
+    if (this.authority.indexOf('SPKF07') != '-1') {
+      this.Alllist[2].show = true;
+    }
+    if (this.authority.indexOf('SPKF08') != '-1') {
+      this.Alllist[3].show = true;
+    }
+    if (this.authority.indexOf('PPD17') != '-1') {
+      this.Alllist[4].show = true;
+    }
+    if (this.authority.indexOf('PPD06') != '-1') {
+      this.Alllist[5].show = true;
+    }
     this.showlist = [];
     this.Alllist.forEach(function (item) {
       if (item.show) {
@@ -288,7 +308,7 @@ var _default = {
           url: '../../pagesA/pandian/pandian'
         });
       }
-      if (item.cxmc == '记账审核') {
+      if (item.cxmc == '过账审核') {
         uni.navigateTo({
           url: '../../pagesA/jizhang/jizhang'
         });

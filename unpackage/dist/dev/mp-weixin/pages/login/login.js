@@ -310,7 +310,7 @@ var _default = {
             uni.setStorageSync('loginaccess', res); //登录成功返回的数据
             uni.setStorageSync('fdtype', res.companyinfo.erp_saletype); //分店类型
             uni.setStorageSync('login', true);
-
+            _this2.gnqx();
             // 获取用户信息
             uni.login({
               provider: 'weixin',
@@ -422,6 +422,18 @@ var _default = {
       (0, _api.rcbasics)(data).then(function (res) {
         console.log(res);
         uni.setStorageSync('basic', res);
+      });
+    },
+    //功能权限
+    gnqx: function gnqx() {
+      var data = {
+        access_token: uni.getStorageSync('access_token'),
+        userid: uni.getStorageSync('userid'),
+        fdbh: uni.getStorageSync('fdbh')
+      };
+      (0, _api.rcgnqx)(data).then(function (res) {
+        console.log('权限', res);
+        uni.setStorageSync('authority', res.authority);
       });
     }
   }

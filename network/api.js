@@ -199,3 +199,5 @@ export const rcpddelete = (params, config = {}) => http.post("/mzsale/web/pdd/de
 export const rcpdline = (params, config = {}) => http.post("/mzsale/web/pdd/delete/line", params, config)
 //记账
 export const rcjz = (params, config = {}) => http.post("/mzsale/web/pdd/app/fastset", params, config)
+//功能权限
+export const  rcgnqx= (params, config = {}) => http.post("/mzsale/web/basic/authority", params, config)
