@@ -1,5 +1,11 @@
 <template>
     <view class="content">
+      <view v-if="edit" class="hz_type">
+        <u-radio-group v-model="gztype" @change="ispdlx" size="26">
+          <u-radio shape="square" label="部分盘点" name="PA"></u-radio>
+          <u-radio shape="square" label="全部盘点" name="AL"></u-radio>
+        </u-radio-group>
+      </view>
         <view class="collshop-box">
 <!--            <view class="collshop-top" @click="isedit">{{edit?'完成':'编辑'}}</view>-->
             <view class="collshop-cen">
@@ -9,7 +15,7 @@
                             <checkbox  style="margin: auto 0" v-if="edit" :value="JSON.stringify(item)"
                                 :checked="checkedArr.includes(JSON.stringify(item))"
                                 :class="{'checked':checkedArr.includes(JSON.stringify(item))}"></checkbox>
-<!--                            <image class="left"  :src="item.img" mode=""></image>-->
+
                             <view class="right unit3" @click="itemdata(item)">
 
                               <view class="unit3box" >
@@ -46,6 +52,8 @@
                         </checkbox> 全选
                     </label>
                 </checkbox-group>
+
+
               <view class="right" @click="hezhang" v-if="edit">合帐</view>
               <view class="right" @click="shenhe" v-if="!edit">审核</view>
             </view>
@@ -94,6 +102,9 @@ import {rcjz} from '../../../network/api'
         },
 
         methods: {
+          ispdlx(n){
+            this.gztype=n
+          },
             // 多选复选框改变事件
             changeCheckbox(e) {
               this.checkedArr = e.detail.value;
@@ -239,6 +250,10 @@ shenhe() {
     page {
         background-color: #eee;
     }
+     .hz_type{
+       width: 100%;
+       padding: 20rpx;
+     }
     .collshop-box {
         width: 100%;
         height: auto;
@@ -269,10 +284,10 @@ shenhe() {
       display: flex;
     align-items: center;
         width: 100%;
-        padding: 28rpx 22rpx 0;
+        padding:0 20rpx;
         box-sizing: border-box;
         background-color: #fff;
-        margin-bottom: 14rpx;
+        margin-bottom: 20rpx;
         overflow: hidden;
     }
 
@@ -339,6 +354,9 @@ shenhe() {
         border-radius: 6rpx;
         margin-top: 20rpx;
     }
+
+
+
      .unit3{
        width: 90%;
        display: flex;
