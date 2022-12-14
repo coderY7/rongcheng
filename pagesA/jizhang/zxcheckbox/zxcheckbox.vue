@@ -139,6 +139,13 @@ import {rcjz} from '../../../network/api'
                         let itemVal =JSON.stringify(item)
                         if (!this.checkedArr.includes(itemVal)) {
                             this.checkedArr.push(itemVal);
+
+                          let hzlist=[]
+                          this.checkedArr.forEach((item)=>{
+                            hzlist.push(JSON.parse(item))
+                          })
+                          this.hzlist=hzlist
+
                           let datalist=[]
                           this.checkedArr.forEach((item)=>{
                             datalist.push(JSON.parse(item))
