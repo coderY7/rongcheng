@@ -26,7 +26,7 @@ _App.default.mpType = 'app';
 
 _vue.default.use(_uviewUi.default);
 // 引入请求封装，将app参数传递到配置中
-__webpack_require__(/*! network/request.js */ 154)(app);
+__webpack_require__(/*! network/request.js */ 157)(app);
 var app = new _vue.default(_objectSpread({}, _App.default));
 createApp(app).$mount();
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["createApp"]))

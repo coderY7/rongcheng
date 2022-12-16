@@ -732,8 +732,8 @@ function populateParameters(result) {
     appVersion: "1.0.0",
     appVersionCode: "100",
     appLanguage: getAppLanguage(hostLanguage),
-    uniCompileVersion: "3.6.13",
-    uniRuntimeVersion: "3.6.13",
+    uniCompileVersion: "3.6.14",
+    uniRuntimeVersion: "3.6.14",
     uniPlatform: undefined || "mp-weixin",
     deviceBrand: deviceBrand,
     deviceModel: model,
@@ -9538,16 +9538,16 @@ var _mixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mixin.j
 var _mpMixin = _interopRequireDefault(__webpack_require__(/*! ./libs/mixin/mpMixin.js */ 34));
 var _luchRequest = _interopRequireDefault(__webpack_require__(/*! ./libs/luch-request */ 35));
 var _route = _interopRequireDefault(__webpack_require__(/*! ./libs/util/route.js */ 53));
-var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 54));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 55));
-var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 56));
-var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 57));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./libs/function/index.js */ 58));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 61));
-var _props = _interopRequireDefault(__webpack_require__(/*! ./libs/config/props.js */ 62));
-var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 152));
-var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/config/color.js */ 110));
-var _platform = _interopRequireDefault(__webpack_require__(/*! ./libs/function/platform */ 153));
+var _colorGradient = _interopRequireDefault(__webpack_require__(/*! ./libs/function/colorGradient.js */ 57));
+var _test = _interopRequireDefault(__webpack_require__(/*! ./libs/function/test.js */ 58));
+var _debounce = _interopRequireDefault(__webpack_require__(/*! ./libs/function/debounce.js */ 59));
+var _throttle = _interopRequireDefault(__webpack_require__(/*! ./libs/function/throttle.js */ 60));
+var _index = _interopRequireDefault(__webpack_require__(/*! ./libs/function/index.js */ 61));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./libs/config/config.js */ 64));
+var _props = _interopRequireDefault(__webpack_require__(/*! ./libs/config/props.js */ 65));
+var _zIndex = _interopRequireDefault(__webpack_require__(/*! ./libs/config/zIndex.js */ 155));
+var _color = _interopRequireDefault(__webpack_require__(/*! ./libs/config/color.js */ 113));
+var _platform = _interopRequireDefault(__webpack_require__(/*! ./libs/function/platform */ 156));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 // 看到此报错，是因为没有配置vue.config.js的【transpileDependencies】，详见：https://www.uviewui.com/components/npmSetting.html#_5-cli模式额外配置
@@ -12981,6 +12981,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 54));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 56));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 22));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 23));
 /**
@@ -13039,44 +13041,74 @@ var Router = /*#__PURE__*/function () {
     // 对外的方法名称
   }, {
     key: "route",
-    value: async function route() {
-      var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-      var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      // 合并用户的配置和内部的默认配置
-      var mergeConfig = {};
-      if (typeof options === 'string') {
-        // 如果options为字符串，则为route(url, params)的形式
-        mergeConfig.url = this.mixinParam(options, params);
-        mergeConfig.type = 'navigateTo';
-      } else {
-        mergeConfig = uni.$u.deepMerge(options, this.config);
-        // 否则正常使用mergeConfig中的url和params进行拼接
-        mergeConfig.url = this.mixinParam(options.url, options.params);
-      }
+    value: function () {
+      var _route = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var options,
+          params,
+          mergeConfig,
+          isNext,
+          _args = arguments;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                options = _args.length > 0 && _args[0] !== undefined ? _args[0] : {};
+                params = _args.length > 1 && _args[1] !== undefined ? _args[1] : {};
+                // 合并用户的配置和内部的默认配置
+                mergeConfig = {};
+                if (typeof options === 'string') {
+                  // 如果options为字符串，则为route(url, params)的形式
+                  mergeConfig.url = this.mixinParam(options, params);
+                  mergeConfig.type = 'navigateTo';
+                } else {
+                  mergeConfig = uni.$u.deepMerge(options, this.config);
+                  // 否则正常使用mergeConfig中的url和params进行拼接
+                  mergeConfig.url = this.mixinParam(options.url, options.params);
+                }
 
-      // 如果本次跳转的路径和本页面路径一致，不执行跳转，防止用户快速点击跳转按钮，造成多次跳转同一个页面的问题
-      if (mergeConfig.url === uni.$u.page()) return;
-      if (params.intercept) {
-        this.config.intercept = params.intercept;
+                // 如果本次跳转的路径和本页面路径一致，不执行跳转，防止用户快速点击跳转按钮，造成多次跳转同一个页面的问题
+                if (!(mergeConfig.url === uni.$u.page())) {
+                  _context.next = 6;
+                  break;
+                }
+                return _context.abrupt("return");
+              case 6:
+                if (params.intercept) {
+                  this.config.intercept = params.intercept;
+                }
+                // params参数也带给拦截器
+                mergeConfig.params = params;
+                // 合并内外部参数
+                mergeConfig = uni.$u.deepMerge(this.config, mergeConfig);
+                // 判断用户是否定义了拦截器
+                if (!(typeof uni.$u.routeIntercept === 'function')) {
+                  _context.next = 16;
+                  break;
+                }
+                _context.next = 12;
+                return new Promise(function (resolve, reject) {
+                  uni.$u.routeIntercept(mergeConfig, resolve);
+                });
+              case 12:
+                isNext = _context.sent;
+                // 如果isNext为true，则执行路由跳转
+                isNext && this.openPage(mergeConfig);
+                _context.next = 17;
+                break;
+              case 16:
+                this.openPage(mergeConfig);
+              case 17:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function route() {
+        return _route.apply(this, arguments);
       }
-      // params参数也带给拦截器
-      mergeConfig.params = params;
-      // 合并内外部参数
-      mergeConfig = uni.$u.deepMerge(this.config, mergeConfig);
-      // 判断用户是否定义了拦截器
-      if (typeof uni.$u.routeIntercept === 'function') {
-        // 定一个promise，根据用户执行resolve(true)或者resolve(false)来决定是否进行路由跳转
-        var isNext = await new Promise(function (resolve, reject) {
-          uni.$u.routeIntercept(mergeConfig, resolve);
-        });
-        // 如果isNext为true，则执行路由跳转
-        isNext && this.openPage(mergeConfig);
-      } else {
-        this.openPage(mergeConfig);
-      }
-    }
-
-    // 执行路由跳转
+      return route;
+    }() // 执行路由跳转
   }, {
     key: "openPage",
     value: function openPage(config) {
@@ -13123,6 +13155,392 @@ exports.default = _default;
 
 /***/ }),
 /* 54 */
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! @babel/runtime/helpers/typeof */ 12);
+// TODO(Babel 8): Remove this file.
+
+var runtime = __webpack_require__(/*! ../helpers/regeneratorRuntime */ 55)();
+module.exports = runtime;
+
+// Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  if ((typeof globalThis === "undefined" ? "undefined" : _typeof(globalThis)) === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
+}
+
+/***/ }),
+/* 55 */
+/*!*******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/regeneratorRuntime.js ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ./typeof.js */ 12)["default"];
+function _regeneratorRuntime() {
+  "use strict";
+
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/facebook/regenerator/blob/main/LICENSE */
+  module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+    return exports;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports;
+  var exports = {},
+    Op = Object.prototype,
+    hasOwn = Op.hasOwnProperty,
+    defineProperty = Object.defineProperty || function (obj, key, desc) {
+      obj[key] = desc.value;
+    },
+    $Symbol = "function" == typeof Symbol ? Symbol : {},
+    iteratorSymbol = $Symbol.iterator || "@@iterator",
+    asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator",
+    toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+  function define(obj, key, value) {
+    return Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: !0,
+      configurable: !0,
+      writable: !0
+    }), obj[key];
+  }
+  try {
+    define({}, "");
+  } catch (err) {
+    define = function define(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator,
+      generator = Object.create(protoGenerator.prototype),
+      context = new Context(tryLocsList || []);
+    return defineProperty(generator, "_invoke", {
+      value: makeInvokeMethod(innerFn, self, context)
+    }), generator;
+  }
+  function tryCatch(fn, obj, arg) {
+    try {
+      return {
+        type: "normal",
+        arg: fn.call(obj, arg)
+      };
+    } catch (err) {
+      return {
+        type: "throw",
+        arg: err
+      };
+    }
+  }
+  exports.wrap = wrap;
+  var ContinueSentinel = {};
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+  var IteratorPrototype = {};
+  define(IteratorPrototype, iteratorSymbol, function () {
+    return this;
+  });
+  var getProto = Object.getPrototypeOf,
+    NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol) && (IteratorPrototype = NativeIteratorPrototype);
+  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function (method) {
+      define(prototype, method, function (arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if ("throw" !== record.type) {
+        var result = record.arg,
+          value = result.value;
+        return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function (value) {
+          invoke("next", value, resolve, reject);
+        }, function (err) {
+          invoke("throw", err, resolve, reject);
+        }) : PromiseImpl.resolve(value).then(function (unwrapped) {
+          result.value = unwrapped, resolve(result);
+        }, function (error) {
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+      reject(record.arg);
+    }
+    var previousPromise;
+    defineProperty(this, "_invoke", {
+      value: function value(method, arg) {
+        function callInvokeWithMethodAndArg() {
+          return new PromiseImpl(function (resolve, reject) {
+            invoke(method, arg, resolve, reject);
+          });
+        }
+        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+      }
+    });
+  }
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = "suspendedStart";
+    return function (method, arg) {
+      if ("executing" === state) throw new Error("Generator is already running");
+      if ("completed" === state) {
+        if ("throw" === method) throw arg;
+        return doneResult();
+      }
+      for (context.method = method, context.arg = arg;;) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+        if ("next" === context.method) context.sent = context._sent = context.arg;else if ("throw" === context.method) {
+          if ("suspendedStart" === state) throw state = "completed", context.arg;
+          context.dispatchException(context.arg);
+        } else "return" === context.method && context.abrupt("return", context.arg);
+        state = "executing";
+        var record = tryCatch(innerFn, self, context);
+        if ("normal" === record.type) {
+          if (state = context.done ? "completed" : "suspendedYield", record.arg === ContinueSentinel) continue;
+          return {
+            value: record.arg,
+            done: context.done
+          };
+        }
+        "throw" === record.type && (state = "completed", context.method = "throw", context.arg = record.arg);
+      }
+    };
+  }
+  function maybeInvokeDelegate(delegate, context) {
+    var methodName = context.method,
+      method = delegate.iterator[methodName];
+    if (undefined === method) return context.delegate = null, "throw" === methodName && delegate.iterator["return"] && (context.method = "return", context.arg = undefined, maybeInvokeDelegate(delegate, context), "throw" === context.method) || "return" !== methodName && (context.method = "throw", context.arg = new TypeError("The iterator does not provide a '" + methodName + "' method")), ContinueSentinel;
+    var record = tryCatch(method, delegate.iterator, context.arg);
+    if ("throw" === record.type) return context.method = "throw", context.arg = record.arg, context.delegate = null, ContinueSentinel;
+    var info = record.arg;
+    return info ? info.done ? (context[delegate.resultName] = info.value, context.next = delegate.nextLoc, "return" !== context.method && (context.method = "next", context.arg = undefined), context.delegate = null, ContinueSentinel) : info : (context.method = "throw", context.arg = new TypeError("iterator result is not an object"), context.delegate = null, ContinueSentinel);
+  }
+  function pushTryEntry(locs) {
+    var entry = {
+      tryLoc: locs[0]
+    };
+    1 in locs && (entry.catchLoc = locs[1]), 2 in locs && (entry.finallyLoc = locs[2], entry.afterLoc = locs[3]), this.tryEntries.push(entry);
+  }
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal", delete record.arg, entry.completion = record;
+  }
+  function Context(tryLocsList) {
+    this.tryEntries = [{
+      tryLoc: "root"
+    }], tryLocsList.forEach(pushTryEntry, this), this.reset(!0);
+  }
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) return iteratorMethod.call(iterable);
+      if ("function" == typeof iterable.next) return iterable;
+      if (!isNaN(iterable.length)) {
+        var i = -1,
+          next = function next() {
+            for (; ++i < iterable.length;) {
+              if (hasOwn.call(iterable, i)) return next.value = iterable[i], next.done = !1, next;
+            }
+            return next.value = undefined, next.done = !0, next;
+          };
+        return next.next = next;
+      }
+    }
+    return {
+      next: doneResult
+    };
+  }
+  function doneResult() {
+    return {
+      value: undefined,
+      done: !0
+    };
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, defineProperty(Gp, "constructor", {
+    value: GeneratorFunctionPrototype,
+    configurable: !0
+  }), defineProperty(GeneratorFunctionPrototype, "constructor", {
+    value: GeneratorFunction,
+    configurable: !0
+  }), GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"), exports.isGeneratorFunction = function (genFun) {
+    var ctor = "function" == typeof genFun && genFun.constructor;
+    return !!ctor && (ctor === GeneratorFunction || "GeneratorFunction" === (ctor.displayName || ctor.name));
+  }, exports.mark = function (genFun) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(genFun, GeneratorFunctionPrototype) : (genFun.__proto__ = GeneratorFunctionPrototype, define(genFun, toStringTagSymbol, "GeneratorFunction")), genFun.prototype = Object.create(Gp), genFun;
+  }, exports.awrap = function (arg) {
+    return {
+      __await: arg
+    };
+  }, defineIteratorMethods(AsyncIterator.prototype), define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+    return this;
+  }), exports.AsyncIterator = AsyncIterator, exports.async = function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    void 0 === PromiseImpl && (PromiseImpl = Promise);
+    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then(function (result) {
+      return result.done ? result.value : iter.next();
+    });
+  }, defineIteratorMethods(Gp), define(Gp, toStringTagSymbol, "Generator"), define(Gp, iteratorSymbol, function () {
+    return this;
+  }), define(Gp, "toString", function () {
+    return "[object Generator]";
+  }), exports.keys = function (val) {
+    var object = Object(val),
+      keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    return keys.reverse(), function next() {
+      for (; keys.length;) {
+        var key = keys.pop();
+        if (key in object) return next.value = key, next.done = !1, next;
+      }
+      return next.done = !0, next;
+    };
+  }, exports.values = values, Context.prototype = {
+    constructor: Context,
+    reset: function reset(skipTempReset) {
+      if (this.prev = 0, this.next = 0, this.sent = this._sent = undefined, this.done = !1, this.delegate = null, this.method = "next", this.arg = undefined, this.tryEntries.forEach(resetTryEntry), !skipTempReset) for (var name in this) {
+        "t" === name.charAt(0) && hasOwn.call(this, name) && !isNaN(+name.slice(1)) && (this[name] = undefined);
+      }
+    },
+    stop: function stop() {
+      this.done = !0;
+      var rootRecord = this.tryEntries[0].completion;
+      if ("throw" === rootRecord.type) throw rootRecord.arg;
+      return this.rval;
+    },
+    dispatchException: function dispatchException(exception) {
+      if (this.done) throw exception;
+      var context = this;
+      function handle(loc, caught) {
+        return record.type = "throw", record.arg = exception, context.next = loc, caught && (context.method = "next", context.arg = undefined), !!caught;
+      }
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i],
+          record = entry.completion;
+        if ("root" === entry.tryLoc) return handle("end");
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc"),
+            hasFinally = hasOwn.call(entry, "finallyLoc");
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) return handle(entry.catchLoc, !0);
+          } else {
+            if (!hasFinally) throw new Error("try statement without catch or finally");
+            if (this.prev < entry.finallyLoc) return handle(entry.finallyLoc);
+          }
+        }
+      }
+    },
+    abrupt: function abrupt(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+      finallyEntry && ("break" === type || "continue" === type) && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc && (finallyEntry = null);
+      var record = finallyEntry ? finallyEntry.completion : {};
+      return record.type = type, record.arg = arg, finallyEntry ? (this.method = "next", this.next = finallyEntry.finallyLoc, ContinueSentinel) : this.complete(record);
+    },
+    complete: function complete(record, afterLoc) {
+      if ("throw" === record.type) throw record.arg;
+      return "break" === record.type || "continue" === record.type ? this.next = record.arg : "return" === record.type ? (this.rval = this.arg = record.arg, this.method = "return", this.next = "end") : "normal" === record.type && afterLoc && (this.next = afterLoc), ContinueSentinel;
+    },
+    finish: function finish(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) return this.complete(entry.completion, entry.afterLoc), resetTryEntry(entry), ContinueSentinel;
+      }
+    },
+    "catch": function _catch(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if ("throw" === record.type) {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+      throw new Error("illegal catch attempt");
+    },
+    delegateYield: function delegateYield(iterable, resultName, nextLoc) {
+      return this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      }, "next" === this.method && (this.arg = undefined), ContinueSentinel;
+    }
+  }, exports;
+}
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 56 */
+/*!*****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/asyncToGenerator.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+  try {
+    var info = gen[key](arg);
+    var value = info.value;
+  } catch (error) {
+    reject(error);
+    return;
+  }
+  if (info.done) {
+    resolve(value);
+  } else {
+    Promise.resolve(value).then(_next, _throw);
+  }
+}
+function _asyncToGenerator(fn) {
+  return function () {
+    var self = this,
+      args = arguments;
+    return new Promise(function (resolve, reject) {
+      var gen = fn.apply(self, args);
+      function _next(value) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+      }
+      function _throw(err) {
+        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+      }
+      _next(undefined);
+    });
+  };
+}
+module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+
+/***/ }),
+/* 57 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/colorGradient.js ***!
   \************************************************************************************************/
@@ -13277,7 +13695,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 55 */
+/* 58 */
 /*!***************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/test.js ***!
   \***************************************************************************************/
@@ -13582,7 +14000,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 56 */
+/* 59 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/debounce.js ***!
   \*******************************************************************************************/
@@ -13629,7 +14047,7 @@ var _default = debounce;
 exports.default = _default;
 
 /***/ }),
-/* 57 */
+/* 60 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/throttle.js ***!
   \*******************************************************************************************/
@@ -13678,7 +14096,7 @@ var _default = throttle;
 exports.default = _default;
 
 /***/ }),
-/* 58 */
+/* 61 */
 /*!****************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/index.js ***!
   \****************************************************************************************/
@@ -13695,8 +14113,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 4));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 12));
-var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 55));
-var _digit = __webpack_require__(/*! ./digit.js */ 59);
+var _test = _interopRequireDefault(__webpack_require__(/*! ./test.js */ 58));
+var _digit = __webpack_require__(/*! ./digit.js */ 62);
 /**
  * @description 如果value小于min，取min；如果value大于max，取max
  * @param {number} min 
@@ -14439,7 +14857,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 59 */
+/* 62 */
 /*!****************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/digit.js ***!
   \****************************************************************************************/
@@ -14460,7 +14878,7 @@ exports.minus = minus;
 exports.plus = plus;
 exports.round = round;
 exports.times = times;
-var _toArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toArray */ 60));
+var _toArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toArray */ 63));
 var _boundaryCheckingState = true; // 是否进行越界检查的全局开关
 
 /**
@@ -14641,7 +15059,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 60 */
+/* 63 */
 /*!********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/toArray.js ***!
   \********************************************************/
@@ -14658,7 +15076,7 @@ function _toArray(arr) {
 module.exports = _toArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 61 */
+/* 64 */
 /*!***************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/config.js ***!
   \***************************************************************************************/
@@ -14702,7 +15120,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 62 */
+/* 65 */
 /*!**************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props.js ***!
   \**************************************************************************************/
@@ -14718,95 +15136,95 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 10));
-var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 61));
-var _actionSheet = _interopRequireDefault(__webpack_require__(/*! ./props/actionSheet.js */ 63));
-var _album = _interopRequireDefault(__webpack_require__(/*! ./props/album.js */ 64));
-var _alert = _interopRequireDefault(__webpack_require__(/*! ./props/alert.js */ 65));
-var _avatar = _interopRequireDefault(__webpack_require__(/*! ./props/avatar */ 66));
-var _avatarGroup = _interopRequireDefault(__webpack_require__(/*! ./props/avatarGroup */ 67));
-var _backtop = _interopRequireDefault(__webpack_require__(/*! ./props/backtop */ 68));
-var _badge = _interopRequireDefault(__webpack_require__(/*! ./props/badge */ 69));
-var _button = _interopRequireDefault(__webpack_require__(/*! ./props/button */ 70));
-var _calendar = _interopRequireDefault(__webpack_require__(/*! ./props/calendar */ 71));
-var _carKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/carKeyboard */ 72));
-var _cell = _interopRequireDefault(__webpack_require__(/*! ./props/cell */ 73));
-var _cellGroup = _interopRequireDefault(__webpack_require__(/*! ./props/cellGroup */ 74));
-var _checkbox = _interopRequireDefault(__webpack_require__(/*! ./props/checkbox */ 75));
-var _checkboxGroup = _interopRequireDefault(__webpack_require__(/*! ./props/checkboxGroup */ 76));
-var _circleProgress = _interopRequireDefault(__webpack_require__(/*! ./props/circleProgress */ 77));
-var _code = _interopRequireDefault(__webpack_require__(/*! ./props/code */ 78));
-var _codeInput = _interopRequireDefault(__webpack_require__(/*! ./props/codeInput */ 79));
-var _col = _interopRequireDefault(__webpack_require__(/*! ./props/col */ 80));
-var _collapse = _interopRequireDefault(__webpack_require__(/*! ./props/collapse */ 81));
-var _collapseItem = _interopRequireDefault(__webpack_require__(/*! ./props/collapseItem */ 82));
-var _columnNotice = _interopRequireDefault(__webpack_require__(/*! ./props/columnNotice */ 83));
-var _countDown = _interopRequireDefault(__webpack_require__(/*! ./props/countDown */ 84));
-var _countTo = _interopRequireDefault(__webpack_require__(/*! ./props/countTo */ 85));
-var _datetimePicker = _interopRequireDefault(__webpack_require__(/*! ./props/datetimePicker */ 86));
-var _divider = _interopRequireDefault(__webpack_require__(/*! ./props/divider */ 87));
-var _empty = _interopRequireDefault(__webpack_require__(/*! ./props/empty */ 88));
-var _form = _interopRequireDefault(__webpack_require__(/*! ./props/form */ 89));
-var _formItem = _interopRequireDefault(__webpack_require__(/*! ./props/formItem */ 90));
-var _gap = _interopRequireDefault(__webpack_require__(/*! ./props/gap */ 91));
-var _grid = _interopRequireDefault(__webpack_require__(/*! ./props/grid */ 92));
-var _gridItem = _interopRequireDefault(__webpack_require__(/*! ./props/gridItem */ 93));
-var _icon = _interopRequireDefault(__webpack_require__(/*! ./props/icon */ 94));
-var _image = _interopRequireDefault(__webpack_require__(/*! ./props/image */ 95));
-var _indexAnchor = _interopRequireDefault(__webpack_require__(/*! ./props/indexAnchor */ 96));
-var _indexList = _interopRequireDefault(__webpack_require__(/*! ./props/indexList */ 97));
-var _input = _interopRequireDefault(__webpack_require__(/*! ./props/input */ 98));
-var _keyboard = _interopRequireDefault(__webpack_require__(/*! ./props/keyboard */ 99));
-var _line = _interopRequireDefault(__webpack_require__(/*! ./props/line */ 100));
-var _lineProgress = _interopRequireDefault(__webpack_require__(/*! ./props/lineProgress */ 101));
-var _link = _interopRequireDefault(__webpack_require__(/*! ./props/link */ 102));
-var _list = _interopRequireDefault(__webpack_require__(/*! ./props/list */ 103));
-var _listItem = _interopRequireDefault(__webpack_require__(/*! ./props/listItem */ 104));
-var _loadingIcon = _interopRequireDefault(__webpack_require__(/*! ./props/loadingIcon */ 105));
-var _loadingPage = _interopRequireDefault(__webpack_require__(/*! ./props/loadingPage */ 106));
-var _loadmore = _interopRequireDefault(__webpack_require__(/*! ./props/loadmore */ 107));
-var _modal = _interopRequireDefault(__webpack_require__(/*! ./props/modal */ 108));
-var _navbar = _interopRequireDefault(__webpack_require__(/*! ./props/navbar */ 109));
-var _noNetwork = _interopRequireDefault(__webpack_require__(/*! ./props/noNetwork */ 111));
-var _noticeBar = _interopRequireDefault(__webpack_require__(/*! ./props/noticeBar */ 112));
-var _notify = _interopRequireDefault(__webpack_require__(/*! ./props/notify */ 113));
-var _numberBox = _interopRequireDefault(__webpack_require__(/*! ./props/numberBox */ 114));
-var _numberKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/numberKeyboard */ 115));
-var _overlay = _interopRequireDefault(__webpack_require__(/*! ./props/overlay */ 116));
-var _parse = _interopRequireDefault(__webpack_require__(/*! ./props/parse */ 117));
-var _picker = _interopRequireDefault(__webpack_require__(/*! ./props/picker */ 118));
-var _popup = _interopRequireDefault(__webpack_require__(/*! ./props/popup */ 119));
-var _radio = _interopRequireDefault(__webpack_require__(/*! ./props/radio */ 120));
-var _radioGroup = _interopRequireDefault(__webpack_require__(/*! ./props/radioGroup */ 121));
-var _rate = _interopRequireDefault(__webpack_require__(/*! ./props/rate */ 122));
-var _readMore = _interopRequireDefault(__webpack_require__(/*! ./props/readMore */ 123));
-var _row = _interopRequireDefault(__webpack_require__(/*! ./props/row */ 124));
-var _rowNotice = _interopRequireDefault(__webpack_require__(/*! ./props/rowNotice */ 125));
-var _scrollList = _interopRequireDefault(__webpack_require__(/*! ./props/scrollList */ 126));
-var _search = _interopRequireDefault(__webpack_require__(/*! ./props/search */ 127));
-var _section = _interopRequireDefault(__webpack_require__(/*! ./props/section */ 128));
-var _skeleton = _interopRequireDefault(__webpack_require__(/*! ./props/skeleton */ 129));
-var _slider = _interopRequireDefault(__webpack_require__(/*! ./props/slider */ 130));
-var _statusBar = _interopRequireDefault(__webpack_require__(/*! ./props/statusBar */ 131));
-var _steps = _interopRequireDefault(__webpack_require__(/*! ./props/steps */ 132));
-var _stepsItem = _interopRequireDefault(__webpack_require__(/*! ./props/stepsItem */ 133));
-var _sticky = _interopRequireDefault(__webpack_require__(/*! ./props/sticky */ 134));
-var _subsection = _interopRequireDefault(__webpack_require__(/*! ./props/subsection */ 135));
-var _swipeAction = _interopRequireDefault(__webpack_require__(/*! ./props/swipeAction */ 136));
-var _swipeActionItem = _interopRequireDefault(__webpack_require__(/*! ./props/swipeActionItem */ 137));
-var _swiper = _interopRequireDefault(__webpack_require__(/*! ./props/swiper */ 138));
-var _swipterIndicator = _interopRequireDefault(__webpack_require__(/*! ./props/swipterIndicator */ 139));
-var _switch2 = _interopRequireDefault(__webpack_require__(/*! ./props/switch */ 140));
-var _tabbar = _interopRequireDefault(__webpack_require__(/*! ./props/tabbar */ 141));
-var _tabbarItem = _interopRequireDefault(__webpack_require__(/*! ./props/tabbarItem */ 142));
-var _tabs = _interopRequireDefault(__webpack_require__(/*! ./props/tabs */ 143));
-var _tag = _interopRequireDefault(__webpack_require__(/*! ./props/tag */ 144));
-var _text = _interopRequireDefault(__webpack_require__(/*! ./props/text */ 145));
-var _textarea = _interopRequireDefault(__webpack_require__(/*! ./props/textarea */ 146));
-var _toast = _interopRequireDefault(__webpack_require__(/*! ./props/toast */ 147));
-var _toolbar = _interopRequireDefault(__webpack_require__(/*! ./props/toolbar */ 148));
-var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./props/tooltip */ 149));
-var _transition = _interopRequireDefault(__webpack_require__(/*! ./props/transition */ 150));
-var _upload = _interopRequireDefault(__webpack_require__(/*! ./props/upload */ 151));
+var _config = _interopRequireDefault(__webpack_require__(/*! ./config */ 64));
+var _actionSheet = _interopRequireDefault(__webpack_require__(/*! ./props/actionSheet.js */ 66));
+var _album = _interopRequireDefault(__webpack_require__(/*! ./props/album.js */ 67));
+var _alert = _interopRequireDefault(__webpack_require__(/*! ./props/alert.js */ 68));
+var _avatar = _interopRequireDefault(__webpack_require__(/*! ./props/avatar */ 69));
+var _avatarGroup = _interopRequireDefault(__webpack_require__(/*! ./props/avatarGroup */ 70));
+var _backtop = _interopRequireDefault(__webpack_require__(/*! ./props/backtop */ 71));
+var _badge = _interopRequireDefault(__webpack_require__(/*! ./props/badge */ 72));
+var _button = _interopRequireDefault(__webpack_require__(/*! ./props/button */ 73));
+var _calendar = _interopRequireDefault(__webpack_require__(/*! ./props/calendar */ 74));
+var _carKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/carKeyboard */ 75));
+var _cell = _interopRequireDefault(__webpack_require__(/*! ./props/cell */ 76));
+var _cellGroup = _interopRequireDefault(__webpack_require__(/*! ./props/cellGroup */ 77));
+var _checkbox = _interopRequireDefault(__webpack_require__(/*! ./props/checkbox */ 78));
+var _checkboxGroup = _interopRequireDefault(__webpack_require__(/*! ./props/checkboxGroup */ 79));
+var _circleProgress = _interopRequireDefault(__webpack_require__(/*! ./props/circleProgress */ 80));
+var _code = _interopRequireDefault(__webpack_require__(/*! ./props/code */ 81));
+var _codeInput = _interopRequireDefault(__webpack_require__(/*! ./props/codeInput */ 82));
+var _col = _interopRequireDefault(__webpack_require__(/*! ./props/col */ 83));
+var _collapse = _interopRequireDefault(__webpack_require__(/*! ./props/collapse */ 84));
+var _collapseItem = _interopRequireDefault(__webpack_require__(/*! ./props/collapseItem */ 85));
+var _columnNotice = _interopRequireDefault(__webpack_require__(/*! ./props/columnNotice */ 86));
+var _countDown = _interopRequireDefault(__webpack_require__(/*! ./props/countDown */ 87));
+var _countTo = _interopRequireDefault(__webpack_require__(/*! ./props/countTo */ 88));
+var _datetimePicker = _interopRequireDefault(__webpack_require__(/*! ./props/datetimePicker */ 89));
+var _divider = _interopRequireDefault(__webpack_require__(/*! ./props/divider */ 90));
+var _empty = _interopRequireDefault(__webpack_require__(/*! ./props/empty */ 91));
+var _form = _interopRequireDefault(__webpack_require__(/*! ./props/form */ 92));
+var _formItem = _interopRequireDefault(__webpack_require__(/*! ./props/formItem */ 93));
+var _gap = _interopRequireDefault(__webpack_require__(/*! ./props/gap */ 94));
+var _grid = _interopRequireDefault(__webpack_require__(/*! ./props/grid */ 95));
+var _gridItem = _interopRequireDefault(__webpack_require__(/*! ./props/gridItem */ 96));
+var _icon = _interopRequireDefault(__webpack_require__(/*! ./props/icon */ 97));
+var _image = _interopRequireDefault(__webpack_require__(/*! ./props/image */ 98));
+var _indexAnchor = _interopRequireDefault(__webpack_require__(/*! ./props/indexAnchor */ 99));
+var _indexList = _interopRequireDefault(__webpack_require__(/*! ./props/indexList */ 100));
+var _input = _interopRequireDefault(__webpack_require__(/*! ./props/input */ 101));
+var _keyboard = _interopRequireDefault(__webpack_require__(/*! ./props/keyboard */ 102));
+var _line = _interopRequireDefault(__webpack_require__(/*! ./props/line */ 103));
+var _lineProgress = _interopRequireDefault(__webpack_require__(/*! ./props/lineProgress */ 104));
+var _link = _interopRequireDefault(__webpack_require__(/*! ./props/link */ 105));
+var _list = _interopRequireDefault(__webpack_require__(/*! ./props/list */ 106));
+var _listItem = _interopRequireDefault(__webpack_require__(/*! ./props/listItem */ 107));
+var _loadingIcon = _interopRequireDefault(__webpack_require__(/*! ./props/loadingIcon */ 108));
+var _loadingPage = _interopRequireDefault(__webpack_require__(/*! ./props/loadingPage */ 109));
+var _loadmore = _interopRequireDefault(__webpack_require__(/*! ./props/loadmore */ 110));
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./props/modal */ 111));
+var _navbar = _interopRequireDefault(__webpack_require__(/*! ./props/navbar */ 112));
+var _noNetwork = _interopRequireDefault(__webpack_require__(/*! ./props/noNetwork */ 114));
+var _noticeBar = _interopRequireDefault(__webpack_require__(/*! ./props/noticeBar */ 115));
+var _notify = _interopRequireDefault(__webpack_require__(/*! ./props/notify */ 116));
+var _numberBox = _interopRequireDefault(__webpack_require__(/*! ./props/numberBox */ 117));
+var _numberKeyboard = _interopRequireDefault(__webpack_require__(/*! ./props/numberKeyboard */ 118));
+var _overlay = _interopRequireDefault(__webpack_require__(/*! ./props/overlay */ 119));
+var _parse = _interopRequireDefault(__webpack_require__(/*! ./props/parse */ 120));
+var _picker = _interopRequireDefault(__webpack_require__(/*! ./props/picker */ 121));
+var _popup = _interopRequireDefault(__webpack_require__(/*! ./props/popup */ 122));
+var _radio = _interopRequireDefault(__webpack_require__(/*! ./props/radio */ 123));
+var _radioGroup = _interopRequireDefault(__webpack_require__(/*! ./props/radioGroup */ 124));
+var _rate = _interopRequireDefault(__webpack_require__(/*! ./props/rate */ 125));
+var _readMore = _interopRequireDefault(__webpack_require__(/*! ./props/readMore */ 126));
+var _row = _interopRequireDefault(__webpack_require__(/*! ./props/row */ 127));
+var _rowNotice = _interopRequireDefault(__webpack_require__(/*! ./props/rowNotice */ 128));
+var _scrollList = _interopRequireDefault(__webpack_require__(/*! ./props/scrollList */ 129));
+var _search = _interopRequireDefault(__webpack_require__(/*! ./props/search */ 130));
+var _section = _interopRequireDefault(__webpack_require__(/*! ./props/section */ 131));
+var _skeleton = _interopRequireDefault(__webpack_require__(/*! ./props/skeleton */ 132));
+var _slider = _interopRequireDefault(__webpack_require__(/*! ./props/slider */ 133));
+var _statusBar = _interopRequireDefault(__webpack_require__(/*! ./props/statusBar */ 134));
+var _steps = _interopRequireDefault(__webpack_require__(/*! ./props/steps */ 135));
+var _stepsItem = _interopRequireDefault(__webpack_require__(/*! ./props/stepsItem */ 136));
+var _sticky = _interopRequireDefault(__webpack_require__(/*! ./props/sticky */ 137));
+var _subsection = _interopRequireDefault(__webpack_require__(/*! ./props/subsection */ 138));
+var _swipeAction = _interopRequireDefault(__webpack_require__(/*! ./props/swipeAction */ 139));
+var _swipeActionItem = _interopRequireDefault(__webpack_require__(/*! ./props/swipeActionItem */ 140));
+var _swiper = _interopRequireDefault(__webpack_require__(/*! ./props/swiper */ 141));
+var _swipterIndicator = _interopRequireDefault(__webpack_require__(/*! ./props/swipterIndicator */ 142));
+var _switch2 = _interopRequireDefault(__webpack_require__(/*! ./props/switch */ 143));
+var _tabbar = _interopRequireDefault(__webpack_require__(/*! ./props/tabbar */ 144));
+var _tabbarItem = _interopRequireDefault(__webpack_require__(/*! ./props/tabbarItem */ 145));
+var _tabs = _interopRequireDefault(__webpack_require__(/*! ./props/tabs */ 146));
+var _tag = _interopRequireDefault(__webpack_require__(/*! ./props/tag */ 147));
+var _text = _interopRequireDefault(__webpack_require__(/*! ./props/text */ 148));
+var _textarea = _interopRequireDefault(__webpack_require__(/*! ./props/textarea */ 149));
+var _toast = _interopRequireDefault(__webpack_require__(/*! ./props/toast */ 150));
+var _toolbar = _interopRequireDefault(__webpack_require__(/*! ./props/toolbar */ 151));
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./props/tooltip */ 152));
+var _transition = _interopRequireDefault(__webpack_require__(/*! ./props/transition */ 153));
+var _upload = _interopRequireDefault(__webpack_require__(/*! ./props/upload */ 154));
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var color = _config.default.color;
@@ -14814,7 +15232,7 @@ var _default = _objectSpread(_objectSpread(_objectSpread(_objectSpread(_objectSp
 exports.default = _default;
 
 /***/ }),
-/* 63 */
+/* 66 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/actionSheet.js ***!
   \**************************************************************************************************/
@@ -14858,7 +15276,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 64 */
+/* 67 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/album.js ***!
   \********************************************************************************************/
@@ -14902,7 +15320,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 65 */
+/* 68 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/alert.js ***!
   \********************************************************************************************/
@@ -14941,7 +15359,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 66 */
+/* 69 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/avatar.js ***!
   \*********************************************************************************************/
@@ -14986,7 +15404,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 67 */
+/* 70 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/avatarGroup.js ***!
   \**************************************************************************************************/
@@ -15028,7 +15446,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 68 */
+/* 71 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/backtop.js ***!
   \**********************************************************************************************/
@@ -15074,7 +15492,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 69 */
+/* 72 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/badge.js ***!
   \********************************************************************************************/
@@ -15120,7 +15538,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 70 */
+/* 73 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/button.js ***!
   \*********************************************************************************************/
@@ -15179,7 +15597,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 71 */
+/* 74 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/calendar.js ***!
   \***********************************************************************************************/
@@ -15242,7 +15660,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 72 */
+/* 75 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/carKeyboard.js ***!
   \**************************************************************************************************/
@@ -15274,7 +15692,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 73 */
+/* 76 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/cell.js ***!
   \*******************************************************************************************/
@@ -15326,7 +15744,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 74 */
+/* 77 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/cellGroup.js ***!
   \************************************************************************************************/
@@ -15360,7 +15778,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 75 */
+/* 78 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/checkbox.js ***!
   \***********************************************************************************************/
@@ -15404,7 +15822,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 76 */
+/* 79 */
 /*!****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/checkboxGroup.js ***!
   \****************************************************************************************************/
@@ -15452,7 +15870,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 77 */
+/* 80 */
 /*!*****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/circleProgress.js ***!
   \*****************************************************************************************************/
@@ -15484,7 +15902,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 78 */
+/* 81 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/code.js ***!
   \*******************************************************************************************/
@@ -15521,7 +15939,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 79 */
+/* 82 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/codeInput.js ***!
   \************************************************************************************************/
@@ -15567,7 +15985,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 80 */
+/* 83 */
 /*!******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/col.js ***!
   \******************************************************************************************/
@@ -15603,7 +16021,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 81 */
+/* 84 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/collapse.js ***!
   \***********************************************************************************************/
@@ -15637,7 +16055,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 82 */
+/* 85 */
 /*!***************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/collapseItem.js ***!
   \***************************************************************************************************/
@@ -15679,7 +16097,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 83 */
+/* 86 */
 /*!***************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/columnNotice.js ***!
   \***************************************************************************************************/
@@ -15720,7 +16138,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 84 */
+/* 87 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/countDown.js ***!
   \************************************************************************************************/
@@ -15755,7 +16173,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 85 */
+/* 88 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/countTo.js ***!
   \**********************************************************************************************/
@@ -15797,7 +16215,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 86 */
+/* 89 */
 /*!*****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/datetimePicker.js ***!
   \*****************************************************************************************************/
@@ -15852,7 +16270,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 87 */
+/* 90 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/divider.js ***!
   \**********************************************************************************************/
@@ -15891,7 +16309,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 88 */
+/* 91 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/empty.js ***!
   \********************************************************************************************/
@@ -15933,7 +16351,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 89 */
+/* 92 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/form.js ***!
   \*******************************************************************************************/
@@ -15978,7 +16396,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 90 */
+/* 93 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/formItem.js ***!
   \***********************************************************************************************/
@@ -16018,7 +16436,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 91 */
+/* 94 */
 /*!******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/gap.js ***!
   \******************************************************************************************/
@@ -16054,7 +16472,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 92 */
+/* 95 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/grid.js ***!
   \*******************************************************************************************/
@@ -16088,7 +16506,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 93 */
+/* 96 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/gridItem.js ***!
   \***********************************************************************************************/
@@ -16121,7 +16539,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 94 */
+/* 97 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/icon.js ***!
   \*******************************************************************************************/
@@ -16136,7 +16554,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 61));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 64));
 /*
  * @Author       : LQ
  * @Description  :
@@ -16173,7 +16591,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 95 */
+/* 98 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/image.js ***!
   \********************************************************************************************/
@@ -16220,7 +16638,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 96 */
+/* 99 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/indexAnchor.js ***!
   \**************************************************************************************************/
@@ -16256,7 +16674,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 97 */
+/* 100 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/indexList.js ***!
   \************************************************************************************************/
@@ -16294,7 +16712,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 98 */
+/* 101 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/input.js ***!
   \********************************************************************************************/
@@ -16359,7 +16777,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 99 */
+/* 102 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/keyboard.js ***!
   \***********************************************************************************************/
@@ -16406,7 +16824,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 100 */
+/* 103 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/line.js ***!
   \*******************************************************************************************/
@@ -16443,7 +16861,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 101 */
+/* 104 */
 /*!***************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/lineProgress.js ***!
   \***************************************************************************************************/
@@ -16479,7 +16897,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 102 */
+/* 105 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/link.js ***!
   \*******************************************************************************************/
@@ -16494,7 +16912,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 61));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 64));
 /*
  * @Author       : LQ
  * @Description  :
@@ -16521,7 +16939,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 103 */
+/* 106 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/list.js ***!
   \*******************************************************************************************/
@@ -16566,7 +16984,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 104 */
+/* 107 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/listItem.js ***!
   \***********************************************************************************************/
@@ -16598,7 +17016,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 105 */
+/* 108 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/loadingIcon.js ***!
   \**************************************************************************************************/
@@ -16613,7 +17031,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 61));
+var _config = _interopRequireDefault(__webpack_require__(/*! ../config */ 64));
 /*
  * @Author       : LQ
  * @Description  :
@@ -16644,7 +17062,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 106 */
+/* 109 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/loadingPage.js ***!
   \**************************************************************************************************/
@@ -16684,7 +17102,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 107 */
+/* 110 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/loadmore.js ***!
   \***********************************************************************************************/
@@ -16733,7 +17151,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 108 */
+/* 111 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/modal.js ***!
   \********************************************************************************************/
@@ -16780,7 +17198,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 109 */
+/* 112 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/navbar.js ***!
   \*********************************************************************************************/
@@ -16795,7 +17213,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _color = _interopRequireDefault(__webpack_require__(/*! ../color */ 110));
+var _color = _interopRequireDefault(__webpack_require__(/*! ../color */ 113));
 /*
  * @Author       : LQ
  * @Description  :
@@ -16829,7 +17247,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 110 */
+/* 113 */
 /*!**************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/color.js ***!
   \**************************************************************************************/
@@ -16862,7 +17280,7 @@ var _default = color;
 exports.default = _default;
 
 /***/ }),
-/* 111 */
+/* 114 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/noNetwork.js ***!
   \************************************************************************************************/
@@ -16896,7 +17314,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 112 */
+/* 115 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/noticeBar.js ***!
   \************************************************************************************************/
@@ -16942,7 +17360,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 113 */
+/* 116 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/notify.js ***!
   \*********************************************************************************************/
@@ -16981,7 +17399,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 114 */
+/* 117 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/numberBox.js ***!
   \************************************************************************************************/
@@ -17033,7 +17451,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 115 */
+/* 118 */
 /*!*****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/numberKeyboard.js ***!
   \*****************************************************************************************************/
@@ -17067,7 +17485,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 116 */
+/* 119 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/overlay.js ***!
   \**********************************************************************************************/
@@ -17102,7 +17520,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 117 */
+/* 120 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/parse.js ***!
   \********************************************************************************************/
@@ -17141,7 +17559,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 118 */
+/* 121 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/picker.js ***!
   \*********************************************************************************************/
@@ -17191,7 +17609,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 119 */
+/* 122 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/popup.js ***!
   \********************************************************************************************/
@@ -17237,7 +17655,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 120 */
+/* 123 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/radio.js ***!
   \********************************************************************************************/
@@ -17281,7 +17699,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 121 */
+/* 124 */
 /*!*************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/radioGroup.js ***!
   \*************************************************************************************************/
@@ -17328,7 +17746,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 122 */
+/* 125 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/rate.js ***!
   \*******************************************************************************************/
@@ -17371,7 +17789,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 123 */
+/* 126 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/readMore.js ***!
   \***********************************************************************************************/
@@ -17410,7 +17828,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 124 */
+/* 127 */
 /*!******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/row.js ***!
   \******************************************************************************************/
@@ -17444,7 +17862,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 125 */
+/* 128 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/rowNotice.js ***!
   \************************************************************************************************/
@@ -17482,7 +17900,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 126 */
+/* 129 */
 /*!*************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/scrollList.js ***!
   \*************************************************************************************************/
@@ -17519,7 +17937,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 127 */
+/* 130 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/search.js ***!
   \*********************************************************************************************/
@@ -17577,7 +17995,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 128 */
+/* 131 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/section.js ***!
   \**********************************************************************************************/
@@ -17618,7 +18036,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 129 */
+/* 132 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/skeleton.js ***!
   \***********************************************************************************************/
@@ -17660,7 +18078,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 130 */
+/* 133 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/slider.js ***!
   \*********************************************************************************************/
@@ -17702,7 +18120,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 131 */
+/* 134 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/statusBar.js ***!
   \************************************************************************************************/
@@ -17734,7 +18152,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 132 */
+/* 135 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/steps.js ***!
   \********************************************************************************************/
@@ -17772,7 +18190,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 133 */
+/* 136 */
 /*!************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/stepsItem.js ***!
   \************************************************************************************************/
@@ -17807,7 +18225,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 134 */
+/* 137 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/sticky.js ***!
   \*********************************************************************************************/
@@ -17844,7 +18262,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 135 */
+/* 138 */
 /*!*************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/subsection.js ***!
   \*************************************************************************************************/
@@ -17884,7 +18302,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 136 */
+/* 139 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/swipeAction.js ***!
   \**************************************************************************************************/
@@ -17916,7 +18334,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 137 */
+/* 140 */
 /*!******************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/swipeActionItem.js ***!
   \******************************************************************************************************/
@@ -17954,7 +18372,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 138 */
+/* 141 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/swiper.js ***!
   \*********************************************************************************************/
@@ -18011,7 +18429,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 139 */
+/* 142 */
 /*!*******************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/swipterIndicator.js ***!
   \*******************************************************************************************************/
@@ -18047,7 +18465,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 140 */
+/* 143 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/switch.js ***!
   \*********************************************************************************************/
@@ -18088,7 +18506,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 141 */
+/* 144 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/tabbar.js ***!
   \*********************************************************************************************/
@@ -18127,7 +18545,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 142 */
+/* 145 */
 /*!*************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/tabbarItem.js ***!
   \*************************************************************************************************/
@@ -18164,7 +18582,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 143 */
+/* 146 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/tabs.js ***!
   \*******************************************************************************************/
@@ -18221,7 +18639,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 144 */
+/* 147 */
 /*!******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/tag.js ***!
   \******************************************************************************************/
@@ -18267,7 +18685,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 145 */
+/* 148 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/text.js ***!
   \*******************************************************************************************/
@@ -18323,7 +18741,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 146 */
+/* 149 */
 /*!***********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/textarea.js ***!
   \***********************************************************************************************/
@@ -18376,7 +18794,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 147 */
+/* 150 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/toast.js ***!
   \********************************************************************************************/
@@ -18422,7 +18840,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 148 */
+/* 151 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/toolbar.js ***!
   \**********************************************************************************************/
@@ -18459,7 +18877,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 149 */
+/* 152 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/tooltip.js ***!
   \**********************************************************************************************/
@@ -18503,7 +18921,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 150 */
+/* 153 */
 /*!*************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/transition.js ***!
   \*************************************************************************************************/
@@ -18538,7 +18956,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 151 */
+/* 154 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/props/upload.js ***!
   \*********************************************************************************************/
@@ -18597,7 +19015,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 152 */
+/* 155 */
 /*!***************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/config/zIndex.js ***!
   \***************************************************************************************/
@@ -18633,7 +19051,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 153 */
+/* 156 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/function/platform.js ***!
   \*******************************************************************************************/
@@ -18663,7 +19081,7 @@ var _default = platform;
 exports.default = _default;
 
 /***/ }),
-/* 154 */
+/* 157 */
 /*!**************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/network/request.js ***!
   \**************************************************************/
@@ -18748,13 +19166,13 @@ module.exports = function (vm) {
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 155 */,
-/* 156 */,
-/* 157 */,
 /* 158 */,
 /* 159 */,
 /* 160 */,
-/* 161 */
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */
 /*!**********************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/network/api.js ***!
   \**********************************************************/
@@ -19360,7 +19778,7 @@ exports.rcgnqx = rcgnqx;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 162 */
+/* 165 */
 /*!***************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/dayjs/dayjs.min.js ***!
   \***************************************************************************/
@@ -19686,9 +20104,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 });
 
 /***/ }),
-/* 163 */,
-/* 164 */,
-/* 165 */,
 /* 166 */,
 /* 167 */,
 /* 168 */,
@@ -19915,28 +20330,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof = 
 /* 389 */,
 /* 390 */,
 /* 391 */,
-/* 392 */,
-/* 393 */,
-/* 394 */,
-/* 395 */,
-/* 396 */,
-/* 397 */,
-/* 398 */,
-/* 399 */,
-/* 400 */,
-/* 401 */,
-/* 402 */,
-/* 403 */,
-/* 404 */,
-/* 405 */,
-/* 406 */,
-/* 407 */,
-/* 408 */,
-/* 409 */,
-/* 410 */,
-/* 411 */,
-/* 412 */,
-/* 413 */
+/* 392 */
 /*!************************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/index.js ***!
   \************************************************************************************************************************/
@@ -19951,9 +20345,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 414));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 415));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 416));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 393));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 394));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 395));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -19962,7 +20356,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 414 */
+/* 393 */
 /*!***********************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/en.json ***!
   \***********************************************************************************************************************/
@@ -19972,7 +20366,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"select date\",\"uni-datetime-picker.selectTime\":\"select time\",\"uni-datetime-picker.selectDateTime\":\"select datetime\",\"uni-datetime-picker.startDate\":\"start date\",\"uni-datetime-picker.endDate\":\"end date\",\"uni-datetime-picker.startTime\":\"start time\",\"uni-datetime-picker.endTime\":\"end time\",\"uni-datetime-picker.ok\":\"ok\",\"uni-datetime-picker.clear\":\"clear\",\"uni-datetime-picker.cancel\":\"cancel\",\"uni-datetime-picker.year\":\"-\",\"uni-datetime-picker.month\":\"\",\"uni-calender.MON\":\"MON\",\"uni-calender.TUE\":\"TUE\",\"uni-calender.WED\":\"WED\",\"uni-calender.THU\":\"THU\",\"uni-calender.FRI\":\"FRI\",\"uni-calender.SAT\":\"SAT\",\"uni-calender.SUN\":\"SUN\",\"uni-calender.confirm\":\"confirm\"}");
 
 /***/ }),
-/* 415 */
+/* 394 */
 /*!****************************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hans.json ***!
   \****************************************************************************************************************************/
@@ -19982,7 +20376,7 @@ module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"select date\"
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"选择日期\",\"uni-datetime-picker.selectTime\":\"选择时间\",\"uni-datetime-picker.selectDateTime\":\"选择日期时间\",\"uni-datetime-picker.startDate\":\"开始日期\",\"uni-datetime-picker.endDate\":\"结束日期\",\"uni-datetime-picker.startTime\":\"开始时间\",\"uni-datetime-picker.endTime\":\"结束时间\",\"uni-datetime-picker.ok\":\"确定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"确认\"}");
 
 /***/ }),
-/* 416 */
+/* 395 */
 /*!****************************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-datetime-picker/components/uni-datetime-picker/i18n/zh-Hant.json ***!
   \****************************************************************************************************************************/
@@ -19992,14 +20386,14 @@ module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"选择日期\
 module.exports = JSON.parse("{\"uni-datetime-picker.selectDate\":\"選擇日期\",\"uni-datetime-picker.selectTime\":\"選擇時間\",\"uni-datetime-picker.selectDateTime\":\"選擇日期時間\",\"uni-datetime-picker.startDate\":\"開始日期\",\"uni-datetime-picker.endDate\":\"結束日期\",\"uni-datetime-picker.startTime\":\"開始时间\",\"uni-datetime-picker.endTime\":\"結束时间\",\"uni-datetime-picker.ok\":\"確定\",\"uni-datetime-picker.clear\":\"清除\",\"uni-datetime-picker.cancel\":\"取消\",\"uni-datetime-picker.year\":\"年\",\"uni-datetime-picker.month\":\"月\",\"uni-calender.SUN\":\"日\",\"uni-calender.MON\":\"一\",\"uni-calender.TUE\":\"二\",\"uni-calender.WED\":\"三\",\"uni-calender.THU\":\"四\",\"uni-calender.FRI\":\"五\",\"uni-calender.SAT\":\"六\",\"uni-calender.confirm\":\"確認\"}");
 
 /***/ }),
-/* 417 */,
-/* 418 */,
-/* 419 */,
-/* 420 */,
-/* 421 */,
-/* 422 */,
-/* 423 */,
-/* 424 */
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */
 /*!************************************************************************************!*\
   !*** ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/uni-cloud/dist/index.js ***!
   \************************************************************************************/
@@ -20014,19 +20408,21 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 54));
 var _slicedToArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ 4));
 var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ 12));
 var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ 17));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 56));
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 10));
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ 22));
 var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ 23));
-var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 425));
-var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 426));
-var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 428));
-var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 429));
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ 404));
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ 405));
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ 407));
+var _wrapNativeSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/wrapNativeSuper */ 408));
 var _uniI18n = __webpack_require__(/*! @dcloudio/uni-i18n */ 21);
-var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 431));
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e34) { throw _e34; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e35) { didErr = true; err = _e35; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+var _pages = _interopRequireDefault(__webpack_require__(/*! @/pages.json */ 410));
+function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e33) { throw _e33; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e34) { didErr = true; err = _e34; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -20442,7 +20838,7 @@ var k = m(undefined),
 var T = "";
 try {
   {
-    var _e2 = __webpack_require__(/*! uni-stat-config */ 432).default || __webpack_require__(/*! uni-stat-config */ 432);
+    var _e2 = __webpack_require__(/*! uni-stat-config */ 411).default || __webpack_require__(/*! uni-stat-config */ 411);
     T = _e2.appid;
   }
 } catch (e) {}
@@ -20933,88 +21329,134 @@ var le = /*#__PURE__*/function () {
     }
   }, {
     key: "uploadFile",
-    value: async function uploadFile(_ref3) {
-      var e = _ref3.filePath,
-        t = _ref3.cloudPath,
-        _ref3$fileType = _ref3.fileType,
-        n = _ref3$fileType === void 0 ? "image" : _ref3$fileType,
-        s = _ref3.onUploadProgress,
-        r = _ref3.config;
-      if ("string" !== d(t)) throw new Q({
-        code: "INVALID_PARAM",
-        message: "cloudPath必须为字符串类型"
-      });
-      if (!(t = t.trim())) throw new Q({
-        code: "CLOUDPATH_REQUIRED",
-        message: "cloudPath不可为空"
-      });
-      if (/:\/\//.test(t)) throw new Q({
-        code: "INVALID_PARAM",
-        message: "cloudPath不合法"
-      });
-      var i = r && r.envType || this.config.envType,
-        o = (await this.getOSSUploadOptionsFromPath({
-          env: i,
-          filename: t
-        })).result,
-        a = "https://" + o.cdnDomain + "/" + o.ossPath,
-        c = o.securityToken,
-        u = o.accessKeyId,
-        l = o.signature,
-        h = o.host,
-        f = o.ossPath,
-        p = o.id,
-        g = o.policy,
-        m = o.ossCallbackUrl,
-        y = {
-          "Cache-Control": "max-age=2592000",
-          "Content-Disposition": "attachment",
-          OSSAccessKeyId: u,
-          Signature: l,
-          host: h,
-          id: p,
-          key: f,
-          policy: g,
-          success_action_status: 200
-        };
-      if (c && (y["x-oss-security-token"] = c), m) {
-        var _e7 = JSON.stringify({
-          callbackUrl: m,
-          callbackBody: JSON.stringify({
-            fileId: p,
-            spaceId: this.config.spaceId
-          }),
-          callbackBodyType: "application/json"
-        });
-        y.callback = ae.toBase64(_e7);
+    value: function () {
+      var _uploadFile = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee(_ref3) {
+        var e, t, _ref3$fileType, n, s, r, i, o, a, c, u, l, h, f, p, g, m, y, _e7, _;
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                e = _ref3.filePath, t = _ref3.cloudPath, _ref3$fileType = _ref3.fileType, n = _ref3$fileType === void 0 ? "image" : _ref3$fileType, s = _ref3.onUploadProgress, r = _ref3.config;
+                if (!("string" !== d(t))) {
+                  _context.next = 3;
+                  break;
+                }
+                throw new Q({
+                  code: "INVALID_PARAM",
+                  message: "cloudPath必须为字符串类型"
+                });
+              case 3:
+                if (t = t.trim()) {
+                  _context.next = 5;
+                  break;
+                }
+                throw new Q({
+                  code: "CLOUDPATH_REQUIRED",
+                  message: "cloudPath不可为空"
+                });
+              case 5:
+                if (!/:\/\//.test(t)) {
+                  _context.next = 7;
+                  break;
+                }
+                throw new Q({
+                  code: "INVALID_PARAM",
+                  message: "cloudPath不合法"
+                });
+              case 7:
+                i = r && r.envType || this.config.envType;
+                _context.next = 10;
+                return this.getOSSUploadOptionsFromPath({
+                  env: i,
+                  filename: t
+                });
+              case 10:
+                o = _context.sent.result;
+                a = "https://" + o.cdnDomain + "/" + o.ossPath;
+                c = o.securityToken;
+                u = o.accessKeyId;
+                l = o.signature;
+                h = o.host;
+                f = o.ossPath;
+                p = o.id;
+                g = o.policy;
+                m = o.ossCallbackUrl;
+                y = {
+                  "Cache-Control": "max-age=2592000",
+                  "Content-Disposition": "attachment",
+                  OSSAccessKeyId: u,
+                  Signature: l,
+                  host: h,
+                  id: p,
+                  key: f,
+                  policy: g,
+                  success_action_status: 200
+                };
+                if (c && (y["x-oss-security-token"] = c), m) {
+                  _e7 = JSON.stringify({
+                    callbackUrl: m,
+                    callbackBody: JSON.stringify({
+                      fileId: p,
+                      spaceId: this.config.spaceId
+                    }),
+                    callbackBodyType: "application/json"
+                  });
+                  y.callback = ae.toBase64(_e7);
+                }
+                _ = {
+                  url: "https://" + o.host,
+                  formData: y,
+                  fileName: "file",
+                  name: "file",
+                  filePath: e,
+                  fileType: n
+                };
+                _context.next = 25;
+                return this.uploadFileToOSS(Object.assign({}, _, {
+                  onUploadProgress: s
+                }));
+              case 25:
+                if (!m) {
+                  _context.next = 27;
+                  break;
+                }
+                return _context.abrupt("return", {
+                  success: !0,
+                  filePath: e,
+                  fileID: a
+                });
+              case 27:
+                _context.next = 29;
+                return this.reportOSSUpload({
+                  id: p
+                });
+              case 29:
+                if (!_context.sent.success) {
+                  _context.next = 31;
+                  break;
+                }
+                return _context.abrupt("return", {
+                  success: !0,
+                  filePath: e,
+                  fileID: a
+                });
+              case 31:
+                throw new Q({
+                  code: "UPLOAD_FAILED",
+                  message: "文件上传失败"
+                });
+              case 32:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+      function uploadFile(_x) {
+        return _uploadFile.apply(this, arguments);
       }
-      var _ = {
-        url: "https://" + o.host,
-        formData: y,
-        fileName: "file",
-        name: "file",
-        filePath: e,
-        fileType: n
-      };
-      if (await this.uploadFileToOSS(Object.assign({}, _, {
-        onUploadProgress: s
-      })), m) return {
-        success: !0,
-        filePath: e,
-        fileID: a
-      };
-      if ((await this.reportOSSUpload({
-        id: p
-      })).success) return {
-        success: !0,
-        filePath: e,
-        fileID: a
-      };
-      throw new Q({
-        code: "UPLOAD_FAILED",
-        message: "文件上传失败"
-      });
-    }
+      return uploadFile;
+    }()
   }, {
     key: "getTempFileURL",
     value: function getTempFileURL() {
@@ -21036,25 +21478,53 @@ var le = /*#__PURE__*/function () {
     }
   }, {
     key: "getFileInfo",
-    value: async function getFileInfo() {
-      var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        e = _ref5.fileList;
-      if (!Array.isArray(e) || 0 === e.length) throw new Q({
-        code: "INVALID_PARAM",
-        message: "fileList的元素必须是非空的字符串"
-      });
-      var t = {
-        method: "serverless.file.resource.info",
-        params: JSON.stringify({
-          id: e.map(function (e) {
-            return e.split("?")[0];
-          }).join(",")
-        })
-      };
-      return {
-        fileList: (await this.request(this.setupRequest(t))).result
-      };
-    }
+    value: function () {
+      var _getFileInfo = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2() {
+        var _ref5,
+          e,
+          t,
+          _args2 = arguments;
+        return _regenerator.default.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _ref5 = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : {}, e = _ref5.fileList;
+                if (!(!Array.isArray(e) || 0 === e.length)) {
+                  _context2.next = 3;
+                  break;
+                }
+                throw new Q({
+                  code: "INVALID_PARAM",
+                  message: "fileList的元素必须是非空的字符串"
+                });
+              case 3:
+                t = {
+                  method: "serverless.file.resource.info",
+                  params: JSON.stringify({
+                    id: e.map(function (e) {
+                      return e.split("?")[0];
+                    }).join(",")
+                  })
+                };
+                _context2.next = 6;
+                return this.request(this.setupRequest(t));
+              case 6:
+                _context2.t0 = _context2.sent.result;
+                return _context2.abrupt("return", {
+                  fileList: _context2.t0
+                });
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+      function getFileInfo() {
+        return _getFileInfo.apply(this, arguments);
+      }
+      return getFileInfo;
+    }()
   }]);
   return le;
 }();
@@ -21400,180 +21870,410 @@ var We = /*#__PURE__*/function () {
   }
   (0, _createClass2.default)(We, [{
     key: "post",
-    value: async function post(e) {
-      return await this._reqClass.post(e);
-    }
+    value: function () {
+      var _post = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(e) {
+        return _regenerator.default.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return this._reqClass.post(e);
+              case 2:
+                return _context3.abrupt("return", _context3.sent);
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+      function post(_x2) {
+        return _post.apply(this, arguments);
+      }
+      return post;
+    }()
   }, {
     key: "upload",
-    value: async function upload(e) {
-      return await this._reqClass.upload(e);
-    }
+    value: function () {
+      var _upload = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(e) {
+        return _regenerator.default.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.next = 2;
+                return this._reqClass.upload(e);
+              case 2:
+                return _context4.abrupt("return", _context4.sent);
+              case 3:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this);
+      }));
+      function upload(_x3) {
+        return _upload.apply(this, arguments);
+      }
+      return upload;
+    }()
   }, {
     key: "download",
-    value: async function download(e) {
-      return await this._reqClass.download(e);
-    }
+    value: function () {
+      var _download = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(e) {
+        return _regenerator.default.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                _context5.next = 2;
+                return this._reqClass.download(e);
+              case 2:
+                return _context5.abrupt("return", _context5.sent);
+              case 3:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5, this);
+      }));
+      function download(_x4) {
+        return _download.apply(this, arguments);
+      }
+      return download;
+    }()
   }, {
     key: "refreshAccessToken",
-    value: async function refreshAccessToken() {
-      var e, t;
-      this._refreshAccessTokenPromise || (this._refreshAccessTokenPromise = this._refreshAccessToken());
-      try {
-        e = await this._refreshAccessTokenPromise;
-      } catch (e) {
-        t = e;
+    value: function () {
+      var _refreshAccessToken2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6() {
+        var e, t;
+        return _regenerator.default.wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                this._refreshAccessTokenPromise || (this._refreshAccessTokenPromise = this._refreshAccessToken());
+                _context6.prev = 1;
+                _context6.next = 4;
+                return this._refreshAccessTokenPromise;
+              case 4:
+                e = _context6.sent;
+                _context6.next = 10;
+                break;
+              case 7:
+                _context6.prev = 7;
+                _context6.t0 = _context6["catch"](1);
+                t = _context6.t0;
+              case 10:
+                if (!(this._refreshAccessTokenPromise = null, this._shouldRefreshAccessTokenHook = null, t)) {
+                  _context6.next = 12;
+                  break;
+                }
+                throw t;
+              case 12:
+                return _context6.abrupt("return", e);
+              case 13:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6, this, [[1, 7]]);
+      }));
+      function refreshAccessToken() {
+        return _refreshAccessToken2.apply(this, arguments);
       }
-      if (this._refreshAccessTokenPromise = null, this._shouldRefreshAccessTokenHook = null, t) throw t;
-      return e;
-    }
+      return refreshAccessToken;
+    }()
   }, {
     key: "_refreshAccessToken",
-    value: async function _refreshAccessToken() {
-      var _this$_cache$keys = this._cache.keys,
-        e = _this$_cache$keys.accessTokenKey,
-        t = _this$_cache$keys.accessTokenExpireKey,
-        n = _this$_cache$keys.refreshTokenKey,
-        s = _this$_cache$keys.loginTypeKey,
-        r = _this$_cache$keys.anonymousUuidKey;
-      this._cache.removeStore(e), this._cache.removeStore(t);
-      var i = this._cache.getStore(n);
-      if (!i) throw new Q({
-        message: "未登录CloudBase"
-      });
-      var o = {
-          refresh_token: i
-        },
-        a = await this.request("auth.fetchAccessTokenWithRefreshToken", o);
-      if (a.data.code) {
-        var _e13 = a.data.code;
-        if ("SIGN_PARAM_INVALID" === _e13 || "REFRESH_TOKEN_EXPIRED" === _e13 || "INVALID_REFRESH_TOKEN" === _e13) {
-          if (this._cache.getStore(s) === Ke.ANONYMOUS && "INVALID_REFRESH_TOKEN" === _e13) {
-            var _e14 = this._cache.getStore(r),
-              _t7 = this._cache.getStore(n),
-              _s8 = await this.send("auth.signInAnonymously", {
-                anonymous_uuid: _e14,
-                refresh_token: _t7
-              });
-            return this.setRefreshToken(_s8.refresh_token), this._refreshAccessToken();
+    value: function () {
+      var _refreshAccessToken3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee7() {
+        var _this$_cache$keys, e, t, n, s, r, i, o, a, _e13, _e14, _t7, _s8;
+        return _regenerator.default.wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                _this$_cache$keys = this._cache.keys, e = _this$_cache$keys.accessTokenKey, t = _this$_cache$keys.accessTokenExpireKey, n = _this$_cache$keys.refreshTokenKey, s = _this$_cache$keys.loginTypeKey, r = _this$_cache$keys.anonymousUuidKey;
+                this._cache.removeStore(e), this._cache.removeStore(t);
+                i = this._cache.getStore(n);
+                if (i) {
+                  _context7.next = 5;
+                  break;
+                }
+                throw new Q({
+                  message: "未登录CloudBase"
+                });
+              case 5:
+                o = {
+                  refresh_token: i
+                };
+                _context7.next = 8;
+                return this.request("auth.fetchAccessTokenWithRefreshToken", o);
+              case 8:
+                a = _context7.sent;
+                if (!a.data.code) {
+                  _context7.next = 21;
+                  break;
+                }
+                _e13 = a.data.code;
+                if (!("SIGN_PARAM_INVALID" === _e13 || "REFRESH_TOKEN_EXPIRED" === _e13 || "INVALID_REFRESH_TOKEN" === _e13)) {
+                  _context7.next = 20;
+                  break;
+                }
+                if (!(this._cache.getStore(s) === Ke.ANONYMOUS && "INVALID_REFRESH_TOKEN" === _e13)) {
+                  _context7.next = 19;
+                  break;
+                }
+                _e14 = this._cache.getStore(r);
+                _t7 = this._cache.getStore(n);
+                _context7.next = 17;
+                return this.send("auth.signInAnonymously", {
+                  anonymous_uuid: _e14,
+                  refresh_token: _t7
+                });
+              case 17:
+                _s8 = _context7.sent;
+                return _context7.abrupt("return", (this.setRefreshToken(_s8.refresh_token), this._refreshAccessToken()));
+              case 19:
+                Ue(Ne), this._cache.removeStore(n);
+              case 20:
+                throw new Q({
+                  code: a.data.code,
+                  message: "\u5237\u65B0access token\u5931\u8D25\uFF1A".concat(a.data.code)
+                });
+              case 21:
+                if (!a.data.access_token) {
+                  _context7.next = 23;
+                  break;
+                }
+                return _context7.abrupt("return", (Ue(qe), this._cache.setStore(e, a.data.access_token), this._cache.setStore(t, a.data.access_token_expire + Date.now()), {
+                  accessToken: a.data.access_token,
+                  accessTokenExpire: a.data.access_token_expire
+                }));
+              case 23:
+                a.data.refresh_token && (this._cache.removeStore(n), this._cache.setStore(n, a.data.refresh_token), this._refreshAccessToken());
+              case 24:
+              case "end":
+                return _context7.stop();
+            }
           }
-          Ue(Ne), this._cache.removeStore(n);
-        }
-        throw new Q({
-          code: a.data.code,
-          message: "\u5237\u65B0access token\u5931\u8D25\uFF1A".concat(a.data.code)
-        });
+        }, _callee7, this);
+      }));
+      function _refreshAccessToken() {
+        return _refreshAccessToken3.apply(this, arguments);
       }
-      if (a.data.access_token) return Ue(qe), this._cache.setStore(e, a.data.access_token), this._cache.setStore(t, a.data.access_token_expire + Date.now()), {
-        accessToken: a.data.access_token,
-        accessTokenExpire: a.data.access_token_expire
-      };
-      a.data.refresh_token && (this._cache.removeStore(n), this._cache.setStore(n, a.data.refresh_token), this._refreshAccessToken());
-    }
+      return _refreshAccessToken;
+    }()
   }, {
     key: "getAccessToken",
-    value: async function getAccessToken() {
-      var _this$_cache$keys2 = this._cache.keys,
-        e = _this$_cache$keys2.accessTokenKey,
-        t = _this$_cache$keys2.accessTokenExpireKey,
-        n = _this$_cache$keys2.refreshTokenKey;
-      if (!this._cache.getStore(n)) throw new Q({
-        message: "refresh token不存在，登录状态异常"
-      });
-      var s = this._cache.getStore(e),
-        r = this._cache.getStore(t),
-        i = !0;
-      return this._shouldRefreshAccessTokenHook && !(await this._shouldRefreshAccessTokenHook(s, r)) && (i = !1), (!s || !r || r < Date.now()) && i ? this.refreshAccessToken() : {
-        accessToken: s,
-        accessTokenExpire: r
-      };
-    }
+    value: function () {
+      var _getAccessToken = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee8() {
+        var _this$_cache$keys2, e, t, n, s, r, i;
+        return _regenerator.default.wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                _this$_cache$keys2 = this._cache.keys, e = _this$_cache$keys2.accessTokenKey, t = _this$_cache$keys2.accessTokenExpireKey, n = _this$_cache$keys2.refreshTokenKey;
+                if (this._cache.getStore(n)) {
+                  _context8.next = 3;
+                  break;
+                }
+                throw new Q({
+                  message: "refresh token不存在，登录状态异常"
+                });
+              case 3:
+                s = this._cache.getStore(e), r = this._cache.getStore(t), i = !0;
+                _context8.t0 = this._shouldRefreshAccessTokenHook;
+                if (!_context8.t0) {
+                  _context8.next = 9;
+                  break;
+                }
+                _context8.next = 8;
+                return this._shouldRefreshAccessTokenHook(s, r);
+              case 8:
+                _context8.t0 = !_context8.sent;
+              case 9:
+                _context8.t1 = _context8.t0;
+                if (!_context8.t1) {
+                  _context8.next = 12;
+                  break;
+                }
+                i = !1;
+              case 12:
+                return _context8.abrupt("return", (!s || !r || r < Date.now()) && i ? this.refreshAccessToken() : {
+                  accessToken: s,
+                  accessTokenExpire: r
+                });
+              case 13:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8, this);
+      }));
+      function getAccessToken() {
+        return _getAccessToken.apply(this, arguments);
+      }
+      return getAccessToken;
+    }()
   }, {
     key: "request",
-    value: async function request(e, t, n) {
-      var s = "x-tcb-trace_".concat(this.config.env);
-      var r = "application/x-www-form-urlencoded";
-      var i = _objectSpread({
-        action: e,
-        env: this.config.env,
-        dataVersion: "2019-08-16"
-      }, t);
-      if (-1 === Me.indexOf(e)) {
-        var _e15 = this._cache.keys.refreshTokenKey;
-        this._cache.getStore(_e15) && (i.access_token = (await this.getAccessToken()).accessToken);
+    value: function () {
+      var _request = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee9(e, t, n) {
+        var s, r, i, _e15, o, _e16, _e17, a, c, u, l, h, d, f, p, g;
+        return _regenerator.default.wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                s = "x-tcb-trace_".concat(this.config.env);
+                r = "application/x-www-form-urlencoded";
+                i = _objectSpread({
+                  action: e,
+                  env: this.config.env,
+                  dataVersion: "2019-08-16"
+                }, t);
+                if (!(-1 === Me.indexOf(e))) {
+                  _context9.next = 10;
+                  break;
+                }
+                _e15 = this._cache.keys.refreshTokenKey;
+                _context9.t0 = this._cache.getStore(_e15);
+                if (!_context9.t0) {
+                  _context9.next = 10;
+                  break;
+                }
+                _context9.next = 9;
+                return this.getAccessToken();
+              case 9:
+                i.access_token = _context9.sent.accessToken;
+              case 10:
+                if ("storage.uploadFile" === e) {
+                  o = new FormData();
+                  for (_e16 in o) {
+                    o.hasOwnProperty(_e16) && void 0 !== o[_e16] && o.append(_e16, i[_e16]);
+                  }
+                  r = "multipart/form-data";
+                } else {
+                  r = "application/json", o = {};
+                  for (_e17 in i) {
+                    void 0 !== i[_e17] && (o[_e17] = i[_e17]);
+                  }
+                }
+                a = {
+                  headers: {
+                    "content-type": r
+                  }
+                };
+                n && n.onUploadProgress && (a.onUploadProgress = n.onUploadProgress);
+                c = this._localCache.getStore(s);
+                c && (a.headers["X-TCB-Trace"] = c);
+                u = t.parse, l = t.inQuery, h = t.search;
+                d = {
+                  env: this.config.env
+                };
+                u && (d.parse = !0), l && (d = _objectSpread(_objectSpread({}, l), d));
+                f = function (e, t) {
+                  var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+                  var s = /\?/.test(t);
+                  var r = "";
+                  for (var _e18 in n) {
+                    "" === r ? !s && (t += "?") : r += "&", r += "".concat(_e18, "=").concat(encodeURIComponent(n[_e18]));
+                  }
+                  return /^http(s)?\:\/\//.test(t += r) ? t : "".concat(e).concat(t);
+                }(de, "//tcb-api.tencentcloudapi.com/web", d);
+                h && (f += h);
+                _context9.next = 22;
+                return this.post(_objectSpread({
+                  url: f,
+                  data: o
+                }, a));
+              case 22:
+                p = _context9.sent;
+                g = p.header && p.header["x-tcb-trace"];
+                if (!(g && this._localCache.setStore(s, g), 200 !== Number(p.status) && 200 !== Number(p.statusCode) || !p.data)) {
+                  _context9.next = 26;
+                  break;
+                }
+                throw new Q({
+                  code: "NETWORK_ERROR",
+                  message: "network request error"
+                });
+              case 26:
+                return _context9.abrupt("return", p);
+              case 27:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9, this);
+      }));
+      function request(_x5, _x6, _x7) {
+        return _request.apply(this, arguments);
       }
-      var o;
-      if ("storage.uploadFile" === e) {
-        o = new FormData();
-        for (var _e16 in o) {
-          o.hasOwnProperty(_e16) && void 0 !== o[_e16] && o.append(_e16, i[_e16]);
-        }
-        r = "multipart/form-data";
-      } else {
-        r = "application/json", o = {};
-        for (var _e17 in i) {
-          void 0 !== i[_e17] && (o[_e17] = i[_e17]);
-        }
-      }
-      var a = {
-        headers: {
-          "content-type": r
-        }
-      };
-      n && n.onUploadProgress && (a.onUploadProgress = n.onUploadProgress);
-      var c = this._localCache.getStore(s);
-      c && (a.headers["X-TCB-Trace"] = c);
-      var u = t.parse,
-        l = t.inQuery,
-        h = t.search;
-      var d = {
-        env: this.config.env
-      };
-      u && (d.parse = !0), l && (d = _objectSpread(_objectSpread({}, l), d));
-      var f = function (e, t) {
-        var n = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-        var s = /\?/.test(t);
-        var r = "";
-        for (var _e18 in n) {
-          "" === r ? !s && (t += "?") : r += "&", r += "".concat(_e18, "=").concat(encodeURIComponent(n[_e18]));
-        }
-        return /^http(s)?\:\/\//.test(t += r) ? t : "".concat(e).concat(t);
-      }(de, "//tcb-api.tencentcloudapi.com/web", d);
-      h && (f += h);
-      var p = await this.post(_objectSpread({
-          url: f,
-          data: o
-        }, a)),
-        g = p.header && p.header["x-tcb-trace"];
-      if (g && this._localCache.setStore(s, g), 200 !== Number(p.status) && 200 !== Number(p.statusCode) || !p.data) throw new Q({
-        code: "NETWORK_ERROR",
-        message: "network request error"
-      });
-      return p;
-    }
+      return request;
+    }()
   }, {
     key: "send",
-    value: async function send(e) {
-      var t = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var n = await this.request(e, t, {
-        onUploadProgress: t.onUploadProgress
-      });
-      if ("ACCESS_TOKEN_EXPIRED" === n.data.code && -1 === Me.indexOf(e)) {
-        await this.refreshAccessToken();
-        var _n6 = await this.request(e, t, {
-          onUploadProgress: t.onUploadProgress
-        });
-        if (_n6.data.code) throw new Q({
-          code: _n6.data.code,
-          message: _n6.data.message
-        });
-        return _n6.data;
+    value: function () {
+      var _send = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee10(e) {
+        var t,
+          n,
+          _n6,
+          _args10 = arguments;
+        return _regenerator.default.wrap(function _callee10$(_context10) {
+          while (1) {
+            switch (_context10.prev = _context10.next) {
+              case 0:
+                t = _args10.length > 1 && _args10[1] !== undefined ? _args10[1] : {};
+                _context10.next = 3;
+                return this.request(e, t, {
+                  onUploadProgress: t.onUploadProgress
+                });
+              case 3:
+                n = _context10.sent;
+                if (!("ACCESS_TOKEN_EXPIRED" === n.data.code && -1 === Me.indexOf(e))) {
+                  _context10.next = 13;
+                  break;
+                }
+                _context10.next = 7;
+                return this.refreshAccessToken();
+              case 7:
+                _context10.next = 9;
+                return this.request(e, t, {
+                  onUploadProgress: t.onUploadProgress
+                });
+              case 9:
+                _n6 = _context10.sent;
+                if (!_n6.data.code) {
+                  _context10.next = 12;
+                  break;
+                }
+                throw new Q({
+                  code: _n6.data.code,
+                  message: _n6.data.message
+                });
+              case 12:
+                return _context10.abrupt("return", _n6.data);
+              case 13:
+                if (!n.data.code) {
+                  _context10.next = 15;
+                  break;
+                }
+                throw new Q({
+                  code: n.data.code,
+                  message: n.data.message
+                });
+              case 15:
+                return _context10.abrupt("return", n.data);
+              case 16:
+              case "end":
+                return _context10.stop();
+            }
+          }
+        }, _callee10, this);
+      }));
+      function send(_x8) {
+        return _send.apply(this, arguments);
       }
-      if (n.data.code) throw new Q({
-        code: n.data.code,
-        message: n.data.message
-      });
-      return n.data;
-    }
+      return send;
+    }()
   }, {
     key: "setRefreshToken",
     value: function setRefreshToken(e) {
@@ -21614,11 +22314,31 @@ var He = /*#__PURE__*/function () {
     }
   }, {
     key: "refreshUserInfo",
-    value: async function refreshUserInfo() {
-      var _await$this$_request$ = await this._request.send("auth.getUserInfo", {}),
-        e = _await$this$_request$.data;
-      return this.setLocalUserInfo(e), e;
-    }
+    value: function () {
+      var _refreshUserInfo = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee11() {
+        var _yield$this$_request$, e;
+        return _regenerator.default.wrap(function _callee11$(_context11) {
+          while (1) {
+            switch (_context11.prev = _context11.next) {
+              case 0:
+                _context11.next = 2;
+                return this._request.send("auth.getUserInfo", {});
+              case 2:
+                _yield$this$_request$ = _context11.sent;
+                e = _yield$this$_request$.data;
+                return _context11.abrupt("return", (this.setLocalUserInfo(e), e));
+              case 5:
+              case "end":
+                return _context11.stop();
+            }
+          }
+        }, _callee11, this);
+      }));
+      function refreshUserInfo() {
+        return _refreshUserInfo.apply(this, arguments);
+      }
+      return refreshUserInfo;
+    }()
   }, {
     key: "setLocalUserInfo",
     value: function setLocalUserInfo(e) {
@@ -21681,18 +22401,38 @@ var Ge = /*#__PURE__*/function () {
     }
   }, {
     key: "getLinkedUidList",
-    value: async function getLinkedUidList() {
-      var _await$this$_request$2 = await this._request.send("auth.getLinkedUidList", {}),
-        e = _await$this$_request$2.data;
-      var t = !1;
-      var n = e.users;
-      return n.forEach(function (e) {
-        e.wxOpenId && e.wxPublicId && (t = !0);
-      }), {
-        users: n,
-        hasPrimaryUid: t
-      };
-    }
+    value: function () {
+      var _getLinkedUidList = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee12() {
+        var _yield$this$_request$2, e, t, n;
+        return _regenerator.default.wrap(function _callee12$(_context12) {
+          while (1) {
+            switch (_context12.prev = _context12.next) {
+              case 0:
+                _context12.next = 2;
+                return this._request.send("auth.getLinkedUidList", {});
+              case 2:
+                _yield$this$_request$2 = _context12.sent;
+                e = _yield$this$_request$2.data;
+                t = !1;
+                n = e.users;
+                return _context12.abrupt("return", (n.forEach(function (e) {
+                  e.wxOpenId && e.wxPublicId && (t = !0);
+                }), {
+                  users: n,
+                  hasPrimaryUid: t
+                }));
+              case 7:
+              case "end":
+                return _context12.stop();
+            }
+          }
+        }, _callee12, this);
+      }));
+      function getLinkedUidList() {
+        return _getLinkedUidList.apply(this, arguments);
+      }
+      return getLinkedUidList;
+    }()
   }, {
     key: "setPrimaryUid",
     value: function setPrimaryUid(e) {
@@ -21709,31 +22449,71 @@ var Ge = /*#__PURE__*/function () {
     }
   }, {
     key: "update",
-    value: async function update(e) {
-      var t = e.nickName,
-        n = e.gender,
-        s = e.avatarUrl,
-        r = e.province,
-        i = e.country,
-        o = e.city,
-        _await$this$_request$3 = await this._request.send("auth.updateUserInfo", {
-          nickName: t,
-          gender: n,
-          avatarUrl: s,
-          province: r,
-          country: i,
-          city: o
-        }),
-        a = _await$this$_request$3.data;
-      this.setLocalUserInfo(a);
-    }
+    value: function () {
+      var _update = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee13(e) {
+        var t, n, s, r, i, o, _yield$this$_request$3, a;
+        return _regenerator.default.wrap(function _callee13$(_context13) {
+          while (1) {
+            switch (_context13.prev = _context13.next) {
+              case 0:
+                t = e.nickName;
+                n = e.gender;
+                s = e.avatarUrl;
+                r = e.province;
+                i = e.country;
+                o = e.city;
+                _context13.next = 8;
+                return this._request.send("auth.updateUserInfo", {
+                  nickName: t,
+                  gender: n,
+                  avatarUrl: s,
+                  province: r,
+                  country: i,
+                  city: o
+                });
+              case 8:
+                _yield$this$_request$3 = _context13.sent;
+                a = _yield$this$_request$3.data;
+                this.setLocalUserInfo(a);
+              case 11:
+              case "end":
+                return _context13.stop();
+            }
+          }
+        }, _callee13, this);
+      }));
+      function update(_x9) {
+        return _update.apply(this, arguments);
+      }
+      return update;
+    }()
   }, {
     key: "refresh",
-    value: async function refresh() {
-      var _await$this$_request$4 = await this._request.send("auth.getUserInfo", {}),
-        e = _await$this$_request$4.data;
-      return this.setLocalUserInfo(e), e;
-    }
+    value: function () {
+      var _refresh = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee14() {
+        var _yield$this$_request$4, e;
+        return _regenerator.default.wrap(function _callee14$(_context14) {
+          while (1) {
+            switch (_context14.prev = _context14.next) {
+              case 0:
+                _context14.next = 2;
+                return this._request.send("auth.getUserInfo", {});
+              case 2:
+                _yield$this$_request$4 = _context14.sent;
+                e = _yield$this$_request$4.data;
+                return _context14.abrupt("return", (this.setLocalUserInfo(e), e));
+              case 5:
+              case "end":
+                return _context14.stop();
+            }
+          }
+        }, _callee14, this);
+      }));
+      function refresh() {
+        return _refresh.apply(this, arguments);
+      }
+      return refresh;
+    }()
   }, {
     key: "setUserInfo",
     value: function setUserInfo() {
@@ -21810,57 +22590,121 @@ var Ye = /*#__PURE__*/function (_He) {
   }
   (0, _createClass2.default)(Ye, [{
     key: "signIn",
-    value: async function signIn() {
-      this._cache.updatePersistence("local");
-      var _this$_cache$keys7 = this._cache.keys,
-        e = _this$_cache$keys7.anonymousUuidKey,
-        t = _this$_cache$keys7.refreshTokenKey,
-        n = this._cache.getStore(e) || void 0,
-        s = this._cache.getStore(t) || void 0,
-        r = await this._request.send("auth.signInAnonymously", {
-          anonymous_uuid: n,
-          refresh_token: s
-        });
-      if (r.uuid && r.refresh_token) {
-        this._setAnonymousUUID(r.uuid), this.setRefreshToken(r.refresh_token), await this._request.refreshAccessToken(), Ue(Le), Ue(De, {
-          env: this.config.env,
-          loginType: Ke.ANONYMOUS,
-          persistence: "local"
-        });
-        var _e19 = new Ve(this.config.env);
-        return await _e19.user.refresh(), _e19;
+    value: function () {
+      var _signIn = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee15() {
+        var _this$_cache$keys7, e, t, n, s, r, _e19;
+        return _regenerator.default.wrap(function _callee15$(_context15) {
+          while (1) {
+            switch (_context15.prev = _context15.next) {
+              case 0:
+                this._cache.updatePersistence("local");
+                _this$_cache$keys7 = this._cache.keys;
+                e = _this$_cache$keys7.anonymousUuidKey;
+                t = _this$_cache$keys7.refreshTokenKey;
+                n = this._cache.getStore(e) || void 0;
+                s = this._cache.getStore(t) || void 0;
+                _context15.next = 8;
+                return this._request.send("auth.signInAnonymously", {
+                  anonymous_uuid: n,
+                  refresh_token: s
+                });
+              case 8:
+                r = _context15.sent;
+                if (!(r.uuid && r.refresh_token)) {
+                  _context15.next = 20;
+                  break;
+                }
+                this._setAnonymousUUID(r.uuid);
+                this.setRefreshToken(r.refresh_token);
+                _context15.next = 14;
+                return this._request.refreshAccessToken();
+              case 14:
+                Ue(Le);
+                Ue(De, {
+                  env: this.config.env,
+                  loginType: Ke.ANONYMOUS,
+                  persistence: "local"
+                });
+                _e19 = new Ve(this.config.env);
+                _context15.next = 19;
+                return _e19.user.refresh();
+              case 19:
+                return _context15.abrupt("return", _e19);
+              case 20:
+                throw new Q({
+                  message: "匿名登录失败"
+                });
+              case 21:
+              case "end":
+                return _context15.stop();
+            }
+          }
+        }, _callee15, this);
+      }));
+      function signIn() {
+        return _signIn.apply(this, arguments);
       }
-      throw new Q({
-        message: "匿名登录失败"
-      });
-    }
+      return signIn;
+    }()
   }, {
     key: "linkAndRetrieveDataWithTicket",
-    value: async function linkAndRetrieveDataWithTicket(e) {
-      var _this$_cache$keys8 = this._cache.keys,
-        t = _this$_cache$keys8.anonymousUuidKey,
-        n = _this$_cache$keys8.refreshTokenKey,
-        s = this._cache.getStore(t),
-        r = this._cache.getStore(n),
-        i = await this._request.send("auth.linkAndRetrieveDataWithTicket", {
-          anonymous_uuid: s,
-          refresh_token: r,
-          ticket: e
-        });
-      if (i.refresh_token) return this._clearAnonymousUUID(), this.setRefreshToken(i.refresh_token), await this._request.refreshAccessToken(), Ue(Fe, {
-        env: this.config.env
-      }), Ue(De, {
-        loginType: Ke.CUSTOM,
-        persistence: "local"
-      }), {
-        credential: {
-          refreshToken: i.refresh_token
-        }
-      };
-      throw new Q({
-        message: "匿名转化失败"
-      });
-    }
+    value: function () {
+      var _linkAndRetrieveDataWithTicket = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee16(e) {
+        var _this$_cache$keys8, t, n, s, r, i;
+        return _regenerator.default.wrap(function _callee16$(_context16) {
+          while (1) {
+            switch (_context16.prev = _context16.next) {
+              case 0:
+                _this$_cache$keys8 = this._cache.keys;
+                t = _this$_cache$keys8.anonymousUuidKey;
+                n = _this$_cache$keys8.refreshTokenKey;
+                s = this._cache.getStore(t);
+                r = this._cache.getStore(n);
+                _context16.next = 7;
+                return this._request.send("auth.linkAndRetrieveDataWithTicket", {
+                  anonymous_uuid: s,
+                  refresh_token: r,
+                  ticket: e
+                });
+              case 7:
+                i = _context16.sent;
+                if (!i.refresh_token) {
+                  _context16.next = 16;
+                  break;
+                }
+                this._clearAnonymousUUID();
+                this.setRefreshToken(i.refresh_token);
+                _context16.next = 13;
+                return this._request.refreshAccessToken();
+              case 13:
+                Ue(Fe, {
+                  env: this.config.env
+                });
+                Ue(De, {
+                  loginType: Ke.CUSTOM,
+                  persistence: "local"
+                });
+                return _context16.abrupt("return", {
+                  credential: {
+                    refreshToken: i.refresh_token
+                  }
+                });
+              case 16:
+                throw new Q({
+                  message: "匿名转化失败"
+                });
+              case 17:
+              case "end":
+                return _context16.stop();
+            }
+          }
+        }, _callee16, this);
+      }));
+      function linkAndRetrieveDataWithTicket(_x10) {
+        return _linkAndRetrieveDataWithTicket.apply(this, arguments);
+      }
+      return linkAndRetrieveDataWithTicket;
+    }()
   }, {
     key: "_setAnonymousUUID",
     value: function _setAnonymousUUID(e) {
@@ -21886,25 +22730,64 @@ var Qe = /*#__PURE__*/function (_He2) {
   }
   (0, _createClass2.default)(Qe, [{
     key: "signIn",
-    value: async function signIn(e) {
-      if ("string" != typeof e) throw new Q({
-        code: "PARAM_ERROR",
-        message: "ticket must be a string"
-      });
-      var t = this._cache.keys.refreshTokenKey,
-        n = await this._request.send("auth.signInWithTicket", {
-          ticket: e,
-          refresh_token: this._cache.getStore(t) || ""
-        });
-      if (n.refresh_token) return this.setRefreshToken(n.refresh_token), await this._request.refreshAccessToken(), Ue(Le), Ue(De, {
-        env: this.config.env,
-        loginType: Ke.CUSTOM,
-        persistence: this.config.persistence
-      }), await this.refreshUserInfo(), new Ve(this.config.env);
-      throw new Q({
-        message: "自定义登录失败"
-      });
-    }
+    value: function () {
+      var _signIn2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee17(e) {
+        var t, n;
+        return _regenerator.default.wrap(function _callee17$(_context17) {
+          while (1) {
+            switch (_context17.prev = _context17.next) {
+              case 0:
+                if (!("string" != typeof e)) {
+                  _context17.next = 2;
+                  break;
+                }
+                throw new Q({
+                  code: "PARAM_ERROR",
+                  message: "ticket must be a string"
+                });
+              case 2:
+                t = this._cache.keys.refreshTokenKey;
+                _context17.next = 5;
+                return this._request.send("auth.signInWithTicket", {
+                  ticket: e,
+                  refresh_token: this._cache.getStore(t) || ""
+                });
+              case 5:
+                n = _context17.sent;
+                if (!n.refresh_token) {
+                  _context17.next = 15;
+                  break;
+                }
+                this.setRefreshToken(n.refresh_token);
+                _context17.next = 10;
+                return this._request.refreshAccessToken();
+              case 10:
+                Ue(Le);
+                Ue(De, {
+                  env: this.config.env,
+                  loginType: Ke.CUSTOM,
+                  persistence: this.config.persistence
+                });
+                _context17.next = 14;
+                return this.refreshUserInfo();
+              case 14:
+                return _context17.abrupt("return", new Ve(this.config.env));
+              case 15:
+                throw new Q({
+                  message: "自定义登录失败"
+                });
+              case 16:
+              case "end":
+                return _context17.stop();
+            }
+          }
+        }, _callee17, this);
+      }));
+      function signIn(_x11) {
+        return _signIn2.apply(this, arguments);
+      }
+      return signIn;
+    }()
   }]);
   return Qe;
 }(He);
@@ -21917,48 +22800,127 @@ var Xe = /*#__PURE__*/function (_He3) {
   }
   (0, _createClass2.default)(Xe, [{
     key: "signIn",
-    value: async function signIn(e, t) {
-      if ("string" != typeof e) throw new Q({
-        code: "PARAM_ERROR",
-        message: "email must be a string"
-      });
-      var n = this._cache.keys.refreshTokenKey,
-        s = await this._request.send("auth.signIn", {
-          loginType: "EMAIL",
-          email: e,
-          password: t,
-          refresh_token: this._cache.getStore(n) || ""
-        }),
-        r = s.refresh_token,
-        i = s.access_token,
-        o = s.access_token_expire;
-      if (r) return this.setRefreshToken(r), i && o ? this.setAccessToken(i, o) : await this._request.refreshAccessToken(), await this.refreshUserInfo(), Ue(Le), Ue(De, {
-        env: this.config.env,
-        loginType: Ke.EMAIL,
-        persistence: this.config.persistence
-      }), new Ve(this.config.env);
-      throw s.code ? new Q({
-        code: s.code,
-        message: "\u90AE\u7BB1\u767B\u5F55\u5931\u8D25: ".concat(s.message)
-      }) : new Q({
-        message: "邮箱登录失败"
-      });
-    }
+    value: function () {
+      var _signIn3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee18(e, t) {
+        var n, s, r, i, o;
+        return _regenerator.default.wrap(function _callee18$(_context18) {
+          while (1) {
+            switch (_context18.prev = _context18.next) {
+              case 0:
+                if (!("string" != typeof e)) {
+                  _context18.next = 2;
+                  break;
+                }
+                throw new Q({
+                  code: "PARAM_ERROR",
+                  message: "email must be a string"
+                });
+              case 2:
+                n = this._cache.keys.refreshTokenKey;
+                _context18.next = 5;
+                return this._request.send("auth.signIn", {
+                  loginType: "EMAIL",
+                  email: e,
+                  password: t,
+                  refresh_token: this._cache.getStore(n) || ""
+                });
+              case 5:
+                s = _context18.sent;
+                r = s.refresh_token;
+                i = s.access_token;
+                o = s.access_token_expire;
+                if (!r) {
+                  _context18.next = 22;
+                  break;
+                }
+                this.setRefreshToken(r);
+                if (!(i && o)) {
+                  _context18.next = 15;
+                  break;
+                }
+                this.setAccessToken(i, o);
+                _context18.next = 17;
+                break;
+              case 15:
+                _context18.next = 17;
+                return this._request.refreshAccessToken();
+              case 17:
+                _context18.next = 19;
+                return this.refreshUserInfo();
+              case 19:
+                Ue(Le);
+                Ue(De, {
+                  env: this.config.env,
+                  loginType: Ke.EMAIL,
+                  persistence: this.config.persistence
+                });
+                return _context18.abrupt("return", new Ve(this.config.env));
+              case 22:
+                throw s.code ? new Q({
+                  code: s.code,
+                  message: "\u90AE\u7BB1\u767B\u5F55\u5931\u8D25: ".concat(s.message)
+                }) : new Q({
+                  message: "邮箱登录失败"
+                });
+              case 23:
+              case "end":
+                return _context18.stop();
+            }
+          }
+        }, _callee18, this);
+      }));
+      function signIn(_x12, _x13) {
+        return _signIn3.apply(this, arguments);
+      }
+      return signIn;
+    }()
   }, {
     key: "activate",
-    value: async function activate(e) {
-      return this._request.send("auth.activateEndUserMail", {
-        token: e
-      });
-    }
+    value: function () {
+      var _activate = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee19(e) {
+        return _regenerator.default.wrap(function _callee19$(_context19) {
+          while (1) {
+            switch (_context19.prev = _context19.next) {
+              case 0:
+                return _context19.abrupt("return", this._request.send("auth.activateEndUserMail", {
+                  token: e
+                }));
+              case 1:
+              case "end":
+                return _context19.stop();
+            }
+          }
+        }, _callee19, this);
+      }));
+      function activate(_x14) {
+        return _activate.apply(this, arguments);
+      }
+      return activate;
+    }()
   }, {
     key: "resetPasswordWithToken",
-    value: async function resetPasswordWithToken(e, t) {
-      return this._request.send("auth.resetPasswordWithToken", {
-        token: e,
-        newPassword: t
-      });
-    }
+    value: function () {
+      var _resetPasswordWithToken = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee20(e, t) {
+        return _regenerator.default.wrap(function _callee20$(_context20) {
+          while (1) {
+            switch (_context20.prev = _context20.next) {
+              case 0:
+                return _context20.abrupt("return", this._request.send("auth.resetPasswordWithToken", {
+                  token: e,
+                  newPassword: t
+                }));
+              case 1:
+              case "end":
+                return _context20.stop();
+            }
+          }
+        }, _callee20, this);
+      }));
+      function resetPasswordWithToken(_x15, _x16) {
+        return _resetPasswordWithToken.apply(this, arguments);
+      }
+      return resetPasswordWithToken;
+    }()
   }]);
   return Xe;
 }(He);
@@ -21971,34 +22933,81 @@ var Ze = /*#__PURE__*/function (_He4) {
   }
   (0, _createClass2.default)(Ze, [{
     key: "signIn",
-    value: async function signIn(e, t) {
-      if ("string" != typeof e) throw new Q({
-        code: "PARAM_ERROR",
-        message: "username must be a string"
-      });
-      "string" != typeof t && (t = "", console.warn("password is empty"));
-      var n = this._cache.keys.refreshTokenKey,
-        s = await this._request.send("auth.signIn", {
-          loginType: Ke.USERNAME,
-          username: e,
-          password: t,
-          refresh_token: this._cache.getStore(n) || ""
-        }),
-        r = s.refresh_token,
-        i = s.access_token_expire,
-        o = s.access_token;
-      if (r) return this.setRefreshToken(r), o && i ? this.setAccessToken(o, i) : await this._request.refreshAccessToken(), await this.refreshUserInfo(), Ue(Le), Ue(De, {
-        env: this.config.env,
-        loginType: Ke.USERNAME,
-        persistence: this.config.persistence
-      }), new Ve(this.config.env);
-      throw s.code ? new Q({
-        code: s.code,
-        message: "\u7528\u6237\u540D\u5BC6\u7801\u767B\u5F55\u5931\u8D25: ".concat(s.message)
-      }) : new Q({
-        message: "用户名密码登录失败"
-      });
-    }
+    value: function () {
+      var _signIn4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee21(e, t) {
+        var n, s, r, i, o;
+        return _regenerator.default.wrap(function _callee21$(_context21) {
+          while (1) {
+            switch (_context21.prev = _context21.next) {
+              case 0:
+                if (!("string" != typeof e)) {
+                  _context21.next = 2;
+                  break;
+                }
+                throw new Q({
+                  code: "PARAM_ERROR",
+                  message: "username must be a string"
+                });
+              case 2:
+                "string" != typeof t && (t = "", console.warn("password is empty"));
+                n = this._cache.keys.refreshTokenKey;
+                _context21.next = 6;
+                return this._request.send("auth.signIn", {
+                  loginType: Ke.USERNAME,
+                  username: e,
+                  password: t,
+                  refresh_token: this._cache.getStore(n) || ""
+                });
+              case 6:
+                s = _context21.sent;
+                r = s.refresh_token;
+                i = s.access_token_expire;
+                o = s.access_token;
+                if (!r) {
+                  _context21.next = 23;
+                  break;
+                }
+                this.setRefreshToken(r);
+                if (!(o && i)) {
+                  _context21.next = 16;
+                  break;
+                }
+                this.setAccessToken(o, i);
+                _context21.next = 18;
+                break;
+              case 16:
+                _context21.next = 18;
+                return this._request.refreshAccessToken();
+              case 18:
+                _context21.next = 20;
+                return this.refreshUserInfo();
+              case 20:
+                Ue(Le);
+                Ue(De, {
+                  env: this.config.env,
+                  loginType: Ke.USERNAME,
+                  persistence: this.config.persistence
+                });
+                return _context21.abrupt("return", new Ve(this.config.env));
+              case 23:
+                throw s.code ? new Q({
+                  code: s.code,
+                  message: "\u7528\u6237\u540D\u5BC6\u7801\u767B\u5F55\u5931\u8D25: ".concat(s.message)
+                }) : new Q({
+                  message: "用户名密码登录失败"
+                });
+              case 24:
+              case "end":
+                return _context21.stop();
+            }
+          }
+        }, _callee21, this);
+      }));
+      function signIn(_x17, _x18) {
+        return _signIn4.apply(this, arguments);
+      }
+      return signIn;
+    }()
   }]);
   return Ze;
 }(He);
@@ -22040,14 +23049,46 @@ var et = /*#__PURE__*/function () {
     }
   }, {
     key: "signInAnonymously",
-    value: async function signInAnonymously() {
-      return new Ye(this.config).signIn();
-    }
+    value: function () {
+      var _signInAnonymously = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee22() {
+        return _regenerator.default.wrap(function _callee22$(_context22) {
+          while (1) {
+            switch (_context22.prev = _context22.next) {
+              case 0:
+                return _context22.abrupt("return", new Ye(this.config).signIn());
+              case 1:
+              case "end":
+                return _context22.stop();
+            }
+          }
+        }, _callee22, this);
+      }));
+      function signInAnonymously() {
+        return _signInAnonymously.apply(this, arguments);
+      }
+      return signInAnonymously;
+    }()
   }, {
     key: "signInWithEmailAndPassword",
-    value: async function signInWithEmailAndPassword(e, t) {
-      return new Xe(this.config).signIn(e, t);
-    }
+    value: function () {
+      var _signInWithEmailAndPassword = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee23(e, t) {
+        return _regenerator.default.wrap(function _callee23$(_context23) {
+          while (1) {
+            switch (_context23.prev = _context23.next) {
+              case 0:
+                return _context23.abrupt("return", new Xe(this.config).signIn(e, t));
+              case 1:
+              case "end":
+                return _context23.stop();
+            }
+          }
+        }, _callee23, this);
+      }));
+      function signInWithEmailAndPassword(_x19, _x20) {
+        return _signInWithEmailAndPassword.apply(this, arguments);
+      }
+      return signInWithEmailAndPassword;
+    }()
   }, {
     key: "signInWithUsernameAndPassword",
     value: function signInWithUsernameAndPassword(e, t) {
@@ -22055,46 +23096,123 @@ var et = /*#__PURE__*/function () {
     }
   }, {
     key: "linkAndRetrieveDataWithTicket",
-    value: async function linkAndRetrieveDataWithTicket(e) {
-      this._anonymousAuthProvider || (this._anonymousAuthProvider = new Ye(this.config)), xe(Fe, this._onAnonymousConverted);
-      return await this._anonymousAuthProvider.linkAndRetrieveDataWithTicket(e);
-    }
+    value: function () {
+      var _linkAndRetrieveDataWithTicket2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee24(e) {
+        return _regenerator.default.wrap(function _callee24$(_context24) {
+          while (1) {
+            switch (_context24.prev = _context24.next) {
+              case 0:
+                this._anonymousAuthProvider || (this._anonymousAuthProvider = new Ye(this.config)), xe(Fe, this._onAnonymousConverted);
+                _context24.next = 3;
+                return this._anonymousAuthProvider.linkAndRetrieveDataWithTicket(e);
+              case 3:
+                return _context24.abrupt("return", _context24.sent);
+              case 4:
+              case "end":
+                return _context24.stop();
+            }
+          }
+        }, _callee24, this);
+      }));
+      function linkAndRetrieveDataWithTicket(_x21) {
+        return _linkAndRetrieveDataWithTicket2.apply(this, arguments);
+      }
+      return linkAndRetrieveDataWithTicket;
+    }()
   }, {
     key: "signOut",
-    value: async function signOut() {
-      if (this.loginType === Ke.ANONYMOUS) throw new Q({
-        message: "匿名用户不支持登出操作"
-      });
-      var _this$_cache$keys10 = this._cache.keys,
-        e = _this$_cache$keys10.refreshTokenKey,
-        t = _this$_cache$keys10.accessTokenKey,
-        n = _this$_cache$keys10.accessTokenExpireKey,
-        s = this._cache.getStore(e);
-      if (!s) return;
-      var r = await this._request.send("auth.logout", {
-        refresh_token: s
-      });
-      return this._cache.removeStore(e), this._cache.removeStore(t), this._cache.removeStore(n), Ue(Le), Ue(De, {
-        env: this.config.env,
-        loginType: Ke.NULL,
-        persistence: this.config.persistence
-      }), r;
-    }
+    value: function () {
+      var _signOut = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee25() {
+        var _this$_cache$keys10, e, t, n, s, r;
+        return _regenerator.default.wrap(function _callee25$(_context25) {
+          while (1) {
+            switch (_context25.prev = _context25.next) {
+              case 0:
+                if (!(this.loginType === Ke.ANONYMOUS)) {
+                  _context25.next = 2;
+                  break;
+                }
+                throw new Q({
+                  message: "匿名用户不支持登出操作"
+                });
+              case 2:
+                _this$_cache$keys10 = this._cache.keys, e = _this$_cache$keys10.refreshTokenKey, t = _this$_cache$keys10.accessTokenKey, n = _this$_cache$keys10.accessTokenExpireKey, s = this._cache.getStore(e);
+                if (s) {
+                  _context25.next = 5;
+                  break;
+                }
+                return _context25.abrupt("return");
+              case 5:
+                _context25.next = 7;
+                return this._request.send("auth.logout", {
+                  refresh_token: s
+                });
+              case 7:
+                r = _context25.sent;
+                return _context25.abrupt("return", (this._cache.removeStore(e), this._cache.removeStore(t), this._cache.removeStore(n), Ue(Le), Ue(De, {
+                  env: this.config.env,
+                  loginType: Ke.NULL,
+                  persistence: this.config.persistence
+                }), r));
+              case 9:
+              case "end":
+                return _context25.stop();
+            }
+          }
+        }, _callee25, this);
+      }));
+      function signOut() {
+        return _signOut.apply(this, arguments);
+      }
+      return signOut;
+    }()
   }, {
     key: "signUpWithEmailAndPassword",
-    value: async function signUpWithEmailAndPassword(e, t) {
-      return this._request.send("auth.signUpWithEmailAndPassword", {
-        email: e,
-        password: t
-      });
-    }
+    value: function () {
+      var _signUpWithEmailAndPassword = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee26(e, t) {
+        return _regenerator.default.wrap(function _callee26$(_context26) {
+          while (1) {
+            switch (_context26.prev = _context26.next) {
+              case 0:
+                return _context26.abrupt("return", this._request.send("auth.signUpWithEmailAndPassword", {
+                  email: e,
+                  password: t
+                }));
+              case 1:
+              case "end":
+                return _context26.stop();
+            }
+          }
+        }, _callee26, this);
+      }));
+      function signUpWithEmailAndPassword(_x22, _x23) {
+        return _signUpWithEmailAndPassword.apply(this, arguments);
+      }
+      return signUpWithEmailAndPassword;
+    }()
   }, {
     key: "sendPasswordResetEmail",
-    value: async function sendPasswordResetEmail(e) {
-      return this._request.send("auth.sendPasswordResetEmail", {
-        email: e
-      });
-    }
+    value: function () {
+      var _sendPasswordResetEmail = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee27(e) {
+        return _regenerator.default.wrap(function _callee27$(_context27) {
+          while (1) {
+            switch (_context27.prev = _context27.next) {
+              case 0:
+                return _context27.abrupt("return", this._request.send("auth.sendPasswordResetEmail", {
+                  email: e
+                }));
+              case 1:
+              case "end":
+                return _context27.stop();
+            }
+          }
+        }, _callee27, this);
+      }));
+      function sendPasswordResetEmail(_x24) {
+        return _sendPasswordResetEmail.apply(this, arguments);
+      }
+      return sendPasswordResetEmail;
+    }()
   }, {
     key: "onLoginStateChanged",
     value: function onLoginStateChanged(e) {
@@ -22132,12 +23250,33 @@ var et = /*#__PURE__*/function () {
     }
   }, {
     key: "getAccessToken",
-    value: async function getAccessToken() {
-      return {
-        accessToken: (await this._request.getAccessToken()).accessToken,
-        env: this.config.env
-      };
-    }
+    value: function () {
+      var _getAccessToken2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee28() {
+        return _regenerator.default.wrap(function _callee28$(_context28) {
+          while (1) {
+            switch (_context28.prev = _context28.next) {
+              case 0:
+                _context28.next = 2;
+                return this._request.getAccessToken();
+              case 2:
+                _context28.t0 = _context28.sent.accessToken;
+                _context28.t1 = this.config.env;
+                return _context28.abrupt("return", {
+                  accessToken: _context28.t0,
+                  env: _context28.t1
+                });
+              case 5:
+              case "end":
+                return _context28.stop();
+            }
+          }
+        }, _callee28, this);
+      }));
+      function getAccessToken() {
+        return _getAccessToken2.apply(this, arguments);
+      }
+      return getAccessToken;
+    }()
   }, {
     key: "hasLoginState",
     value: function hasLoginState() {
@@ -22146,17 +23285,42 @@ var et = /*#__PURE__*/function () {
     }
   }, {
     key: "isUsernameRegistered",
-    value: async function isUsernameRegistered(e) {
-      if ("string" != typeof e) throw new Q({
-        code: "PARAM_ERROR",
-        message: "username must be a string"
-      });
-      var _await$this$_request$5 = await this._request.send("auth.isUsernameRegistered", {
-          username: e
-        }),
-        t = _await$this$_request$5.data;
-      return t && t.isRegistered;
-    }
+    value: function () {
+      var _isUsernameRegistered = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee29(e) {
+        var _yield$this$_request$5, t;
+        return _regenerator.default.wrap(function _callee29$(_context29) {
+          while (1) {
+            switch (_context29.prev = _context29.next) {
+              case 0:
+                if (!("string" != typeof e)) {
+                  _context29.next = 2;
+                  break;
+                }
+                throw new Q({
+                  code: "PARAM_ERROR",
+                  message: "username must be a string"
+                });
+              case 2:
+                _context29.next = 4;
+                return this._request.send("auth.isUsernameRegistered", {
+                  username: e
+                });
+              case 4:
+                _yield$this$_request$5 = _context29.sent;
+                t = _yield$this$_request$5.data;
+                return _context29.abrupt("return", t && t.isRegistered);
+              case 7:
+              case "end":
+                return _context29.stop();
+            }
+          }
+        }, _callee29, this);
+      }));
+      function isUsernameRegistered(_x25) {
+        return _isUsernameRegistered.apply(this, arguments);
+      }
+      return isUsernameRegistered;
+    }()
   }, {
     key: "getLoginState",
     value: function getLoginState() {
@@ -22164,9 +23328,25 @@ var et = /*#__PURE__*/function () {
     }
   }, {
     key: "signInWithTicket",
-    value: async function signInWithTicket(e) {
-      return new Qe(this.config).signIn(e);
-    }
+    value: function () {
+      var _signInWithTicket = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee30(e) {
+        return _regenerator.default.wrap(function _callee30$(_context30) {
+          while (1) {
+            switch (_context30.prev = _context30.next) {
+              case 0:
+                return _context30.abrupt("return", new Qe(this.config).signIn(e));
+              case 1:
+              case "end":
+                return _context30.stop();
+            }
+          }
+        }, _callee30, this);
+      }));
+      function signInWithTicket(_x26) {
+        return _signInWithTicket.apply(this, arguments);
+      }
+      return signInWithTicket;
+    }()
   }, {
     key: "shouldRefreshAccessToken",
     value: function shouldRefreshAccessToken(e) {
@@ -22344,32 +23524,66 @@ var tt = function tt(e, t) {
       t(e);
     }), t.promise;
   },
-  it = async function it(_ref8, t) {
-    var e = _ref8.fileID;
-    var n = (await rt.call(this, {
-      fileList: [{
-        fileID: e,
-        maxAge: 600
-      }]
-    })).fileList[0];
-    if ("SUCCESS" !== n.code) return t ? t(n) : new Promise(function (e) {
-      e(n);
-    });
-    var s = Je(this.config.env);
-    var r = n.download_url;
-    if (r = encodeURI(r), !t) return s.download({
-      url: r
-    });
-    t(await s.download({
-      url: r
+  it = /*#__PURE__*/function () {
+    var _ref9 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee31(_ref8, t) {
+      var e, n, s, r;
+      return _regenerator.default.wrap(function _callee31$(_context31) {
+        while (1) {
+          switch (_context31.prev = _context31.next) {
+            case 0:
+              e = _ref8.fileID;
+              _context31.next = 3;
+              return rt.call(this, {
+                fileList: [{
+                  fileID: e,
+                  maxAge: 600
+                }]
+              });
+            case 3:
+              n = _context31.sent.fileList[0];
+              if (!("SUCCESS" !== n.code)) {
+                _context31.next = 6;
+                break;
+              }
+              return _context31.abrupt("return", t ? t(n) : new Promise(function (e) {
+                e(n);
+              }));
+            case 6:
+              s = Je(this.config.env);
+              r = n.download_url;
+              if (!(r = encodeURI(r), !t)) {
+                _context31.next = 10;
+                break;
+              }
+              return _context31.abrupt("return", s.download({
+                url: r
+              }));
+            case 10:
+              _context31.t0 = t;
+              _context31.next = 13;
+              return s.download({
+                url: r
+              });
+            case 13:
+              _context31.t1 = _context31.sent;
+              (0, _context31.t0)(_context31.t1);
+            case 15:
+            case "end":
+              return _context31.stop();
+          }
+        }
+      }, _callee31, this);
     }));
-  },
-  ot = function ot(_ref9, i) {
-    var e = _ref9.name,
-      t = _ref9.data,
-      n = _ref9.query,
-      s = _ref9.parse,
-      r = _ref9.search;
+    return function it(_x27, _x28) {
+      return _ref9.apply(this, arguments);
+    };
+  }(),
+  ot = function ot(_ref10, i) {
+    var e = _ref10.name,
+      t = _ref10.data,
+      n = _ref10.query,
+      s = _ref10.parse,
+      r = _ref10.search;
     var o = i || ge();
     var a;
     try {
@@ -22438,8 +23652,8 @@ var ut = /*#__PURE__*/function () {
   }, {
     key: "auth",
     value: function auth() {
-      var _ref10 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        e = _ref10.persistence;
+      var _ref11 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        e = _ref11.persistence;
       if (this.authObj) return this.authObj;
       var t = e || ve.adapter.primaryStorage || at.persistence;
       var n;
@@ -22497,19 +23711,44 @@ var ut = /*#__PURE__*/function () {
     }
   }, {
     key: "invokeExtension",
-    value: async function invokeExtension(e, t) {
-      var n = ct[e];
-      if (!n) throw new Q({
-        message: "\u6269\u5C55".concat(e, " \u5FC5\u987B\u5148\u6CE8\u518C")
-      });
-      return await n.invoke(t, this);
-    }
+    value: function () {
+      var _invokeExtension = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee32(e, t) {
+        var n;
+        return _regenerator.default.wrap(function _callee32$(_context32) {
+          while (1) {
+            switch (_context32.prev = _context32.next) {
+              case 0:
+                n = ct[e];
+                if (n) {
+                  _context32.next = 3;
+                  break;
+                }
+                throw new Q({
+                  message: "\u6269\u5C55".concat(e, " \u5FC5\u987B\u5148\u6CE8\u518C")
+                });
+              case 3:
+                _context32.next = 5;
+                return n.invoke(t, this);
+              case 5:
+                return _context32.abrupt("return", _context32.sent);
+              case 6:
+              case "end":
+                return _context32.stop();
+            }
+          }
+        }, _callee32, this);
+      }));
+      function invokeExtension(_x29, _x30) {
+        return _invokeExtension.apply(this, arguments);
+      }
+      return invokeExtension;
+    }()
   }, {
     key: "useAdapters",
     value: function useAdapters(e) {
-      var _ref11 = we(e) || {},
-        t = _ref11.adapter,
-        n = _ref11.runtime;
+      var _ref12 = we(e) || {},
+        t = _ref12.adapter,
+        n = _ref12.runtime;
       t && (ve.adapter = t), n && (ve.runtime = n);
     }
   }]);
@@ -22673,14 +23912,14 @@ var _t = /*#__PURE__*/function (_le) {
     }
   }, {
     key: "uploadFileToOSS",
-    value: function uploadFileToOSS(_ref12) {
+    value: function uploadFileToOSS(_ref13) {
       var _this12 = this;
-      var e = _ref12.url,
-        t = _ref12.formData,
-        n = _ref12.name,
-        s = _ref12.filePath,
-        r = _ref12.fileType,
-        i = _ref12.onUploadProgress;
+      var e = _ref13.url,
+        t = _ref13.formData,
+        n = _ref13.name,
+        s = _ref13.filePath,
+        r = _ref13.fileType,
+        i = _ref13.onUploadProgress;
       return new Promise(function (o, a) {
         var c = _this12.adapter.uploadFile({
           url: e,
@@ -22711,13 +23950,13 @@ var _t = /*#__PURE__*/function (_le) {
     }
   }, {
     key: "uploadFile",
-    value: function uploadFile(_ref13) {
+    value: function uploadFile(_ref14) {
       var _this13 = this;
-      var e = _ref13.filePath,
-        t = _ref13.cloudPath,
-        _ref13$fileType = _ref13.fileType,
-        n = _ref13$fileType === void 0 ? "image" : _ref13$fileType,
-        s = _ref13.onUploadProgress;
+      var e = _ref14.filePath,
+        t = _ref14.cloudPath,
+        _ref14$fileType = _ref14.fileType,
+        n = _ref14$fileType === void 0 ? "image" : _ref14$fileType,
+        s = _ref14.onUploadProgress;
       if (!t) throw new Q({
         code: "CLOUDPATH_REQUIRED",
         message: "cloudPath不可为空"
@@ -22760,8 +23999,8 @@ var _t = /*#__PURE__*/function (_le) {
     }
   }, {
     key: "deleteFile",
-    value: function deleteFile(_ref14) {
-      var e = _ref14.fileList;
+    value: function deleteFile(_ref15) {
+      var e = _ref15.fileList;
       var t = {
         method: "serverless.file.resource.delete",
         params: JSON.stringify({
@@ -22779,8 +24018,8 @@ var _t = /*#__PURE__*/function (_le) {
   }, {
     key: "getTempFileURL",
     value: function getTempFileURL() {
-      var _ref15 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        e = _ref15.fileList;
+      var _ref16 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        e = _ref16.fileList;
       if (!Array.isArray(e) || 0 === e.length) throw new Q({
         code: "INVALID_PARAM",
         message: "fileList的元素必须是非空的字符串"
@@ -22825,8 +24064,8 @@ var wt = {
     }, t.customAuth = t.auth, t;
   }
 };
-function vt(_ref16) {
-  var e = _ref16.data;
+function vt(_ref17) {
+  var e = _ref17.data;
   var t;
   t = oe();
   var n = JSON.parse(JSON.stringify(e || {}));
@@ -22841,9 +24080,9 @@ function vt(_ref16) {
 }
 function St() {
   var _this14 = this;
-  var _ref17 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref17.name,
-    t = _ref17.data;
+  var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref18.name,
+    t = _ref18.data;
   var _this$__dev__ = this.__dev__,
     n = _this$__dev__.localAddress,
     s = _this$__dev__.localPort,
@@ -22878,18 +24117,18 @@ function St() {
       }
     });
   }).then(function () {
-    var _ref18 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      e = _ref18.data;
-    var _ref19 = e || {},
-      t = _ref19.code,
-      n = _ref19.message;
+    var _ref19 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      e = _ref19.data;
+    var _ref20 = e || {},
+      t = _ref20.code,
+      n = _ref20.message;
     return {
       code: 0 === t ? 0 : t || "SYS_ERR",
       message: n || "SYS_ERR"
     };
-  }).then(function (_ref20) {
-    var n = _ref20.code,
-      s = _ref20.message;
+  }).then(function (_ref21) {
+    var n = _ref21.code,
+      s = _ref21.message;
     if (0 !== n) {
       switch (n) {
         case "MODULE_ENCRYPTED":
@@ -22932,9 +24171,9 @@ function St() {
           param: s
         },
         success: function success() {
-          var _ref21 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            t = _ref21.statusCode,
-            s = _ref21.data;
+          var _ref22 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            t = _ref22.statusCode,
+            s = _ref22.data;
           return !t || t >= 400 ? n(new Q({
             code: s.code || "SYS_ERR",
             message: s.message || "request:fail"
@@ -22969,9 +24208,9 @@ var At = "none",
   Et = "both";
 var Ot = /*#__PURE__*/function () {
   function Ot() {
-    var _ref22 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      e = _ref22.secretType,
-      t = _ref22.uniCloudIns;
+    var _ref23 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      e = _ref23.secretType,
+      t = _ref23.uniCloudIns;
     (0, _classCallCheck2.default)(this, Ot);
     this.secretType = e || At, this.uniCloudIns = t;
     var _this$uniCloudIns$con = this.uniCloudIns.config,
@@ -22997,49 +24236,134 @@ var Ot = /*#__PURE__*/function () {
     }
   }, {
     key: "encryptData",
-    value: async function encryptData(e) {
-      return this.secretType === At || this.secretType === At ? e : this.platformEncryptData(e);
-    }
+    value: function () {
+      var _encryptData = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee33(e) {
+        return _regenerator.default.wrap(function _callee33$(_context33) {
+          while (1) {
+            switch (_context33.prev = _context33.next) {
+              case 0:
+                return _context33.abrupt("return", this.secretType === At || this.secretType === At ? e : this.platformEncryptData(e));
+              case 1:
+              case "end":
+                return _context33.stop();
+            }
+          }
+        }, _callee33, this);
+      }));
+      function encryptData(_x31) {
+        return _encryptData.apply(this, arguments);
+      }
+      return encryptData;
+    }()
   }, {
     key: "decryptResult",
-    value: async function decryptResult(e) {
-      if (this.secretType === At) return e;
-      var t = e.content;
-      return t ? this.secretType === Ct ? t : this.platformDecryptResult(e) : e;
-    }
+    value: function () {
+      var _decryptResult = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee34(e) {
+        var t;
+        return _regenerator.default.wrap(function _callee34$(_context34) {
+          while (1) {
+            switch (_context34.prev = _context34.next) {
+              case 0:
+                if (!(this.secretType === At)) {
+                  _context34.next = 2;
+                  break;
+                }
+                return _context34.abrupt("return", e);
+              case 2:
+                t = e.content;
+                return _context34.abrupt("return", t ? this.secretType === Ct ? t : this.platformDecryptResult(e) : e);
+              case 4:
+              case "end":
+                return _context34.stop();
+            }
+          }
+        }, _callee34, this);
+      }));
+      function decryptResult(_x32) {
+        return _decryptResult.apply(this, arguments);
+      }
+      return decryptResult;
+    }()
   }, {
     key: "wrapVerifyClientCallFunction",
     value: function wrapVerifyClientCallFunction(e) {
       var t = this;
-      return async function () {
-        var _ref23 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          n = _ref23.name,
-          _ref23$data = _ref23.data,
-          s = _ref23$data === void 0 ? {} : _ref23$data;
-        await t.prepare(), (s = JSON.parse(JSON.stringify(s)))._uniCloudOptions = await t.platformGetSignOption();
-        return await e({
-          name: n,
-          data: s
-        });
-      };
+      return /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee35() {
+        var _ref25,
+          n,
+          _ref25$data,
+          s,
+          _args35 = arguments;
+        return _regenerator.default.wrap(function _callee35$(_context35) {
+          while (1) {
+            switch (_context35.prev = _context35.next) {
+              case 0:
+                _ref25 = _args35.length > 0 && _args35[0] !== undefined ? _args35[0] : {}, n = _ref25.name, _ref25$data = _ref25.data, s = _ref25$data === void 0 ? {} : _ref25$data;
+                _context35.next = 3;
+                return t.prepare();
+              case 3:
+                _context35.next = 5;
+                return t.platformGetSignOption();
+              case 5:
+                (s = JSON.parse(JSON.stringify(s)))._uniCloudOptions = _context35.sent;
+                _context35.next = 8;
+                return e({
+                  name: n,
+                  data: s
+                });
+              case 8:
+                return _context35.abrupt("return", _context35.sent);
+              case 9:
+              case "end":
+                return _context35.stop();
+            }
+          }
+        }, _callee35);
+      }));
     }
   }, {
     key: "wrapEncryptDataCallFunction",
     value: function wrapEncryptDataCallFunction(e) {
       var t = this;
-      return async function () {
-        var _ref24 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          n = _ref24.name,
-          _ref24$data = _ref24.data,
-          s = _ref24$data === void 0 ? {} : _ref24$data;
-        await t.prepare();
-        var r = await t.encryptData(s),
-          i = await e({
-            name: n,
-            data: r
-          });
-        return i.result = await t.decryptResult(i.result), i;
-      };
+      return /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee36() {
+        var _ref27,
+          n,
+          _ref27$data,
+          s,
+          r,
+          i,
+          _args36 = arguments;
+        return _regenerator.default.wrap(function _callee36$(_context36) {
+          while (1) {
+            switch (_context36.prev = _context36.next) {
+              case 0:
+                _ref27 = _args36.length > 0 && _args36[0] !== undefined ? _args36[0] : {}, n = _ref27.name, _ref27$data = _ref27.data, s = _ref27$data === void 0 ? {} : _ref27$data;
+                _context36.next = 3;
+                return t.prepare();
+              case 3:
+                _context36.next = 5;
+                return t.encryptData(s);
+              case 5:
+                r = _context36.sent;
+                _context36.next = 8;
+                return e({
+                  name: n,
+                  data: r
+                });
+              case 8:
+                i = _context36.sent;
+                _context36.next = 11;
+                return t.decryptResult(i.result);
+              case 11:
+                i.result = _context36.sent;
+                return _context36.abrupt("return", i);
+              case 13:
+              case "end":
+                return _context36.stop();
+            }
+          }
+        }, _callee36);
+      }));
     }
   }]);
   return Ot;
@@ -23475,14 +24799,14 @@ var dn = {
     10010: "Decrypt response failed"
   };
 function mn(e) {
-  var _ref25 = e || {},
-    t = _ref25.errSubject,
-    n = _ref25.subject,
-    s = _ref25.errCode,
-    r = _ref25.errMsg,
-    i = _ref25.code,
-    o = _ref25.message,
-    a = _ref25.cause;
+  var _ref28 = e || {},
+    t = _ref28.errSubject,
+    n = _ref28.subject,
+    s = _ref28.errCode,
+    r = _ref28.errMsg,
+    i = _ref28.code,
+    o = _ref28.message,
+    a = _ref28.cause;
   return new Q({
     subject: t || n || "uni-secure-network",
     code: s || i || dn.code,
@@ -23509,34 +24833,93 @@ var vn = /*#__PURE__*/function (_Ot) {
     }
   }, {
     key: "prepare",
-    value: async function prepare() {
-      if (!this.isLogin()) {
-        if (!this.scopedGlobalCache.initPromise) throw new Error("`uniCloud.initSecureNetworkByWeixin` has not yet been called");
-        if (await this.scopedGlobalCache.initPromise, !this.scopedGlobalCache.mpWeixinCode) throw new Error("uniCloud.initSecureNetworkByWeixin` has not yet been called or successfully excuted");
+    value: function () {
+      var _prepare2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee37() {
+        return _regenerator.default.wrap(function _callee37$(_context37) {
+          while (1) {
+            switch (_context37.prev = _context37.next) {
+              case 0:
+                if (this.isLogin()) {
+                  _context37.next = 7;
+                  break;
+                }
+                if (this.scopedGlobalCache.initPromise) {
+                  _context37.next = 3;
+                  break;
+                }
+                throw new Error("`uniCloud.initSecureNetworkByWeixin` has not yet been called");
+              case 3:
+                _context37.next = 5;
+                return this.scopedGlobalCache.initPromise;
+              case 5:
+                if (this.scopedGlobalCache.mpWeixinCode) {
+                  _context37.next = 7;
+                  break;
+                }
+                throw new Error("uniCloud.initSecureNetworkByWeixin` has not yet been called or successfully excuted");
+              case 7:
+              case "end":
+                return _context37.stop();
+            }
+          }
+        }, _callee37, this);
+      }));
+      function prepare() {
+        return _prepare2.apply(this, arguments);
       }
-    }
+      return prepare;
+    }()
   }, {
     key: "getUserEncryptKey",
-    value: async function getUserEncryptKey() {
-      var _this16 = this;
-      if (this.userEncryptKey) return this.userEncryptKey;
-      if (wn && wn.expireTime) {
-        var _e23 = Date.now();
-        if (wn.expireTime - _e23 > 0) return this.userEncryptKey = wn, this.userEncryptKey;
-      }
-      return new Promise(function (e, t) {
-        uni.getUserCryptoManager().getLatestUserKey({
-          success: function success(t) {
-            wn = t, _this16.userEncryptKey = t, e(_this16.userEncryptKey);
-          },
-          fail: function fail(e) {
-            t(mn(_objectSpread(_objectSpread({}, pn), {}, {
-              cause: e
-            })));
+    value: function () {
+      var _getUserEncryptKey = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee38() {
+        var _this16 = this;
+        var e;
+        return _regenerator.default.wrap(function _callee38$(_context38) {
+          while (1) {
+            switch (_context38.prev = _context38.next) {
+              case 0:
+                if (!this.userEncryptKey) {
+                  _context38.next = 2;
+                  break;
+                }
+                return _context38.abrupt("return", this.userEncryptKey);
+              case 2:
+                if (!(wn && wn.expireTime)) {
+                  _context38.next = 6;
+                  break;
+                }
+                e = Date.now();
+                if (!(wn.expireTime - e > 0)) {
+                  _context38.next = 6;
+                  break;
+                }
+                return _context38.abrupt("return", (this.userEncryptKey = wn, this.userEncryptKey));
+              case 6:
+                return _context38.abrupt("return", new Promise(function (e, t) {
+                  uni.getUserCryptoManager().getLatestUserKey({
+                    success: function success(t) {
+                      wn = t, _this16.userEncryptKey = t, e(_this16.userEncryptKey);
+                    },
+                    fail: function fail(e) {
+                      t(mn(_objectSpread(_objectSpread({}, pn), {}, {
+                        cause: e
+                      })));
+                    }
+                  });
+                }));
+              case 7:
+              case "end":
+                return _context38.stop();
+            }
           }
-        });
-      });
-    }
+        }, _callee38, this);
+      }));
+      function getUserEncryptKey() {
+        return _getUserEncryptKey.apply(this, arguments);
+      }
+      return getUserEncryptKey;
+    }()
   }, {
     key: "getWxAppId",
     value: function getWxAppId() {
@@ -23544,67 +24927,127 @@ var vn = /*#__PURE__*/function (_Ot) {
     }
   }, {
     key: "platformGetSignOption",
-    value: async function platformGetSignOption() {
-      var _await$this$getUserEn = await this.getUserEncryptKey(),
-        e = _await$this$getUserEn.encryptKey,
-        t = _await$this$getUserEn.iv,
-        n = _await$this$getUserEn.version;
-      return {
-        verifyClientSign: hn(JSON.stringify({
-          data: JSON.stringify({}),
-          appId: this.appId,
-          deviceId: this.deviceId,
-          wxAppId: this.getWxAppId(),
-          simulator: "devtools" === re().platform,
-          timestamp: Date.now()
-        }), e, t),
-        encryptKeyId: n,
-        mpWeixinCode: this.scopedGlobalCache.mpWeixinCode
-      };
-    }
+    value: function () {
+      var _platformGetSignOption = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee39() {
+        var _yield$this$getUserEn, e, t, n;
+        return _regenerator.default.wrap(function _callee39$(_context39) {
+          while (1) {
+            switch (_context39.prev = _context39.next) {
+              case 0:
+                _context39.next = 2;
+                return this.getUserEncryptKey();
+              case 2:
+                _yield$this$getUserEn = _context39.sent;
+                e = _yield$this$getUserEn.encryptKey;
+                t = _yield$this$getUserEn.iv;
+                n = _yield$this$getUserEn.version;
+                return _context39.abrupt("return", {
+                  verifyClientSign: hn(JSON.stringify({
+                    data: JSON.stringify({}),
+                    appId: this.appId,
+                    deviceId: this.deviceId,
+                    wxAppId: this.getWxAppId(),
+                    simulator: "devtools" === re().platform,
+                    timestamp: Date.now()
+                  }), e, t),
+                  encryptKeyId: n,
+                  mpWeixinCode: this.scopedGlobalCache.mpWeixinCode
+                });
+              case 7:
+              case "end":
+                return _context39.stop();
+            }
+          }
+        }, _callee39, this);
+      }));
+      function platformGetSignOption() {
+        return _platformGetSignOption.apply(this, arguments);
+      }
+      return platformGetSignOption;
+    }()
   }, {
     key: "platformEncryptData",
-    value: async function platformEncryptData(e) {
-      var _await$this$getUserEn2 = await this.getUserEncryptKey(),
-        t = _await$this$getUserEn2.encryptKey,
-        n = _await$this$getUserEn2.iv,
-        s = _await$this$getUserEn2.version,
-        r = {
-          secretType: this.secretType,
-          encryptKeyId: s,
-          mpWeixinCode: this.scopedGlobalCache.mpWeixinCode
-        };
-      return this.secretType === Pt ? {
-        content: e,
-        _uniCloudOptions: r
-      } : {
-        content: hn(JSON.stringify({
-          data: JSON.stringify(e),
-          appId: this.appId,
-          deviceId: this.deviceId,
-          wxAppId: this.getWxAppId(),
-          simulator: "devtools" === re().platform,
-          timestamp: Date.now()
-        }), t, n),
-        _uniCloudOptions: r
-      };
-    }
+    value: function () {
+      var _platformEncryptData = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee40(e) {
+        var _yield$this$getUserEn2, t, n, s, r;
+        return _regenerator.default.wrap(function _callee40$(_context40) {
+          while (1) {
+            switch (_context40.prev = _context40.next) {
+              case 0:
+                _context40.next = 2;
+                return this.getUserEncryptKey();
+              case 2:
+                _yield$this$getUserEn2 = _context40.sent;
+                t = _yield$this$getUserEn2.encryptKey;
+                n = _yield$this$getUserEn2.iv;
+                s = _yield$this$getUserEn2.version;
+                r = {
+                  secretType: this.secretType,
+                  encryptKeyId: s,
+                  mpWeixinCode: this.scopedGlobalCache.mpWeixinCode
+                };
+                return _context40.abrupt("return", this.secretType === Pt ? {
+                  content: e,
+                  _uniCloudOptions: r
+                } : {
+                  content: hn(JSON.stringify({
+                    data: JSON.stringify(e),
+                    appId: this.appId,
+                    deviceId: this.deviceId,
+                    wxAppId: this.getWxAppId(),
+                    simulator: "devtools" === re().platform,
+                    timestamp: Date.now()
+                  }), t, n),
+                  _uniCloudOptions: r
+                });
+              case 8:
+              case "end":
+                return _context40.stop();
+            }
+          }
+        }, _callee40, this);
+      }));
+      function platformEncryptData(_x33) {
+        return _platformEncryptData.apply(this, arguments);
+      }
+      return platformEncryptData;
+    }()
   }, {
     key: "platformDecryptResult",
-    value: async function platformDecryptResult(e) {
-      var t = e.content,
-        _await$this$getUserEn3 = await this.getUserEncryptKey(),
-        n = _await$this$getUserEn3.encryptKey,
-        s = _await$this$getUserEn3.iv;
-      return JSON.parse(function (e, t, n) {
-        var s = new Uint8Array(uni.base64ToArrayBuffer(e)),
-          r = new Uint8Array(uni.base64ToArrayBuffer(t)),
-          i = ln.utils.utf8.toBytes(n),
-          o = new ln.ModeOfOperation.cbc(r, i),
-          a = ln.padding.pkcs7.strip(o.decrypt(s));
-        return ln.utils.utf8.fromBytes(a);
-      }(t, n, s));
-    }
+    value: function () {
+      var _platformDecryptResult = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee41(e) {
+        var t, _yield$this$getUserEn3, n, s;
+        return _regenerator.default.wrap(function _callee41$(_context41) {
+          while (1) {
+            switch (_context41.prev = _context41.next) {
+              case 0:
+                t = e.content;
+                _context41.next = 3;
+                return this.getUserEncryptKey();
+              case 3:
+                _yield$this$getUserEn3 = _context41.sent;
+                n = _yield$this$getUserEn3.encryptKey;
+                s = _yield$this$getUserEn3.iv;
+                return _context41.abrupt("return", JSON.parse(function (e, t, n) {
+                  var s = new Uint8Array(uni.base64ToArrayBuffer(e)),
+                    r = new Uint8Array(uni.base64ToArrayBuffer(t)),
+                    i = ln.utils.utf8.toBytes(n),
+                    o = new ln.ModeOfOperation.cbc(r, i),
+                    a = ln.padding.pkcs7.strip(o.decrypt(s));
+                  return ln.utils.utf8.fromBytes(a);
+                }(t, n, s)));
+              case 7:
+              case "end":
+                return _context41.stop();
+            }
+          }
+        }, _callee41, this);
+      }));
+      function platformDecryptResult(_x34) {
+        return _platformDecryptResult.apply(this, arguments);
+      }
+      return platformDecryptResult;
+    }()
   }]);
   return vn;
 }(Ot);
@@ -23619,13 +25062,13 @@ function Sn(e) {
       }
       return new Promise(function (n, s) {
         "function" == typeof e[r] ? e[r].apply(e, t.concat([function () {
-          var _ref26 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            e = _ref26.type,
-            t = _ref26.data,
-            r = _ref26.errCode,
-            i = _ref26.errMsg,
-            o = _ref26.errSubject,
-            a = _ref26.message;
+          var _ref29 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            e = _ref29.type,
+            t = _ref29.data,
+            r = _ref29.errCode,
+            i = _ref29.errMsg,
+            o = _ref29.errSubject,
+            a = _ref29.message;
           "success" === e ? n(t) : s(mn({
             errCode: r,
             errMsg: gn[r] || i || a,
@@ -23653,132 +25096,289 @@ var kn = /*#__PURE__*/function (_Ot2) {
   }
   (0, _createClass2.default)(kn, [{
     key: "hasClientKey",
-    value: async function hasClientKey() {
-      return this._hasClientKey = await this.appUtils.hasClientKey({
-        provider: this.provider,
-        spaceId: this.spaceId
-      }), this._hasClientKey;
-    }
+    value: function () {
+      var _hasClientKey = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee42() {
+        return _regenerator.default.wrap(function _callee42$(_context42) {
+          while (1) {
+            switch (_context42.prev = _context42.next) {
+              case 0:
+                _context42.next = 2;
+                return this.appUtils.hasClientKey({
+                  provider: this.provider,
+                  spaceId: this.spaceId
+                });
+              case 2:
+                this._hasClientKey = _context42.sent;
+                return _context42.abrupt("return", this._hasClientKey);
+              case 4:
+              case "end":
+                return _context42.stop();
+            }
+          }
+        }, _callee42, this);
+      }));
+      function hasClientKey() {
+        return _hasClientKey.apply(this, arguments);
+      }
+      return hasClientKey;
+    }()
   }, {
     key: "getAppClientKey",
-    value: async function getAppClientKey() {
-      var _await$this$appUtils$ = await this.appUtils.encryptGetClientKeyPayload({
-          data: JSON.stringify({})
-        }),
-        e = _await$this$appUtils$.data,
-        t = _await$this$appUtils$.key,
-        n = (await this.uniCloudIns.callFunction({
-          name: "DCloud-clientDB",
-          data: {
-            redirectTo: "encryption",
-            action: "getAppClientKey",
-            data: e,
-            key: t
+    value: function () {
+      var _getAppClientKey = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee43() {
+        var _yield$this$appUtils$, e, t, n, s, r;
+        return _regenerator.default.wrap(function _callee43$(_context43) {
+          while (1) {
+            switch (_context43.prev = _context43.next) {
+              case 0:
+                _context43.next = 2;
+                return this.appUtils.encryptGetClientKeyPayload({
+                  data: JSON.stringify({})
+                });
+              case 2:
+                _yield$this$appUtils$ = _context43.sent;
+                e = _yield$this$appUtils$.data;
+                t = _yield$this$appUtils$.key;
+                _context43.next = 7;
+                return this.uniCloudIns.callFunction({
+                  name: "DCloud-clientDB",
+                  data: {
+                    redirectTo: "encryption",
+                    action: "getAppClientKey",
+                    data: e,
+                    key: t
+                  }
+                });
+              case 7:
+                _context43.t0 = _context43.sent.result;
+                if (_context43.t0) {
+                  _context43.next = 10;
+                  break;
+                }
+                _context43.t0 = {};
+              case 10:
+                n = _context43.t0;
+                if (!(0 !== n.errCode)) {
+                  _context43.next = 13;
+                  break;
+                }
+                throw function (e) {
+                  return new Q({
+                    subject: e.errSubject || "uni-secure-network",
+                    code: e.errCode || e.code || dn.code,
+                    message: e.errMsg || e.message
+                  });
+                }(n);
+              case 13:
+                s = n.clientKey, r = n.key;
+                _context43.next = 16;
+                return this.appUtils.setClientKey({
+                  provider: this.provider,
+                  spaceId: this.spaceId,
+                  clientKey: s,
+                  key: r
+                });
+              case 16:
+              case "end":
+                return _context43.stop();
+            }
           }
-        })).result || {};
-      if (0 !== n.errCode) throw function (e) {
-        return new Q({
-          subject: e.errSubject || "uni-secure-network",
-          code: e.errCode || e.code || dn.code,
-          message: e.errMsg || e.message
-        });
-      }(n);
-      var s = n.clientKey,
-        r = n.key;
-      await this.appUtils.setClientKey({
-        provider: this.provider,
-        spaceId: this.spaceId,
-        clientKey: s,
-        key: r
-      });
-    }
+        }, _callee43, this);
+      }));
+      function getAppClientKey() {
+        return _getAppClientKey.apply(this, arguments);
+      }
+      return getAppClientKey;
+    }()
   }, {
     key: "ensureClientKey",
-    value: async function ensureClientKey() {
-      var _this18 = this;
-      if (!0 !== (await this.hasClientKey())) return this.scopedGlobalCache.initPromise && "rejected" !== this.scopedGlobalCache.initStatus || (this.scopedGlobalCache.initPromise = this.getAppClientKey(), this.scopedGlobalCache.initPromise.then(function (e) {
-        _this18.scopedGlobalCache.initStatus = "fullfilled";
-      }).catch(function (e) {
-        throw _this18.scopedGlobalCache.initStatus = "rejected", e;
-      })), this.scopedGlobalCache.initPromise;
-    }
+    value: function () {
+      var _ensureClientKey = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee44() {
+        var _this18 = this;
+        return _regenerator.default.wrap(function _callee44$(_context44) {
+          while (1) {
+            switch (_context44.prev = _context44.next) {
+              case 0:
+                _context44.t0 = !0;
+                _context44.next = 3;
+                return this.hasClientKey();
+              case 3:
+                _context44.t1 = _context44.sent;
+                if (!(_context44.t0 !== _context44.t1)) {
+                  _context44.next = 6;
+                  break;
+                }
+                return _context44.abrupt("return", (this.scopedGlobalCache.initPromise && "rejected" !== this.scopedGlobalCache.initStatus || (this.scopedGlobalCache.initPromise = this.getAppClientKey(), this.scopedGlobalCache.initPromise.then(function (e) {
+                  _this18.scopedGlobalCache.initStatus = "fullfilled";
+                }).catch(function (e) {
+                  throw _this18.scopedGlobalCache.initStatus = "rejected", e;
+                })), this.scopedGlobalCache.initPromise));
+              case 6:
+              case "end":
+                return _context44.stop();
+            }
+          }
+        }, _callee44, this);
+      }));
+      function ensureClientKey() {
+        return _ensureClientKey.apply(this, arguments);
+      }
+      return ensureClientKey;
+    }()
   }, {
     key: "prepare",
-    value: async function prepare() {
-      await this.ensureClientKey();
-    }
+    value: function () {
+      var _prepare3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee45() {
+        return _regenerator.default.wrap(function _callee45$(_context45) {
+          while (1) {
+            switch (_context45.prev = _context45.next) {
+              case 0:
+                _context45.next = 2;
+                return this.ensureClientKey();
+              case 2:
+              case "end":
+                return _context45.stop();
+            }
+          }
+        }, _callee45, this);
+      }));
+      function prepare() {
+        return _prepare3.apply(this, arguments);
+      }
+      return prepare;
+    }()
   }, {
     key: "platformGetSignOption",
-    value: async function platformGetSignOption() {
-      var _await$this$appUtils$2 = await this.appUtils.encrypt({
-          provider: this.provider,
-          spaceId: this.spaceId,
-          data: JSON.stringify({})
-        }),
-        e = _await$this$appUtils$2.data,
-        t = _await$this$appUtils$2.key;
-      return {
-        verifyClientSign: e,
-        encryptKeyId: t
-      };
-    }
+    value: function () {
+      var _platformGetSignOption2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee46() {
+        var _yield$this$appUtils$2, e, t;
+        return _regenerator.default.wrap(function _callee46$(_context46) {
+          while (1) {
+            switch (_context46.prev = _context46.next) {
+              case 0:
+                _context46.next = 2;
+                return this.appUtils.encrypt({
+                  provider: this.provider,
+                  spaceId: this.spaceId,
+                  data: JSON.stringify({})
+                });
+              case 2:
+                _yield$this$appUtils$2 = _context46.sent;
+                e = _yield$this$appUtils$2.data;
+                t = _yield$this$appUtils$2.key;
+                return _context46.abrupt("return", {
+                  verifyClientSign: e,
+                  encryptKeyId: t
+                });
+              case 6:
+              case "end":
+                return _context46.stop();
+            }
+          }
+        }, _callee46, this);
+      }));
+      function platformGetSignOption() {
+        return _platformGetSignOption2.apply(this, arguments);
+      }
+      return platformGetSignOption;
+    }()
   }, {
     key: "platformEncryptData",
-    value: async function platformEncryptData(e) {
-      var _await$this$appUtils$3 = await this.appUtils.encrypt({
-          provider: this.provider,
-          spaceId: this.spaceId,
-          data: JSON.stringify(e)
-        }),
-        t = _await$this$appUtils$3.data,
-        n = _await$this$appUtils$3.key,
-        s = {
-          secretType: this.secretType,
-          encryptKeyId: n
-        };
-      return this.secretType === Pt ? {
-        content: e,
-        _uniCloudOptions: s
-      } : {
-        content: t,
-        _uniCloudOptions: s
-      };
-    }
+    value: function () {
+      var _platformEncryptData2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee47(e) {
+        var _yield$this$appUtils$3, t, n, s;
+        return _regenerator.default.wrap(function _callee47$(_context47) {
+          while (1) {
+            switch (_context47.prev = _context47.next) {
+              case 0:
+                _context47.next = 2;
+                return this.appUtils.encrypt({
+                  provider: this.provider,
+                  spaceId: this.spaceId,
+                  data: JSON.stringify(e)
+                });
+              case 2:
+                _yield$this$appUtils$3 = _context47.sent;
+                t = _yield$this$appUtils$3.data;
+                n = _yield$this$appUtils$3.key;
+                s = {
+                  secretType: this.secretType,
+                  encryptKeyId: n
+                };
+                return _context47.abrupt("return", this.secretType === Pt ? {
+                  content: e,
+                  _uniCloudOptions: s
+                } : {
+                  content: t,
+                  _uniCloudOptions: s
+                });
+              case 7:
+              case "end":
+                return _context47.stop();
+            }
+          }
+        }, _callee47, this);
+      }));
+      function platformEncryptData(_x35) {
+        return _platformEncryptData2.apply(this, arguments);
+      }
+      return platformEncryptData;
+    }()
   }, {
     key: "platformDecryptResult",
-    value: async function platformDecryptResult(e) {
-      var t = e.content,
-        _e$_uniCloudOptions = e._uniCloudOptions,
-        n = _e$_uniCloudOptions === void 0 ? {} : _e$_uniCloudOptions,
-        s = n.encryptKeyId,
-        r = await this.appUtils.decrypt({
-          provider: this.provider,
-          spaceId: this.spaceId,
-          data: t,
-          key: s
-        });
-      return JSON.parse(r.data);
-    }
+    value: function () {
+      var _platformDecryptResult2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee48(e) {
+        var t, _e$_uniCloudOptions, n, s, r;
+        return _regenerator.default.wrap(function _callee48$(_context48) {
+          while (1) {
+            switch (_context48.prev = _context48.next) {
+              case 0:
+                t = e.content;
+                _e$_uniCloudOptions = e._uniCloudOptions;
+                n = _e$_uniCloudOptions === void 0 ? {} : _e$_uniCloudOptions;
+                s = n.encryptKeyId;
+                _context48.next = 6;
+                return this.appUtils.decrypt({
+                  provider: this.provider,
+                  spaceId: this.spaceId,
+                  data: t,
+                  key: s
+                });
+              case 6:
+                r = _context48.sent;
+                return _context48.abrupt("return", JSON.parse(r.data));
+              case 8:
+              case "end":
+                return _context48.stop();
+            }
+          }
+        }, _callee48, this);
+      }));
+      function platformDecryptResult(_x36) {
+        return _platformDecryptResult2.apply(this, arguments);
+      }
+      return platformDecryptResult;
+    }()
   }]);
   return kn;
 }(Ot);
 function In() {
-  var _ref27 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref27.secretType;
+  var _ref30 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref30.secretType;
   return e === Ct || e === Pt || e === Et;
 }
 function bn() {
-  var _ref28 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref28.name,
-    _ref28$data = _ref28.data,
-    t = _ref28$data === void 0 ? {} : _ref28$data;
+  var _ref31 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref31.name,
+    _ref31$data = _ref31.data,
+    t = _ref31$data === void 0 ? {} : _ref31$data;
   return "app" === S && "DCloud-clientDB" === e && "encryption" === t.redirectTo && "getAppClientKey" === t.action;
 }
 function Tn() {
-  var _ref29 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref29.provider,
-    t = _ref29.spaceId,
-    n = _ref29.functionName;
+  var _ref32 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref32.provider,
+    t = _ref32.spaceId,
+    n = _ref32.functionName;
   var _re = re(),
     s = _re.appId,
     r = _re.uniPlatform,
@@ -23786,9 +25386,9 @@ function Tn() {
   var o = r;
   "app" === r && (o = i);
   var a = function () {
-    var _ref30 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      e = _ref30.provider,
-      t = _ref30.spaceId;
+    var _ref33 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      e = _ref33.provider,
+      t = _ref33.spaceId;
     var n = v;
     if (!n) return {};
     e = function (e) {
@@ -23823,10 +25423,10 @@ function Tn() {
   })) return !0;
   throw console.error("\u6B64\u5E94\u7528[appId: ".concat(s, ", platform: ").concat(o, "]\u4E0D\u5728\u4E91\u7AEF\u914D\u7F6E\u7684\u5141\u8BB8\u8BBF\u95EE\u7684\u5E94\u7528\u5217\u8868\u5185\uFF0C\u53C2\u8003\uFF1Ahttps://uniapp.dcloud.net.cn/uniCloud/secure-network.html#verify-client")), mn(fn);
 }
-function An(_ref31) {
-  var e = _ref31.functionName,
-    t = _ref31.result,
-    n = _ref31.logPvd;
+function An(_ref34) {
+  var e = _ref34.functionName,
+    t = _ref34.result,
+    n = _ref34.logPvd;
   if (this.__dev__.debugLog && t && t.requestId) {
     var _s11 = JSON.stringify({
       spaceId: this.config.spaceId,
@@ -23864,13 +25464,13 @@ function Cn(e) {
           result: e,
           logPvd: r
         }), e && e.message && (e.message = function () {
-          var _ref32 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            _ref32$message = _ref32.message,
-            e = _ref32$message === void 0 ? "" : _ref32$message,
-            _ref32$extraInfo = _ref32.extraInfo,
-            t = _ref32$extraInfo === void 0 ? {} : _ref32$extraInfo,
-            _ref32$formatter = _ref32.formatter,
-            n = _ref32$formatter === void 0 ? [] : _ref32$formatter;
+          var _ref35 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            _ref35$message = _ref35.message,
+            e = _ref35$message === void 0 ? "" : _ref35$message,
+            _ref35$extraInfo = _ref35.extraInfo,
+            t = _ref35$extraInfo === void 0 ? {} : _ref35$extraInfo,
+            _ref35$formatter = _ref35.formatter,
+            n = _ref35$formatter === void 0 ? [] : _ref35$formatter;
           for (var _s12 = 0; _s12 < n.length; _s12++) {
             var _n$_s = n[_s12],
               _r3 = _n$_s.rule,
@@ -23879,11 +25479,11 @@ function Cn(e) {
               _a = e.match(_r3);
             if (!_a) continue;
             var _c = _i3;
-            for (var _e24 = 1; _e24 < _a.length; _e24++) {
-              _c = Tt(_c, "{$".concat(_e24, "}"), _a[_e24]);
+            for (var _e23 = 1; _e23 < _a.length; _e23++) {
+              _c = Tt(_c, "{$".concat(_e23, "}"), _a[_e23]);
             }
-            for (var _e25 in t) {
-              _c = Tt(_c, "{".concat(_e25, "}"), t[_e25]);
+            for (var _e24 in t) {
+              _c = Tt(_c, "{".concat(_e24, "}"), t[_e24]);
             }
             return "replace" === _o3 ? _c : e + _c;
           }
@@ -23903,10 +25503,10 @@ function Cn(e) {
       r = _e$config.spaceId,
       i = t.name;
     var o, a;
-    if (t.data = t.data || {}, y && e.__dev__.debugInfo && !e.__dev__.debugInfo.forceRemote && I ? (e._callCloudFunction || (e._callCloudFunction = n, e._callLocalFunction = St), o = St) : o = n, o = o.bind(e), bn(t)) a = n.call(e, t);else if (function (_ref33) {
-      var e = _ref33.name,
-        _ref33$data = _ref33.data,
-        t = _ref33$data === void 0 ? {} : _ref33$data;
+    if (t.data = t.data || {}, y && e.__dev__.debugInfo && !e.__dev__.debugInfo.forceRemote && I ? (e._callCloudFunction || (e._callCloudFunction = n, e._callLocalFunction = St), o = St) : o = n, o = o.bind(e), bn(t)) a = n.call(e, t);else if (function (_ref36) {
+      var e = _ref36.name,
+        _ref36$data = _ref36.data,
+        t = _ref36$data === void 0 ? {} : _ref36$data;
       return "mp-weixin" === S && "uni-id-co" === e && "secureNetworkHandshakeByWeixin" === t.method;
     }(t)) a = o.call(e, t);else if (In(t)) {
       a = new _n({
@@ -24049,9 +25649,9 @@ var Nn = /*#__PURE__*/function () {
     get: function get() {
       var e = this;
       for (; e;) {
-        var _t11 = Ln(e),
+        var t = Ln(e),
           _n8 = Ln(e.prevStage);
-        if ("aggregate" === _t11 && "collection" === _n8 || "pipeline" === _t11) return !0;
+        if ("aggregate" === t && "collection" === _n8 || "pipeline" === t) return !0;
         e = e.prevStage;
       }
       return !1;
@@ -24071,9 +25671,9 @@ var Nn = /*#__PURE__*/function () {
     get: function get() {
       var e = this;
       for (; e;) {
-        var _t12 = Ln(e),
+        var t = Ln(e),
           _n9 = Ln(e.prevStage);
-        if ("aggregate" === _t12 && "command" === _n9) return !0;
+        if ("aggregate" === t && "command" === _n9) return !0;
         e = e.prevStage;
       }
       return !1;
@@ -24141,11 +25741,11 @@ var Nn = /*#__PURE__*/function () {
         $method: e,
         $param: Rn(t)
       }), y) {
-        var _e26 = s.$db.find(function (e) {
+        var _e25 = s.$db.find(function (e) {
             return "collection" === e.$method;
           }),
-          _t13 = _e26 && _e26.$param;
-        _t13 && 1 === _t13.length && "string" == typeof _e26.$param[0] && _e26.$param[0].indexOf(",") > -1 && console.warn("检测到使用JQL语法联表查询时，未使用getTemp先过滤主表数据，在主表数据量大的情况下可能会查询缓慢。\n- 如何优化请参考此文档：https://uniapp.dcloud.net.cn/uniCloud/jql?id=lookup-with-temp \n- 如果主表数据量很小请忽略此信息，项目发行时不会出现此提示。");
+          _t11 = _e25 && _e25.$param;
+        _t11 && 1 === _t11.length && "string" == typeof _e25.$param[0] && _e25.$param[0].indexOf(",") > -1 && console.warn("检测到使用JQL语法联表查询时，未使用getTemp先过滤主表数据，在主表数据量大的情况下可能会查询缓慢。\n- 如何优化请参考此文档：https://uniapp.dcloud.net.cn/uniCloud/jql?id=lookup-with-temp \n- 如果主表数据量很小请忽略此信息，项目发行时不会出现此提示。");
       }
       return this._database._callCloudFunction({
         action: n,
@@ -24170,9 +25770,9 @@ function Dn(e, t, n) {
     }
   });
 }
-function Fn(_ref34) {
-  var e = _ref34.path,
-    t = _ref34.method;
+function Fn(_ref37) {
+  var e = _ref37.path,
+    t = _ref37.method;
   return /*#__PURE__*/function () {
     function _class4() {
       (0, _classCallCheck2.default)(this, _class4);
@@ -24211,8 +25811,8 @@ function qn(e) {
     }
   });
 }
-var Kn = /*#__PURE__*/function (_ref35) {
-  (0, _inherits2.default)(Kn, _ref35);
+var Kn = /*#__PURE__*/function (_ref38) {
+  (0, _inherits2.default)(Kn, _ref38);
   var _super11 = _createSuper(Kn);
   function Kn() {
     (0, _classCallCheck2.default)(this, Kn);
@@ -24225,12 +25825,12 @@ var Kn = /*#__PURE__*/function (_ref35) {
     }
   }, {
     key: "_callCloudFunction",
-    value: function _callCloudFunction(_ref36) {
+    value: function _callCloudFunction(_ref39) {
       var _this20 = this;
-      var e = _ref36.action,
-        t = _ref36.command,
-        n = _ref36.multiCommand,
-        s = _ref36.queryList;
+      var e = _ref39.action,
+        t = _ref39.command,
+        n = _ref39.multiCommand,
+        s = _ref39.queryList;
       function r(e, t) {
         if (n && s) for (var _n10 = 0; _n10 < s.length; _n10++) {
           var _r4 = s[_n10];
@@ -24269,12 +25869,12 @@ var Kn = /*#__PURE__*/function (_ref35) {
           c = _e$result.tokenExpired,
           _e$result$systemInfo = _e$result.systemInfo,
           u = _e$result$systemInfo === void 0 ? [] : _e$result$systemInfo;
-        if (u) for (var _e27 = 0; _e27 < u.length; _e27++) {
-          var _u$_e = u[_e27],
-            _t14 = _u$_e.level,
+        if (u) for (var _e26 = 0; _e26 < u.length; _e26++) {
+          var _u$_e = u[_e26],
+            _t12 = _u$_e.level,
             _n11 = _u$_e.message,
             _s13 = _u$_e.detail,
-            _r5 = console["app" === S && "warn" === _t14 ? "error" : _t14] || console.log;
+            _r5 = console["app" === S && "warn" === _t12 ? "error" : _t12] || console.log;
           var _i4 = "[System Info]" + _n11;
           _s13 && (_i4 = "".concat(_i4, "\n\u8BE6\u7EC6\u4FE1\u606F\uFF1A").concat(_s13)), _r5(_i4);
         }
@@ -24308,21 +25908,21 @@ var Kn = /*#__PURE__*/function (_ref35) {
           prop: "message",
           tips: "message不再推荐使用，请使用errMsg替代"
         }];
-        var _loop2 = function _loop2(_t15) {
-          var _l$_t = l[_t15],
+        var _loop2 = function _loop2(_t13) {
+          var _l$_t = l[_t13],
             n = _l$_t.prop,
             s = _l$_t.tips;
           if (n in e.result) {
-            var _t16 = e.result[n];
+            var _t14 = e.result[n];
             Object.defineProperty(e.result, n, {
               get: function get() {
-                return console.warn(s), _t16;
+                return console.warn(s), _t14;
               }
             });
           }
         };
-        for (var _t15 = 0; _t15 < l.length; _t15++) {
-          _loop2(_t15);
+        for (var _t13 = 0; _t13 < l.length; _t13++) {
+          _loop2(_t13);
         }
         return function (e) {
           return U(R(o, "success"), e).then(function () {
@@ -24349,11 +25949,11 @@ var Kn = /*#__PURE__*/function (_ref35) {
   return Kn;
 }( /*#__PURE__*/function () {
   function _class5() {
-    var _ref37 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref37$uniClient = _ref37.uniClient,
-      e = _ref37$uniClient === void 0 ? {} : _ref37$uniClient,
-      _ref37$isJQL = _ref37.isJQL,
-      t = _ref37$isJQL === void 0 ? !1 : _ref37$isJQL;
+    var _ref40 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref40$uniClient = _ref40.uniClient,
+      e = _ref40$uniClient === void 0 ? {} : _ref40$uniClient,
+      _ref40$isJQL = _ref40.isJQL,
+      t = _ref40$isJQL === void 0 ? !1 : _ref40$isJQL;
     (0, _classCallCheck2.default)(this, _class5);
     this._uniClient = e, this._authCallBacks = {}, this._dbCallBacks = {}, e.isDefault && (this._dbCallBacks = C("_globalUniCloudDatabaseCallback")), t || (this.auth = On(this._authCallBacks)), this._isJQL = t, Object.assign(this, On(this._dbCallBacks)), this.env = En({}, {
       get: function get(e, t) {
@@ -24479,16 +26079,16 @@ function Vn() {
   });
 }
 var Yn = !!_pages.default.uniIdRouter;
-var _ref38 = function () {
-    var _ref39 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _pages.default,
-      _ref39$pages = _ref39.pages,
-      e = _ref39$pages === void 0 ? [] : _ref39$pages,
-      _ref39$subPackages = _ref39.subPackages,
-      n = _ref39$subPackages === void 0 ? [] : _ref39$subPackages,
-      _ref39$uniIdRouter = _ref39.uniIdRouter,
-      s = _ref39$uniIdRouter === void 0 ? {} : _ref39$uniIdRouter,
-      _ref39$tabBar = _ref39.tabBar,
-      r = _ref39$tabBar === void 0 ? {} : _ref39$tabBar;
+var _ref41 = function () {
+    var _ref24 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _pages.default,
+      _ref24$pages = _ref24.pages,
+      e = _ref24$pages === void 0 ? [] : _ref24$pages,
+      _ref24$subPackages = _ref24.subPackages,
+      n = _ref24$subPackages === void 0 ? [] : _ref24$subPackages,
+      _ref24$uniIdRouter = _ref24.uniIdRouter,
+      s = _ref24$uniIdRouter === void 0 ? {} : _ref24$uniIdRouter,
+      _ref24$tabBar = _ref24.tabBar,
+      r = _ref24$tabBar === void 0 ? {} : _ref24$tabBar;
     var i = s.loginPage,
       _s$needLogin = s.needLogin,
       o = _s$needLogin === void 0 ? [] : _s$needLogin,
@@ -24497,7 +26097,7 @@ var _ref38 = function () {
       _zn = zn(e),
       c = _zn.needLoginPage,
       u = _zn.notNeedLoginPage,
-      _ref40 = function () {
+      _ref26 = function () {
         var e = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
         var t = [],
           n = [];
@@ -24514,8 +26114,8 @@ var _ref38 = function () {
           notNeedLoginPage: n
         };
       }(n),
-      l = _ref40.needLoginPage,
-      h = _ref40.notNeedLoginPage;
+      l = _ref26.needLoginPage,
+      h = _ref26.notNeedLoginPage;
     return {
       loginPage: i,
       routerNeedLogin: o,
@@ -24525,12 +26125,12 @@ var _ref38 = function () {
       loginPageInTabBar: Vn(i, r)
     };
   }(),
-  Qn = _ref38.loginPage,
-  Xn = _ref38.routerNeedLogin,
-  Zn = _ref38.resToLogin,
-  es = _ref38.needLoginPage,
-  ts = _ref38.notNeedLoginPage,
-  ns = _ref38.loginPageInTabBar;
+  Qn = _ref41.loginPage,
+  Xn = _ref41.routerNeedLogin,
+  Zn = _ref41.resToLogin,
+  es = _ref41.needLoginPage,
+  ts = _ref41.notNeedLoginPage,
+  ns = _ref41.loginPageInTabBar;
 if (es.indexOf(Qn) > -1) throw new Error("Login page [".concat(Qn, "] should not be \"needLogin\", please check your pages.json"));
 function ss(e) {
   var t = Gn();
@@ -24542,9 +26142,9 @@ function ss(e) {
     r = n.replace(/^\//, "").split("/"),
     i = t.split("/");
   i.pop();
-  for (var _e28 = 0; _e28 < r.length; _e28++) {
-    var _t17 = r[_e28];
-    ".." === _t17 ? i.pop() : "." !== _t17 && i.push(_t17);
+  for (var _e27 = 0; _e27 < r.length; _e27++) {
+    var _t15 = r[_e27];
+    ".." === _t15 ? i.pop() : "." !== _t15 && i.push(_t15);
   }
   return "" === i[0] && i.shift(), "/" + i.join("/") + (s ? "?" + s : "");
 }
@@ -24556,16 +26156,16 @@ function rs(e) {
     }(e, t);
   }));
 }
-function is(_ref41) {
-  var e = _ref41.redirect;
+function is(_ref42) {
+  var e = _ref42.redirect;
   var t = Jn(e),
     n = Jn(Qn);
   return Gn() !== n && t !== n;
 }
 function os() {
-  var _ref42 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref42.api,
-    t = _ref42.redirect;
+  var _ref43 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref43.api,
+    t = _ref43.redirect;
   if (!t || !is({
     redirect: t
   })) return;
@@ -24586,8 +26186,8 @@ function os() {
   });
 }
 function as() {
-  var _ref43 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    e = _ref43.url;
+  var _ref44 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+    e = _ref44.url;
   var t = {
       abortLoginPageJump: !1,
       autoToLoginPage: !1
@@ -24599,17 +26199,17 @@ function as() {
       var n;
       if (e) {
         if (t < Date.now()) {
-          var _e29 = "uni-id-token-expired";
+          var _e28 = "uni-id-token-expired";
           n = {
-            errCode: _e29,
-            errMsg: $n[_e29]
+            errCode: _e28,
+            errMsg: $n[_e28]
           };
         }
       } else {
-        var _e30 = "uni-id-check-token-failed";
+        var _e29 = "uni-id-check-token-failed";
         n = {
-          errCode: _e30,
-          errMsg: $n[_e30]
+          errCode: _e29,
+          errMsg: $n[_e29]
         };
       }
       return n;
@@ -24637,8 +26237,8 @@ function cs() {
     });
   }();
   var e = ["navigateTo", "redirectTo", "reLaunch", "switchTab"];
-  var _loop3 = function _loop3(_t18) {
-    var n = e[_t18];
+  var _loop3 = function _loop3(_t16) {
+    var n = e[_t16];
     uni.addInterceptor(n, {
       invoke: function invoke(e) {
         var _as2 = as({
@@ -24653,8 +26253,8 @@ function cs() {
       }
     });
   };
-  for (var _t18 = 0; _t18 < e.length; _t18++) {
-    _loop3(_t18);
+  for (var _t16 = 0; _t16 < e.length; _t16++) {
+    _loop3(_t16);
   }
 }
 function us() {
@@ -24760,13 +26360,13 @@ var gs = s(function (e, t) {
         return e.path;
       })), e;
     }
-    function i(e, t, _ref44) {
-      var s = _ref44.onChooseFile,
-        r = _ref44.onUploadProgress;
+    function i(e, t, _ref45) {
+      var s = _ref45.onChooseFile,
+        r = _ref45.onUploadProgress;
       return t.then(function (e) {
         if (s) {
-          var _t19 = s(e);
-          if (void 0 !== _t19) return Promise.resolve(_t19).then(function (t) {
+          var _t17 = s(e);
+          if (void 0 !== _t17) return Promise.resolve(_t17).then(function (t) {
             return void 0 === t ? e : t;
           });
         }
@@ -25040,11 +26640,11 @@ function _s(e) {
       onMixinDatacomPropsChange: function onMixinDatacomPropsChange(e, t) {},
       mixinDatacomEasyGet: function mixinDatacomEasyGet() {
         var _this22 = this;
-        var _ref45 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-          _ref45$getone = _ref45.getone,
-          e = _ref45$getone === void 0 ? !1 : _ref45$getone,
-          t = _ref45.success,
-          n = _ref45.fail;
+        var _ref46 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+          _ref46$getone = _ref46.getone,
+          e = _ref46$getone === void 0 ? !1 : _ref46$getone,
+          t = _ref46.success,
+          n = _ref46.fail;
         this.mixinDatacomLoading || (this.mixinDatacomLoading = !0, this.mixinDatacomErrorMessage = "", this.mixinDatacomGet().then(function (n) {
           _this22.mixinDatacomLoading = !1;
           var _n$result = n.result,
@@ -25121,145 +26721,263 @@ function ws(e) {
     return new Proxy({}, {
       get: function get(s, c) {
         return function () {
-          var _ref46 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-            e = _ref46.fn,
-            t = _ref46.interceptorName,
-            n = _ref46.getCallbackArgs;
-          return async function () {
-            for (var _len2 = arguments.length, s = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-              s[_key2] = arguments[_key2];
-            }
-            var r = n ? n({
-              params: s
-            }) : {};
-            var i, o;
-            try {
-              return await U(R(t, "invoke"), _objectSpread({}, r)), i = await e.apply(void 0, s), await U(R(t, "success"), _objectSpread(_objectSpread({}, r), {}, {
-                result: i
-              })), i;
-            } catch (e) {
-              throw o = e, await U(R(t, "fail"), _objectSpread(_objectSpread({}, r), {}, {
-                error: o
-              })), o;
-            } finally {
-              await U(R(t, "complete"), o ? _objectSpread(_objectSpread({}, r), {}, {
-                error: o
-              }) : _objectSpread(_objectSpread({}, r), {}, {
-                result: i
-              }));
-            }
-          };
-        }({
-          fn: async function s() {
-            var h;
-            a && uni.showLoading({
-              title: r.title,
-              mask: r.mask
-            });
-            for (var _len3 = arguments.length, u = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-              u[_key3] = arguments[_key3];
-            }
-            var d = {
-              name: t,
-              type: l,
-              data: {
-                method: c,
-                params: u
-              }
-            };
-            "object" == (0, _typeof2.default)(n.secretMethods) && function (e, t) {
-              var n = t.data.method,
-                s = e.secretMethods || {},
-                r = s[n] || s["*"];
-              r && (t.secretType = r);
-            }(n, d);
-            var f = !1;
-            try {
-              h = await e.callFunction(d);
-            } catch (e) {
-              f = !0, h = {
-                result: new Q(e)
-              };
-            }
-            var _ref47 = h.result || {},
-              p = _ref47.errSubject,
-              g = _ref47.errCode,
-              m = _ref47.errMsg,
-              y = _ref47.newToken;
-            if (a && uni.hideLoading(), y && y.token && y.tokenExpired && (ee(y), z(q, _objectSpread({}, y))), g) {
-              var _e31 = m;
-              if (f && o) {
-                _e31 = (await o({
-                  objectName: t,
-                  methodName: c,
-                  params: u,
-                  errSubject: p,
-                  errCode: g,
-                  errMsg: m
-                })).errMsg || m;
-              }
-              if (a) if ("toast" === i.type) uni.showToast({
-                title: _e31,
-                icon: "none"
-              });else {
-                if ("modal" !== i.type) throw new Error("Invalid errorOptions.type: ".concat(i.type));
-                {
-                  var _await = await async function () {
-                      var _ref48 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                        e = _ref48.title,
-                        t = _ref48.content,
-                        n = _ref48.showCancel,
-                        s = _ref48.cancelText,
-                        r = _ref48.confirmText;
-                      return new Promise(function (i, o) {
-                        uni.showModal({
-                          title: e,
-                          content: t,
-                          showCancel: n,
-                          cancelText: s,
-                          confirmText: r,
-                          success: function success(e) {
-                            i(e);
-                          },
-                          fail: function fail() {
-                            i({
-                              confirm: !1,
-                              cancel: !0
-                            });
-                          }
-                        });
-                      });
-                    }({
-                      title: "提示",
-                      content: _e31,
-                      showCancel: i.retry,
-                      cancelText: "取消",
-                      confirmText: i.retry ? "重试" : "确定"
-                    }),
-                    _t20 = _await.confirm;
-                  if (i.retry && _t20) return s.apply(void 0, u);
+          var _ref47 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+            e = _ref47.fn,
+            t = _ref47.interceptorName,
+            n = _ref47.getCallbackArgs;
+          return /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee49() {
+            var _len2,
+              s,
+              _key2,
+              r,
+              i,
+              o,
+              _args = arguments;
+            return _regenerator.default.wrap(function _callee49$(_context49) {
+              while (1) {
+                switch (_context49.prev = _context49.next) {
+                  case 0:
+                    for (_len2 = _args.length, s = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+                      s[_key2] = _args[_key2];
+                    }
+                    r = n ? n({
+                      params: s
+                    }) : {};
+                    _context49.prev = 2;
+                    _context49.next = 5;
+                    return U(R(t, "invoke"), _objectSpread({}, r));
+                  case 5:
+                    _context49.next = 7;
+                    return e.apply(void 0, s);
+                  case 7:
+                    i = _context49.sent;
+                    _context49.next = 10;
+                    return U(R(t, "success"), _objectSpread(_objectSpread({}, r), {}, {
+                      result: i
+                    }));
+                  case 10:
+                    return _context49.abrupt("return", i);
+                  case 13:
+                    _context49.prev = 13;
+                    _context49.t0 = _context49["catch"](2);
+                    o = _context49.t0;
+                    _context49.next = 18;
+                    return U(R(t, "fail"), _objectSpread(_objectSpread({}, r), {}, {
+                      error: o
+                    }));
+                  case 18:
+                    throw o;
+                  case 19:
+                    _context49.prev = 19;
+                    _context49.next = 22;
+                    return U(R(t, "complete"), o ? _objectSpread(_objectSpread({}, r), {}, {
+                      error: o
+                    }) : _objectSpread(_objectSpread({}, r), {}, {
+                      result: i
+                    }));
+                  case 22:
+                    return _context49.finish(19);
+                  case 23:
+                  case "end":
+                    return _context49.stop();
                 }
               }
-              var _n14 = new Q({
-                subject: p,
-                code: g,
-                message: m,
-                requestId: h.requestId
-              });
-              throw _n14.detail = h.result, z(D, {
-                type: j,
-                content: _n14
-              }), _n14;
+            }, _callee49, null, [[2, 13, 19, 23]]);
+          }));
+        }({
+          fn: function () {
+            var _s14 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee51() {
+              var h,
+                _len3,
+                u,
+                _key3,
+                d,
+                f,
+                _ref49,
+                p,
+                g,
+                m,
+                y,
+                _e30,
+                _yield,
+                _t18,
+                _n14,
+                _args4 = arguments;
+              return _regenerator.default.wrap(function _callee51$(_context51) {
+                while (1) {
+                  switch (_context51.prev = _context51.next) {
+                    case 0:
+                      a && uni.showLoading({
+                        title: r.title,
+                        mask: r.mask
+                      });
+                      for (_len3 = _args4.length, u = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+                        u[_key3] = _args4[_key3];
+                      }
+                      d = {
+                        name: t,
+                        type: l,
+                        data: {
+                          method: c,
+                          params: u
+                        }
+                      };
+                      "object" == (0, _typeof2.default)(n.secretMethods) && function (e, t) {
+                        var n = t.data.method,
+                          s = e.secretMethods || {},
+                          r = s[n] || s["*"];
+                        r && (t.secretType = r);
+                      }(n, d);
+                      f = !1;
+                      _context51.prev = 5;
+                      _context51.next = 8;
+                      return e.callFunction(d);
+                    case 8:
+                      h = _context51.sent;
+                      _context51.next = 14;
+                      break;
+                    case 11:
+                      _context51.prev = 11;
+                      _context51.t0 = _context51["catch"](5);
+                      f = !0, h = {
+                        result: new Q(_context51.t0)
+                      };
+                    case 14:
+                      _ref49 = h.result || {}, p = _ref49.errSubject, g = _ref49.errCode, m = _ref49.errMsg, y = _ref49.newToken;
+                      if (!(a && uni.hideLoading(), y && y.token && y.tokenExpired && (ee(y), z(q, _objectSpread({}, y))), g)) {
+                        _context51.next = 39;
+                        break;
+                      }
+                      _e30 = m;
+                      if (!(f && o)) {
+                        _context51.next = 24;
+                        break;
+                      }
+                      _context51.next = 20;
+                      return o({
+                        objectName: t,
+                        methodName: c,
+                        params: u,
+                        errSubject: p,
+                        errCode: g,
+                        errMsg: m
+                      });
+                    case 20:
+                      _context51.t1 = _context51.sent.errMsg;
+                      if (_context51.t1) {
+                        _context51.next = 23;
+                        break;
+                      }
+                      _context51.t1 = m;
+                    case 23:
+                      _e30 = _context51.t1;
+                    case 24:
+                      if (!a) {
+                        _context51.next = 37;
+                        break;
+                      }
+                      if (!("toast" === i.type)) {
+                        _context51.next = 29;
+                        break;
+                      }
+                      uni.showToast({
+                        title: _e30,
+                        icon: "none"
+                      });
+                      _context51.next = 37;
+                      break;
+                    case 29:
+                      if (!("modal" !== i.type)) {
+                        _context51.next = 31;
+                        break;
+                      }
+                      throw new Error("Invalid errorOptions.type: ".concat(i.type));
+                    case 31:
+                      _context51.next = 33;
+                      return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee50() {
+                        var _ref51,
+                          e,
+                          t,
+                          n,
+                          s,
+                          r,
+                          _args3 = arguments;
+                        return _regenerator.default.wrap(function _callee50$(_context50) {
+                          while (1) {
+                            switch (_context50.prev = _context50.next) {
+                              case 0:
+                                _ref51 = _args3.length > 0 && _args3[0] !== undefined ? _args3[0] : {}, e = _ref51.title, t = _ref51.content, n = _ref51.showCancel, s = _ref51.cancelText, r = _ref51.confirmText;
+                                return _context50.abrupt("return", new Promise(function (i, o) {
+                                  uni.showModal({
+                                    title: e,
+                                    content: t,
+                                    showCancel: n,
+                                    cancelText: s,
+                                    confirmText: r,
+                                    success: function success(e) {
+                                      i(e);
+                                    },
+                                    fail: function fail() {
+                                      i({
+                                        confirm: !1,
+                                        cancel: !0
+                                      });
+                                    }
+                                  });
+                                }));
+                              case 2:
+                              case "end":
+                                return _context50.stop();
+                            }
+                          }
+                        }, _callee50);
+                      }))({
+                        title: "提示",
+                        content: _e30,
+                        showCancel: i.retry,
+                        cancelText: "取消",
+                        confirmText: i.retry ? "重试" : "确定"
+                      });
+                    case 33:
+                      _yield = _context51.sent;
+                      _t18 = _yield.confirm;
+                      if (!(i.retry && _t18)) {
+                        _context51.next = 37;
+                        break;
+                      }
+                      return _context51.abrupt("return", s.apply(void 0, u));
+                    case 37:
+                      _n14 = new Q({
+                        subject: p,
+                        code: g,
+                        message: m,
+                        requestId: h.requestId
+                      });
+                      throw _n14.detail = h.result, z(D, {
+                        type: j,
+                        content: _n14
+                      }), _n14;
+                    case 39:
+                      return _context51.abrupt("return", (z(D, {
+                        type: j,
+                        content: h.result
+                      }), h.result));
+                    case 40:
+                    case "end":
+                      return _context51.stop();
+                  }
+                }
+              }, _callee51, null, [[5, 11]]);
+            }));
+            function s() {
+              return _s14.apply(this, arguments);
             }
-            return z(D, {
-              type: j,
-              content: h.result
-            }), h.result;
-          },
+            return s;
+          }(),
           interceptorName: "callObject",
           getCallbackArgs: function getCallbackArgs() {
-            var _ref49 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-              e = _ref49.params;
+            var _ref52 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+              e = _ref52.params;
             return {
               objectName: t,
               methodName: c,
@@ -25274,67 +26992,137 @@ function ws(e) {
 function vs(e) {
   return C("_globalUniCloudSecureNetworkCache__{spaceId}".replace("{spaceId}", e.config.spaceId));
 }
-async function Ss() {
-  var _ref50 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-    _ref50$callLoginByWei = _ref50.callLoginByWeixin,
-    e = _ref50$callLoginByWei === void 0 ? !1 : _ref50$callLoginByWei;
-  var t = vs(this);
-  if ("mp-weixin" !== S) throw new Error("[SecureNetwork] API `initSecureNetworkByWeixin` is not supported on platform `".concat(S, "`"));
-  var n = await new Promise(function (e, t) {
-      uni.login({
-        success: function success(t) {
-          e(t.code);
-        },
-        fail: function fail(e) {
-          t(new Error(e.errMsg));
-        }
-      });
-    }),
-    s = this.importObject("uni-id-co", {
-      customUI: !0
-    });
-  return await s.secureNetworkHandshakeByWeixin({
-    code: n,
-    callLoginByWeixin: e
-  }), t.mpWeixinCode = n, {
-    code: n
-  };
+function Ss() {
+  return _Ss.apply(this, arguments);
 }
-async function ks(e) {
-  var t = vs(this);
-  return t.initPromise || (t.initPromise = Ss.call(this, e)), t.initPromise;
+function _Ss() {
+  _Ss = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee53() {
+    var _ref56,
+      _ref56$callLoginByWei,
+      e,
+      t,
+      n,
+      s,
+      _args6 = arguments;
+    return _regenerator.default.wrap(function _callee53$(_context53) {
+      while (1) {
+        switch (_context53.prev = _context53.next) {
+          case 0:
+            _ref56 = _args6.length > 0 && _args6[0] !== undefined ? _args6[0] : {}, _ref56$callLoginByWei = _ref56.callLoginByWeixin, e = _ref56$callLoginByWei === void 0 ? !1 : _ref56$callLoginByWei;
+            t = vs(this);
+            if (!("mp-weixin" !== S)) {
+              _context53.next = 4;
+              break;
+            }
+            throw new Error("[SecureNetwork] API `initSecureNetworkByWeixin` is not supported on platform `".concat(S, "`"));
+          case 4:
+            _context53.next = 6;
+            return new Promise(function (e, t) {
+              uni.login({
+                success: function success(t) {
+                  e(t.code);
+                },
+                fail: function fail(e) {
+                  t(new Error(e.errMsg));
+                }
+              });
+            });
+          case 6:
+            n = _context53.sent;
+            s = this.importObject("uni-id-co", {
+              customUI: !0
+            });
+            _context53.next = 10;
+            return s.secureNetworkHandshakeByWeixin({
+              code: n,
+              callLoginByWeixin: e
+            });
+          case 10:
+            t.mpWeixinCode = n;
+            return _context53.abrupt("return", {
+              code: n
+            });
+          case 12:
+          case "end":
+            return _context53.stop();
+        }
+      }
+    }, _callee53, this);
+  }));
+  return _Ss.apply(this, arguments);
+}
+function ks(_x37) {
+  return _ks.apply(this, arguments);
+}
+function _ks() {
+  _ks = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee54(e) {
+    var t;
+    return _regenerator.default.wrap(function _callee54$(_context54) {
+      while (1) {
+        switch (_context54.prev = _context54.next) {
+          case 0:
+            t = vs(this);
+            return _context54.abrupt("return", (t.initPromise || (t.initPromise = Ss.call(this, e)), t.initPromise));
+          case 2:
+          case "end":
+            return _context54.stop();
+        }
+      }
+    }, _callee54, this);
+  }));
+  return _ks.apply(this, arguments);
 }
 function Is(e) {
   return function () {
-    var _ref51 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      _ref51$callLoginByWei = _ref51.callLoginByWeixin,
-      t = _ref51$callLoginByWei === void 0 ? !1 : _ref51$callLoginByWei;
+    var _ref53 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      _ref53$callLoginByWei = _ref53.callLoginByWeixin,
+      t = _ref53$callLoginByWei === void 0 ? !1 : _ref53$callLoginByWei;
     return ks.call(e, {
       callLoginByWeixin: t
     });
   };
 }
-async function bs(e, t) {
-  var n = "http://".concat(e, ":").concat(t, "/system/ping");
-  try {
-    var _e32 = await (s = {
-      url: n,
-      timeout: 500
-    }, new Promise(function (e, t) {
-      X.request(_objectSpread(_objectSpread({}, s), {}, {
-        success: function success(t) {
-          e(t);
-        },
-        fail: function fail(e) {
-          t(e);
+function bs(_x38, _x39) {
+  return _bs.apply(this, arguments);
+}
+function _bs() {
+  _bs = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee55(e, t) {
+    var n, _e32, s;
+    return _regenerator.default.wrap(function _callee55$(_context55) {
+      while (1) {
+        switch (_context55.prev = _context55.next) {
+          case 0:
+            n = "http://".concat(e, ":").concat(t, "/system/ping");
+            _context55.prev = 1;
+            _context55.next = 4;
+            return s = {
+              url: n,
+              timeout: 500
+            }, new Promise(function (e, t) {
+              X.request(_objectSpread(_objectSpread({}, s), {}, {
+                success: function success(t) {
+                  e(t);
+                },
+                fail: function fail(e) {
+                  t(e);
+                }
+              }));
+            });
+          case 4:
+            _e32 = _context55.sent;
+            return _context55.abrupt("return", !(!_e32.data || 0 !== _e32.data.code));
+          case 8:
+            _context55.prev = 8;
+            _context55.t0 = _context55["catch"](1);
+            return _context55.abrupt("return", !1);
+          case 11:
+          case "end":
+            return _context55.stop();
         }
-      }));
-    }));
-    return !(!_e32.data || 0 !== _e32.data.code);
-  } catch (e) {
-    return !1;
-  }
-  var s;
+      }
+    }, _callee55, null, [[1, 8]]);
+  }));
+  return _bs.apply(this, arguments);
 }
 function Ts(e) {
   if (e.initUniCloudStatus && "rejected" !== e.initUniCloudStatus) return;
@@ -25354,42 +27142,71 @@ function Ts(e) {
     if (!y) return Promise.resolve();
     if ("app" === S) {
       var _re2 = re(),
-        _e33 = _re2.osName,
-        _t21 = _re2.osVersion;
-      "ios" === _e33 && function (e) {
+        _e31 = _re2.osName,
+        _t19 = _re2.osVersion;
+      "ios" === _e31 && function (e) {
         if (!e || "string" != typeof e) return 0;
         var t = e.match(/^(\d+)./);
         return t && t[1] ? parseInt(t[1]) : 0;
-      }(_t21) >= 14 && console.warn("iOS 14及以上版本连接uniCloud本地调试服务需要允许客户端查找并连接到本地网络上的设备（仅开发模式生效，发行模式会连接uniCloud云端服务）");
+      }(_t19) >= 14 && console.warn("iOS 14及以上版本连接uniCloud本地调试服务需要允许客户端查找并连接到本地网络上的设备（仅开发模式生效，发行模式会连接uniCloud云端服务）");
     }
     if (y && e.__dev__.debugInfo) {
       var _e$__dev__$debugInfo = e.__dev__.debugInfo,
-        _t22 = _e$__dev__$debugInfo.address,
+        _t20 = _e$__dev__$debugInfo.address,
         _n15 = _e$__dev__$debugInfo.servePort;
-      return async function (e, t) {
-        var n;
-        for (var _s14 = 0; _s14 < e.length; _s14++) {
-          var _r7 = e[_s14];
-          if (await bs(_r7, t)) {
-            n = _r7;
-            break;
-          }
-        }
-        return {
-          address: n,
-          port: t
+      return function () {
+        var _ref54 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee52(e, t) {
+          var n, _s15, _r7;
+          return _regenerator.default.wrap(function _callee52$(_context52) {
+            while (1) {
+              switch (_context52.prev = _context52.next) {
+                case 0:
+                  _s15 = 0;
+                case 1:
+                  if (!(_s15 < e.length)) {
+                    _context52.next = 11;
+                    break;
+                  }
+                  _r7 = e[_s15];
+                  _context52.next = 5;
+                  return bs(_r7, t);
+                case 5:
+                  if (!_context52.sent) {
+                    _context52.next = 8;
+                    break;
+                  }
+                  n = _r7;
+                  return _context52.abrupt("break", 11);
+                case 8:
+                  _s15++;
+                  _context52.next = 1;
+                  break;
+                case 11:
+                  return _context52.abrupt("return", {
+                    address: n,
+                    port: t
+                  });
+                case 12:
+                case "end":
+                  return _context52.stop();
+              }
+            }
+          }, _callee52);
+        }));
+        return function (_x40, _x41) {
+          return _ref54.apply(this, arguments);
         };
-      }(_t22, _n15);
+      }()(_t20, _n15);
     }
   }).then(function () {
-    var _ref52 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-      t = _ref52.address,
-      n = _ref52.port;
+    var _ref55 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+      t = _ref55.address,
+      n = _ref55.port;
     if (!y) return Promise.resolve();
     var s = console["app" === S ? "error" : "warn"];
     if (t) e.__dev__.localAddress = t, e.__dev__.localPort = n;else if (e.__dev__.debugInfo) {
-      var _t23 = "";
-      "remote" === e.__dev__.debugInfo.initialLaunchType ? (e.__dev__.debugInfo.forceRemote = !0, _t23 = "当前客户端和HBuilderX不在同一局域网下（或其他网络原因无法连接HBuilderX），uniCloud本地调试服务不对当前客户端生效。\n- 如果不使用uniCloud本地调试服务，请直接忽略此信息。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。") : _t23 = "无法连接uniCloud本地调试服务，请检查当前客户端是否与主机在同一局域网下。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。", _t23 += "\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试\n- 检查系统防火墙是否拦截了HBuilderX自带的nodejs\n- 检查是否错误的使用拦截器修改uni.request方法的参数", "web" === S && (_t23 += "\n- 部分浏览器开启节流模式之后访问本地地址受限，请检查是否启用了节流模式"), 0 === S.indexOf("mp-") && (_t23 += "\n- 小程序中如何使用uniCloud，请参考：https://uniapp.dcloud.net.cn/uniCloud/publish.html#useinmp"), s(_t23);
+      var _t21 = "";
+      "remote" === e.__dev__.debugInfo.initialLaunchType ? (e.__dev__.debugInfo.forceRemote = !0, _t21 = "当前客户端和HBuilderX不在同一局域网下（或其他网络原因无法连接HBuilderX），uniCloud本地调试服务不对当前客户端生效。\n- 如果不使用uniCloud本地调试服务，请直接忽略此信息。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。") : _t21 = "无法连接uniCloud本地调试服务，请检查当前客户端是否与主机在同一局域网下。\n- 如需使用uniCloud本地调试服务，请将客户端与主机连接到同一局域网下并重新运行到客户端。", _t21 += "\n- 如果在HBuilderX开启的状态下切换过网络环境，请重启HBuilderX后再试\n- 检查系统防火墙是否拦截了HBuilderX自带的nodejs\n- 检查是否错误的使用拦截器修改uni.request方法的参数", "web" === S && (_t21 += "\n- 部分浏览器开启节流模式之后访问本地地址受限，请检查是否启用了节流模式"), 0 === S.indexOf("mp-") && (_t21 += "\n- 小程序中如何使用uniCloud，请参考：https://uniapp.dcloud.net.cn/uniCloud/publish.html#useinmp"), s(_t21);
     }
   }).then(function () {
     te(), e.isReady = !0, e.initUniCloudStatus = "fulfilled";
@@ -25461,9 +27278,9 @@ var Cs = new ( /*#__PURE__*/function () {
   var e = I;
   var t = {};
   if (e && 1 === e.length) t = e[0], Cs = Cs.init(t), Cs.isDefault = !0;else {
-    var _t24 = ["auth", "callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile", "database", "getCurrentUSerInfo", "importObject"];
+    var _t22 = ["auth", "callFunction", "uploadFile", "deleteFile", "getTempFileURL", "downloadFile", "database", "getCurrentUSerInfo", "importObject"];
     var _n16;
-    _n16 = e && e.length > 0 ? "应用有多个服务空间，请通过uniCloud.init方法指定要使用的服务空间" : b ? "应用未关联服务空间，请在uniCloud目录右键关联服务空间" : "uni-app cli项目内使用uniCloud需要使用HBuilderX的运行菜单运行项目，且需要在uniCloud目录关联服务空间", _t24.forEach(function (e) {
+    _n16 = e && e.length > 0 ? "应用有多个服务空间，请通过uniCloud.init方法指定要使用的服务空间" : b ? "应用未关联服务空间，请在uniCloud目录右键关联服务空间" : "uni-app cli项目内使用uniCloud需要使用HBuilderX的运行菜单运行项目，且需要在uniCloud目录关联服务空间", _t22.forEach(function (e) {
       Cs[e] = function () {
         return console.error(_n16), Promise.reject(new Q({
           code: "SYS_ERR",
@@ -25483,7 +27300,7 @@ exports.default = Ps;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ 2), __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 425 */
+/* 404 */
 /*!*********************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
   \*********************************************************/
@@ -25510,7 +27327,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 426 */
+/* 405 */
 /*!**************************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
   \**************************************************************************/
@@ -25518,7 +27335,7 @@ module.exports = _inherits, module.exports.__esModule = true, module.exports["de
 /***/ (function(module, exports, __webpack_require__) {
 
 var _typeof = __webpack_require__(/*! ./typeof.js */ 12)["default"];
-var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 427);
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized.js */ 406);
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
@@ -25530,7 +27347,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 427 */
+/* 406 */
 /*!**********************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
   \**********************************************************************/
@@ -25546,7 +27363,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 428 */
+/* 407 */
 /*!***************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
   \***************************************************************/
@@ -25562,16 +27379,16 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 429 */
+/* 408 */
 /*!****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/wrapNativeSuper.js ***!
   \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 428);
+var getPrototypeOf = __webpack_require__(/*! ./getPrototypeOf.js */ 407);
 var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf.js */ 15);
-var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 430);
+var isNativeFunction = __webpack_require__(/*! ./isNativeFunction.js */ 409);
 var construct = __webpack_require__(/*! ./construct.js */ 14);
 function _wrapNativeSuper(Class) {
   var _cache = typeof Map === "function" ? new Map() : undefined;
@@ -25602,7 +27419,7 @@ function _wrapNativeSuper(Class) {
 module.exports = _wrapNativeSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 430 */
+/* 409 */
 /*!*****************************************************************!*\
   !*** ./node_modules/@babel/runtime/helpers/isNativeFunction.js ***!
   \*****************************************************************/
@@ -25615,7 +27432,7 @@ function _isNativeFunction(fn) {
 module.exports = _isNativeFunction, module.exports.__esModule = true, module.exports["default"] = module.exports;
 
 /***/ }),
-/* 431 */
+/* 410 */
 /*!***********************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/pages.json?{"type":"origin-pages-json"} ***!
   \***********************************************************************************/
@@ -25741,24 +27558,6 @@ var _default = {
         "navigationStyle": "custom"
       }
     }, {
-      "path": "ruku/ruku",
-      "style": {
-        "navigationBarTitleText": "商品入库",
-        "enablePullDownRefresh": false
-      }
-    }, {
-      "path": "ruku/edit",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-    }, {
-      "path": "ruku/rkxd",
-      "style": {
-        "navigationBarTitleText": "",
-        "enablePullDownRefresh": false
-      }
-    }, {
       "path": "chuku/chuku",
       "style": {
         "navigationBarTitleText": "",
@@ -25867,7 +27666,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 432 */
+/* 411 */
 /*!**********************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/pages.json?{"type":"stat"} ***!
   \**********************************************************************/
@@ -25887,21 +27686,21 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 433 */,
-/* 434 */,
-/* 435 */,
-/* 436 */,
-/* 437 */,
-/* 438 */,
-/* 439 */,
-/* 440 */,
-/* 441 */,
-/* 442 */,
-/* 443 */,
-/* 444 */,
-/* 445 */,
-/* 446 */,
-/* 447 */
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */
 /*!****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/qiun-data-charts/js_sdk/u-charts/u-charts.js ***!
   \****************************************************************************************************/
@@ -33151,7 +34950,7 @@ var _default = uCharts;
 exports.default = _default;
 
 /***/ }),
-/* 448 */
+/* 427 */
 /*!**********************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/qiun-data-charts/js_sdk/u-charts/config-ucharts.js ***!
   \**********************************************************************************************************/
@@ -33767,14 +35566,14 @@ var _default = cfu;
 exports.default = _default;
 
 /***/ }),
-/* 449 */,
-/* 450 */,
-/* 451 */,
-/* 452 */,
-/* 453 */,
-/* 454 */,
-/* 455 */,
-/* 456 */
+/* 428 */,
+/* 429 */,
+/* 430 */,
+/* 431 */,
+/* 432 */,
+/* 433 */,
+/* 434 */,
+/* 435 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-icon/icons.js ***!
   \********************************************************************************************/
@@ -34005,7 +35804,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 457 */
+/* 436 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-icon/props.js ***!
   \********************************************************************************************/
@@ -34112,21 +35911,21 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 458 */,
-/* 459 */,
-/* 460 */,
-/* 461 */,
-/* 462 */,
-/* 463 */,
-/* 464 */,
-/* 465 */,
-/* 466 */,
-/* 467 */,
-/* 468 */,
-/* 469 */,
-/* 470 */,
-/* 471 */,
-/* 472 */
+/* 437 */,
+/* 438 */,
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */,
+/* 446 */,
+/* 447 */,
+/* 448 */,
+/* 449 */,
+/* 450 */,
+/* 451 */
 /*!**************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/mixin/button.js ***!
   \**************************************************************************************/
@@ -34156,7 +35955,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 473 */
+/* 452 */
 /*!****************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/mixin/openType.js ***!
   \****************************************************************************************/
@@ -34198,7 +35997,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 474 */
+/* 453 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-button/props.js ***!
   \**********************************************************************************************/
@@ -34377,14 +36176,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 475 */,
-/* 476 */,
-/* 477 */,
-/* 478 */,
-/* 479 */,
-/* 480 */,
-/* 481 */,
-/* 482 */
+/* 454 */,
+/* 455 */,
+/* 456 */,
+/* 457 */,
+/* 458 */,
+/* 459 */,
+/* 460 */,
+/* 461 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-switch/props.js ***!
   \**********************************************************************************************/
@@ -34456,14 +36255,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 483 */,
-/* 484 */,
-/* 485 */,
-/* 486 */,
-/* 487 */,
-/* 488 */,
-/* 489 */,
-/* 490 */
+/* 462 */,
+/* 463 */,
+/* 464 */,
+/* 465 */,
+/* 466 */,
+/* 467 */,
+/* 468 */,
+/* 469 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-search/props.js ***!
   \**********************************************************************************************/
@@ -34599,14 +36398,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 491 */,
-/* 492 */,
-/* 493 */,
-/* 494 */,
-/* 495 */,
-/* 496 */,
-/* 497 */,
-/* 498 */
+/* 470 */,
+/* 471 */,
+/* 472 */,
+/* 473 */,
+/* 474 */,
+/* 475 */,
+/* 476 */,
+/* 477 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-input/props.js ***!
   \*********************************************************************************************/
@@ -34811,14 +36610,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 499 */,
-/* 500 */,
-/* 501 */,
-/* 502 */,
-/* 503 */,
-/* 504 */,
-/* 505 */,
-/* 506 */
+/* 478 */,
+/* 479 */,
+/* 480 */,
+/* 481 */,
+/* 482 */,
+/* 483 */,
+/* 484 */,
+/* 485 */
 /*!*********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-popup/props.js ***!
   \*********************************************************************************************/
@@ -34915,14 +36714,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 507 */,
-/* 508 */,
-/* 509 */,
-/* 510 */,
-/* 511 */,
-/* 512 */,
-/* 513 */,
-/* 514 */
+/* 486 */,
+/* 487 */,
+/* 488 */,
+/* 489 */,
+/* 490 */,
+/* 491 */,
+/* 492 */,
+/* 493 */
 /*!***************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-scroll-list/props.js ***!
   \***************************************************************************************************/
@@ -34974,32 +36773,32 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
+/* 494 */,
+/* 495 */,
+/* 496 */,
+/* 497 */,
+/* 498 */,
+/* 499 */,
+/* 500 */,
+/* 501 */,
+/* 502 */,
+/* 503 */,
+/* 504 */,
+/* 505 */,
+/* 506 */,
+/* 507 */,
+/* 508 */,
+/* 509 */,
+/* 510 */,
+/* 511 */,
+/* 512 */,
+/* 513 */,
+/* 514 */,
 /* 515 */,
 /* 516 */,
 /* 517 */,
 /* 518 */,
-/* 519 */,
-/* 520 */,
-/* 521 */,
-/* 522 */,
-/* 523 */,
-/* 524 */,
-/* 525 */,
-/* 526 */,
-/* 527 */,
-/* 528 */,
-/* 529 */,
-/* 530 */,
-/* 531 */,
-/* 532 */,
-/* 533 */,
-/* 534 */,
-/* 535 */,
-/* 536 */,
-/* 537 */,
-/* 538 */,
-/* 539 */,
-/* 540 */
+/* 519 */
 /*!**************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/index.js ***!
   \**************************************************************************************************************/
@@ -35014,11 +36813,11 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 541));
-var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 542));
-var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 543));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 544));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 545));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 520));
+var _es = _interopRequireDefault(__webpack_require__(/*! ./es.json */ 521));
+var _fr = _interopRequireDefault(__webpack_require__(/*! ./fr.json */ 522));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 523));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 524));
 var _default = {
   en: _en.default,
   es: _es.default,
@@ -35029,7 +36828,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 541 */
+/* 520 */
 /*!*************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/en.json ***!
   \*************************************************************************************************************/
@@ -35039,7 +36838,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-pagination.nextText\":\"next\",\"uni-pagination.piecePerPage\":\"piece/page\"}");
 
 /***/ }),
-/* 542 */
+/* 521 */
 /*!*************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/es.json ***!
   \*************************************************************************************************************/
@@ -35049,7 +36848,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"prev\",\"uni-paginat
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pagination.nextText\":\"prxima\",\"uni-pagination.piecePerPage\":\"Art��culo/P��gina\"}");
 
 /***/ }),
-/* 543 */
+/* 522 */
 /*!*************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/fr.json ***!
   \*************************************************************************************************************/
@@ -35059,7 +36858,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"anterior\",\"uni-pag
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni-pagination.nextText\":\"suivante\",\"uni-pagination.piecePerPage\":\"Articles/Pages\"}");
 
 /***/ }),
-/* 544 */
+/* 523 */
 /*!******************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hans.json ***!
   \******************************************************************************************************************/
@@ -35069,7 +36868,7 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"précédente\",\"uni
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pagination.nextText\":\"下一页\",\"uni-pagination.piecePerPage\":\"条/页\"}");
 
 /***/ }),
-/* 545 */
+/* 524 */
 /*!******************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-pagination/components/uni-pagination/i18n/zh-Hant.json ***!
   \******************************************************************************************************************/
@@ -35079,1254 +36878,21 @@ module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一页\",\"uni-pa
 module.exports = JSON.parse("{\"uni-pagination.prevText\":\"上一頁\",\"uni-pagination.nextText\":\"下一頁\",\"uni-pagination.piecePerPage\":\"條/頁\"}");
 
 /***/ }),
-/* 546 */,
-/* 547 */,
-/* 548 */,
-/* 549 */,
-/* 550 */,
-/* 551 */,
-/* 552 */,
-/* 553 */,
-/* 554 */,
-/* 555 */,
-/* 556 */,
-/* 557 */,
-/* 558 */,
-/* 559 */,
-/* 560 */
-/*!***********************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-icons/components/uni-icons/icons.js ***!
-  \***********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  "id": "2852637",
-  "name": "uniui图标库",
-  "font_family": "uniicons",
-  "css_prefix_text": "uniui-",
-  "description": "",
-  "glyphs": [{
-    "icon_id": "25027049",
-    "name": "yanse",
-    "font_class": "color",
-    "unicode": "e6cf",
-    "unicode_decimal": 59087
-  }, {
-    "icon_id": "25027048",
-    "name": "wallet",
-    "font_class": "wallet",
-    "unicode": "e6b1",
-    "unicode_decimal": 59057
-  }, {
-    "icon_id": "25015720",
-    "name": "settings-filled",
-    "font_class": "settings-filled",
-    "unicode": "e6ce",
-    "unicode_decimal": 59086
-  }, {
-    "icon_id": "25015434",
-    "name": "shimingrenzheng-filled",
-    "font_class": "auth-filled",
-    "unicode": "e6cc",
-    "unicode_decimal": 59084
-  }, {
-    "icon_id": "24934246",
-    "name": "shop-filled",
-    "font_class": "shop-filled",
-    "unicode": "e6cd",
-    "unicode_decimal": 59085
-  }, {
-    "icon_id": "24934159",
-    "name": "staff-filled-01",
-    "font_class": "staff-filled",
-    "unicode": "e6cb",
-    "unicode_decimal": 59083
-  }, {
-    "icon_id": "24932461",
-    "name": "VIP-filled",
-    "font_class": "vip-filled",
-    "unicode": "e6c6",
-    "unicode_decimal": 59078
-  }, {
-    "icon_id": "24932462",
-    "name": "plus_circle_fill",
-    "font_class": "plus-filled",
-    "unicode": "e6c7",
-    "unicode_decimal": 59079
-  }, {
-    "icon_id": "24932463",
-    "name": "folder_add-filled",
-    "font_class": "folder-add-filled",
-    "unicode": "e6c8",
-    "unicode_decimal": 59080
-  }, {
-    "icon_id": "24932464",
-    "name": "yanse-filled",
-    "font_class": "color-filled",
-    "unicode": "e6c9",
-    "unicode_decimal": 59081
-  }, {
-    "icon_id": "24932465",
-    "name": "tune-filled",
-    "font_class": "tune-filled",
-    "unicode": "e6ca",
-    "unicode_decimal": 59082
-  }, {
-    "icon_id": "24932455",
-    "name": "a-rilidaka-filled",
-    "font_class": "calendar-filled",
-    "unicode": "e6c0",
-    "unicode_decimal": 59072
-  }, {
-    "icon_id": "24932456",
-    "name": "notification-filled",
-    "font_class": "notification-filled",
-    "unicode": "e6c1",
-    "unicode_decimal": 59073
-  }, {
-    "icon_id": "24932457",
-    "name": "wallet-filled",
-    "font_class": "wallet-filled",
-    "unicode": "e6c2",
-    "unicode_decimal": 59074
-  }, {
-    "icon_id": "24932458",
-    "name": "paihangbang-filled",
-    "font_class": "medal-filled",
-    "unicode": "e6c3",
-    "unicode_decimal": 59075
-  }, {
-    "icon_id": "24932459",
-    "name": "gift-filled",
-    "font_class": "gift-filled",
-    "unicode": "e6c4",
-    "unicode_decimal": 59076
-  }, {
-    "icon_id": "24932460",
-    "name": "fire-filled",
-    "font_class": "fire-filled",
-    "unicode": "e6c5",
-    "unicode_decimal": 59077
-  }, {
-    "icon_id": "24928001",
-    "name": "refreshempty",
-    "font_class": "refreshempty",
-    "unicode": "e6bf",
-    "unicode_decimal": 59071
-  }, {
-    "icon_id": "24926853",
-    "name": "location-ellipse",
-    "font_class": "location-filled",
-    "unicode": "e6af",
-    "unicode_decimal": 59055
-  }, {
-    "icon_id": "24926735",
-    "name": "person-filled",
-    "font_class": "person-filled",
-    "unicode": "e69d",
-    "unicode_decimal": 59037
-  }, {
-    "icon_id": "24926703",
-    "name": "personadd-filled",
-    "font_class": "personadd-filled",
-    "unicode": "e698",
-    "unicode_decimal": 59032
-  }, {
-    "icon_id": "24923351",
-    "name": "back",
-    "font_class": "back",
-    "unicode": "e6b9",
-    "unicode_decimal": 59065
-  }, {
-    "icon_id": "24923352",
-    "name": "forward",
-    "font_class": "forward",
-    "unicode": "e6ba",
-    "unicode_decimal": 59066
-  }, {
-    "icon_id": "24923353",
-    "name": "arrowthinright",
-    "font_class": "arrow-right",
-    "unicode": "e6bb",
-    "unicode_decimal": 59067
-  }, {
-    "icon_id": "24923353",
-    "name": "arrowthinright",
-    "font_class": "arrowthinright",
-    "unicode": "e6bb",
-    "unicode_decimal": 59067
-  }, {
-    "icon_id": "24923354",
-    "name": "arrowthinleft",
-    "font_class": "arrow-left",
-    "unicode": "e6bc",
-    "unicode_decimal": 59068
-  }, {
-    "icon_id": "24923354",
-    "name": "arrowthinleft",
-    "font_class": "arrowthinleft",
-    "unicode": "e6bc",
-    "unicode_decimal": 59068
-  }, {
-    "icon_id": "24923355",
-    "name": "arrowthinup",
-    "font_class": "arrow-up",
-    "unicode": "e6bd",
-    "unicode_decimal": 59069
-  }, {
-    "icon_id": "24923355",
-    "name": "arrowthinup",
-    "font_class": "arrowthinup",
-    "unicode": "e6bd",
-    "unicode_decimal": 59069
-  }, {
-    "icon_id": "24923356",
-    "name": "arrowthindown",
-    "font_class": "arrow-down",
-    "unicode": "e6be",
-    "unicode_decimal": 59070
-  }, {
-    "icon_id": "24923356",
-    "name": "arrowthindown",
-    "font_class": "arrowthindown",
-    "unicode": "e6be",
-    "unicode_decimal": 59070
-  }, {
-    "icon_id": "24923349",
-    "name": "arrowdown",
-    "font_class": "bottom",
-    "unicode": "e6b8",
-    "unicode_decimal": 59064
-  }, {
-    "icon_id": "24923349",
-    "name": "arrowdown",
-    "font_class": "arrowdown",
-    "unicode": "e6b8",
-    "unicode_decimal": 59064
-  }, {
-    "icon_id": "24923346",
-    "name": "arrowright",
-    "font_class": "right",
-    "unicode": "e6b5",
-    "unicode_decimal": 59061
-  }, {
-    "icon_id": "24923346",
-    "name": "arrowright",
-    "font_class": "arrowright",
-    "unicode": "e6b5",
-    "unicode_decimal": 59061
-  }, {
-    "icon_id": "24923347",
-    "name": "arrowup",
-    "font_class": "top",
-    "unicode": "e6b6",
-    "unicode_decimal": 59062
-  }, {
-    "icon_id": "24923347",
-    "name": "arrowup",
-    "font_class": "arrowup",
-    "unicode": "e6b6",
-    "unicode_decimal": 59062
-  }, {
-    "icon_id": "24923348",
-    "name": "arrowleft",
-    "font_class": "left",
-    "unicode": "e6b7",
-    "unicode_decimal": 59063
-  }, {
-    "icon_id": "24923348",
-    "name": "arrowleft",
-    "font_class": "arrowleft",
-    "unicode": "e6b7",
-    "unicode_decimal": 59063
-  }, {
-    "icon_id": "24923334",
-    "name": "eye",
-    "font_class": "eye",
-    "unicode": "e651",
-    "unicode_decimal": 58961
-  }, {
-    "icon_id": "24923335",
-    "name": "eye-filled",
-    "font_class": "eye-filled",
-    "unicode": "e66a",
-    "unicode_decimal": 58986
-  }, {
-    "icon_id": "24923336",
-    "name": "eye-slash",
-    "font_class": "eye-slash",
-    "unicode": "e6b3",
-    "unicode_decimal": 59059
-  }, {
-    "icon_id": "24923337",
-    "name": "eye-slash-filled",
-    "font_class": "eye-slash-filled",
-    "unicode": "e6b4",
-    "unicode_decimal": 59060
-  }, {
-    "icon_id": "24923305",
-    "name": "info-filled",
-    "font_class": "info-filled",
-    "unicode": "e649",
-    "unicode_decimal": 58953
-  }, {
-    "icon_id": "24923299",
-    "name": "reload-01",
-    "font_class": "reload",
-    "unicode": "e6b2",
-    "unicode_decimal": 59058
-  }, {
-    "icon_id": "24923195",
-    "name": "mic_slash_fill",
-    "font_class": "micoff-filled",
-    "unicode": "e6b0",
-    "unicode_decimal": 59056
-  }, {
-    "icon_id": "24923165",
-    "name": "map-pin-ellipse",
-    "font_class": "map-pin-ellipse",
-    "unicode": "e6ac",
-    "unicode_decimal": 59052
-  }, {
-    "icon_id": "24923166",
-    "name": "map-pin",
-    "font_class": "map-pin",
-    "unicode": "e6ad",
-    "unicode_decimal": 59053
-  }, {
-    "icon_id": "24923167",
-    "name": "location",
-    "font_class": "location",
-    "unicode": "e6ae",
-    "unicode_decimal": 59054
-  }, {
-    "icon_id": "24923064",
-    "name": "starhalf",
-    "font_class": "starhalf",
-    "unicode": "e683",
-    "unicode_decimal": 59011
-  }, {
-    "icon_id": "24923065",
-    "name": "star",
-    "font_class": "star",
-    "unicode": "e688",
-    "unicode_decimal": 59016
-  }, {
-    "icon_id": "24923066",
-    "name": "star-filled",
-    "font_class": "star-filled",
-    "unicode": "e68f",
-    "unicode_decimal": 59023
-  }, {
-    "icon_id": "24899646",
-    "name": "a-rilidaka",
-    "font_class": "calendar",
-    "unicode": "e6a0",
-    "unicode_decimal": 59040
-  }, {
-    "icon_id": "24899647",
-    "name": "fire",
-    "font_class": "fire",
-    "unicode": "e6a1",
-    "unicode_decimal": 59041
-  }, {
-    "icon_id": "24899648",
-    "name": "paihangbang",
-    "font_class": "medal",
-    "unicode": "e6a2",
-    "unicode_decimal": 59042
-  }, {
-    "icon_id": "24899649",
-    "name": "font",
-    "font_class": "font",
-    "unicode": "e6a3",
-    "unicode_decimal": 59043
-  }, {
-    "icon_id": "24899650",
-    "name": "gift",
-    "font_class": "gift",
-    "unicode": "e6a4",
-    "unicode_decimal": 59044
-  }, {
-    "icon_id": "24899651",
-    "name": "link",
-    "font_class": "link",
-    "unicode": "e6a5",
-    "unicode_decimal": 59045
-  }, {
-    "icon_id": "24899652",
-    "name": "notification",
-    "font_class": "notification",
-    "unicode": "e6a6",
-    "unicode_decimal": 59046
-  }, {
-    "icon_id": "24899653",
-    "name": "staff",
-    "font_class": "staff",
-    "unicode": "e6a7",
-    "unicode_decimal": 59047
-  }, {
-    "icon_id": "24899654",
-    "name": "VIP",
-    "font_class": "vip",
-    "unicode": "e6a8",
-    "unicode_decimal": 59048
-  }, {
-    "icon_id": "24899655",
-    "name": "folder_add",
-    "font_class": "folder-add",
-    "unicode": "e6a9",
-    "unicode_decimal": 59049
-  }, {
-    "icon_id": "24899656",
-    "name": "tune",
-    "font_class": "tune",
-    "unicode": "e6aa",
-    "unicode_decimal": 59050
-  }, {
-    "icon_id": "24899657",
-    "name": "shimingrenzheng",
-    "font_class": "auth",
-    "unicode": "e6ab",
-    "unicode_decimal": 59051
-  }, {
-    "icon_id": "24899565",
-    "name": "person",
-    "font_class": "person",
-    "unicode": "e699",
-    "unicode_decimal": 59033
-  }, {
-    "icon_id": "24899566",
-    "name": "email-filled",
-    "font_class": "email-filled",
-    "unicode": "e69a",
-    "unicode_decimal": 59034
-  }, {
-    "icon_id": "24899567",
-    "name": "phone-filled",
-    "font_class": "phone-filled",
-    "unicode": "e69b",
-    "unicode_decimal": 59035
-  }, {
-    "icon_id": "24899568",
-    "name": "phone",
-    "font_class": "phone",
-    "unicode": "e69c",
-    "unicode_decimal": 59036
-  }, {
-    "icon_id": "24899570",
-    "name": "email",
-    "font_class": "email",
-    "unicode": "e69e",
-    "unicode_decimal": 59038
-  }, {
-    "icon_id": "24899571",
-    "name": "personadd",
-    "font_class": "personadd",
-    "unicode": "e69f",
-    "unicode_decimal": 59039
-  }, {
-    "icon_id": "24899558",
-    "name": "chatboxes-filled",
-    "font_class": "chatboxes-filled",
-    "unicode": "e692",
-    "unicode_decimal": 59026
-  }, {
-    "icon_id": "24899559",
-    "name": "contact",
-    "font_class": "contact",
-    "unicode": "e693",
-    "unicode_decimal": 59027
-  }, {
-    "icon_id": "24899560",
-    "name": "chatbubble-filled",
-    "font_class": "chatbubble-filled",
-    "unicode": "e694",
-    "unicode_decimal": 59028
-  }, {
-    "icon_id": "24899561",
-    "name": "contact-filled",
-    "font_class": "contact-filled",
-    "unicode": "e695",
-    "unicode_decimal": 59029
-  }, {
-    "icon_id": "24899562",
-    "name": "chatboxes",
-    "font_class": "chatboxes",
-    "unicode": "e696",
-    "unicode_decimal": 59030
-  }, {
-    "icon_id": "24899563",
-    "name": "chatbubble",
-    "font_class": "chatbubble",
-    "unicode": "e697",
-    "unicode_decimal": 59031
-  }, {
-    "icon_id": "24881290",
-    "name": "upload-filled",
-    "font_class": "upload-filled",
-    "unicode": "e68e",
-    "unicode_decimal": 59022
-  }, {
-    "icon_id": "24881292",
-    "name": "upload",
-    "font_class": "upload",
-    "unicode": "e690",
-    "unicode_decimal": 59024
-  }, {
-    "icon_id": "24881293",
-    "name": "weixin",
-    "font_class": "weixin",
-    "unicode": "e691",
-    "unicode_decimal": 59025
-  }, {
-    "icon_id": "24881274",
-    "name": "compose",
-    "font_class": "compose",
-    "unicode": "e67f",
-    "unicode_decimal": 59007
-  }, {
-    "icon_id": "24881275",
-    "name": "qq",
-    "font_class": "qq",
-    "unicode": "e680",
-    "unicode_decimal": 59008
-  }, {
-    "icon_id": "24881276",
-    "name": "download-filled",
-    "font_class": "download-filled",
-    "unicode": "e681",
-    "unicode_decimal": 59009
-  }, {
-    "icon_id": "24881277",
-    "name": "pengyouquan",
-    "font_class": "pyq",
-    "unicode": "e682",
-    "unicode_decimal": 59010
-  }, {
-    "icon_id": "24881279",
-    "name": "sound",
-    "font_class": "sound",
-    "unicode": "e684",
-    "unicode_decimal": 59012
-  }, {
-    "icon_id": "24881280",
-    "name": "trash-filled",
-    "font_class": "trash-filled",
-    "unicode": "e685",
-    "unicode_decimal": 59013
-  }, {
-    "icon_id": "24881281",
-    "name": "sound-filled",
-    "font_class": "sound-filled",
-    "unicode": "e686",
-    "unicode_decimal": 59014
-  }, {
-    "icon_id": "24881282",
-    "name": "trash",
-    "font_class": "trash",
-    "unicode": "e687",
-    "unicode_decimal": 59015
-  }, {
-    "icon_id": "24881284",
-    "name": "videocam-filled",
-    "font_class": "videocam-filled",
-    "unicode": "e689",
-    "unicode_decimal": 59017
-  }, {
-    "icon_id": "24881285",
-    "name": "spinner-cycle",
-    "font_class": "spinner-cycle",
-    "unicode": "e68a",
-    "unicode_decimal": 59018
-  }, {
-    "icon_id": "24881286",
-    "name": "weibo",
-    "font_class": "weibo",
-    "unicode": "e68b",
-    "unicode_decimal": 59019
-  }, {
-    "icon_id": "24881288",
-    "name": "videocam",
-    "font_class": "videocam",
-    "unicode": "e68c",
-    "unicode_decimal": 59020
-  }, {
-    "icon_id": "24881289",
-    "name": "download",
-    "font_class": "download",
-    "unicode": "e68d",
-    "unicode_decimal": 59021
-  }, {
-    "icon_id": "24879601",
-    "name": "help",
-    "font_class": "help",
-    "unicode": "e679",
-    "unicode_decimal": 59001
-  }, {
-    "icon_id": "24879602",
-    "name": "navigate-filled",
-    "font_class": "navigate-filled",
-    "unicode": "e67a",
-    "unicode_decimal": 59002
-  }, {
-    "icon_id": "24879603",
-    "name": "plusempty",
-    "font_class": "plusempty",
-    "unicode": "e67b",
-    "unicode_decimal": 59003
-  }, {
-    "icon_id": "24879604",
-    "name": "smallcircle",
-    "font_class": "smallcircle",
-    "unicode": "e67c",
-    "unicode_decimal": 59004
-  }, {
-    "icon_id": "24879605",
-    "name": "minus-filled",
-    "font_class": "minus-filled",
-    "unicode": "e67d",
-    "unicode_decimal": 59005
-  }, {
-    "icon_id": "24879606",
-    "name": "micoff",
-    "font_class": "micoff",
-    "unicode": "e67e",
-    "unicode_decimal": 59006
-  }, {
-    "icon_id": "24879588",
-    "name": "closeempty",
-    "font_class": "closeempty",
-    "unicode": "e66c",
-    "unicode_decimal": 58988
-  }, {
-    "icon_id": "24879589",
-    "name": "clear",
-    "font_class": "clear",
-    "unicode": "e66d",
-    "unicode_decimal": 58989
-  }, {
-    "icon_id": "24879590",
-    "name": "navigate",
-    "font_class": "navigate",
-    "unicode": "e66e",
-    "unicode_decimal": 58990
-  }, {
-    "icon_id": "24879591",
-    "name": "minus",
-    "font_class": "minus",
-    "unicode": "e66f",
-    "unicode_decimal": 58991
-  }, {
-    "icon_id": "24879592",
-    "name": "image",
-    "font_class": "image",
-    "unicode": "e670",
-    "unicode_decimal": 58992
-  }, {
-    "icon_id": "24879593",
-    "name": "mic",
-    "font_class": "mic",
-    "unicode": "e671",
-    "unicode_decimal": 58993
-  }, {
-    "icon_id": "24879594",
-    "name": "paperplane",
-    "font_class": "paperplane",
-    "unicode": "e672",
-    "unicode_decimal": 58994
-  }, {
-    "icon_id": "24879595",
-    "name": "close",
-    "font_class": "close",
-    "unicode": "e673",
-    "unicode_decimal": 58995
-  }, {
-    "icon_id": "24879596",
-    "name": "help-filled",
-    "font_class": "help-filled",
-    "unicode": "e674",
-    "unicode_decimal": 58996
-  }, {
-    "icon_id": "24879597",
-    "name": "plus-filled",
-    "font_class": "paperplane-filled",
-    "unicode": "e675",
-    "unicode_decimal": 58997
-  }, {
-    "icon_id": "24879598",
-    "name": "plus",
-    "font_class": "plus",
-    "unicode": "e676",
-    "unicode_decimal": 58998
-  }, {
-    "icon_id": "24879599",
-    "name": "mic-filled",
-    "font_class": "mic-filled",
-    "unicode": "e677",
-    "unicode_decimal": 58999
-  }, {
-    "icon_id": "24879600",
-    "name": "image-filled",
-    "font_class": "image-filled",
-    "unicode": "e678",
-    "unicode_decimal": 59000
-  }, {
-    "icon_id": "24855900",
-    "name": "locked-filled",
-    "font_class": "locked-filled",
-    "unicode": "e668",
-    "unicode_decimal": 58984
-  }, {
-    "icon_id": "24855901",
-    "name": "info",
-    "font_class": "info",
-    "unicode": "e669",
-    "unicode_decimal": 58985
-  }, {
-    "icon_id": "24855903",
-    "name": "locked",
-    "font_class": "locked",
-    "unicode": "e66b",
-    "unicode_decimal": 58987
-  }, {
-    "icon_id": "24855884",
-    "name": "camera-filled",
-    "font_class": "camera-filled",
-    "unicode": "e658",
-    "unicode_decimal": 58968
-  }, {
-    "icon_id": "24855885",
-    "name": "chat-filled",
-    "font_class": "chat-filled",
-    "unicode": "e659",
-    "unicode_decimal": 58969
-  }, {
-    "icon_id": "24855886",
-    "name": "camera",
-    "font_class": "camera",
-    "unicode": "e65a",
-    "unicode_decimal": 58970
-  }, {
-    "icon_id": "24855887",
-    "name": "circle",
-    "font_class": "circle",
-    "unicode": "e65b",
-    "unicode_decimal": 58971
-  }, {
-    "icon_id": "24855888",
-    "name": "checkmarkempty",
-    "font_class": "checkmarkempty",
-    "unicode": "e65c",
-    "unicode_decimal": 58972
-  }, {
-    "icon_id": "24855889",
-    "name": "chat",
-    "font_class": "chat",
-    "unicode": "e65d",
-    "unicode_decimal": 58973
-  }, {
-    "icon_id": "24855890",
-    "name": "circle-filled",
-    "font_class": "circle-filled",
-    "unicode": "e65e",
-    "unicode_decimal": 58974
-  }, {
-    "icon_id": "24855891",
-    "name": "flag",
-    "font_class": "flag",
-    "unicode": "e65f",
-    "unicode_decimal": 58975
-  }, {
-    "icon_id": "24855892",
-    "name": "flag-filled",
-    "font_class": "flag-filled",
-    "unicode": "e660",
-    "unicode_decimal": 58976
-  }, {
-    "icon_id": "24855893",
-    "name": "gear-filled",
-    "font_class": "gear-filled",
-    "unicode": "e661",
-    "unicode_decimal": 58977
-  }, {
-    "icon_id": "24855894",
-    "name": "home",
-    "font_class": "home",
-    "unicode": "e662",
-    "unicode_decimal": 58978
-  }, {
-    "icon_id": "24855895",
-    "name": "home-filled",
-    "font_class": "home-filled",
-    "unicode": "e663",
-    "unicode_decimal": 58979
-  }, {
-    "icon_id": "24855896",
-    "name": "gear",
-    "font_class": "gear",
-    "unicode": "e664",
-    "unicode_decimal": 58980
-  }, {
-    "icon_id": "24855897",
-    "name": "smallcircle-filled",
-    "font_class": "smallcircle-filled",
-    "unicode": "e665",
-    "unicode_decimal": 58981
-  }, {
-    "icon_id": "24855898",
-    "name": "map-filled",
-    "font_class": "map-filled",
-    "unicode": "e666",
-    "unicode_decimal": 58982
-  }, {
-    "icon_id": "24855899",
-    "name": "map",
-    "font_class": "map",
-    "unicode": "e667",
-    "unicode_decimal": 58983
-  }, {
-    "icon_id": "24855825",
-    "name": "refresh-filled",
-    "font_class": "refresh-filled",
-    "unicode": "e656",
-    "unicode_decimal": 58966
-  }, {
-    "icon_id": "24855826",
-    "name": "refresh",
-    "font_class": "refresh",
-    "unicode": "e657",
-    "unicode_decimal": 58967
-  }, {
-    "icon_id": "24855808",
-    "name": "cloud-upload",
-    "font_class": "cloud-upload",
-    "unicode": "e645",
-    "unicode_decimal": 58949
-  }, {
-    "icon_id": "24855809",
-    "name": "cloud-download-filled",
-    "font_class": "cloud-download-filled",
-    "unicode": "e646",
-    "unicode_decimal": 58950
-  }, {
-    "icon_id": "24855810",
-    "name": "cloud-download",
-    "font_class": "cloud-download",
-    "unicode": "e647",
-    "unicode_decimal": 58951
-  }, {
-    "icon_id": "24855811",
-    "name": "cloud-upload-filled",
-    "font_class": "cloud-upload-filled",
-    "unicode": "e648",
-    "unicode_decimal": 58952
-  }, {
-    "icon_id": "24855813",
-    "name": "redo",
-    "font_class": "redo",
-    "unicode": "e64a",
-    "unicode_decimal": 58954
-  }, {
-    "icon_id": "24855814",
-    "name": "images-filled",
-    "font_class": "images-filled",
-    "unicode": "e64b",
-    "unicode_decimal": 58955
-  }, {
-    "icon_id": "24855815",
-    "name": "undo-filled",
-    "font_class": "undo-filled",
-    "unicode": "e64c",
-    "unicode_decimal": 58956
-  }, {
-    "icon_id": "24855816",
-    "name": "more",
-    "font_class": "more",
-    "unicode": "e64d",
-    "unicode_decimal": 58957
-  }, {
-    "icon_id": "24855817",
-    "name": "more-filled",
-    "font_class": "more-filled",
-    "unicode": "e64e",
-    "unicode_decimal": 58958
-  }, {
-    "icon_id": "24855818",
-    "name": "undo",
-    "font_class": "undo",
-    "unicode": "e64f",
-    "unicode_decimal": 58959
-  }, {
-    "icon_id": "24855819",
-    "name": "images",
-    "font_class": "images",
-    "unicode": "e650",
-    "unicode_decimal": 58960
-  }, {
-    "icon_id": "24855821",
-    "name": "paperclip",
-    "font_class": "paperclip",
-    "unicode": "e652",
-    "unicode_decimal": 58962
-  }, {
-    "icon_id": "24855822",
-    "name": "settings",
-    "font_class": "settings",
-    "unicode": "e653",
-    "unicode_decimal": 58963
-  }, {
-    "icon_id": "24855823",
-    "name": "search",
-    "font_class": "search",
-    "unicode": "e654",
-    "unicode_decimal": 58964
-  }, {
-    "icon_id": "24855824",
-    "name": "redo-filled",
-    "font_class": "redo-filled",
-    "unicode": "e655",
-    "unicode_decimal": 58965
-  }, {
-    "icon_id": "24841702",
-    "name": "list",
-    "font_class": "list",
-    "unicode": "e644",
-    "unicode_decimal": 58948
-  }, {
-    "icon_id": "24841489",
-    "name": "mail-open-filled",
-    "font_class": "mail-open-filled",
-    "unicode": "e63a",
-    "unicode_decimal": 58938
-  }, {
-    "icon_id": "24841491",
-    "name": "hand-thumbsdown-filled",
-    "font_class": "hand-down-filled",
-    "unicode": "e63c",
-    "unicode_decimal": 58940
-  }, {
-    "icon_id": "24841492",
-    "name": "hand-thumbsdown",
-    "font_class": "hand-down",
-    "unicode": "e63d",
-    "unicode_decimal": 58941
-  }, {
-    "icon_id": "24841493",
-    "name": "hand-thumbsup-filled",
-    "font_class": "hand-up-filled",
-    "unicode": "e63e",
-    "unicode_decimal": 58942
-  }, {
-    "icon_id": "24841494",
-    "name": "hand-thumbsup",
-    "font_class": "hand-up",
-    "unicode": "e63f",
-    "unicode_decimal": 58943
-  }, {
-    "icon_id": "24841496",
-    "name": "heart-filled",
-    "font_class": "heart-filled",
-    "unicode": "e641",
-    "unicode_decimal": 58945
-  }, {
-    "icon_id": "24841498",
-    "name": "mail-open",
-    "font_class": "mail-open",
-    "unicode": "e643",
-    "unicode_decimal": 58947
-  }, {
-    "icon_id": "24841488",
-    "name": "heart",
-    "font_class": "heart",
-    "unicode": "e639",
-    "unicode_decimal": 58937
-  }, {
-    "icon_id": "24839963",
-    "name": "loop",
-    "font_class": "loop",
-    "unicode": "e633",
-    "unicode_decimal": 58931
-  }, {
-    "icon_id": "24839866",
-    "name": "pulldown",
-    "font_class": "pulldown",
-    "unicode": "e632",
-    "unicode_decimal": 58930
-  }, {
-    "icon_id": "24813798",
-    "name": "scan",
-    "font_class": "scan",
-    "unicode": "e62a",
-    "unicode_decimal": 58922
-  }, {
-    "icon_id": "24813786",
-    "name": "bars",
-    "font_class": "bars",
-    "unicode": "e627",
-    "unicode_decimal": 58919
-  }, {
-    "icon_id": "24813788",
-    "name": "cart-filled",
-    "font_class": "cart-filled",
-    "unicode": "e629",
-    "unicode_decimal": 58921
-  }, {
-    "icon_id": "24813790",
-    "name": "checkbox",
-    "font_class": "checkbox",
-    "unicode": "e62b",
-    "unicode_decimal": 58923
-  }, {
-    "icon_id": "24813791",
-    "name": "checkbox-filled",
-    "font_class": "checkbox-filled",
-    "unicode": "e62c",
-    "unicode_decimal": 58924
-  }, {
-    "icon_id": "24813794",
-    "name": "shop",
-    "font_class": "shop",
-    "unicode": "e62f",
-    "unicode_decimal": 58927
-  }, {
-    "icon_id": "24813795",
-    "name": "headphones",
-    "font_class": "headphones",
-    "unicode": "e630",
-    "unicode_decimal": 58928
-  }, {
-    "icon_id": "24813796",
-    "name": "cart",
-    "font_class": "cart",
-    "unicode": "e631",
-    "unicode_decimal": 58929
-  }]
-};
-exports.default = _default;
-
-/***/ }),
-/* 561 */,
-/* 562 */,
-/* 563 */,
-/* 564 */,
-/* 565 */,
-/* 566 */,
-/* 567 */,
-/* 568 */
-/*!***************************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-radio-group/props.js ***!
-  \***************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // 绑定的值
-    value: {
-      type: [String, Number, Boolean],
-      default: uni.$u.props.radioGroup.value
-    },
-    // 是否禁用全部radio
-    disabled: {
-      type: Boolean,
-      default: uni.$u.props.radioGroup.disabled
-    },
-    // 形状，circle-圆形，square-方形
-    shape: {
-      type: String,
-      default: uni.$u.props.radioGroup.shape
-    },
-    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
-    activeColor: {
-      type: String,
-      default: uni.$u.props.radioGroup.activeColor
-    },
-    // 未选中的颜色
-    inactiveColor: {
-      type: String,
-      default: uni.$u.props.radioGroup.inactiveColor
-    },
-    // 标识符
-    name: {
-      type: String,
-      default: uni.$u.props.radioGroup.name
-    },
-    // 整个组件的尺寸，默认px
-    size: {
-      type: [String, Number],
-      default: uni.$u.props.radioGroup.size
-    },
-    // 布局方式，row-横向，column-纵向
-    placement: {
-      type: String,
-      default: uni.$u.props.radioGroup.placement
-    },
-    // label的文本
-    label: {
-      type: [String],
-      default: uni.$u.props.radioGroup.label
-    },
-    // label的颜色 （默认 '#303133' ）
-    labelColor: {
-      type: [String],
-      default: uni.$u.props.radioGroup.labelColor
-    },
-    // label的字体大小，px单位
-    labelSize: {
-      type: [String, Number],
-      default: uni.$u.props.radioGroup.labelSize
-    },
-    // 是否禁止点击文本操作checkbox(默认 false )
-    labelDisabled: {
-      type: Boolean,
-      default: uni.$u.props.radioGroup.labelDisabled
-    },
-    // 图标颜色
-    iconColor: {
-      type: String,
-      default: uni.$u.props.radioGroup.iconColor
-    },
-    // 图标的大小，单位px
-    iconSize: {
-      type: [String, Number],
-      default: uni.$u.props.radioGroup.iconSize
-    },
-    // 竖向配列时，是否显示下划线
-    borderBottom: {
-      type: Boolean,
-      default: uni.$u.props.radioGroup.borderBottom
-    },
-    // 图标与文字的对齐方式
-    iconPlacement: {
-      type: String,
-      default: uni.$u.props.radio.iconPlacement
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 569 */,
-/* 570 */,
-/* 571 */,
-/* 572 */,
-/* 573 */,
-/* 574 */,
-/* 575 */,
-/* 576 */
-/*!*********************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-radio/props.js ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // radio的名称
-    name: {
-      type: [String, Number, Boolean],
-      default: uni.$u.props.radio.name
-    },
-    // 形状，square为方形，circle为圆型
-    shape: {
-      type: String,
-      default: uni.$u.props.radio.shape
-    },
-    // 是否禁用
-    disabled: {
-      type: [String, Boolean],
-      default: uni.$u.props.radio.disabled
-    },
-    // 是否禁止点击提示语选中单选框
-    labelDisabled: {
-      type: [String, Boolean],
-      default: uni.$u.props.radio.labelDisabled
-    },
-    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
-    activeColor: {
-      type: String,
-      default: uni.$u.props.radio.activeColor
-    },
-    // 未选中的颜色
-    inactiveColor: {
-      type: String,
-      default: uni.$u.props.radio.inactiveColor
-    },
-    // 图标的大小，单位px
-    iconSize: {
-      type: [String, Number],
-      default: uni.$u.props.radio.iconSize
-    },
-    // label的字体大小，px单位
-    labelSize: {
-      type: [String, Number],
-      default: uni.$u.props.radio.labelSize
-    },
-    // label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
-    label: {
-      type: [String, Number],
-      default: uni.$u.props.radio.label
-    },
-    // 整体的大小
-    size: {
-      type: [String, Number],
-      default: uni.$u.props.radio.size
-    },
-    // 图标颜色
-    color: {
-      type: String,
-      default: uni.$u.props.radio.color
-    },
-    // label的颜色
-    labelColor: {
-      type: String,
-      default: uni.$u.props.radio.labelColor
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 577 */,
-/* 578 */,
-/* 579 */,
-/* 580 */,
-/* 581 */,
-/* 582 */,
-/* 583 */,
-/* 584 */,
-/* 585 */,
-/* 586 */,
-/* 587 */,
-/* 588 */,
-/* 589 */,
-/* 590 */,
-/* 591 */
+/* 525 */,
+/* 526 */,
+/* 527 */,
+/* 528 */,
+/* 529 */,
+/* 530 */,
+/* 531 */,
+/* 532 */,
+/* 533 */,
+/* 534 */,
+/* 535 */,
+/* 536 */,
+/* 537 */,
+/* 538 */,
+/* 539 */
 /*!********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-form/props.js ***!
   \********************************************************************************************/
@@ -36389,7 +36955,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 592 */
+/* 540 */
 /*!**********************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/libs/util/async-validator.js ***!
   \**********************************************************************************************/
@@ -37570,10 +38136,10 @@ Schema.warning = warning;
 Schema.messages = messages;
 var _default = Schema; // # sourceMappingURL=index.js.map
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 593)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../../../Applications/HBuilderX.app/Contents/HBuilderX/plugins/uniapp-cli/node_modules/node-libs-browser/mock/process.js */ 541)))
 
 /***/ }),
-/* 593 */
+/* 541 */
 /*!********************************************************!*\
   !*** ./node_modules/node-libs-browser/mock/process.js ***!
   \********************************************************/
@@ -37604,7 +38170,7 @@ exports.binding = function (name) {
     var path;
     exports.cwd = function () { return cwd };
     exports.chdir = function (dir) {
-        if (!path) path = __webpack_require__(/*! path */ 594);
+        if (!path) path = __webpack_require__(/*! path */ 542);
         cwd = path.resolve(dir, cwd);
     };
 })();
@@ -37617,7 +38183,7 @@ exports.features = {};
 
 
 /***/ }),
-/* 594 */
+/* 542 */
 /*!***********************************************!*\
   !*** ./node_modules/path-browserify/index.js ***!
   \***********************************************/
@@ -37927,144 +38493,1057 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 593)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node-libs-browser/mock/process.js */ 541)))
 
 /***/ }),
-/* 595 */,
-/* 596 */,
-/* 597 */,
-/* 598 */,
-/* 599 */,
-/* 600 */
-/*!*************************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-form-item/props.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  props: {
-    // input的label提示语
-    label: {
-      type: String,
-      default: uni.$u.props.formItem.label
-    },
-    // 绑定的值
-    prop: {
-      type: String,
-      default: uni.$u.props.formItem.prop
-    },
-    // 是否显示表单域的下划线边框
-    borderBottom: {
-      type: [String, Boolean],
-      default: uni.$u.props.formItem.borderBottom
-    },
-    // label的位置，left-左边，top-上边
-    labelPosition: {
-      type: String,
-      default: uni.$u.props.formItem.labelPosition
-    },
-    // label的宽度，单位px
-    labelWidth: {
-      type: [String, Number],
-      default: uni.$u.props.formItem.labelWidth
-    },
-    // 右侧图标
-    rightIcon: {
-      type: String,
-      default: uni.$u.props.formItem.rightIcon
-    },
-    // 左侧图标
-    leftIcon: {
-      type: String,
-      default: uni.$u.props.formItem.leftIcon
-    },
-    // 是否显示左边的必填星号，只作显示用，具体校验必填的逻辑，请在rules中配置
-    required: {
-      type: Boolean,
-      default: uni.$u.props.formItem.required
-    },
-    leftIconStyle: {
-      type: [String, Object],
-      default: uni.$u.props.formItem.leftIconStyle
-    }
-  }
-};
-exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
-
-/***/ }),
-/* 601 */,
-/* 602 */,
-/* 603 */,
-/* 604 */,
-/* 605 */,
-/* 606 */,
-/* 607 */,
-/* 608 */
+/* 543 */,
+/* 544 */,
+/* 545 */,
+/* 546 */,
+/* 547 */,
+/* 548 */
 /*!***********************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-overlay/props.js ***!
+  !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {
+
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
 var _default = {
-  props: {
-    // 是否显示遮罩
-    show: {
-      type: Boolean,
-      default: uni.$u.props.overlay.show
-    },
-    // 层级z-index
-    zIndex: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.zIndex
-    },
-    // 遮罩的过渡时间，单位为ms
-    duration: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.duration
-    },
-    // 不透明度值，当做rgba的第四个参数
-    opacity: {
-      type: [String, Number],
-      default: uni.$u.props.overlay.opacity
-    }
-  }
+  "id": "2852637",
+  "name": "uniui图标库",
+  "font_family": "uniicons",
+  "css_prefix_text": "uniui-",
+  "description": "",
+  "glyphs": [{
+    "icon_id": "25027049",
+    "name": "yanse",
+    "font_class": "color",
+    "unicode": "e6cf",
+    "unicode_decimal": 59087
+  }, {
+    "icon_id": "25027048",
+    "name": "wallet",
+    "font_class": "wallet",
+    "unicode": "e6b1",
+    "unicode_decimal": 59057
+  }, {
+    "icon_id": "25015720",
+    "name": "settings-filled",
+    "font_class": "settings-filled",
+    "unicode": "e6ce",
+    "unicode_decimal": 59086
+  }, {
+    "icon_id": "25015434",
+    "name": "shimingrenzheng-filled",
+    "font_class": "auth-filled",
+    "unicode": "e6cc",
+    "unicode_decimal": 59084
+  }, {
+    "icon_id": "24934246",
+    "name": "shop-filled",
+    "font_class": "shop-filled",
+    "unicode": "e6cd",
+    "unicode_decimal": 59085
+  }, {
+    "icon_id": "24934159",
+    "name": "staff-filled-01",
+    "font_class": "staff-filled",
+    "unicode": "e6cb",
+    "unicode_decimal": 59083
+  }, {
+    "icon_id": "24932461",
+    "name": "VIP-filled",
+    "font_class": "vip-filled",
+    "unicode": "e6c6",
+    "unicode_decimal": 59078
+  }, {
+    "icon_id": "24932462",
+    "name": "plus_circle_fill",
+    "font_class": "plus-filled",
+    "unicode": "e6c7",
+    "unicode_decimal": 59079
+  }, {
+    "icon_id": "24932463",
+    "name": "folder_add-filled",
+    "font_class": "folder-add-filled",
+    "unicode": "e6c8",
+    "unicode_decimal": 59080
+  }, {
+    "icon_id": "24932464",
+    "name": "yanse-filled",
+    "font_class": "color-filled",
+    "unicode": "e6c9",
+    "unicode_decimal": 59081
+  }, {
+    "icon_id": "24932465",
+    "name": "tune-filled",
+    "font_class": "tune-filled",
+    "unicode": "e6ca",
+    "unicode_decimal": 59082
+  }, {
+    "icon_id": "24932455",
+    "name": "a-rilidaka-filled",
+    "font_class": "calendar-filled",
+    "unicode": "e6c0",
+    "unicode_decimal": 59072
+  }, {
+    "icon_id": "24932456",
+    "name": "notification-filled",
+    "font_class": "notification-filled",
+    "unicode": "e6c1",
+    "unicode_decimal": 59073
+  }, {
+    "icon_id": "24932457",
+    "name": "wallet-filled",
+    "font_class": "wallet-filled",
+    "unicode": "e6c2",
+    "unicode_decimal": 59074
+  }, {
+    "icon_id": "24932458",
+    "name": "paihangbang-filled",
+    "font_class": "medal-filled",
+    "unicode": "e6c3",
+    "unicode_decimal": 59075
+  }, {
+    "icon_id": "24932459",
+    "name": "gift-filled",
+    "font_class": "gift-filled",
+    "unicode": "e6c4",
+    "unicode_decimal": 59076
+  }, {
+    "icon_id": "24932460",
+    "name": "fire-filled",
+    "font_class": "fire-filled",
+    "unicode": "e6c5",
+    "unicode_decimal": 59077
+  }, {
+    "icon_id": "24928001",
+    "name": "refreshempty",
+    "font_class": "refreshempty",
+    "unicode": "e6bf",
+    "unicode_decimal": 59071
+  }, {
+    "icon_id": "24926853",
+    "name": "location-ellipse",
+    "font_class": "location-filled",
+    "unicode": "e6af",
+    "unicode_decimal": 59055
+  }, {
+    "icon_id": "24926735",
+    "name": "person-filled",
+    "font_class": "person-filled",
+    "unicode": "e69d",
+    "unicode_decimal": 59037
+  }, {
+    "icon_id": "24926703",
+    "name": "personadd-filled",
+    "font_class": "personadd-filled",
+    "unicode": "e698",
+    "unicode_decimal": 59032
+  }, {
+    "icon_id": "24923351",
+    "name": "back",
+    "font_class": "back",
+    "unicode": "e6b9",
+    "unicode_decimal": 59065
+  }, {
+    "icon_id": "24923352",
+    "name": "forward",
+    "font_class": "forward",
+    "unicode": "e6ba",
+    "unicode_decimal": 59066
+  }, {
+    "icon_id": "24923353",
+    "name": "arrowthinright",
+    "font_class": "arrow-right",
+    "unicode": "e6bb",
+    "unicode_decimal": 59067
+  }, {
+    "icon_id": "24923353",
+    "name": "arrowthinright",
+    "font_class": "arrowthinright",
+    "unicode": "e6bb",
+    "unicode_decimal": 59067
+  }, {
+    "icon_id": "24923354",
+    "name": "arrowthinleft",
+    "font_class": "arrow-left",
+    "unicode": "e6bc",
+    "unicode_decimal": 59068
+  }, {
+    "icon_id": "24923354",
+    "name": "arrowthinleft",
+    "font_class": "arrowthinleft",
+    "unicode": "e6bc",
+    "unicode_decimal": 59068
+  }, {
+    "icon_id": "24923355",
+    "name": "arrowthinup",
+    "font_class": "arrow-up",
+    "unicode": "e6bd",
+    "unicode_decimal": 59069
+  }, {
+    "icon_id": "24923355",
+    "name": "arrowthinup",
+    "font_class": "arrowthinup",
+    "unicode": "e6bd",
+    "unicode_decimal": 59069
+  }, {
+    "icon_id": "24923356",
+    "name": "arrowthindown",
+    "font_class": "arrow-down",
+    "unicode": "e6be",
+    "unicode_decimal": 59070
+  }, {
+    "icon_id": "24923356",
+    "name": "arrowthindown",
+    "font_class": "arrowthindown",
+    "unicode": "e6be",
+    "unicode_decimal": 59070
+  }, {
+    "icon_id": "24923349",
+    "name": "arrowdown",
+    "font_class": "bottom",
+    "unicode": "e6b8",
+    "unicode_decimal": 59064
+  }, {
+    "icon_id": "24923349",
+    "name": "arrowdown",
+    "font_class": "arrowdown",
+    "unicode": "e6b8",
+    "unicode_decimal": 59064
+  }, {
+    "icon_id": "24923346",
+    "name": "arrowright",
+    "font_class": "right",
+    "unicode": "e6b5",
+    "unicode_decimal": 59061
+  }, {
+    "icon_id": "24923346",
+    "name": "arrowright",
+    "font_class": "arrowright",
+    "unicode": "e6b5",
+    "unicode_decimal": 59061
+  }, {
+    "icon_id": "24923347",
+    "name": "arrowup",
+    "font_class": "top",
+    "unicode": "e6b6",
+    "unicode_decimal": 59062
+  }, {
+    "icon_id": "24923347",
+    "name": "arrowup",
+    "font_class": "arrowup",
+    "unicode": "e6b6",
+    "unicode_decimal": 59062
+  }, {
+    "icon_id": "24923348",
+    "name": "arrowleft",
+    "font_class": "left",
+    "unicode": "e6b7",
+    "unicode_decimal": 59063
+  }, {
+    "icon_id": "24923348",
+    "name": "arrowleft",
+    "font_class": "arrowleft",
+    "unicode": "e6b7",
+    "unicode_decimal": 59063
+  }, {
+    "icon_id": "24923334",
+    "name": "eye",
+    "font_class": "eye",
+    "unicode": "e651",
+    "unicode_decimal": 58961
+  }, {
+    "icon_id": "24923335",
+    "name": "eye-filled",
+    "font_class": "eye-filled",
+    "unicode": "e66a",
+    "unicode_decimal": 58986
+  }, {
+    "icon_id": "24923336",
+    "name": "eye-slash",
+    "font_class": "eye-slash",
+    "unicode": "e6b3",
+    "unicode_decimal": 59059
+  }, {
+    "icon_id": "24923337",
+    "name": "eye-slash-filled",
+    "font_class": "eye-slash-filled",
+    "unicode": "e6b4",
+    "unicode_decimal": 59060
+  }, {
+    "icon_id": "24923305",
+    "name": "info-filled",
+    "font_class": "info-filled",
+    "unicode": "e649",
+    "unicode_decimal": 58953
+  }, {
+    "icon_id": "24923299",
+    "name": "reload-01",
+    "font_class": "reload",
+    "unicode": "e6b2",
+    "unicode_decimal": 59058
+  }, {
+    "icon_id": "24923195",
+    "name": "mic_slash_fill",
+    "font_class": "micoff-filled",
+    "unicode": "e6b0",
+    "unicode_decimal": 59056
+  }, {
+    "icon_id": "24923165",
+    "name": "map-pin-ellipse",
+    "font_class": "map-pin-ellipse",
+    "unicode": "e6ac",
+    "unicode_decimal": 59052
+  }, {
+    "icon_id": "24923166",
+    "name": "map-pin",
+    "font_class": "map-pin",
+    "unicode": "e6ad",
+    "unicode_decimal": 59053
+  }, {
+    "icon_id": "24923167",
+    "name": "location",
+    "font_class": "location",
+    "unicode": "e6ae",
+    "unicode_decimal": 59054
+  }, {
+    "icon_id": "24923064",
+    "name": "starhalf",
+    "font_class": "starhalf",
+    "unicode": "e683",
+    "unicode_decimal": 59011
+  }, {
+    "icon_id": "24923065",
+    "name": "star",
+    "font_class": "star",
+    "unicode": "e688",
+    "unicode_decimal": 59016
+  }, {
+    "icon_id": "24923066",
+    "name": "star-filled",
+    "font_class": "star-filled",
+    "unicode": "e68f",
+    "unicode_decimal": 59023
+  }, {
+    "icon_id": "24899646",
+    "name": "a-rilidaka",
+    "font_class": "calendar",
+    "unicode": "e6a0",
+    "unicode_decimal": 59040
+  }, {
+    "icon_id": "24899647",
+    "name": "fire",
+    "font_class": "fire",
+    "unicode": "e6a1",
+    "unicode_decimal": 59041
+  }, {
+    "icon_id": "24899648",
+    "name": "paihangbang",
+    "font_class": "medal",
+    "unicode": "e6a2",
+    "unicode_decimal": 59042
+  }, {
+    "icon_id": "24899649",
+    "name": "font",
+    "font_class": "font",
+    "unicode": "e6a3",
+    "unicode_decimal": 59043
+  }, {
+    "icon_id": "24899650",
+    "name": "gift",
+    "font_class": "gift",
+    "unicode": "e6a4",
+    "unicode_decimal": 59044
+  }, {
+    "icon_id": "24899651",
+    "name": "link",
+    "font_class": "link",
+    "unicode": "e6a5",
+    "unicode_decimal": 59045
+  }, {
+    "icon_id": "24899652",
+    "name": "notification",
+    "font_class": "notification",
+    "unicode": "e6a6",
+    "unicode_decimal": 59046
+  }, {
+    "icon_id": "24899653",
+    "name": "staff",
+    "font_class": "staff",
+    "unicode": "e6a7",
+    "unicode_decimal": 59047
+  }, {
+    "icon_id": "24899654",
+    "name": "VIP",
+    "font_class": "vip",
+    "unicode": "e6a8",
+    "unicode_decimal": 59048
+  }, {
+    "icon_id": "24899655",
+    "name": "folder_add",
+    "font_class": "folder-add",
+    "unicode": "e6a9",
+    "unicode_decimal": 59049
+  }, {
+    "icon_id": "24899656",
+    "name": "tune",
+    "font_class": "tune",
+    "unicode": "e6aa",
+    "unicode_decimal": 59050
+  }, {
+    "icon_id": "24899657",
+    "name": "shimingrenzheng",
+    "font_class": "auth",
+    "unicode": "e6ab",
+    "unicode_decimal": 59051
+  }, {
+    "icon_id": "24899565",
+    "name": "person",
+    "font_class": "person",
+    "unicode": "e699",
+    "unicode_decimal": 59033
+  }, {
+    "icon_id": "24899566",
+    "name": "email-filled",
+    "font_class": "email-filled",
+    "unicode": "e69a",
+    "unicode_decimal": 59034
+  }, {
+    "icon_id": "24899567",
+    "name": "phone-filled",
+    "font_class": "phone-filled",
+    "unicode": "e69b",
+    "unicode_decimal": 59035
+  }, {
+    "icon_id": "24899568",
+    "name": "phone",
+    "font_class": "phone",
+    "unicode": "e69c",
+    "unicode_decimal": 59036
+  }, {
+    "icon_id": "24899570",
+    "name": "email",
+    "font_class": "email",
+    "unicode": "e69e",
+    "unicode_decimal": 59038
+  }, {
+    "icon_id": "24899571",
+    "name": "personadd",
+    "font_class": "personadd",
+    "unicode": "e69f",
+    "unicode_decimal": 59039
+  }, {
+    "icon_id": "24899558",
+    "name": "chatboxes-filled",
+    "font_class": "chatboxes-filled",
+    "unicode": "e692",
+    "unicode_decimal": 59026
+  }, {
+    "icon_id": "24899559",
+    "name": "contact",
+    "font_class": "contact",
+    "unicode": "e693",
+    "unicode_decimal": 59027
+  }, {
+    "icon_id": "24899560",
+    "name": "chatbubble-filled",
+    "font_class": "chatbubble-filled",
+    "unicode": "e694",
+    "unicode_decimal": 59028
+  }, {
+    "icon_id": "24899561",
+    "name": "contact-filled",
+    "font_class": "contact-filled",
+    "unicode": "e695",
+    "unicode_decimal": 59029
+  }, {
+    "icon_id": "24899562",
+    "name": "chatboxes",
+    "font_class": "chatboxes",
+    "unicode": "e696",
+    "unicode_decimal": 59030
+  }, {
+    "icon_id": "24899563",
+    "name": "chatbubble",
+    "font_class": "chatbubble",
+    "unicode": "e697",
+    "unicode_decimal": 59031
+  }, {
+    "icon_id": "24881290",
+    "name": "upload-filled",
+    "font_class": "upload-filled",
+    "unicode": "e68e",
+    "unicode_decimal": 59022
+  }, {
+    "icon_id": "24881292",
+    "name": "upload",
+    "font_class": "upload",
+    "unicode": "e690",
+    "unicode_decimal": 59024
+  }, {
+    "icon_id": "24881293",
+    "name": "weixin",
+    "font_class": "weixin",
+    "unicode": "e691",
+    "unicode_decimal": 59025
+  }, {
+    "icon_id": "24881274",
+    "name": "compose",
+    "font_class": "compose",
+    "unicode": "e67f",
+    "unicode_decimal": 59007
+  }, {
+    "icon_id": "24881275",
+    "name": "qq",
+    "font_class": "qq",
+    "unicode": "e680",
+    "unicode_decimal": 59008
+  }, {
+    "icon_id": "24881276",
+    "name": "download-filled",
+    "font_class": "download-filled",
+    "unicode": "e681",
+    "unicode_decimal": 59009
+  }, {
+    "icon_id": "24881277",
+    "name": "pengyouquan",
+    "font_class": "pyq",
+    "unicode": "e682",
+    "unicode_decimal": 59010
+  }, {
+    "icon_id": "24881279",
+    "name": "sound",
+    "font_class": "sound",
+    "unicode": "e684",
+    "unicode_decimal": 59012
+  }, {
+    "icon_id": "24881280",
+    "name": "trash-filled",
+    "font_class": "trash-filled",
+    "unicode": "e685",
+    "unicode_decimal": 59013
+  }, {
+    "icon_id": "24881281",
+    "name": "sound-filled",
+    "font_class": "sound-filled",
+    "unicode": "e686",
+    "unicode_decimal": 59014
+  }, {
+    "icon_id": "24881282",
+    "name": "trash",
+    "font_class": "trash",
+    "unicode": "e687",
+    "unicode_decimal": 59015
+  }, {
+    "icon_id": "24881284",
+    "name": "videocam-filled",
+    "font_class": "videocam-filled",
+    "unicode": "e689",
+    "unicode_decimal": 59017
+  }, {
+    "icon_id": "24881285",
+    "name": "spinner-cycle",
+    "font_class": "spinner-cycle",
+    "unicode": "e68a",
+    "unicode_decimal": 59018
+  }, {
+    "icon_id": "24881286",
+    "name": "weibo",
+    "font_class": "weibo",
+    "unicode": "e68b",
+    "unicode_decimal": 59019
+  }, {
+    "icon_id": "24881288",
+    "name": "videocam",
+    "font_class": "videocam",
+    "unicode": "e68c",
+    "unicode_decimal": 59020
+  }, {
+    "icon_id": "24881289",
+    "name": "download",
+    "font_class": "download",
+    "unicode": "e68d",
+    "unicode_decimal": 59021
+  }, {
+    "icon_id": "24879601",
+    "name": "help",
+    "font_class": "help",
+    "unicode": "e679",
+    "unicode_decimal": 59001
+  }, {
+    "icon_id": "24879602",
+    "name": "navigate-filled",
+    "font_class": "navigate-filled",
+    "unicode": "e67a",
+    "unicode_decimal": 59002
+  }, {
+    "icon_id": "24879603",
+    "name": "plusempty",
+    "font_class": "plusempty",
+    "unicode": "e67b",
+    "unicode_decimal": 59003
+  }, {
+    "icon_id": "24879604",
+    "name": "smallcircle",
+    "font_class": "smallcircle",
+    "unicode": "e67c",
+    "unicode_decimal": 59004
+  }, {
+    "icon_id": "24879605",
+    "name": "minus-filled",
+    "font_class": "minus-filled",
+    "unicode": "e67d",
+    "unicode_decimal": 59005
+  }, {
+    "icon_id": "24879606",
+    "name": "micoff",
+    "font_class": "micoff",
+    "unicode": "e67e",
+    "unicode_decimal": 59006
+  }, {
+    "icon_id": "24879588",
+    "name": "closeempty",
+    "font_class": "closeempty",
+    "unicode": "e66c",
+    "unicode_decimal": 58988
+  }, {
+    "icon_id": "24879589",
+    "name": "clear",
+    "font_class": "clear",
+    "unicode": "e66d",
+    "unicode_decimal": 58989
+  }, {
+    "icon_id": "24879590",
+    "name": "navigate",
+    "font_class": "navigate",
+    "unicode": "e66e",
+    "unicode_decimal": 58990
+  }, {
+    "icon_id": "24879591",
+    "name": "minus",
+    "font_class": "minus",
+    "unicode": "e66f",
+    "unicode_decimal": 58991
+  }, {
+    "icon_id": "24879592",
+    "name": "image",
+    "font_class": "image",
+    "unicode": "e670",
+    "unicode_decimal": 58992
+  }, {
+    "icon_id": "24879593",
+    "name": "mic",
+    "font_class": "mic",
+    "unicode": "e671",
+    "unicode_decimal": 58993
+  }, {
+    "icon_id": "24879594",
+    "name": "paperplane",
+    "font_class": "paperplane",
+    "unicode": "e672",
+    "unicode_decimal": 58994
+  }, {
+    "icon_id": "24879595",
+    "name": "close",
+    "font_class": "close",
+    "unicode": "e673",
+    "unicode_decimal": 58995
+  }, {
+    "icon_id": "24879596",
+    "name": "help-filled",
+    "font_class": "help-filled",
+    "unicode": "e674",
+    "unicode_decimal": 58996
+  }, {
+    "icon_id": "24879597",
+    "name": "plus-filled",
+    "font_class": "paperplane-filled",
+    "unicode": "e675",
+    "unicode_decimal": 58997
+  }, {
+    "icon_id": "24879598",
+    "name": "plus",
+    "font_class": "plus",
+    "unicode": "e676",
+    "unicode_decimal": 58998
+  }, {
+    "icon_id": "24879599",
+    "name": "mic-filled",
+    "font_class": "mic-filled",
+    "unicode": "e677",
+    "unicode_decimal": 58999
+  }, {
+    "icon_id": "24879600",
+    "name": "image-filled",
+    "font_class": "image-filled",
+    "unicode": "e678",
+    "unicode_decimal": 59000
+  }, {
+    "icon_id": "24855900",
+    "name": "locked-filled",
+    "font_class": "locked-filled",
+    "unicode": "e668",
+    "unicode_decimal": 58984
+  }, {
+    "icon_id": "24855901",
+    "name": "info",
+    "font_class": "info",
+    "unicode": "e669",
+    "unicode_decimal": 58985
+  }, {
+    "icon_id": "24855903",
+    "name": "locked",
+    "font_class": "locked",
+    "unicode": "e66b",
+    "unicode_decimal": 58987
+  }, {
+    "icon_id": "24855884",
+    "name": "camera-filled",
+    "font_class": "camera-filled",
+    "unicode": "e658",
+    "unicode_decimal": 58968
+  }, {
+    "icon_id": "24855885",
+    "name": "chat-filled",
+    "font_class": "chat-filled",
+    "unicode": "e659",
+    "unicode_decimal": 58969
+  }, {
+    "icon_id": "24855886",
+    "name": "camera",
+    "font_class": "camera",
+    "unicode": "e65a",
+    "unicode_decimal": 58970
+  }, {
+    "icon_id": "24855887",
+    "name": "circle",
+    "font_class": "circle",
+    "unicode": "e65b",
+    "unicode_decimal": 58971
+  }, {
+    "icon_id": "24855888",
+    "name": "checkmarkempty",
+    "font_class": "checkmarkempty",
+    "unicode": "e65c",
+    "unicode_decimal": 58972
+  }, {
+    "icon_id": "24855889",
+    "name": "chat",
+    "font_class": "chat",
+    "unicode": "e65d",
+    "unicode_decimal": 58973
+  }, {
+    "icon_id": "24855890",
+    "name": "circle-filled",
+    "font_class": "circle-filled",
+    "unicode": "e65e",
+    "unicode_decimal": 58974
+  }, {
+    "icon_id": "24855891",
+    "name": "flag",
+    "font_class": "flag",
+    "unicode": "e65f",
+    "unicode_decimal": 58975
+  }, {
+    "icon_id": "24855892",
+    "name": "flag-filled",
+    "font_class": "flag-filled",
+    "unicode": "e660",
+    "unicode_decimal": 58976
+  }, {
+    "icon_id": "24855893",
+    "name": "gear-filled",
+    "font_class": "gear-filled",
+    "unicode": "e661",
+    "unicode_decimal": 58977
+  }, {
+    "icon_id": "24855894",
+    "name": "home",
+    "font_class": "home",
+    "unicode": "e662",
+    "unicode_decimal": 58978
+  }, {
+    "icon_id": "24855895",
+    "name": "home-filled",
+    "font_class": "home-filled",
+    "unicode": "e663",
+    "unicode_decimal": 58979
+  }, {
+    "icon_id": "24855896",
+    "name": "gear",
+    "font_class": "gear",
+    "unicode": "e664",
+    "unicode_decimal": 58980
+  }, {
+    "icon_id": "24855897",
+    "name": "smallcircle-filled",
+    "font_class": "smallcircle-filled",
+    "unicode": "e665",
+    "unicode_decimal": 58981
+  }, {
+    "icon_id": "24855898",
+    "name": "map-filled",
+    "font_class": "map-filled",
+    "unicode": "e666",
+    "unicode_decimal": 58982
+  }, {
+    "icon_id": "24855899",
+    "name": "map",
+    "font_class": "map",
+    "unicode": "e667",
+    "unicode_decimal": 58983
+  }, {
+    "icon_id": "24855825",
+    "name": "refresh-filled",
+    "font_class": "refresh-filled",
+    "unicode": "e656",
+    "unicode_decimal": 58966
+  }, {
+    "icon_id": "24855826",
+    "name": "refresh",
+    "font_class": "refresh",
+    "unicode": "e657",
+    "unicode_decimal": 58967
+  }, {
+    "icon_id": "24855808",
+    "name": "cloud-upload",
+    "font_class": "cloud-upload",
+    "unicode": "e645",
+    "unicode_decimal": 58949
+  }, {
+    "icon_id": "24855809",
+    "name": "cloud-download-filled",
+    "font_class": "cloud-download-filled",
+    "unicode": "e646",
+    "unicode_decimal": 58950
+  }, {
+    "icon_id": "24855810",
+    "name": "cloud-download",
+    "font_class": "cloud-download",
+    "unicode": "e647",
+    "unicode_decimal": 58951
+  }, {
+    "icon_id": "24855811",
+    "name": "cloud-upload-filled",
+    "font_class": "cloud-upload-filled",
+    "unicode": "e648",
+    "unicode_decimal": 58952
+  }, {
+    "icon_id": "24855813",
+    "name": "redo",
+    "font_class": "redo",
+    "unicode": "e64a",
+    "unicode_decimal": 58954
+  }, {
+    "icon_id": "24855814",
+    "name": "images-filled",
+    "font_class": "images-filled",
+    "unicode": "e64b",
+    "unicode_decimal": 58955
+  }, {
+    "icon_id": "24855815",
+    "name": "undo-filled",
+    "font_class": "undo-filled",
+    "unicode": "e64c",
+    "unicode_decimal": 58956
+  }, {
+    "icon_id": "24855816",
+    "name": "more",
+    "font_class": "more",
+    "unicode": "e64d",
+    "unicode_decimal": 58957
+  }, {
+    "icon_id": "24855817",
+    "name": "more-filled",
+    "font_class": "more-filled",
+    "unicode": "e64e",
+    "unicode_decimal": 58958
+  }, {
+    "icon_id": "24855818",
+    "name": "undo",
+    "font_class": "undo",
+    "unicode": "e64f",
+    "unicode_decimal": 58959
+  }, {
+    "icon_id": "24855819",
+    "name": "images",
+    "font_class": "images",
+    "unicode": "e650",
+    "unicode_decimal": 58960
+  }, {
+    "icon_id": "24855821",
+    "name": "paperclip",
+    "font_class": "paperclip",
+    "unicode": "e652",
+    "unicode_decimal": 58962
+  }, {
+    "icon_id": "24855822",
+    "name": "settings",
+    "font_class": "settings",
+    "unicode": "e653",
+    "unicode_decimal": 58963
+  }, {
+    "icon_id": "24855823",
+    "name": "search",
+    "font_class": "search",
+    "unicode": "e654",
+    "unicode_decimal": 58964
+  }, {
+    "icon_id": "24855824",
+    "name": "redo-filled",
+    "font_class": "redo-filled",
+    "unicode": "e655",
+    "unicode_decimal": 58965
+  }, {
+    "icon_id": "24841702",
+    "name": "list",
+    "font_class": "list",
+    "unicode": "e644",
+    "unicode_decimal": 58948
+  }, {
+    "icon_id": "24841489",
+    "name": "mail-open-filled",
+    "font_class": "mail-open-filled",
+    "unicode": "e63a",
+    "unicode_decimal": 58938
+  }, {
+    "icon_id": "24841491",
+    "name": "hand-thumbsdown-filled",
+    "font_class": "hand-down-filled",
+    "unicode": "e63c",
+    "unicode_decimal": 58940
+  }, {
+    "icon_id": "24841492",
+    "name": "hand-thumbsdown",
+    "font_class": "hand-down",
+    "unicode": "e63d",
+    "unicode_decimal": 58941
+  }, {
+    "icon_id": "24841493",
+    "name": "hand-thumbsup-filled",
+    "font_class": "hand-up-filled",
+    "unicode": "e63e",
+    "unicode_decimal": 58942
+  }, {
+    "icon_id": "24841494",
+    "name": "hand-thumbsup",
+    "font_class": "hand-up",
+    "unicode": "e63f",
+    "unicode_decimal": 58943
+  }, {
+    "icon_id": "24841496",
+    "name": "heart-filled",
+    "font_class": "heart-filled",
+    "unicode": "e641",
+    "unicode_decimal": 58945
+  }, {
+    "icon_id": "24841498",
+    "name": "mail-open",
+    "font_class": "mail-open",
+    "unicode": "e643",
+    "unicode_decimal": 58947
+  }, {
+    "icon_id": "24841488",
+    "name": "heart",
+    "font_class": "heart",
+    "unicode": "e639",
+    "unicode_decimal": 58937
+  }, {
+    "icon_id": "24839963",
+    "name": "loop",
+    "font_class": "loop",
+    "unicode": "e633",
+    "unicode_decimal": 58931
+  }, {
+    "icon_id": "24839866",
+    "name": "pulldown",
+    "font_class": "pulldown",
+    "unicode": "e632",
+    "unicode_decimal": 58930
+  }, {
+    "icon_id": "24813798",
+    "name": "scan",
+    "font_class": "scan",
+    "unicode": "e62a",
+    "unicode_decimal": 58922
+  }, {
+    "icon_id": "24813786",
+    "name": "bars",
+    "font_class": "bars",
+    "unicode": "e627",
+    "unicode_decimal": 58919
+  }, {
+    "icon_id": "24813788",
+    "name": "cart-filled",
+    "font_class": "cart-filled",
+    "unicode": "e629",
+    "unicode_decimal": 58921
+  }, {
+    "icon_id": "24813790",
+    "name": "checkbox",
+    "font_class": "checkbox",
+    "unicode": "e62b",
+    "unicode_decimal": 58923
+  }, {
+    "icon_id": "24813791",
+    "name": "checkbox-filled",
+    "font_class": "checkbox-filled",
+    "unicode": "e62c",
+    "unicode_decimal": 58924
+  }, {
+    "icon_id": "24813794",
+    "name": "shop",
+    "font_class": "shop",
+    "unicode": "e62f",
+    "unicode_decimal": 58927
+  }, {
+    "icon_id": "24813795",
+    "name": "headphones",
+    "font_class": "headphones",
+    "unicode": "e630",
+    "unicode_decimal": 58928
+  }, {
+    "icon_id": "24813796",
+    "name": "cart",
+    "font_class": "cart",
+    "unicode": "e631",
+    "unicode_decimal": 58929
+  }]
 };
 exports.default = _default;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 609 */,
-/* 610 */,
-/* 611 */,
-/* 612 */,
-/* 613 */,
-/* 614 */,
-/* 615 */,
-/* 616 */,
-/* 617 */,
-/* 618 */,
-/* 619 */,
-/* 620 */,
-/* 621 */,
-/* 622 */,
-/* 623 */
+/* 549 */,
+/* 550 */,
+/* 551 */,
+/* 552 */,
+/* 553 */,
+/* 554 */,
+/* 555 */,
+/* 556 */,
+/* 557 */,
+/* 558 */,
+/* 559 */,
+/* 560 */,
+/* 561 */,
+/* 562 */,
+/* 563 */,
+/* 564 */,
+/* 565 */,
+/* 566 */,
+/* 567 */,
+/* 568 */,
+/* 569 */,
+/* 570 */
 /*!******************************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/uni-datetime-picker/components/uni-datetime-picker/util.js ***!
   \******************************************************************************************************************/
@@ -38529,33 +40008,33 @@ var _default = Calendar;
 exports.default = _default;
 
 /***/ }),
-/* 624 */,
-/* 625 */,
-/* 626 */,
-/* 627 */,
-/* 628 */,
-/* 629 */,
-/* 630 */,
-/* 631 */,
-/* 632 */,
-/* 633 */,
-/* 634 */,
-/* 635 */,
-/* 636 */,
-/* 637 */,
-/* 638 */,
-/* 639 */,
-/* 640 */,
-/* 641 */,
-/* 642 */,
-/* 643 */,
-/* 644 */,
-/* 645 */,
-/* 646 */,
-/* 647 */,
-/* 648 */,
-/* 649 */,
-/* 650 */
+/* 571 */,
+/* 572 */,
+/* 573 */,
+/* 574 */,
+/* 575 */,
+/* 576 */,
+/* 577 */,
+/* 578 */,
+/* 579 */,
+/* 580 */,
+/* 581 */,
+/* 582 */,
+/* 583 */,
+/* 584 */,
+/* 585 */,
+/* 586 */,
+/* 587 */,
+/* 588 */,
+/* 589 */,
+/* 590 */,
+/* 591 */,
+/* 592 */,
+/* 593 */,
+/* 594 */,
+/* 595 */,
+/* 596 */,
+/* 597 */
 /*!****************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-loading-icon/props.js ***!
   \****************************************************************************************************/
@@ -38632,14 +40111,63 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 651 */,
-/* 652 */,
-/* 653 */,
-/* 654 */,
-/* 655 */,
-/* 656 */,
-/* 657 */,
-/* 658 */
+/* 598 */,
+/* 599 */,
+/* 600 */,
+/* 601 */,
+/* 602 */,
+/* 603 */,
+/* 604 */,
+/* 605 */
+/*!***********************************************************************************************!*\
+  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-overlay/props.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // 是否显示遮罩
+    show: {
+      type: Boolean,
+      default: uni.$u.props.overlay.show
+    },
+    // 层级z-index
+    zIndex: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.zIndex
+    },
+    // 遮罩的过渡时间，单位为ms
+    duration: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.duration
+    },
+    // 不透明度值，当做rgba的第四个参数
+    opacity: {
+      type: [String, Number],
+      default: uni.$u.props.overlay.opacity
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 606 */,
+/* 607 */,
+/* 608 */,
+/* 609 */,
+/* 610 */,
+/* 611 */,
+/* 612 */,
+/* 613 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-transition/props.js ***!
   \**************************************************************************************************/
@@ -38681,7 +40209,7 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 659 */
+/* 614 */
 /*!*******************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-transition/transition.js ***!
   \*******************************************************************************************************/
@@ -38696,7 +40224,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 660));
+var _regenerator = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/regenerator */ 54));
+var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ 56));
+var _nvueAniMap = _interopRequireDefault(__webpack_require__(/*! ./nvue.ani-map.js */ 615));
 // 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 var nextTick = function nextTick() {
   return new Promise(function (resolve) {
@@ -38731,15 +40261,25 @@ var _default = {
       this.inited = true;
       this.display = true;
       this.classes = classNames.enter;
-      this.$nextTick(async function () {
-        // 标识动画尚未结束
-        _this.$emit('enter');
-        _this.transitionEnded = false;
-        // 组件动画进入后触发的事件
-        _this.$emit('afterEnter');
-        // 赋予组件enter-to类名
-        _this.classes = classNames['enter-to'];
-      });
+      this.$nextTick( /*#__PURE__*/(0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        return _regenerator.default.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // 标识动画尚未结束
+                _this.$emit('enter');
+                _this.transitionEnded = false;
+                // 组件动画进入后触发的事件
+                _this.$emit('afterEnter');
+                // 赋予组件enter-to类名
+                _this.classes = classNames['enter-to'];
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      })));
     },
     // 动画离场处理
     vueLeave: function vueLeave() {
@@ -38778,7 +40318,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 660 */
+/* 615 */
 /*!*********************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-transition/nvue.ani-map.js ***!
   \*********************************************************************************************************/
@@ -38971,14 +40511,14 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 661 */,
-/* 662 */,
-/* 663 */,
-/* 664 */,
-/* 665 */,
-/* 666 */,
-/* 667 */,
-/* 668 */
+/* 616 */,
+/* 617 */,
+/* 618 */,
+/* 619 */,
+/* 620 */,
+/* 621 */,
+/* 622 */,
+/* 623 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-status-bar/props.js ***!
   \**************************************************************************************************/
@@ -39004,14 +40544,14 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 669 */,
-/* 670 */,
-/* 671 */,
-/* 672 */,
-/* 673 */,
-/* 674 */,
-/* 675 */,
-/* 676 */
+/* 624 */,
+/* 625 */,
+/* 626 */,
+/* 627 */,
+/* 628 */,
+/* 629 */,
+/* 630 */,
+/* 631 */
 /*!***************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-safe-bottom/props.js ***!
   \***************************************************************************************************/
@@ -39031,21 +40571,21 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 677 */,
-/* 678 */,
-/* 679 */,
-/* 680 */,
-/* 681 */,
-/* 682 */,
-/* 683 */,
-/* 684 */,
-/* 685 */,
-/* 686 */,
-/* 687 */,
-/* 688 */,
-/* 689 */,
-/* 690 */,
-/* 691 */
+/* 632 */,
+/* 633 */,
+/* 634 */,
+/* 635 */,
+/* 636 */,
+/* 637 */,
+/* 638 */,
+/* 639 */,
+/* 640 */,
+/* 641 */,
+/* 642 */,
+/* 643 */,
+/* 644 */,
+/* 645 */,
+/* 646 */
 /*!**************************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/uni_modules/zb-table/components/zb-table/js/summary.js ***!
   \**************************************************************************************************/
@@ -39162,35 +40702,35 @@ var _default2 = {
 exports.default = _default2;
 
 /***/ }),
-/* 692 */,
-/* 693 */,
-/* 694 */,
-/* 695 */,
-/* 696 */,
-/* 697 */,
-/* 698 */,
-/* 699 */,
-/* 700 */,
-/* 701 */,
-/* 702 */,
-/* 703 */,
-/* 704 */,
-/* 705 */,
-/* 706 */,
-/* 707 */,
-/* 708 */,
-/* 709 */,
-/* 710 */,
-/* 711 */,
-/* 712 */,
-/* 713 */,
-/* 714 */,
-/* 715 */,
-/* 716 */,
-/* 717 */,
-/* 718 */,
-/* 719 */,
-/* 720 */
+/* 647 */,
+/* 648 */,
+/* 649 */,
+/* 650 */,
+/* 651 */,
+/* 652 */,
+/* 653 */,
+/* 654 */,
+/* 655 */,
+/* 656 */,
+/* 657 */,
+/* 658 */,
+/* 659 */,
+/* 660 */,
+/* 661 */,
+/* 662 */,
+/* 663 */,
+/* 664 */,
+/* 665 */,
+/* 666 */,
+/* 667 */,
+/* 668 */,
+/* 669 */,
+/* 670 */,
+/* 671 */,
+/* 672 */,
+/* 673 */,
+/* 674 */,
+/* 675 */
 /*!*******************************************************************************************!*\
   !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-gap/props.js ***!
   \*******************************************************************************************/
@@ -39232,17 +40772,17 @@ exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
-/* 721 */,
-/* 722 */,
-/* 723 */,
-/* 724 */,
-/* 725 */,
-/* 726 */,
-/* 727 */,
-/* 728 */
-/*!********************************************************************************************!*\
-  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-line/props.js ***!
-  \********************************************************************************************/
+/* 676 */,
+/* 677 */,
+/* 678 */,
+/* 679 */,
+/* 680 */,
+/* 681 */,
+/* 682 */,
+/* 683 */
+/*!***************************************************************************************************!*\
+  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-radio-group/props.js ***!
+  \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39255,34 +40795,174 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = {
   props: {
+    // 绑定的值
+    value: {
+      type: [String, Number, Boolean],
+      default: uni.$u.props.radioGroup.value
+    },
+    // 是否禁用全部radio
+    disabled: {
+      type: Boolean,
+      default: uni.$u.props.radioGroup.disabled
+    },
+    // 形状，circle-圆形，square-方形
+    shape: {
+      type: String,
+      default: uni.$u.props.radioGroup.shape
+    },
+    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+    activeColor: {
+      type: String,
+      default: uni.$u.props.radioGroup.activeColor
+    },
+    // 未选中的颜色
+    inactiveColor: {
+      type: String,
+      default: uni.$u.props.radioGroup.inactiveColor
+    },
+    // 标识符
+    name: {
+      type: String,
+      default: uni.$u.props.radioGroup.name
+    },
+    // 整个组件的尺寸，默认px
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.size
+    },
+    // 布局方式，row-横向，column-纵向
+    placement: {
+      type: String,
+      default: uni.$u.props.radioGroup.placement
+    },
+    // label的文本
+    label: {
+      type: [String],
+      default: uni.$u.props.radioGroup.label
+    },
+    // label的颜色 （默认 '#303133' ）
+    labelColor: {
+      type: [String],
+      default: uni.$u.props.radioGroup.labelColor
+    },
+    // label的字体大小，px单位
+    labelSize: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.labelSize
+    },
+    // 是否禁止点击文本操作checkbox(默认 false )
+    labelDisabled: {
+      type: Boolean,
+      default: uni.$u.props.radioGroup.labelDisabled
+    },
+    // 图标颜色
+    iconColor: {
+      type: String,
+      default: uni.$u.props.radioGroup.iconColor
+    },
+    // 图标的大小，单位px
+    iconSize: {
+      type: [String, Number],
+      default: uni.$u.props.radioGroup.iconSize
+    },
+    // 竖向配列时，是否显示下划线
+    borderBottom: {
+      type: Boolean,
+      default: uni.$u.props.radioGroup.borderBottom
+    },
+    // 图标与文字的对齐方式
+    iconPlacement: {
+      type: String,
+      default: uni.$u.props.radio.iconPlacement
+    }
+  }
+};
+exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
+
+/***/ }),
+/* 684 */,
+/* 685 */,
+/* 686 */,
+/* 687 */,
+/* 688 */,
+/* 689 */,
+/* 690 */,
+/* 691 */
+/*!*********************************************************************************************!*\
+  !*** /Users/coderyh/Downloads/codeY/蓉城易购/node_modules/uview-ui/components/u-radio/props.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(uni) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  props: {
+    // radio的名称
+    name: {
+      type: [String, Number, Boolean],
+      default: uni.$u.props.radio.name
+    },
+    // 形状，square为方形，circle为圆型
+    shape: {
+      type: String,
+      default: uni.$u.props.radio.shape
+    },
+    // 是否禁用
+    disabled: {
+      type: [String, Boolean],
+      default: uni.$u.props.radio.disabled
+    },
+    // 是否禁止点击提示语选中单选框
+    labelDisabled: {
+      type: [String, Boolean],
+      default: uni.$u.props.radio.labelDisabled
+    },
+    // 选中状态下的颜色，如设置此值，将会覆盖parent的activeColor值
+    activeColor: {
+      type: String,
+      default: uni.$u.props.radio.activeColor
+    },
+    // 未选中的颜色
+    inactiveColor: {
+      type: String,
+      default: uni.$u.props.radio.inactiveColor
+    },
+    // 图标的大小，单位px
+    iconSize: {
+      type: [String, Number],
+      default: uni.$u.props.radio.iconSize
+    },
+    // label的字体大小，px单位
+    labelSize: {
+      type: [String, Number],
+      default: uni.$u.props.radio.labelSize
+    },
+    // label提示文字，因为nvue下，直接slot进来的文字，由于特殊的结构，无法修改样式
+    label: {
+      type: [String, Number],
+      default: uni.$u.props.radio.label
+    },
+    // 整体的大小
+    size: {
+      type: [String, Number],
+      default: uni.$u.props.radio.size
+    },
+    // 图标颜色
     color: {
       type: String,
-      default: uni.$u.props.line.color
+      default: uni.$u.props.radio.color
     },
-    // 长度，竖向时表现为高度，横向时表现为长度，可以为百分比，带px单位的值等
-    length: {
-      type: [String, Number],
-      default: uni.$u.props.line.length
-    },
-    // 线条方向，col-竖向，row-横向
-    direction: {
+    // label的颜色
+    labelColor: {
       type: String,
-      default: uni.$u.props.line.direction
-    },
-    // 是否显示细边框
-    hairline: {
-      type: Boolean,
-      default: uni.$u.props.line.hairline
-    },
-    // 线条与上下左右元素的间距，字符串形式，如"30px"、"20px 30px"
-    margin: {
-      type: [String, Number],
-      default: uni.$u.props.line.margin
-    },
-    // 是否虚线，true-虚线，false-实线
-    dashed: {
-      type: Boolean,
-      default: uni.$u.props.line.dashed
+      default: uni.$u.props.radio.labelColor
     }
   }
 };

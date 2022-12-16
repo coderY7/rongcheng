@@ -127,27 +127,6 @@
 				}
 			},
 			{
-				"path": "ruku/ruku",
-				"style": {
-					"navigationBarTitleText": "商品入库",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "ruku/edit",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
-				"path": "ruku/rkxd",
-				"style": {
-					"navigationBarTitleText": "",
-					"enablePullDownRefresh": false
-				}
-			},
-			{
 				"path": "chuku/chuku",
 				"style": {
 					"navigationBarTitleText": "",

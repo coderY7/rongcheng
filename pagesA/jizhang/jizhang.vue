@@ -6,7 +6,7 @@
       <view>
         <image src="https://integral-1256268364.cos.ap-chengdu.myqcloud.com/c5b9ec0862a57c4cee9d7373806b93cab8013b3c.jpg"></image>
       </view>
-      <view>未查询到数据</view>
+      <view>{{message}}</view>
       <view @click="list" style="margin-top: 10px;">
         <u-button text="点击刷新" :plain="true" size="small" type="primary"></u-button>
       </view>
@@ -37,7 +37,8 @@ navbar
        checkboxData:[],
       show:false,
       hz:true,
-      mydata:false
+      mydata:false,
+      message:''
     }
   },
   methods: {
@@ -69,6 +70,7 @@ navbar
         }
         if(res.error_code=='500'){
           this.mydata=true
+          this.message=res.message
         }
         if(res.error_code=='0'){
           if(res.data[0]['过账类型']=='UNION'){
