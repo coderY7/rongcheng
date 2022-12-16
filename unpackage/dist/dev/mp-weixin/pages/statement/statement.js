@@ -224,6 +224,10 @@ var _default = {
       cxmc: '退货单按单据汇总',
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg',
       show: false
+    }, {
+      cxmc: '商品销售额汇总分析',
+      url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/734a3fe3bba6f7459ba20dc5f2d715bfa8190948.jpg',
+      show: false
     }];
   },
   onShow: function onShow() {
@@ -258,6 +262,9 @@ var _default = {
     }
     if (this.authority.indexOf('HZ012APP') != '-1') {
       this.Alllist[9].show = true;
+    }
+    if (this.authority.indexOf('RB003APP') != '-1') {
+      this.Alllist[10].show = true;
     }
     this.showlist = [];
     this.Alllist.forEach(function (item) {
@@ -390,6 +397,24 @@ var _default = {
           uni.setStorageSync('dqbb', {
             cxmc: '退货单按单据汇总',
             cxbh: 'HZ012APP'
+          });
+          uni.navigateTo({
+            url: "../../pagesA/condition/condition?cxdj=".concat(items)
+          });
+        });
+      }
+      if (item.cxmc == '商品销售额汇总分析') {
+        var _cxbh3 = 'RB003APP';
+        var _data4 = {
+          access_token: uni.getStorageSync('access_token'),
+          cxbh: _cxbh3
+        };
+        (0, _api.condition)(_data4).then(function (res) {
+          console.log('res', res.data);
+          var items = JSON.stringify(res);
+          uni.setStorageSync('dqbb', {
+            cxmc: '商品销售额汇总分析',
+            cxbh: 'RB003APP'
           });
           uni.navigateTo({
             url: "../../pagesA/condition/condition?cxdj=".concat(items)

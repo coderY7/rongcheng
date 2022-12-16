@@ -52,7 +52,8 @@ this.Alllist=[
   {cxmc:'销售财务日报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg' ,show:false},
   {cxmc:'商品正常库存量分析',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg' ,show:false},
   {cxmc:'入库单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg' ,show:false},
-  {cxmc:'退货单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg' ,show:false}]
+  {cxmc:'退货单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/54e08d4787eabf9f15d994924a7d33e2696e01ad.jpg' ,show:false},
+  {cxmc:'商品销售额汇总分析',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/734a3fe3bba6f7459ba20dc5f2d715bfa8190948.jpg' ,show:false},]
 		},
     onShow(){
 this.authority=uni.getStorageSync('authority').split(';')
@@ -85,6 +86,9 @@ this.authority=uni.getStorageSync('authority').split(';')
       }
       if(this.authority.indexOf('HZ012APP')!='-1'){
         this.Alllist[9].show=true
+      }
+      if(this.authority.indexOf('RB003APP')!='-1'){
+        this.Alllist[10].show=true
       }
 
 
@@ -208,6 +212,22 @@ this.authority=uni.getStorageSync('authority').split(';')
             console.log('res',res.data)
             let items = JSON.stringify(res)
             uni.setStorageSync('dqbb',{cxmc:'退货单按单据汇总',cxbh:'HZ012APP'})
+
+            uni.navigateTo({
+              url: `../../pagesA/condition/condition?cxdj=${items}`
+            })
+          })
+        }
+        if(item.cxmc=='商品销售额汇总分析'){
+          let cxbh='RB003APP'
+          let data={
+            access_token:uni.getStorageSync('access_token'),
+            cxbh:cxbh
+          }
+          condition(data).then((res)=>{
+            console.log('res',res.data)
+            let items = JSON.stringify(res)
+            uni.setStorageSync('dqbb',{cxmc:'商品销售额汇总分析',cxbh:'RB003APP'})
 
             uni.navigateTo({
               url: `../../pagesA/condition/condition?cxdj=${items}`
