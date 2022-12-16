@@ -239,6 +239,9 @@ var _default = {
     if (option.sumdata) {
       this.sumdata = JSON.parse(option.sumdata);
     }
+    if (option.creportcolumns) {
+      console.log('卡片', option.creportcolumns.split(';'));
+    }
     this.tableData = this.result;
     this.resultcard = this.result;
     this.pagination();

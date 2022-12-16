@@ -438,7 +438,6 @@ export default {
         uni.hideLoading();
         this.result=res.data
         this.sumdata=res.sumdata
-        //this.bdt=Object.keys(this.result[0])
         //表单头处理
         let cl=res.columns
         let a=[];
@@ -448,12 +447,12 @@ export default {
         this.bdt=a
         //跳转新页面
         let bdt = JSON.stringify(this.bdt)
-        console.log(bdt)
         let result = JSON.stringify(this.result)
         let sumdata = JSON.stringify(this.sumdata)
+        let creportcolumns=res.creportcolumns
         uni.setStorageSync('result',result)
         uni.navigateTo({
-          url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}`
+          url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}&creportcolumns=${creportcolumns}`
         });
       })
 

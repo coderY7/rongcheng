@@ -638,7 +638,6 @@ var _default = {
         uni.hideLoading();
         _this5.result = res.data;
         _this5.sumdata = res.sumdata;
-        //this.bdt=Object.keys(this.result[0])
         //表单头处理
         var cl = res.columns;
         var a = [];
@@ -652,12 +651,12 @@ var _default = {
         _this5.bdt = a;
         //跳转新页面
         var bdt = JSON.stringify(_this5.bdt);
-        console.log(bdt);
         var result = JSON.stringify(_this5.result);
         var sumdata = JSON.stringify(_this5.sumdata);
+        var creportcolumns = res.creportcolumns;
         uni.setStorageSync('result', result);
         uni.navigateTo({
-          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata)
+          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata, "&creportcolumns=").concat(creportcolumns)
         });
       });
     }
