@@ -1,6 +1,6 @@
 <template>
   <view>
-    <navbar title='过账审核' @back="back()"></navbar>
+    <navbar title='盘点过账' @back="back()"></navbar>
     <zxcheckbox :list="checkboxData"  :hz="hz" :mydata="mydata" @send="value" @ishz="list" @issh="list" v-if="show"></zxcheckbox>
     <view v-if="mydata" class="msj">
       <view>

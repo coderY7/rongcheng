@@ -48,7 +48,7 @@ this.Alllist=[
   {cxmc:'商品入库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/7c008083cec15340bb84b85d096b63a9ad9869be.jpg' ,show:false},
   {cxmc:'商品退库',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/b96c3911ad158a905b2dd6c7de6e7c4a8202f843.jpg' ,show:false},
   {cxmc:'商品盘点',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg' ,show:false},
-  {cxmc:'过账审核',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0bf6b6e34e0d634778ac3492c932041f8e2a69a4.jpg' ,show:false},
+  {cxmc:'盘点过账',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0bf6b6e34e0d634778ac3492c932041f8e2a69a4.jpg' ,show:false},
   {cxmc:'销售财务日报表',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/1314a99b688a237bf3c640062c2cb1a20df42b19.jpg' ,show:false},
   {cxmc:'商品正常库存量分析',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0f39fc8c14a0f30a62805e5bf612a21f067e326f.jpg' ,show:false},
   {cxmc:'入库单按单据汇总',url:'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/fd16a5018148a5bd7ee52f2f2c23f17d54a3d714.jpg' ,show:false},
@@ -146,7 +146,7 @@ this.authority=uni.getStorageSync('authority').split(';')
 		    url: '../../pagesA/pandian/pandian'
 		  })
 		}
-		if(item.cxmc=='过账审核'){
+		if(item.cxmc=='盘点过账'){
 		  uni.navigateTo({
 		    url: '../../pagesA/jizhang/jizhang'
 		  })

@@ -205,7 +205,7 @@ var _default = {
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/482ef74195927226bedd797c613423587c40ee5f.jpg',
       show: false
     }, {
-      cxmc: '过账审核',
+      cxmc: '盘点过账',
       url: 'https://integral-1256268364.cos.ap-chengdu.myqcloud.com/0bf6b6e34e0d634778ac3492c932041f8e2a69a4.jpg',
       show: false
     }, {
@@ -320,7 +320,7 @@ var _default = {
           url: '../../pagesA/pandian/pandian'
         });
       }
-      if (item.cxmc == '过账审核') {
+      if (item.cxmc == '盘点过账') {
         uni.navigateTo({
           url: '../../pagesA/jizhang/jizhang'
         });
