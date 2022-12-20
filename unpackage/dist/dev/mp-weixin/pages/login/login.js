@@ -221,6 +221,7 @@ var _default = {
       uni.setStorageSync("rkdh", '');
       uni.setStorageSync("thdh", '');
       uni.setStorageSync("pddh", '');
+      uni.setStorageSync('authority', '');
     },
     ip: function ip() {
       (0, _api.rcip)().then(function (res) {

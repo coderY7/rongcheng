@@ -266,6 +266,7 @@ var _default = {
               uni.setStorageSync("rkdh", '');
               uni.setStorageSync("thdh", '');
               uni.setStorageSync("pddh", '');
+              uni.setStorageSync('authority', '');
               uni.setStorageSync('groupid', ''); //token
               uni.setStorageSync('userid', ''); //token
               uni.setStorageSync('access_token', ''); //token
