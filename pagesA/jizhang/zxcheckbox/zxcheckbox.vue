@@ -253,6 +253,7 @@ shenhe() {
         }
     }
 </script>
+
 <style lang="scss">
      checkbox .wx-checkbox-input {
     	 border-radius: 50% !important;
@@ -361,17 +362,17 @@ shenhe() {
 
     .collshop-bot .right {
         float: right;
-        width: 165rpx;
-        height: 52rpx;
-        line-height: 52rpx;
+        width: 170rpx;
+        height: 70rpx;
+        line-height: 70rpx;
         text-align: center;
         background: #E10800;
-        font-size: 28rpx;
+        font-size: 30rpx;
         font-family: Microsoft YaHei;
         font-weight: 400;
         color: #FFF;
         border-radius: 6rpx;
-        margin-top: 20rpx;
+        margin-top: 15rpx;
     }
 
 
