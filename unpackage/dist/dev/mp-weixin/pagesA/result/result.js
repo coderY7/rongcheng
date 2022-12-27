@@ -224,7 +224,9 @@ var _default = {
       //查询结果
       sumdata: '',
       //数据汇总
-      cut: false //切换展示
+      cut: false,
+      //切换展示
+      cardname: '' //卡片上的名称
     };
   },
 
@@ -239,13 +241,18 @@ var _default = {
     if (option.sumdata) {
       this.sumdata = JSON.parse(option.sumdata);
     }
-    if (option.creportcolumns) {
-      console.log('卡片', option.creportcolumns.split(';'));
-    }
     this.tableData = this.result;
-    this.resultcard = this.result;
     this.pagination();
     this.showdata = this.result[0];
+    //测试卡片形式显示
+    if (option.creportcolumns) {
+      this.cut = true;
+      console.log('卡片', option.creportcolumns.split(';'));
+      this.cardname = option.creportcolumns.split(';');
+      this.resultcard = this.result[0];
+      console.log('kapian', this.resultcard);
+      console.log(this.cardname[0], this.cardname[1]);
+    }
   },
   onShow: function onShow() {
     //新table1
@@ -288,11 +295,6 @@ var _default = {
       this.result = result;
     },
     rowClick: function rowClick(row, index) {
-      uni.showToast({
-        icon: 'none',
-        duration: 2000,
-        title: '查看'
-      });
       var data = JSON.stringify(row);
       uni.navigateTo({
         url: "../../pagesA/detail/detail?list=".concat(data)
