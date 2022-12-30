@@ -201,3 +201,5 @@ export const rcpdline = (params, config = {}) => http.post("/mzsale/web/pdd/dele
 export const rcjz = (params, config = {}) => http.post("/mzsale/web/pdd/app/fastset", params, config)
 //功能权限
 export const  rcgnqx= (params, config = {}) => http.post("/mzsale/web/basic/authority", params, config)
+//子层级查询
+export const  getchild= (params, config = {}) => http.post("/mzsale/web/report/condition/child/getlist", params, config)

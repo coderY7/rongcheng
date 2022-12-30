@@ -4,163 +4,152 @@
 		<view class="container">
 			<view class="unit1">
 				<!--        近期查询日期-->
-<!--				<view class="recent">-->
-<!--					<view class="ubut" v-for="(item,index) in datelist">-->
-<!--						<button @click="getdata(item,index)" :class="{'active':xzindex==index}">{{item.name}}</button>-->
-<!--					</view>-->
-<!--				</view>-->
+				<!--				<view class="recent">-->
+				<!--					<view class="ubut" v-for="(item,index) in datelist">-->
+				<!--						<button @click="getdata(item,index)" :class="{'active':xzindex==index}">{{item.name}}</button>-->
+				<!--					</view>-->
+				<!--				</view>-->
 				<!-- 选择时间-->
 				<view class="boxunit">
-						<view class="box_l">日期:</view>
-						<view class="box_r">
-							<uni-datetime-picker type="date" :value="sdate" v-model="sdate"
-								@change="startdate()" />
-<!--              <view style="font-size: 18rpx">(默认当天)</view>-->
+					<view class="box_l">日期:</view>
+					<view class="box_r">
+						<uni-datetime-picker type="date" :value="sdate" v-model="sdate" @change="startdate()" />
+						<!--              <view style="font-size: 18rpx">(默认当天)</view>-->
 
-            </view>
+					</view>
 				</view>
 
 				<!-- 选择门店 -->
 				<view class="boxunit">
-						<view class="box_l">分店:</view>
-						<view class="box_r">
-									<uni-data-select v-model="xzfd" :localdata="fdlist"></uni-data-select>
-<!--                <view style="font-size: 18rpx">(默认全部分店)</view>-->
+					<view class="box_l">分店:</view>
+					<view class="box_r">
+						<uni-data-select v-model="xzfd" :localdata="fdlist"></uni-data-select>
+						<!--                <view style="font-size: 18rpx">(默认全部分店)</view>-->
 
 					</view>
 				</view>
 			</view>
 
-      <uni-group title="实时销售分析" top="20">
-        <view class="unit">
-          <view class="unit1box">
-            <view class="box">
-              <view class="boxitem" v-for="(item,index) of ybpdata.Table[0]">
-                <view class="box_left" :style="{backgroundColor:item.color}">
-                  <image></image>
-                </view>
-                <view class="box_right">
-                  <view>{{item.value==''?'0.00':item.value}}</view>
-                  <view>{{item.key}}</view>
-                </view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </uni-group>
+			<uni-group title="实时销售分析" top="20">
+				<view class="unit">
+					<view class="unit1box">
+						<view class="box">
+						<view class="boxitem" v-for="(item,index) of ybpdata.Table[0]" :key="index">
+								<view class="box_left" :style="{backgroundColor:item.color}">
+									<image></image>
+								</view>
+								<view class="box_right">
+									<view>{{item.value==''?'0.00':item.value}}</view>
+									<view>{{item.key}}</view>
+								</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</uni-group>
 
-<!--      <uni-group title="会员分析" top="20">-->
-<!--        <view class="unit">-->
-<!--          <view class="charts-box">-->
-<!--            <qiun-data-charts type="ring" :opts="optsE" :chartData="chartDataE" />-->
-<!--          </view>-->
+			<!--      <uni-group title="会员分析" top="20">-->
+			<!--        <view class="unit">-->
+			<!--          <view class="charts-box">-->
+			<!--            <qiun-data-charts type="ring" :opts="optsE" :chartData="chartDataE" />-->
+			<!--          </view>-->
 
-<!--          &lt;!&ndash; 圆环图 &ndash;&gt;-->
-<!--          <view class="own">-->
-<!--            <view class="ownbox" style="padding-right: 40rpx">-->
-<!--              <view class="uwntop">今日新增</view>-->
-<!--              <view class="uwnbottom">-->
-<!--                <view v-for="(item,key) in ybpdata.Table3[1]" class="uwnbottombox">-->
-<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
-<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
+			<!--          &lt;!&ndash; 圆环图 &ndash;&gt;-->
+			<!--          <view class="own">-->
+			<!--            <view class="ownbox" style="padding-right: 40rpx">-->
+			<!--              <view class="uwntop">今日新增</view>-->
+			<!--              <view class="uwnbottom">-->
+			<!--                <view v-for="(item,key) in ybpdata.Table3[1]" class="uwnbottombox">-->
+			<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
+			<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
+			<!--                </view>-->
+			<!--              </view>-->
+			<!--            </view>-->
 
-<!--            <view class="ownbox" style="padding-left: 40rpx">-->
-<!--              <view class="uwntop">昨日新增</view>-->
-<!--              <view class="uwnbottom">-->
-<!--                <view v-for="(item,key) in ybpdata.Table3[2]" class="uwnbottombox">-->
-<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
-<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
-<!--                </view>-->
-<!--              </view>-->
-<!--            </view>-->
+			<!--            <view class="ownbox" style="padding-left: 40rpx">-->
+			<!--              <view class="uwntop">昨日新增</view>-->
+			<!--              <view class="uwnbottom">-->
+			<!--                <view v-for="(item,key) in ybpdata.Table3[2]" class="uwnbottombox">-->
+			<!--                  <view v-if="item.key!='标识'">{{item.key}}</view>-->
+			<!--                  <view v-if="item.key!='标识'" style="height: 30rpx;font-size: 26rpx;">{{item.value}}</view>-->
+			<!--                </view>-->
+			<!--              </view>-->
+			<!--            </view>-->
 
-<!--          </view>-->
-<!--        </view>-->
+			<!--          </view>-->
+			<!--        </view>-->
 
-<!--      </uni-group>-->
+			<!--      </uni-group>-->
 
-      <uni-group title="销售占比" top="20">
-        <view class="percent">
-          <!--饼状图促销-->
-          <view class="charts-box">
-            <qiun-data-charts type="pie" :opts="optsB" :chartData="chartDataB" :canvas2d="true" canvasId="sthnghnr"/>
-          </view>
-          <!--饼状图会员-->
-          <view class="charts-box">
-            <qiun-data-charts type="pie" :opts="optsC" :chartData="chartDataC" :canvas2d="true" canvasId="swnhnmdsgerhg"/>
-          </view>
-        </view>
-      </uni-group>
+			<uni-group title="销售占比" top="20">
+				<view class="percent">
+					<!--饼状图促销-->
+					<view class="charts-box">
+						<qiun-data-charts type="pie" :opts="optsB" :chartData="chartDataB" :canvas2d="true"
+							canvasId="sthnghnr" />
+					</view>
+					<!--饼状图会员-->
+					<view class="charts-box">
+						<qiun-data-charts type="pie" :opts="optsC" :chartData="chartDataC" :canvas2d="true"
+							canvasId="swnhnmdsgerhg" />
+					</view>
+				</view>
+			</uni-group>
 
-      <uni-group title="分店销售分析" top="20">
-        <view class="unit">
-          <view class="charts-box">
-            <qiun-data-charts
-                type="column"
-                :opts="optsF"
-                :chartData="chartDataF"
-:canvas2d="true" canvasId="swiperhtnbjkmhrt"
-            />
-          </view>
-        </view>
-      </uni-group>
+			<uni-group title="分店销售分析" top="20">
+				<view class="unit">
+					<view class="charts-box">
+						<qiun-data-charts type="column" :opts="optsF" :chartData="chartDataF" :canvas2d="true"
+							canvasId="swiperhtnbjkmhrt" />
+					</view>
+				</view>
+			</uni-group>
 
-      <uni-group title="时段销售分析" top="20">
-        <view class="unit">
-          <view class="charts-box">
-            <qiun-data-charts
-                type="line"
-                :opts="optsG"
-                :chartData="chartDataG"
-				:canvas2d="true" canvasId="swiperidafbvfbd"
-            />
-          </view>
-        </view>
-      </uni-group>
+			<uni-group title="时段销售分析" top="20">
+				<view class="unit">
+					<view class="charts-box">
+						<qiun-data-charts type="line" :opts="optsG" :chartData="chartDataG" :canvas2d="true"
+							canvasId="swiperidafbvfbd" />
+					</view>
+				</view>
+			</uni-group>
 
-      <uni-group title="部门经营分析" top="20">
-        <view class="unit">
-          <view class="charts-box">
-            <qiun-data-charts
-                type="column"
-                :opts="optsA"
-                :chartData="chartDataA"
-:canvas2d="true" canvasId="swiperhtnbfbg"
-            />
-          </view>
-        </view>
+			<uni-group title="部门经营分析" top="20">
+				<view class="unit">
+					<view class="charts-box">
+						<qiun-data-charts type="column" :opts="optsA" :chartData="chartDataA" :canvas2d="true"
+							canvasId="swiperhtnbfbg" />
+					</view>
+				</view>
 
-      </uni-group>
+			</uni-group>
 
-<!--      <uni-group title="15天数据分析" top="20">-->
-<!--        <view class="unit">-->
-<!--          &lt;!&ndash; 折线图 &ndash;&gt;-->
-<!--          <view class="charts-box">-->
-<!--            <qiun-data-charts type="line" :opts="optsD" :chartData="chartDataD" />-->
-<!--          </view>-->
-<!--        </view>-->
+			<!--      <uni-group title="15天数据分析" top="20">-->
+			<!--        <view class="unit">-->
+			<!--          &lt;!&ndash; 折线图 &ndash;&gt;-->
+			<!--          <view class="charts-box">-->
+			<!--            <qiun-data-charts type="line" :opts="optsD" :chartData="chartDataD" />-->
+			<!--          </view>-->
+			<!--        </view>-->
 
-<!--      </uni-group>-->
+			<!--      </uni-group>-->
 
-<!--      <uni-group title="部门经营概况" top="20">-->
-<!--        <view class="unit">-->
-<!--          <view class="shu">-->
-<!--            <uni-segmented-control :current="current1" :values="list1" @clickItem="onClickItem1" styleType="button" activeColor="#4f99ff"></uni-segmented-control>-->
+			<!--      <uni-group title="部门经营概况" top="20">-->
+			<!--        <view class="unit">-->
+			<!--          <view class="shu">-->
+			<!--            <uni-segmented-control :current="current1" :values="list1" @clickItem="onClickItem1" styleType="button" activeColor="#4f99ff"></uni-segmented-control>-->
 
-<!--            <uni-segmented-control :current="current2" :values="list2" @clickItem="onClickItem2" styleType="text" activeColor="#4f99ff"></uni-segmented-control>-->
+			<!--            <uni-segmented-control :current="current2" :values="list2" @clickItem="onClickItem2" styleType="text" activeColor="#4f99ff"></uni-segmented-control>-->
 
-<!--            <view class="shu3" v-if="xzshu.length!=0">-->
-<!--              <view class="shu3box" v-for="(item,index) in Object.entries(xzshu)">-->
-<!--                <view>{{item[0]}}</view>-->
-<!--                <view>{{item[1]}}</view>-->
-<!--              </view>-->
-<!--            </view>-->
-<!--          </view>-->
-<!--        </view>-->
-<!--      </uni-group>-->
+			<!--            <view class="shu3" v-if="xzshu.length!=0">-->
+			<!--              <view class="shu3box" v-for="(item,index) in Object.entries(xzshu)">-->
+			<!--                <view>{{item[0]}}</view>-->
+			<!--                <view>{{item[1]}}</view>-->
+			<!--              </view>-->
+			<!--            </view>-->
+			<!--          </view>-->
+			<!--        </view>-->
+			<!--      </uni-group>-->
 
 		</view>
 	</view>
@@ -169,7 +158,7 @@
 <script>
 	import {
 		getfendians,
-    rcgetpctodayssale,
+		rcgetpctodayssale,
 
 		getappsalereport, //仪表盘数据
 
@@ -179,16 +168,16 @@
 	export default {
 		data() {
 			return {
-        list1:[],//分段的列表
-        list2:[],//分段的列表
-        current1:'',
-        current2:'',
-        xzshu:[],//选择的显示
-        shu2data:'',//二级
-        sdays:'',//15天数据
-        bfb:'',//百分比图表
-        cxdata:'',//促销图
-        hydata:'',//会员图
+				list1: [], //分段的列表
+				list2: [], //分段的列表
+				current1: '',
+				current2: '',
+				xzshu: [], //选择的显示
+				shu2data: '', //二级
+				sdays: '', //15天数据
+				bfb: '', //百分比图表
+				cxdata: '', //促销图
+				hydata: '', //会员图
 				titleHeight: 0, //状态栏和导航栏的总高度
 				statusBarHeight: 0, //状态栏高度
 				naviBarHeight: 0, //导航栏高度
@@ -205,37 +194,37 @@
 				datelist: '',
 				chartDataA: {},
 				optsA: {
-          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
-          padding: [15,15,0,5],
-          legend: {},
-          xAxis: {
-            disableGrid: true
-          },
-          yAxis: {
-            data: [
-              {
-                min: 0
-              }
-            ]
-          },
-          extra: {
-            column: {
-              type: "group",
-              width: 30,
-              activeBgColor: "#000000",
-              activeBgOpacity: 0.08
-            }
-          }
-        },
+					color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					padding: [15, 15, 0, 5],
+					legend: {},
+					xAxis: {
+						disableGrid: true
+					},
+					yAxis: {
+						data: [{
+							min: 0
+						}]
+					},
+					extra: {
+						column: {
+							type: "group",
+							width: 30,
+							activeBgColor: "#000000",
+							activeBgOpacity: 0.08
+						}
+					}
+				},
 				ybpdata: '',
-        chartDataB: {},
+				chartDataB: {},
 				optsB: {
-					color: ["#FC8452", "#9A60B4","#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4"],
+					color: ["#FC8452", "#9A60B4", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4"],
 					padding: [5, 5, 5, 5],
 					extra: {
 						pie: {
-              rotate:true,
-              customRadius:40,
+							rotate: true,
+							customRadius: 40,
 							activeOpacity: 0.5,
 							activeRadius: 5,
 							offsetAngle: 0,
@@ -247,24 +236,24 @@
 						}
 					}
 				},
-        chartDataC: {},
-        optsC: {
-          color: ["#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4"],
-          padding: [5, 5, 5, 5],
-          extra: {
-            pie: {
-              customRadius:40,
-              activeOpacity: 0.5,
-              activeRadius: 5,
-              offsetAngle: 0,
-              labelWidth: 2,
-              border: true,
-              borderWidth: 3,
-              borderColor: "#FFFFFF",
-              linearType: "none"
-            }
-          }
-        },
+				chartDataC: {},
+				optsC: {
+					color: ["#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4"],
+					padding: [5, 5, 5, 5],
+					extra: {
+						pie: {
+							customRadius: 40,
+							activeOpacity: 0.5,
+							activeRadius: 5,
+							offsetAngle: 0,
+							labelWidth: 2,
+							border: true,
+							borderWidth: 3,
+							borderColor: "#FFFFFF",
+							linearType: "none"
+						}
+					}
+				},
 				chartDataD: {},
 				optsD: {
 					color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
@@ -323,50 +312,52 @@
 						}
 					}
 				},
-        chartDataF: {},
+				chartDataF: {},
 
-        optsF: {
-          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
-          padding: [15,15,0,5],
-          legend: {},
-          xAxis: {
-            disableGrid: true
-          },
-          yAxis: {
-            data: [
-              {
-                min: 0
-              }
-            ]
-          },
-          extra: {
-            column: {
-              type: "group",
-              width: 30,
-              activeBgColor: "#000000",
-              activeBgOpacity: 0.08
-            }
-          }
-        },
-        chartDataG:{},
-        optsG: {
-          color: ["#1890FF","#91CB74","#FAC858","#EE6666","#73C0DE","#3CA272","#FC8452","#9A60B4","#ea7ccc"],
-          padding: [15,10,0,15],
-          legend: {},
-          xAxis: {
-            disableGrid: true
-          },
-          yAxis: {
-            gridType: "dash",
-            dashLength: 2
-          },
-          extra: {
-            line: {
-              type: "straight",
-              width: 2
-            }
-          }
-        },
+				optsF: {
+					color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					padding: [15, 15, 0, 5],
+					legend: {},
+					xAxis: {
+						disableGrid: true
+					},
+					yAxis: {
+						data: [{
+							min: 0
+						}]
+					},
+					extra: {
+						column: {
+							type: "group",
+							width: 30,
+							activeBgColor: "#000000",
+							activeBgOpacity: 0.08
+						}
+					}
+				},
+				chartDataG: {},
+				optsG: {
+					color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666", "#73C0DE", "#3CA272", "#FC8452", "#9A60B4",
+						"#ea7ccc"
+					],
+					padding: [15, 10, 0, 15],
+					legend: {},
+					xAxis: {
+						disableGrid: true
+					},
+					yAxis: {
+						gridType: "dash",
+						dashLength: 2
+					},
+					extra: {
+						line: {
+							type: "straight",
+							width: 2
+						}
+					}
+				},
 
 			};
 		},
@@ -381,9 +372,9 @@
 			//this.getServerDataE();
 			this.getServerDataF();
 			this.getServerDataG();
-      //this.section1()
+			//this.section1()
 
-    },
+		},
 		onShow() {
 			this.sdate = dayjs().format('YYYY-MM-DD') // 获取当前时间
 			let one = dayjs().unix() - 24 * 60 * 60 // 获取前一天时间戳
@@ -418,20 +409,20 @@
 					cxfdbh.push(datas)
 				})
 				this.fdlist = cxfdbh
-        this.xzfd=this.fdlist[0].value
+				this.xzfd = this.fdlist[0].value
 			}, 2000)
 			this.getdata()
-      //this.getdata2()
+			//this.getdata2()
 
-    },
+		},
 		onLoad() {
 			uni.setStorageSync('cxbb', true)
 		},
 		watch: {
 			xzfd: function(now, old) {
 				if (now) {
-          console.log(this.xzfd);
-          this.getdata()
+					console.log(this.xzfd);
+					this.getdata()
 				}
 			},
 			sdate: function(now, old) {
@@ -444,8 +435,8 @@
 
 			//处理数据
 			manage(e) {
-        let table0 = this.ybpdata.Table[0]
-        let table = []
+				let table0 = this.ybpdata.Table[0]
+				let table = []
 				for (var [key, value] of Object.entries(table0)) {
 					table.push({
 						key,
@@ -457,80 +448,80 @@
 				})
 				this.ybpdata.Table[0] = table
 
-        //剔除会员和促销
-        let newdata=[]
-        for ( key of this.ybpdata.Table[0]) {
-          if (key.key == '会员占比' || key.key=="促销占比") {
-            newdata.push(key)
-          }
-        }
-        this.bfb=newdata
+				//剔除会员和促销
+				let newdata = []
+				for (key of this.ybpdata.Table[0]) {
+					if (key.key == '会员占比' || key.key == "促销占比") {
+						newdata.push(key)
+					}
+				}
+				this.bfb = newdata
 
-        this.ybpdata.Table[0].forEach((item,index)=>{
-          if (item.key == '会员占比') {
-            let a=this.ybpdata.Table[0].splice(index,1)
-          }
-          if (item.key=="促销占比") {
-            let a=this.ybpdata.Table[0].splice(index,1)
-          }
-          if (item.key=="Result") {
-            let a=this.ybpdata.Table[0].splice(index,1)
-          }
-        })
-        console.log(this.ybpdata.Table[0])
+				this.ybpdata.Table[0].forEach((item, index) => {
+					if (item.key == '会员占比') {
+						let a = this.ybpdata.Table[0].splice(index, 1)
+					}
+					if (item.key == "促销占比") {
+						let a = this.ybpdata.Table[0].splice(index, 1)
+					}
+					if (item.key == "Result") {
+						let a = this.ybpdata.Table[0].splice(index, 1)
+					}
+				})
+				console.log(this.ybpdata.Table[0])
 			},
-//会员比和促销比
-      percent(){
-        //促销
-        let cxdata=[]
-        let a={}
-        a.name=this.bfb[0].key
-        a.value=this.bfb[0].value.replace("%", "")*100
-        cxdata.push(a)
-        let b={}
-        b.name=`非${this.bfb[0].key}`
-        b.value=10000-this.bfb[0].value.replace("%", "")*100
-        cxdata.push(b)
-        this.cxdata=cxdata
-//会员
-        let hydata=[]
-        let c={}
-        c.name=this.bfb[1].key
-        c.value=this.bfb[1].value.replace("%", "")*100
-        hydata.push(c)
-        let d={}
-        d.name=`非${this.bfb[1].key}`
-        d.value=10000-this.bfb[1].value.replace("%", "")*100
-        hydata.push(d)
-        this.hydata=hydata
-      },
+			//会员比和促销比
+			percent() {
+				//促销
+				let cxdata = []
+				let a = {}
+				a.name = this.bfb[0].key
+				a.value = this.bfb[0].value.replace("%", "") * 100
+				cxdata.push(a)
+				let b = {}
+				b.name = `非${this.bfb[0].key}`
+				b.value = 10000 - this.bfb[0].value.replace("%", "") * 100
+				cxdata.push(b)
+				this.cxdata = cxdata
+				//会员
+				let hydata = []
+				let c = {}
+				c.name = this.bfb[1].key
+				c.value = this.bfb[1].value.replace("%", "") * 100
+				hydata.push(c)
+				let d = {}
+				d.name = `非${this.bfb[1].key}`
+				d.value = 10000 - this.bfb[1].value.replace("%", "") * 100
+				hydata.push(d)
+				this.hydata = hydata
+			},
 			//查询数据
 			getdata(item, index) {
 				this.xzindex = index
 				let getpcadmindaysaledata = {
 					access_token: uni.getStorageSync('access_token'),
 					sdate: item ? item.value : this.sdate,
-          companyid:uni.getStorageSync('companyid'),
-					fdbh:uni.getStorageSync('fdbh'), //this.xzfd ? this.xzfd : 'ALL',
-          fdtype:uni.getStorageSync('fdtype')
+					companyid: uni.getStorageSync('companyid'),
+					fdbh: uni.getStorageSync('fdbh'), //this.xzfd ? this.xzfd : 'ALL',
+					fdtype: uni.getStorageSync('fdtype')
 				}
-				
+
 				//实际方法
-        rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
+				rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
 					//console.log('仪表盘数据', JSON.parse(JSON.stringify(res)))
 					console.log('仪表盘数据', res.data)
-											let data = res.data
-											this.ybpdata = data
-											this.manage()
-                      this.percent()
-					  this.getServerDataA();
-					  			this.getServerDataB();
-					  			this.getServerDataC();
-					  			this.getServerDataD();
-					  			//this.getServerDataE();
-					  			this.getServerDataF();
-					  			this.getServerDataG();
-					        //this.section1()
+					let data = res.data
+					this.ybpdata = data
+					this.manage()
+					this.percent()
+					this.getServerDataA();
+					this.getServerDataB();
+					this.getServerDataC();
+					this.getServerDataD();
+					//this.getServerDataE();
+					this.getServerDataF();
+					this.getServerDataG();
+					//this.section1()
 
 				})
 			},
@@ -547,44 +538,43 @@
 					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
 					let res = {
 						categories: [],
-						series: [
-              {
-                name: "客单笔数",
-                data: []
-              },
-              {
-                name: "预计毛利",
-                data: []
-              },
-              {
-                name: "实销总额",
-                data: []
-              },
-            ]
+						series: [{
+								name: "客单笔数",
+								data: []
+							},
+							{
+								name: "预计毛利",
+								data: []
+							},
+							{
+								name: "实销总额",
+								data: []
+							},
+						]
 					};
 
 					//处理柱形图数据
-					let bmmc = []//名称
-          let bmid=[]//ID
-          let sxje=[]//实销金额
-          let yjml=[]//预计毛利
-          let kdbs=[]//客单笔数
+					let bmmc = [] //名称
+					let bmid = [] //ID
+					let sxje = [] //实销金额
+					let yjml = [] //预计毛利
+					let kdbs = [] //客单笔数
 					this.ybpdata.Table4.forEach((item) => {
 						bmmc.push(item['部门名称'])
-            bmid.push(item['部门ID'])
-            kdbs.push(parseFloat(item['客单笔数']))
-            yjml.push(parseFloat(item['预计毛利']))
-            sxje.push(parseFloat(item['实销金额']))
-          })
+						bmid.push(item['部门ID'])
+						kdbs.push(parseFloat(item['客单笔数']))
+						yjml.push(parseFloat(item['预计毛利']))
+						sxje.push(parseFloat(item['实销金额']))
+					})
 					res.categories = bmmc
 
-          res.series[0].data=kdbs
-          res.series[1].data=yjml
-          res.series[2].data=sxje
+					res.series[0].data = kdbs
+					res.series[1].data = yjml
+					res.series[2].data = sxje
 
-          // res.series.push({name:'实销金额',data:sxje},
-          //     {name:'预计毛利',data:yjml},
-          //     {name:'客单笔数',data:kdbs})
+					// res.series.push({name:'实销金额',data:sxje},
+					//     {name:'预计毛利',data:yjml},
+					//     {name:'客单笔数',data:kdbs})
 					this.chartDataA = JSON.parse(JSON.stringify(res));
 				}, 500);
 			},
@@ -593,33 +583,29 @@
 				//模拟从服务器获取数据时的延时
 				setTimeout(() => {
 					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
-          let res = {
-            series: [
-              {
-                data: this.cxdata
-              }
-            ]
-          };
+					let res = {
+						series: [{
+							data: this.cxdata
+						}]
+					};
 					this.chartDataB = JSON.parse(JSON.stringify(res));
 				}, 500);
 			},
-      //销售占比分析
-      getServerDataC() {
-        //模拟从服务器获取数据时的延时
-        setTimeout(() => {
-          //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
-          let res = {
-            series: [
-              {
-                data: this.hydata
-              }
-            ]
-          };
+			//销售占比分析
+			getServerDataC() {
+				//模拟从服务器获取数据时的延时
+				setTimeout(() => {
+					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
+					let res = {
+						series: [{
+							data: this.hydata
+						}]
+					};
 
-          this.chartDataC = JSON.parse(JSON.stringify(res));
-        }, 500);
-      },
-      //会员分析
+					this.chartDataC = JSON.parse(JSON.stringify(res));
+				}, 500);
+			},
+			//会员分析
 			getServerDataE() {
 				//模拟从服务器获取数据时的延时
 				setTimeout(() => {
@@ -643,27 +629,27 @@
 						if (key == '总数') {
 							c.name = key
 							c.value = Number(value)
-              data.push(c)
-              title.push(c)
+							data.push(c)
+							title.push(c)
 						}
 					}
-          let table1 = []
-          for (var [key, value] of Object.entries(this.ybpdata.Table3[1])) {
-            table1.push({
-              key,
-              value
-            })
-          }
-          this.ybpdata.Table3[1] = table1
+					let table1 = []
+					for (var [key, value] of Object.entries(this.ybpdata.Table3[1])) {
+						table1.push({
+							key,
+							value
+						})
+					}
+					this.ybpdata.Table3[1] = table1
 
-          let table2 = []
-          for (var [key, value] of Object.entries(this.ybpdata.Table3[2])) {
-            table2.push({
-              key,
-              value
-            })
-          }
-          this.ybpdata.Table3[2] = table2
+					let table2 = []
+					for (var [key, value] of Object.entries(this.ybpdata.Table3[2])) {
+						table2.push({
+							key,
+							value
+						})
+					}
+					this.ybpdata.Table3[2] = table2
 
 
 
@@ -678,148 +664,154 @@
 					this.chartDataE = JSON.parse(JSON.stringify(res));
 				}, 500);
 			},
-//分店销售分析
-      getServerDataF() {
-        //模拟从服务器获取数据时的延时
-        setTimeout(() => {
-          //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
-          let res = {
-            categories: [],
-            series: [
-              {
-                name: "客单笔数",
-                data: []
-              },
-              {
-                name: "预计毛利",
-                data: []
-              },
-              {
-                name: "实销总额",
-                data: []
-              },
-            ]
-          };
-          let table=this.ybpdata.Table5
-          let fd=[]
-          let kdbs=[]
-          let yjmle=[]
-          let sxje=[]
-          table.forEach((item)=>{
-            fd.push(item['分店名称'])
-            kdbs.push(parseFloat(item['客单笔数']))
-            yjmle.push(parseFloat(item['预计毛利']))
-            sxje.push(parseFloat(item['实销总额']))
-          })
-          res.categories=fd
-          res.series[0].data=kdbs
-          res.series[1].data=yjmle
-          res.series[2].data=sxje
+			//分店销售分析
+			getServerDataF() {
+				//模拟从服务器获取数据时的延时
+				setTimeout(() => {
+					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
+					let res = {
+						categories: [],
+						series: [{
+								name: "客单笔数",
+								data: []
+							},
+							{
+								name: "预计毛利",
+								data: []
+							},
+							{
+								name: "实销总额",
+								data: []
+							},
+						]
+					};
+					let table = this.ybpdata.Table5
+					let fd = []
+					let kdbs = []
+					let yjmle = []
+					let sxje = []
+					table.forEach((item) => {
+						fd.push(item['分店名称'])
+						kdbs.push(parseFloat(item['客单笔数']))
+						yjmle.push(parseFloat(item['预计毛利']))
+						sxje.push(parseFloat(item['实销总额']))
+					})
+					res.categories = fd
+					res.series[0].data = kdbs
+					res.series[1].data = yjmle
+					res.series[2].data = sxje
 
 
-          // res.series.push({name:'实销总额',data:sxje},
-          //     {name:'预计毛利',data:yjmle},
-          //     {name:'客单笔数',data:kdbs})
-console.log(res)
-          this.chartDataF = JSON.parse(JSON.stringify(res));
-        }, 500);
-      },
-//时段分析
-      getServerDataG() {
-        //模拟从服务器获取数据时的延时
-        setTimeout(() => {
-          //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
-          let res = {
-            categories: ["2016","2017","2018","2019","2020","2021"],
-            series: []
-          };
-          let table=this.ybpdata.Table1
-          let kdll=[]
-          let kdj=[]
-          let sxje=[]
-          let sj=[]
-          table.forEach((item)=>{
-            kdll.push(item['客单流量'])
-            kdj.push(parseFloat(item['平均客单价']))
-            sxje.push(parseFloat(item['实销金额']))
-            sj.push(item['时间段'])
-          })
-          res.categories=sj
-          res.series.push({name:'实销金额',data:sxje},
-              {name:'平均客单价',data:kdj},
-              {name:'客单流量',data:kdll})
-          this.chartDataG = JSON.parse(JSON.stringify(res));
-        }, 500);
-      },
-//15天数据
-      getServerDataD() {
-        //模拟从服务器获取数据时的延时
-        setTimeout(() => {
-          //模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
-          let res = {
-            categories: ['time'],
-            series: [{
-              name: "",
-              data: [0,0]
-            },]
-          };
-          this.chartDataD = JSON.parse(JSON.stringify(res));
-        }, 500);
-      },
+					// res.series.push({name:'实销总额',data:sxje},
+					//     {name:'预计毛利',data:yjmle},
+					//     {name:'客单笔数',data:kdbs})
+					console.log(res)
+					this.chartDataF = JSON.parse(JSON.stringify(res));
+				}, 500);
+			},
+			//时段分析
+			getServerDataG() {
+				//模拟从服务器获取数据时的延时
+				setTimeout(() => {
+					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
+					let res = {
+						categories: ["2016", "2017", "2018", "2019", "2020", "2021"],
+						series: []
+					};
+					let table = this.ybpdata.Table1
+					let kdll = []
+					let kdj = []
+					let sxje = []
+					let sj = []
+					table.forEach((item) => {
+						kdll.push(item['客单流量'])
+						kdj.push(parseFloat(item['平均客单价']))
+						sxje.push(parseFloat(item['实销金额']))
+						sj.push(item['时间段'])
+					})
+					res.categories = sj
+					res.series.push({
+						name: '实销金额',
+						data: sxje
+					}, {
+						name: '平均客单价',
+						data: kdj
+					}, {
+						name: '客单流量',
+						data: kdll
+					})
+					this.chartDataG = JSON.parse(JSON.stringify(res));
+				}, 500);
+			},
+			//15天数据
+			getServerDataD() {
+				//模拟从服务器获取数据时的延时
+				setTimeout(() => {
+					//模拟服务器返回数据，如果数据格式和标准格式不同，需自行按下面的格式拼接
+					let res = {
+						categories: ['time'],
+						series: [{
+							name: "",
+							data: [0, 0]
+						}, ]
+					};
+					this.chartDataD = JSON.parse(JSON.stringify(res));
+				}, 500);
+			},
 
-      getdata2(item, index) {
-        this.xzindex = index
-        let getpcadmindaysaledata = {
-          access_token: uni.getStorageSync('access_token'),
-          saledate: item ? item.value : this.sdate,
-          datamark: 'sdays',
-          selfdbh: this.xzfd ? this.xzfd : 'ALL'
-        }
+			getdata2(item, index) {
+				this.xzindex = index
+				let getpcadmindaysaledata = {
+					access_token: uni.getStorageSync('access_token'),
+					saledate: item ? item.value : this.sdate,
+					datamark: 'sdays',
+					selfdbh: this.xzfd ? this.xzfd : 'ALL'
+				}
 
-        //实际方法
-        rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
-        	console.log('数据', res.data)
-        	            let data = res.data
-        	            this.sdays = data
-        	            //默认显示数据
-        	            this.xzshu=this.sdays.table0[0]
-        })
-      },
+				//实际方法
+				rcgetpctodayssale(getpcadmindaysaledata).then((res) => {
+					console.log('数据', res.data)
+					let data = res.data
+					this.sdays = data
+					//默认显示数据
+					this.xzshu = this.sdays.table0[0]
+				})
+			},
 
-      section1(){
-       let list=[]
-        this.sdays.table0.forEach((item)=>{
-          list.push(item['部门名称'])
-        })
-        this.list1=list
-      },
-      section2(item){
-        let list=[]
-        let shu2=[]
-          this.sdays.table2.forEach((i)=>{
-            if(item['部门ID'] == i['部门ID']){
-              console.log(i)
-              shu2.push(i)
-              list.push(i['部门分组名'])
-            }
-        })
-        this.list2=list
-        this.shu2data=shu2
+			section1() {
+				let list = []
+				this.sdays.table0.forEach((item) => {
+					list.push(item['部门名称'])
+				})
+				this.list1 = list
+			},
+			section2(item) {
+				let list = []
+				let shu2 = []
+				this.sdays.table2.forEach((i) => {
+					if (item['部门ID'] == i['部门ID']) {
+						console.log(i)
+						shu2.push(i)
+						list.push(i['部门分组名'])
+					}
+				})
+				this.list2 = list
+				this.shu2data = shu2
 
-      },
-      onClickItem1(e) {
-        if (this.current1 != e.currentIndex) {
-          this.current1 = e.currentIndex;
-        }
-        this.xzshu=this.sdays.table0[e.currentIndex]
-        this.section2(this.sdays.table0[e.currentIndex])
-      },
-      onClickItem2(e) {
-        if (this.current2 != e.currentIndex) {
-          this.current2 = e.currentIndex;
-        }
-        this.xzshu=this.shu2data[e.currentIndex]
-      },
+			},
+			onClickItem1(e) {
+				if (this.current1 != e.currentIndex) {
+					this.current1 = e.currentIndex;
+				}
+				this.xzshu = this.sdays.table0[e.currentIndex]
+				this.section2(this.sdays.table0[e.currentIndex])
+			},
+			onClickItem2(e) {
+				if (this.current2 != e.currentIndex) {
+					this.current2 = e.currentIndex;
+				}
+				this.xzshu = this.shu2data[e.currentIndex]
+			},
 
 			//设置
 			left() {
@@ -845,31 +837,36 @@ console.log(res)
 		height: var(--status-bar-height);
 		width: 100%;
 	}
-  .unit{
-    padding: 30rpx 0;
-    border-bottom: 1px silver dashed;
-  }
-.unitname{
-  margin: 20rpx 0;
-  font-size: 30rpx;
-}
-  .boxunit {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20rpx;
 
-    .box_l {
-      font-size: 26rpx;
-      width:15%;
-    }
-    .box_r {
-      width: 80%;
-      //display: flex;
-      //align-items: center;
-    }
-  }
+	.unit {
+		padding: 30rpx 0;
+		border-bottom: 1px silver dashed;
+	}
+
+	.unitname {
+		margin: 20rpx 0;
+		font-size: 30rpx;
+	}
+
+	.boxunit {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 20rpx;
+
+		.box_l {
+			font-size: 26rpx;
+			width: 15%;
+		}
+
+		.box_r {
+			width: 80%;
+			//display: flex;
+			//align-items: center;
+		}
+	}
+
 	.box {
 		.boxitem {
 			width: 40%;
@@ -966,6 +963,7 @@ console.log(res)
 				padding-left: 20px;
 				width: 80px;
 			}
+
 			.navname {
 				display: flex;
 				justify-content: center;
@@ -973,81 +971,96 @@ console.log(res)
 			}
 		}
 	}
-  .percent{
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-around;
-    align-items: center;
-.charts-box{
-  width: 50%;
-}
-  }
-  .own{
-    width: 100%;
-    display: inline-flex;
-    font-size: 22rpx;
-    .ownbox:not(:last-child){
-      border-right: 1px silver dashed;
-    }
-    .ownbox{
-      padding: 20rpx;
-      width: 48%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .uwntop{
-       margin-bottom: 30rpx;
-      }
-      .uwnbottom{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        .uwnbottombox{
-          display: flex;
-          flex-direction: column;
-          padding: 10rpx 0;
-          justify-content: center;
-          align-items: center;
-        }
-      }
-    }
-  }
-  .shu{
-    width: 100%;
-    .shu1{
-      .shu1box{
-        display: inline-flex;
-       justify-content: flex-start;
-        margin:  0 20rpx;
-      }
-    }
-    .shu2{
-      margin: 20rpx 0;
-      .shu2box{
-        display: inline-flex;
-        justify-content: flex-start;
-        margin:  0 10rpx;
-      }
-    }
-    .shu3{
-      margin: 20rpx 50rpx 20rpx 50rpx;
-      padding: 20rpx;
-      background-color: #ffffff;
-      border-radius: 20rpx;
-      border: thick double #85d8f3;
-    }
-    .shu3box{
-      display: flex;
-      justify-content: space-between;
-      padding: 10rpx;
-      border-bottom: 0.5px solid #e2e2e2;
-    }
-  }
-  page{
-    //background: url('../../static/shilu-login/rclogo.png') no-repeat;
-    //background-position: center center;
-    //background-attachment: fixed;
-  }
+
+	.percent {
+		width: 100%;
+		display: inline-flex;
+		justify-content: space-around;
+		align-items: center;
+
+		.charts-box {
+			width: 50%;
+		}
+	}
+
+	.own {
+		width: 100%;
+		display: inline-flex;
+		font-size: 22rpx;
+
+		.ownbox:not(:last-child) {
+			border-right: 1px silver dashed;
+		}
+
+		.ownbox {
+			padding: 20rpx;
+			width: 48%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+			.uwntop {
+				margin-bottom: 30rpx;
+			}
+
+			.uwnbottom {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+
+				.uwnbottombox {
+					display: flex;
+					flex-direction: column;
+					padding: 10rpx 0;
+					justify-content: center;
+					align-items: center;
+				}
+			}
+		}
+	}
+
+	.shu {
+		width: 100%;
+
+		.shu1 {
+			.shu1box {
+				display: inline-flex;
+				justify-content: flex-start;
+				margin: 0 20rpx;
+			}
+		}
+
+		.shu2 {
+			margin: 20rpx 0;
+
+			.shu2box {
+				display: inline-flex;
+				justify-content: flex-start;
+				margin: 0 10rpx;
+			}
+		}
+
+		.shu3 {
+			margin: 20rpx 50rpx 20rpx 50rpx;
+			padding: 20rpx;
+			background-color: #ffffff;
+			border-radius: 20rpx;
+			border: thick double #85d8f3;
+		}
+
+		.shu3box {
+			display: flex;
+			justify-content: space-between;
+			padding: 10rpx;
+			border-bottom: 0.5px solid #e2e2e2;
+		}
+	}
+
+	page {
+		//background: url('../../static/shilu-login/rclogo.png') no-repeat;
+		//background-position: center center;
+		//background-attachment: fixed;
+	}
 </style>
