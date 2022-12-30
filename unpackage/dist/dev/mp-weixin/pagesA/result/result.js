@@ -224,13 +224,35 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     this.showdata = this.result[0];
     //测试卡片形式显示
     if (option.creportcolumns) {
-      this.cut = true;
+      //this.cut=true
       this.creportdata = JSON.parse(option.creportdata);
       console.log('卡片', option.creportcolumns.split(';'));
       this.cardname = option.creportcolumns.split(';');
+      //分行显示
+      // this.cardname[0]=this.cardname[0].concat('-1')
+      // this.cardname[1]=this.cardname[1].concat('-1')
+      // this.cardname[2]=this.cardname[2].concat('-2')
+
+      if (this.cardname[0].indexOf('-') != '-1') {
+        console.log('存在分行');
+        var datalist = [];
+        this.cardname.forEach(function (item) {
+          //item.split('-')[1]
+          if (!datalist[item.split('-')[1]]) {
+            var arr = [];
+            arr.push(item.split('-')[0]);
+            datalist[item.split('-')[1]] = arr;
+          } else {
+            datalist[item.split('-')[1]].push(item.split('-')[0]);
+          }
+        });
+        console.log('存在分行数据', datalist);
+      } else {
+        console.log('不存在分行');
+
+      }
       this.resultcard = this.result[0];
       console.log('kapian', this.resultcard);
-      console.log(this.cardname[0], this.cardname[1]);
     }
 
 
