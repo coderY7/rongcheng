@@ -628,9 +628,10 @@ var _default = { data: function data() {return { sptm: '', bgColor: '#4f99ff', d
         var sumdata = JSON.stringify(_this5.sumdata);
         var creportcolumns = res.creportcolumns;
         var creportdata = JSON.stringify(res.creportdata);
+        var condition = JSON.stringify(_this5.tj);
         uni.setStorageSync('result', result);
         uni.navigateTo({
-          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata, "&creportcolumns=").concat(creportcolumns, "&creportdata=").concat(creportdata) });
+          url: "../../pagesA/result/result?bdt=".concat(bdt, "&result=").concat(result, "&sumdata=").concat(sumdata, "&creportcolumns=").concat(creportcolumns, "&creportdata=").concat(creportdata, "&condition=").concat(condition) });
 
       });
 

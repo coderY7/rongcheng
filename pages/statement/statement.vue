@@ -31,6 +31,7 @@
 	export default {
 		data() {
 			return {
+				urltest:"../../static/logo.png",
 				bgColor: '#4f99ff', //动态背景
 				Alllist: [],
         showlist:[],

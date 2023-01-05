@@ -202,4 +202,4 @@ export const rcjz = (params, config = {}) => http.post("/mzsale/web/pdd/app/fast
 //功能权限
 export const  rcgnqx= (params, config = {}) => http.post("/mzsale/web/basic/authority", params, config)
 //子层级查询
-export const  getchild= (params, config = {}) => http.post("/mzsale/web/report/condition/child/getlist", params, config)
+export const  getchild= (params, config = {}) => http.post("/mzsale/web/report/child/getlist", params, config)

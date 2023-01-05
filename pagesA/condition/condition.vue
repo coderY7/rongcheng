@@ -451,9 +451,10 @@ export default {
         let sumdata = JSON.stringify(this.sumdata)
         let creportcolumns=res.creportcolumns
         let creportdata=JSON.stringify(res.creportdata)
+        let condition=JSON.stringify(this.tj)
         uni.setStorageSync('result',result)
         uni.navigateTo({
-          url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}&creportcolumns=${creportcolumns}&creportdata=${creportdata}`
+          url: `../../pagesA/result/result?bdt=${bdt}&result=${result}&sumdata=${sumdata}&creportcolumns=${creportcolumns}&creportdata=${creportdata}&condition=${condition}`
         });
       })
 

@@ -204,7 +204,8 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       sumdata: '', //数据汇总
       cut: false, //切换展示
       cardname: '', //卡片上的名称
-      creportdata: '' //卡片层级
+      creportdata: '', //卡片层级
+      condition: '' //查询条件
     };
   },
   components: {
@@ -212,7 +213,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     navbar: navbar },
 
   onLoad: function onLoad(option) {
-
+    this.condition = JSON.parse(option.condition);
     this.bdt = JSON.parse(option.bdt);
     this.result = JSON.parse(uni.getStorageSync('result'));
     //this.result=uni.getStorageSync('result')
@@ -324,13 +325,20 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     detail: function detail(item, index) {
       console.log('卡片跳转', item);
       var itemdata = JSON.stringify(item);
-      var data = {};
+      var data = {
+        access_token: uni.getStorageSync('access_token'),
+        fdbh: uni.getStorageSync('fdbh'),
+        groupid: uni.getStorageSync('groupid'),
+        index: '0',
+        userid: uni.getStorageSync('userid'),
+        username: uni.getStorageSync('dlmc'),
+        condition: this.condition, //查询条件
+        childCondition: [item] //当前选择数据
+      };
+      (0, _api.getchild)(data).then(function (res) {
+        console.log('子级数据', res);
+      });
 
-
-
-      // uni.navigateTo({
-      //   url: `../../pagesA/detail/detail?list=${data}`
-      // });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
