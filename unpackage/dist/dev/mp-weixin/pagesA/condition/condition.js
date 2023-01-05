@@ -601,9 +601,9 @@ var _default = { data: function data() {return { sptm: '', bgColor: '#4f99ff', d
       remark: '', //备注
       shcg: false };}, components: { navbar: navbar }, onLoad: function onLoad(option) {this.cxtj = JSON.parse(option.cxdj).data; //查询条件
     this.dqbb = uni.getStorageSync('dqbb'); //当前报表
-  }, onShow: function onShow() {var _this = this;this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
+    this.start = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
     this.end = (0, _dayjs.default)().format('YYYY-MM-DD'); // 获取当前时间
-    this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
+  }, onShow: function onShow() {var _this = this;this.cxfdbh = uni.getStorageSync('basic').FDINFO;this.cxsppp = uni.getStorageSync('basic').PPINFO;this.cxsjht = uni.getStorageSync('basic').SJINFO; //处理分店下拉框数据
     var cxfdbh = [];this.cxfdbh.forEach(function (item) {var datas = {};datas.value = item.fdbh;datas.text = item.fdmc;cxfdbh.push(datas);});this.cxfdbh = cxfdbh; //处理商品品牌下拉框数据
     var cxsppp = [];this.cxsppp.forEach(function (item) {var datas = {};datas.value = item.ppbmid;datas.text = item.ppmc;cxsppp.push(datas);});this.cxsppp = cxsppp; //处理商家合同下拉框数据
     var cxsjht = [];this.cxsjht.forEach(function (item) {var datas = {};datas.value = item.sjbh;datas.text = item.sjmc;cxsjht.push(datas);});this.cxsjht = cxsjht;this.cxtj.forEach(function (item) {if (item.colname == '开始日期') {item.defval = _this.start;}if (item.colname == '结束日期') {item.defval = _this.end;}if (item.colname == '分店编号') {item.defval = _this.cxfdbh[0].value;}if (item.colname == '商家合同') {item.defval = _this.cxsjht[0].value;}});}, watch: { sptm: { handler: function handler(newValue, oldValue) {console.log(oldValue, newValue, this);this.cxtj.forEach(function (item) {if (item.colname == '商品条码') {item.defval = newValue;}});}, deep: true } }, methods: { // 扫码 搜索商品

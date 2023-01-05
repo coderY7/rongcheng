@@ -18647,7 +18647,7 @@ exports.rcpdline = rcpdline;var rcjz = function rcjz(params) {var config = argum
 //功能权限
 exports.rcjz = rcjz;var rcgnqx = function rcgnqx(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/basic/authority", params, config);};
 //子层级查询
-exports.rcgnqx = rcgnqx;var getchild = function getchild(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/report/child/getlist", params, config);};exports.getchild = getchild;
+exports.rcgnqx = rcgnqx;var getchild = function getchild(params) {var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};return http.post("/mzsale/web/report/condition/child/getlist", params, config);};exports.getchild = getchild;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),

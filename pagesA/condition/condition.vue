@@ -251,10 +251,10 @@ export default {
   onLoad(option) {
     this.cxtj = JSON.parse(option.cxdj).data //查询条件
     this.dqbb = uni.getStorageSync('dqbb') //当前报表
-  },
-  onShow() {
     this.start = dayjs().format('YYYY-MM-DD') // 获取当前时间
     this.end = dayjs().format('YYYY-MM-DD') // 获取当前时间
+  },
+  onShow() {
     this.cxfdbh=uni.getStorageSync('basic').FDINFO
     this.cxsppp=uni.getStorageSync('basic').PPINFO
     this.cxsjht=uni.getStorageSync('basic').SJINFO

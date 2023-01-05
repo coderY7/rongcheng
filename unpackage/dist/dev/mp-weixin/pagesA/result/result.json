@@ -4,6 +4,7 @@
   "enablePullDownRefresh": false,
   "usingComponents": {
     "u-scroll-list": "/node-modules/uview-ui/components/u-scroll-list/u-scroll-list",
+    "u-button": "/node-modules/uview-ui/components/u-button/u-button",
     "uni-card": "/uni_modules/uni-card/components/uni-card/uni-card",
     "zb-table": "/uni_modules/zb-table/components/zb-table/zb-table",
     "uni-pagination": "/uni_modules/uni-pagination/components/uni-pagination/uni-pagination",

@@ -100,6 +100,9 @@ try {
     uScrollList: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 461))
     },
+    uButton: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 419))
+    },
     uniCard: function() {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 471))
     },
@@ -205,7 +208,8 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       cut: false, //切换展示
       cardname: '', //卡片上的名称
       creportdata: '', //卡片层级
-      condition: '' //查询条件
+      condition: '', //查询条件
+      fhsyj: false //返回上一级
     };
   },
   components: {
@@ -216,16 +220,14 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     this.condition = JSON.parse(option.condition);
     this.bdt = JSON.parse(option.bdt);
     this.result = JSON.parse(uni.getStorageSync('result'));
-    //this.result=uni.getStorageSync('result')
     if (option.sumdata) {
       this.sumdata = JSON.parse(option.sumdata);
     }
-    this.tableData = this.result;
     this.pagination();
     this.showdata = this.result[0];
     //测试卡片形式显示
     if (option.creportcolumns) {
-      //this.cut=true
+      this.cut = true;
       this.creportdata = JSON.parse(option.creportdata);
       console.log('卡片', option.creportcolumns.split(';'));
       this.cardname = option.creportcolumns.split(';');
@@ -278,6 +280,10 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
   },
 
   methods: {
+    isfhsyj: function isfhsyj() {
+      this.cut = true;
+      this.fhsyj = !this.fhsyj;
+    },
     dj: function dj(e) {
       console.log(e);
       this.showdata = this.result[e.current - 1];
@@ -322,7 +328,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       this.cut = !this.cut;
     },
     //显示卡片数据
-    detail: function detail(item, index) {
+    detail: function detail(item, index) {var _this = this;
       console.log('卡片跳转', item);
       var itemdata = JSON.stringify(item);
       var data = {
@@ -330,6 +336,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
         fdbh: uni.getStorageSync('fdbh'),
         groupid: uni.getStorageSync('groupid'),
         index: '0',
+        djtype: uni.getStorageSync('dqbb').cxbh,
         userid: uni.getStorageSync('userid'),
         username: uni.getStorageSync('dlmc'),
         condition: this.condition, //查询条件
@@ -337,6 +344,31 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       };
       (0, _api.getchild)(data).then(function (res) {
         console.log('子级数据', res);
+        if (res.data.length > '0') {
+          _this.fhsyj = true;
+          _this.cut = false;
+          _this.result = res.data;
+          //表单头处理
+          var cl = res.columns;
+          var a = [];
+          cl.forEach(function (item) {
+            a.push({ name: item.title, lable: item.title, width: item.width });
+          });
+          _this.bdt = a;
+          _this.pagination();
+          _this.showdata = _this.result[0];
+          var column = [];
+          _this.bdt.forEach(function (item) {
+            column.push({
+              name: item.name,
+              label: item.lable,
+              width: item.width * 2,
+              align: 'center' });
+
+          });
+          _this.column = column;
+          _this.columndata = _this.showdata;
+        }
       });
 
     } } };exports.default = _default;
