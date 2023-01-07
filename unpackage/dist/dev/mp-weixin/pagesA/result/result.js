@@ -209,7 +209,8 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       cardname: '', //卡片上的名称
       creportdata: '', //卡片层级
       condition: '', //查询条件
-      fhsyj: false //返回上一级
+      fhsyj: false, //返回上一级
+      cardlist: [] //卡片列显示数据
     };
   },
   components: {
@@ -250,6 +251,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
           }
         });
         console.log('存在分行数据', datalist);
+        this.cardlist = datalist;
       } else {
         console.log('不存在分行');
 
