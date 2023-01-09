@@ -100,11 +100,11 @@ try {
     uScrollList: function() {
       return Promise.all(/*! import() | node-modules/uview-ui/components/u-scroll-list/u-scroll-list */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-scroll-list/u-scroll-list")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-scroll-list/u-scroll-list.vue */ 461))
     },
-    uButton: function() {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 419))
-    },
     uniCard: function() {
       return __webpack_require__.e(/*! import() | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then(__webpack_require__.bind(null, /*! @/uni_modules/uni-card/components/uni-card/uni-card.vue */ 471))
+    },
+    uButton: function() {
+      return Promise.all(/*! import() | node-modules/uview-ui/components/u-button/u-button */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-button/u-button")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 419))
     },
     zbTable: function() {
       return __webpack_require__.e(/*! import() | uni_modules/zb-table/components/zb-table/zb-table */ "uni_modules/zb-table/components/zb-table/zb-table").then(__webpack_require__.bind(null, /*! @/uni_modules/zb-table/components/zb-table/zb-table.vue */ 478))
@@ -188,7 +188,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
-var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = function selectSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 500));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = function selectSwitch() {__webpack_require__.e(/*! require.ensure | components/xuan-switch/xuan-switch */ "components/xuan-switch/xuan-switch").then((function () {return resolve(__webpack_require__(/*! @/components/xuan-switch/xuan-switch.vue */ 500));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var navbar = function navbar() {__webpack_require__.e(/*! require.ensure | components/nav */ "components/nav").then((function () {return resolve(__webpack_require__(/*! ../../components/nav.vue */ 197));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var UniCard = function UniCard() {__webpack_require__.e(/*! require.ensure | uni_modules/uni-card/components/uni-card/uni-card */ "uni_modules/uni-card/components/uni-card/uni-card").then((function () {return resolve(__webpack_require__(/*! ../../uni_modules/uni-card/components/uni-card/uni-card */ 471));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
 
 
 {
@@ -214,6 +215,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     };
   },
   components: {
+    UniCard: UniCard,
     selectSwitch: selectSwitch,
     navbar: navbar },
 
