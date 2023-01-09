@@ -704,7 +704,7 @@ __webpack_require__.r(__webpack_exports__);
 
   computed: {
     loadMoreHeight: function loadMoreHeight() {
-      return this.isLoadMore ? 40 : 0;
+      return this.isLoadMore ? 45 : 0;
     },
     fixedLeftColumns: function fixedLeftColumns() {
       var arr = [];

@@ -73,7 +73,7 @@
                      @scrolltolower="scrolltolower"
 	                   @scrolltoupper="(e)=>debounce(scrollToLeft)(e)"
                      @scroll="handleBodyScroll"	:scroll-left="bodyTableLeft"	:scroll-top="bodyScrollTop"
-                     :style=" `height: calc(100% - ${showSummary?80:40}px)`" >
+                     :style=" `height: calc(100% - ${showSummary?80:45}px)`" >
 	          <view class="zb-table-fixed">
 	            <view class="zb-table-tbody">
 	              <view  :class="['item-tr',highlight&&isHighlight(item,index)?'current-row':'']"
@@ -203,7 +203,7 @@
             @scroll="leftFixedScrollAction"
             :scroll-top="leftFiexScrollTop"
             class="zb-table-body-inner"
-            :style=" `height: calc(100% - ${showSummary?80:40}px)`">
+            :style=" `height: calc(100% - ${showSummary?80:45}px)`">
           <view class="zb-table-fixed">
             <view class="zb-table-tbody">
               <view
@@ -471,7 +471,7 @@ export default {
   },
   computed:{
     loadMoreHeight(){
-      return this.isLoadMore?40:0
+      return this.isLoadMore?45:0
     },
     fixedLeftColumns(){
       let arr = []
@@ -1100,8 +1100,8 @@ export default {
     flex-shrink: 0;
     width: 100px;
     padding-left: 8px;
-    height: 40px;
-    line-height: 40px;
+    height: 45px;
+    line-height: 45px;
 	padding-right: 20px;
     box-sizing: border-box;
     word-break:keep-all;           /* 不换行 */
@@ -1121,8 +1121,8 @@ export default {
     background: #fafafa;
     .item-th{
       padding-left: 8px;
-      line-height: 39px;
-      height: 40px;
+      line-height: 45px;
+      height: 45px;
       //display: flex;
       //align-items: center;
       box-sizing: border-box;
@@ -1197,8 +1197,8 @@ export default {
     flex-shrink: 0;
     width: 100px;
     padding-left: 8px;
-    height: 40px;
-    line-height: 40px;
+    height: 45px;
+    line-height: 45px;
 	padding-right:20px;
     box-sizing: border-box;
     word-break:keep-all;           /* 不换行 */
@@ -1218,7 +1218,7 @@ export default {
     .item-th{
       padding-left: 8px;
       line-height: 39px;
-      height: 40px;
+      height: 45px;
       box-sizing: border-box;
       background: #fafafa;
     }
@@ -1300,7 +1300,7 @@ export default {
   }
 }
 .zb-table-header{
-  height: 40px;
+  height: 45px;
 }
 .scrollPosition{
   position: absolute;right: 0;top: 0;height: 100%;background: red;
