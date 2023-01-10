@@ -238,7 +238,6 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
         console.log('存在分行');
         var datalist = [];
         this.cardname.forEach(function (item) {
-          //item.split('-')[1]
           if (!datalist[item.split('-')[1]]) {
             var arr = [];
             arr.push(item.split('-')[0]);
@@ -247,8 +246,8 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
             datalist[item.split('-')[1]].push(item.split('-')[0]);
           }
         });
-        console.log('存在分行数据', datalist);
-        this.cardlist = datalist;
+        console.log('存在分行数据', datalist.filter(function (i) {return i;}));
+        this.cardlist = datalist.filter(function (i) {return i;});
       } else {
         console.log('不存在分行');
 
