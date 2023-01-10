@@ -234,11 +234,6 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
       this.creportdata = JSON.parse(option.creportdata);
       console.log('卡片', option.creportcolumns.split(';'));
       this.cardname = option.creportcolumns.split(';');
-      //分行显示
-      // this.cardname[0]=this.cardname[0].concat('-1')
-      // this.cardname[1]=this.cardname[1].concat('-1')
-      // this.cardname[2]=this.cardname[2].concat('-2')
-
       if (this.cardname[0].indexOf('-') != '-1') {
         console.log('存在分行');
         var datalist = [];
@@ -258,7 +253,7 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
         console.log('不存在分行');
 
       }
-      this.resultcard = this.result[0];
+      this.resultcard = this.result.flat();
       console.log('kapian', this.resultcard);
     }
 
@@ -317,8 +312,9 @@ var _api = __webpack_require__(/*! ../../network/api */ 143);var selectSwitch = 
     rowClick: function rowClick(row, index) {
       console.log('单项表格数据', row);
       var data = JSON.stringify(row);
+      uni.setStorageSync('detaildata', data);
       uni.navigateTo({
-        url: "../../pagesA/detail/detail?list=".concat(data) });
+        url: "../../pagesA/detail/detail" });
 
     },
     //自定义返回

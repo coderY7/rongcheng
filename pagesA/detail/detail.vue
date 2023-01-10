@@ -25,8 +25,11 @@
 		components: {
 		navbar
 		},
-    onLoad(option){
-      this.datas=JSON.parse(option.list)
+    onLoad(){
+    },
+    onShow(){
+      this.datas=JSON.parse(uni.getStorageSync('detaildata'))
+
     },
 	methods:{
 		//自定义返回

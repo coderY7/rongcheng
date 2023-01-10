@@ -168,8 +168,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     navbar: navbar },
 
-  onLoad: function onLoad(option) {
-    this.datas = JSON.parse(option.list);
+  onLoad: function onLoad() {
+  },
+  onShow: function onShow() {
+    this.datas = JSON.parse(uni.getStorageSync('detaildata'));
+
   },
   methods: {
     //自定义返回
